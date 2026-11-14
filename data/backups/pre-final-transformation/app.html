@@ -1,0 +1,2584 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>RAGAMARA — Markas Penjelajah & Petualangan Budaya Nusantara</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Core Design System & Component Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+
+  <!-- Tailwind CSS Engine -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary-purple": "#6338D4",
+            "deep-purple": "#392071",
+            "dark-plum": "#211B35",
+            "lavender": "#8B5CF6",
+            "warm-yellow": "#FFCA55",
+            "coral": "#FF786B",
+            "turquoise": "#24CBA2",
+            "warm-ivory": "#FFF8EB",
+            "surface-lowest": "#0F0818",
+            "surface-low": "#1A1228",
+            "surface-container": "#211B35",
+            "surface-container-high": "#2D2445",
+            "surface-container-highest": "#3A3057"
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#150E24] text-[#FFF8EB] font-sans antialiased min-h-screen relative overflow-x-hidden pb-24 lg:pb-8">
+
+  <!-- Ambient Nebulae -->
+  <div class="fixed top-[-10rem] left-1/4 w-[36rem] h-[36rem] bg-[#6338D4]/20 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+  <div class="fixed top-40 right-[-10rem] w-[32rem] h-[32rem] bg-[#FFCA55]/15 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+
+  <!-- ==========================================================================
+       1. AUTHENTICATED IN-GAME HEADER & HUD
+       ========================================================================== -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#0F0818]/90 backdrop-blur-xl border-b border-[#8B5CF6]/20 shadow-[0_8px_32px_rgba(15,8,24,0.7)]">
+    <div class="h-20 max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Mascot Logo -->
+      <a href="landing.html" class="flex items-center gap-3 shrink-0 text-decoration-none group" title="Kembali ke Halaman Depan">
+        <img alt="RAGAMARA Logo" class="h-9 w-auto object-contain transition-transform group-hover:scale-105" src="assets/images/logo.png"/>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-[20px] text-[#FFCA55] tracking-tight leading-none uppercase">Ragamara</span>
+          <span class="font-bold text-[10px] text-[#CCC3DF] tracking-wider uppercase mt-1">Player HQ • Sumatera</span>
+        </div>
+      </a>
+
+      <!-- Authenticated In-Game Navigation (Desktop >= 1024px) -->
+      <nav class="hidden lg:flex items-center gap-1.5 bg-[#1A1228] p-1.5 rounded-full border border-[#8B5CF6]/20 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]" id="desktop-game-nav">
+        <button onclick="switchView('beranda')" class="game-nav-tab px-4 py-2 rounded-full font-bold text-xs sm:text-sm text-[#CCC3DF] hover:text-white transition-all flex items-center gap-1.5" data-route="beranda">
+          <span class="material-symbols-outlined text-[18px]">home</span>
+          <span>Beranda</span>
+        </button>
+        <button onclick="switchView('petualangan')" class="game-nav-tab px-4 py-2 rounded-full font-bold text-xs sm:text-sm text-[#CCC3DF] hover:text-white transition-all flex items-center gap-1.5" data-route="petualangan">
+          <span class="material-symbols-outlined text-[18px]">public</span>
+          <span>Petualangan</span>
+        </button>
+        <button onclick="switchView('belajar')" class="game-nav-tab px-4 py-2 rounded-full font-bold text-xs sm:text-sm bg-[#6338D4] text-white shadow-[0_4px_0_#3F1D91] transition-all flex items-center gap-1.5 is-active" data-route="belajar">
+          <span class="material-symbols-outlined text-[18px]">explore</span>
+          <span>Belajar</span>
+        </button>
+        <button onclick="switchView('koleksi')" class="game-nav-tab px-4 py-2 rounded-full font-bold text-xs sm:text-sm text-[#CCC3DF] hover:text-white transition-all flex items-center gap-1.5" data-route="koleksi">
+          <span class="material-symbols-outlined text-[18px]">style</span>
+          <span>Koleksi</span>
+        </button>
+        <button onclick="switchView('profil')" class="game-nav-tab px-4 py-2 rounded-full font-bold text-xs sm:text-sm text-[#CCC3DF] hover:text-white transition-all flex items-center gap-1.5" data-route="profil">
+          <span class="material-symbols-outlined text-[18px]">account_circle</span>
+          <span>Profil</span>
+        </button>
+      </nav>
+
+      <!-- Player HUD Stats -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        
+        <!-- Streak Flame -->
+        <div onclick="switchView('beranda')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#2D2445] border border-[#FF786B]/30 shadow-[0_3px_0_#0F0818] cursor-pointer hover:border-[#FF786B] transition-colors" title="Lihat Kalender Nyala 7 Hari">
+          <span class="material-symbols-outlined text-[18px] text-[#FF786B]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+          <span class="font-bold text-xs sm:text-sm text-[#FF786B]" id="hud-streak-count">7 Hari</span>
+        </div>
+
+        <!-- Permata / Diamonds -->
+        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#2D2445] border border-[#24CBA2]/30 shadow-[0_3px_0_#0F0818]">
+          <span class="material-symbols-outlined text-[18px] text-[#24CBA2]">diamond</span>
+          <span class="font-bold text-xs sm:text-sm text-[#24CBA2]" id="stat-gems">480</span>
+        </div>
+
+        <!-- XP Counter -->
+        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#2D2445] border border-[#8B5CF6]/30 shadow-[0_3px_0_#0F0818]">
+          <span class="material-symbols-outlined text-[18px] text-[#8B5CF6]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+          <span class="font-bold text-xs sm:text-sm text-[#8B5CF6]" id="stat-xp">2.450 XP</span>
+        </div>
+
+        <!-- Papan Peringkat / Leaderboard Quick Button -->
+        <button onclick="openLeaderboardModal()" class="w-9 h-9 rounded-full bg-[#2D2445] border border-[#FFCA55]/40 text-[#FFCA55] hover:border-[#FFCA55] hover:scale-105 transition-all flex items-center justify-center shadow-[0_2px_0_#0F0818]" title="Papan Peringkat Nusantara">
+          <span class="material-symbols-outlined text-[19px]">leaderboard</span>
+        </button>
+
+        <!-- Misi Harian Quick Button -->
+        <button onclick="openDailyMissionsModal()" class="w-9 h-9 rounded-full bg-[#2D2445] border border-[#24CBA2]/40 text-[#24CBA2] hover:border-[#24CBA2] hover:scale-105 transition-all flex items-center justify-center shadow-[0_2px_0_#0F0818]" title="Pusat Misi Harian">
+          <span class="material-symbols-outlined text-[19px]">flag</span>
+        </button>
+
+        <!-- Pengaturan Quick Button -->
+        <button onclick="RagamaraEcosystem.Settings.openModal()" class="w-9 h-9 rounded-full bg-[#2D2445] border border-[#8B5CF6]/40 text-[#CCC3DF] hover:text-white hover:border-[#8B5CF6] hover:scale-105 transition-all flex items-center justify-center shadow-[0_2px_0_#0F0818]" title="Pengaturan & Aksesibilitas">
+          <span class="material-symbols-outlined text-[19px]">settings</span>
+        </button>
+
+        <!-- Player Level Badge & Profile Link -->
+        <button onclick="switchView('profil')" class="relative flex items-center gap-1 pl-1 text-decoration-none group" title="Profil Pemain">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-[#6338D4] to-[#8B5CF6] flex items-center justify-center border-2 border-[#FFCA55] shadow-[0_2px_0_#0F0818] overflow-hidden">
+            <img src="assets/images/mascot_raga_avatar.png" alt="Raga Avatar" class="w-full h-full object-cover">
+          </div>
+          <span class="absolute -bottom-1 -right-1 px-1.5 py-0.2 bg-[#FFCA55] text-[#382400] text-[10px] font-extrabold rounded-full shadow" id="hud-level-badge">Lv.8</span>
+        </button>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. DYNAMIC VIEW CONTAINER
+       ========================================================================== -->
+  <main class="w-full pt-24 min-h-[calc(100vh-80px)]">
+    
+    <!-- ==========================================================================
+         VIEW 1: BERANDA (PLAYER HEADQUARTERS — GAME DASHBOARD)
+         ========================================================================== -->
+    <div id="view-beranda" class="view-pane hidden max-w-7xl mx-auto px-4 md:px-8 py-4">
+      
+      <!-- HERO PRIMARY ACTION: CONTINUE LEARNING (VISUALLY DOMINANT) -->
+      <section class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#211B35] via-[#2A1E4A] to-[#211B35] p-6 md:p-8 border-2 border-[#FFCA55]/50 shadow-[0_16px_48px_rgba(15,8,24,0.9),0_0_32px_rgba(255,202,85,0.15)] mb-8">
+        <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-[#6338D4]/30 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-0 right-1/3 w-64 h-64 bg-[#FFCA55]/15 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          
+          <!-- Left: Chapter Context & CTA -->
+          <div class="space-y-4 max-w-2xl">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="px-3 py-1 rounded-full bg-[#FFCA55] text-[#382400] text-xs font-black uppercase tracking-wider shadow">
+                🎯 Lanjutkan Belajar
+              </span>
+              <span class="px-3 py-1 rounded-full bg-[#2D2445] text-[#FFCA55] text-xs font-extrabold border border-[#FFCA55]/30">
+                Bab 2 • Sumatra Barat
+              </span>
+              <span class="text-xs text-[#24CBA2] font-bold flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-[#24CBA2] animate-ping"></span>
+                Level 4 Aktif
+              </span>
+            </div>
+
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-[#FFF8EB] tracking-tight leading-tight">
+              Misi 4: Motif Songket Pandai Sikek & Ragam Hias Minang
+            </h1>
+
+            <p class="text-xs sm:text-sm text-[#CCC3DF] leading-relaxed">
+              Pecahkan rahasia filosofis motif <span class="text-[#FFCA55] font-bold">Itik Pulang Patang</span>, benang emas tenunan Minang, serta aturan adat pemakaian pakaian kebesaran penghulu.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <button onclick="switchView('belajar')" class="btn btn-primary py-3.5 px-8 text-sm uppercase tracking-wider flex items-center gap-2 shadow-[0_8px_0_#3F1D91]">
+                <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                <span>Lanjutkan Petualangan Sekarang!</span>
+              </button>
+
+              <div class="flex items-center gap-3 text-xs text-[#CCC3DF] font-bold bg-[#1A1228]/80 px-4 py-2.5 rounded-2xl border border-[#8B5CF6]/20">
+                <span class="text-[#FFCA55] flex items-center gap-1 font-black">
+                  <span class="material-symbols-outlined text-[16px]">bolt</span> +50 XP
+                </span>
+                <span class="text-[#24CBA2] flex items-center gap-1 font-black">
+                  <span class="material-symbols-outlined text-[16px]">diamond</span> +20 Permata
+                </span>
+                <span class="text-[#FF786B]">~5 Menit</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Visual Progress Card -->
+          <div class="w-full lg:w-80 shrink-0 bg-[#1A1228]/95 p-6 rounded-2xl border border-[#8B5CF6]/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)] flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-[#CCC3DF] uppercase tracking-wider">Progres Bab Ini</span>
+              <span class="text-lg font-black text-[#FFCA55]" id="hq-chapter-percent">80%</span>
+            </div>
+
+            <div class="progress-track h-3.5">
+              <div class="progress-fill progress-fill-gold" style="width: 80%;"></div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 text-center text-xs pt-1">
+              <div class="bg-[#211B35] p-2.5 rounded-xl border border-[#8B5CF6]/20">
+                <p class="text-[10px] text-[#CCC3DF] uppercase font-bold">Misi Selesai</p>
+                <p class="text-sm font-black text-[#FFF8EB] mt-0.5">4 / 5 Misi</p>
+              </div>
+              <div class="bg-[#211B35] p-2.5 rounded-xl border border-[#8B5CF6]/20">
+                <p class="text-[10px] text-[#CCC3DF] uppercase font-bold">Hadiah Bab</p>
+                <p class="text-sm font-black text-[#24CBA2] mt-0.5">Avatar Deta</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- HEADQUARTERS GRID: 3 COLUMNS OF RICH GAME ACTIVITIES -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- LEFT COLUMN: DAILY MISSIONS & REWARDS (5 COLS) -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Daily Missions (Reference E) -->
+          <div class="bg-[#211B35] p-6 rounded-3xl border border-[#8B5CF6]/20 shadow-[0_8px_0_#0F0818]">
+            <div class="flex items-center justify-between pb-4 border-b border-[#8B5CF6]/15">
+              <div class="flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-[#FFCA55] text-2xl" style="font-variation-settings: 'FILL' 1;">assignment</span>
+                <div>
+                  <h3 class="font-extrabold text-base text-[#FFF8EB]">Misi Harian Penjelajah</h3>
+                  <p class="text-[11px] text-[#CCC3DF]">Diperbarui setiap pukul 00:00 WIB</p>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-[#1A1228] text-[11px] font-black text-[#FFCA55] border border-[#FFCA55]/20">
+                2/3 Tuntas
+              </span>
+            </div>
+
+            <!-- Mission Items -->
+            <div class="mt-4 space-y-3">
+              
+              <!-- Mission 1: Selesaikan Level -->
+              <div class="p-4 rounded-2xl bg-[#2D2445] border border-[#8B5CF6]/20 hover:border-[#8B5CF6]/40 transition-colors">
+                <div class="flex items-start justify-between gap-3">
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-[#6338D4] flex items-center justify-center text-white shrink-0 mt-0.5">
+                      <span class="material-symbols-outlined text-[22px]">brush</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-xs sm:text-sm text-white">Selesaikan Level 4: Motif Songket</h4>
+                      <p class="text-[11px] text-[#CCC3DF] mt-0.5">Jawab 3 pertanyaan seputar ragam hias Minang.</p>
+                      <div class="flex items-center gap-2 mt-2">
+                        <span class="text-[10px] font-extrabold text-[#FFCA55] flex items-center gap-0.5">
+                          <span class="material-symbols-outlined text-[13px]">bolt</span> +40 XP
+                        </span>
+                        <span class="text-[10px] font-extrabold text-[#24CBA2] flex items-center gap-0.5">
+                          <span class="material-symbols-outlined text-[13px]">diamond</span> +15 💎
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <button onclick="switchView('belajar')" class="btn btn-primary text-xs py-1.5 px-3.5 shrink-0">
+                    Kerjakan
+                  </button>
+                </div>
+              </div>
+
+              <!-- Mission 2: Sempurna 100% (Claimable!) -->
+              <div class="p-4 rounded-2xl bg-[#2D2445] border border-[#24CBA2]/40 bg-gradient-to-r from-[#2D2445] to-[#1F3A36]">
+                <div class="flex items-start justify-between gap-3">
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-[#24CBA2] flex items-center justify-center text-[#06382B] shrink-0 mt-0.5">
+                      <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-xs sm:text-sm text-white">Kuis Sempurna: Skor 100%</h4>
+                      <p class="text-[11px] text-[#24CBA2] font-bold mt-0.5">Selesai! Hadiah siap diklaim.</p>
+                      <div class="flex items-center gap-2 mt-2">
+                        <span class="text-[10px] font-extrabold text-[#FFCA55] flex items-center gap-0.5">
+                          <span class="material-symbols-outlined text-[13px]">bolt</span> +30 XP
+                        </span>
+                        <span class="text-[10px] font-extrabold text-[#24CBA2] flex items-center gap-0.5">
+                          <span class="material-symbols-outlined text-[13px]">diamond</span> +10 💎
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <button id="btn-claim-mission" onclick="claimMissionReward(this)" class="btn btn-gold text-xs py-1.5 px-3.5 shrink-0 animate-bounce">
+                    Klaim 🎁
+                  </button>
+                </div>
+              </div>
+
+              <!-- Mission 3: Latihan Kilat -->
+              <div class="p-4 rounded-2xl bg-[#2D2445] border border-[#8B5CF6]/20">
+                <div class="flex items-start justify-between gap-3">
+                  <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-[#3A3057] flex items-center justify-center text-[#CCC3DF] shrink-0 mt-0.5">
+                      <span class="material-symbols-outlined text-[22px]">replay</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-xs sm:text-sm text-white">Lakukan 1x Latihan Kilat</h4>
+                      <p class="text-[11px] text-[#CCC3DF] mt-0.5">Ulangi artefak Rumah Gadang atau Rencong.</p>
+                      <div class="flex items-center gap-2 mt-2">
+                        <span class="text-[10px] font-extrabold text-[#FFCA55] flex items-center gap-0.5">
+                          <span class="material-symbols-outlined text-[13px]">bolt</span> +15 XP
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <button onclick="startQuickPractice()" class="btn btn-surface text-xs py-1.5 px-3.5 shrink-0">
+                    Latihan
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Cultural Challenge Banner -->
+          <div class="bg-gradient-to-br from-[#392071] to-[#211B35] p-6 rounded-3xl border-2 border-[#8B5CF6]/30 shadow-[0_8px_0_#0F0818] relative overflow-hidden">
+            <div class="flex items-start justify-between gap-4">
+              <div class="space-y-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-[#FF786B] text-white text-[10px] font-black uppercase tracking-wider">
+                  ⚡ Tantangan Spesial
+                </span>
+                <h4 class="text-base font-extrabold text-white">Tantangan Kilat: 60 Detik Tebak Motif</h4>
+                <p class="text-xs text-[#CCC3DF]">Tebak 5 ornamen ukir tradisional Minangkabau sebelum waktu habis!</p>
+                <div class="pt-2">
+                  <button onclick="openQuestModal()" class="btn btn-secondary text-xs py-2 px-5 font-extrabold">
+                    Mulai Tantangan (+60 XP)
+                  </button>
+                </div>
+              </div>
+              <div class="w-16 h-16 rounded-2xl bg-[#6338D4]/40 flex items-center justify-center border border-[#FFCA55]/40 shrink-0">
+                <span class="material-symbols-outlined text-3xl text-[#FFCA55]" style="font-variation-settings: 'FILL' 1;">timer</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CENTER/RIGHT COLUMN: MASCOT COMPANION & STREAK / STATS (7 COLS) -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <!-- Mascot Interactive Stage (High-Res Official Rhino Companion) -->
+          <div class="bg-[#211B35] p-6 rounded-3xl border-2 border-[#8B5CF6]/30 shadow-[0_8px_0_#0F0818] relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row items-center gap-6">
+              
+              <!-- Mascot Avatar (Clickable for Quotes) -->
+              <div class="relative shrink-0 cursor-pointer group" onclick="triggerMascotVoice()" title="Klik Raga untuk mendengar nasihat adat!">
+                <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl bg-[#1A1228] p-2 border-2 border-[#FFCA55] shadow-[0_8px_24px_rgba(99,56,212,0.4)] flex items-center justify-center transition-transform group-hover:scale-105">
+                  <img src="assets/images/mascot_raga_transparent.png" alt="Raga Maskot Penjelajah" class="w-full h-full object-contain filter drop-shadow">
+                </div>
+                <div class="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-full bg-[#24CBA2] text-[#06382B] text-[9px] font-black uppercase shadow">
+                  Klik Aku! 💬
+                </div>
+              </div>
+
+              <!-- Mascot Dialogue Box -->
+              <div class="flex-1 space-y-2 text-left">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs uppercase font-extrabold text-[#FFCA55] flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px]">record_voice_over</span>
+                    Raga si Badak Penjelajah
+                  </span>
+                  <span class="text-[10px] text-[#24CBA2] font-bold">Sahabat Budaya Setia</span>
+                </div>
+                
+                <div class="speech-bubble">
+                  <p class="text-xs sm:text-sm text-[#FFF8EB] leading-relaxed italic" id="mascot-hq-quote">
+                    “Halo Penjelajah Firza! Tahukah kamu bahwa ukiran <strong>Itik Pulang Patang</strong> pada dinding Rumah Gadang melambangkan keteraturan dan kerukunan hidup bermasyarakat?”
+                  </p>
+                </div>
+
+                <div class="flex items-center justify-between text-[11px] text-[#CCC3DF] pt-1">
+                  <span>Gelar Kamu: <strong class="text-[#24CBA2]">Ahli Warisan Minang</strong></span>
+                  <span class="text-[#FFCA55] cursor-pointer hover:underline" onclick="triggerMascotVoice()">Ganti Nasihat ↻</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Streak & Weekly XP Heatmap (Reference E Gamification) -->
+          <div class="bg-[#211B35] p-6 rounded-3xl border border-[#8B5CF6]/20 shadow-[0_8px_0_#0F0818]">
+            <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/15">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#FF786B] text-2xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                <div>
+                  <h3 class="font-extrabold text-sm sm:text-base text-[#FFF8EB]">Rentetan 7 Hari Nyala Berturut-turut!</h3>
+                  <p class="text-[11px] text-[#24CBA2] font-bold">Perisai Nyala Aktif (Streak Freeze) 🛡️</p>
+                </div>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-[#2D2445] text-xs font-black text-[#FF786B] border border-[#FF786B]/30">
+                Pekan Sempurna!
+              </span>
+            </div>
+
+            <!-- Daily Check Bubbles Mon-Sun -->
+            <div class="grid grid-cols-7 gap-2 sm:gap-3 text-center mt-4">
+              <div class="p-2.5 rounded-2xl bg-[#2D2445] border border-[#FF786B]/30">
+                <p class="text-[10px] text-[#CCC3DF] font-bold">SEN</p>
+                <span class="material-symbols-outlined text-[#FF786B] text-xl my-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                <p class="text-[9px] text-[#FFCA55] font-extrabold">+40 XP</p>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-[#2D2445] border border-[#FF786B]/30">
+                <p class="text-[10px] text-[#CCC3DF] font-bold">SEL</p>
+                <span class="material-symbols-outlined text-[#FF786B] text-xl my-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                <p class="text-[9px] text-[#FFCA55] font-extrabold">+60 XP</p>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-[#2D2445] border border-[#FF786B]/30">
+                <p class="text-[10px] text-[#CCC3DF] font-bold">RAB</p>
+                <span class="material-symbols-outlined text-[#FF786B] text-xl my-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                <p class="text-[9px] text-[#FFCA55] font-extrabold">+50 XP</p>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-[#2D2445] border border-[#FF786B]/30">
+                <p class="text-[10px] text-[#CCC3DF] font-bold">KAM</p>
+                <span class="material-symbols-outlined text-[#FF786B] text-xl my-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                <p class="text-[9px] text-[#FFCA55] font-extrabold">+75 XP</p>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-[#2D2445] border border-[#FF786B]/30">
+                <p class="text-[10px] text-[#CCC3DF] font-bold">JUM</p>
+                <span class="material-symbols-outlined text-[#FF786B] text-xl my-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                <p class="text-[9px] text-[#FFCA55] font-extrabold">+55 XP</p>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-[#2D2445] border border-[#FF786B]/30">
+                <p class="text-[10px] text-[#CCC3DF] font-bold">SAB</p>
+                <span class="material-symbols-outlined text-[#FF786B] text-xl my-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                <p class="text-[9px] text-[#FFCA55] font-extrabold">+90 XP</p>
+              </div>
+              <div class="p-2.5 rounded-2xl bg-[#6338D4] border-2 border-[#FFCA55] shadow">
+                <p class="text-[10px] text-white font-bold">MIN</p>
+                <span class="material-symbols-outlined text-[#FFCA55] text-xl my-0.5 animate-pulse" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                <p class="text-[9px] text-white font-extrabold">Hari Ini!</p>
+              </div>
+            </div>
+
+            <!-- Weekly Activity Bar Chart -->
+            <div class="mt-4 pt-3 border-t border-[#8B5CF6]/15 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] uppercase font-bold text-[#CCC3DF]">Total XP Pekan Ini:</span>
+                <span class="text-xs font-black text-[#FFCA55] ml-1">420 XP</span>
+              </div>
+              <div class="activity-bar-container">
+                <div class="activity-bar-col"><div class="activity-bar-fill active" style="height: 50%;"></div></div>
+                <div class="activity-bar-col"><div class="activity-bar-fill active" style="height: 70%;"></div></div>
+                <div class="activity-bar-col"><div class="activity-bar-fill active" style="height: 60%;"></div></div>
+                <div class="activity-bar-col"><div class="activity-bar-fill active" style="height: 85%;"></div></div>
+                <div class="activity-bar-col"><div class="activity-bar-fill active" style="height: 65%;"></div></div>
+                <div class="activity-bar-col"><div class="activity-bar-fill active" style="height: 100%;"></div></div>
+                <div class="activity-bar-col"><div class="activity-bar-fill active" style="height: 40%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recently Unlocked Achievement Card -->
+          <div class="bg-[#211B35] p-5 rounded-3xl border border-[#8B5CF6]/20 shadow-[0_8px_0_#0F0818] flex items-center justify-between gap-4 cursor-pointer hover:border-[#FFCA55]/50 transition-colors" onclick="openAchievementModal('Penakluk Atap Bagonjong', 'Menyelesaikan analisis struktur kayu pasak anti-gempa Rumah Gadang tanpa paku besi.', 'assets/images/rumah_gadang.png', '+100 XP & Lencana Emas')">
+            <div class="flex items-center gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#FFCA55] to-[#FF786B] flex items-center justify-center text-[#382400] shrink-0 shadow">
+                <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">roofing</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-extrabold text-[#24CBA2]">Pencapaian Baru Terbuka</span>
+                <h4 class="font-extrabold text-sm text-white">Penakluk Atap Bagonjong</h4>
+                <p class="text-[11px] text-[#CCC3DF]">Diverifikasi kemarin • Lihat detail lencana</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[#CCC3DF] text-xl">chevron_right</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         VIEW 2: PETUALANGAN (ADVENTURE MAP — INDONESIAN CULTURAL WORLD)
+         ========================================================================== -->
+    <div id="view-petualangan" class="view-pane hidden max-w-7xl mx-auto px-4 md:px-8 py-4">
+      
+      <!-- Realm Map Header -->
+      <section class="text-center max-w-3xl mx-auto mb-8 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#211B35] border border-[#8B5CF6]/30">
+          <span class="material-symbols-outlined text-[#FFCA55] text-[16px]">public</span>
+          <span class="text-xs font-black uppercase text-[#FFCA55] tracking-wider">Peta Jagat Petualangan Budaya</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-black text-[#FFF8EB] tracking-tight">
+          Tujuh Alam Pusaka Nusantara
+        </h2>
+        <p class="text-xs sm:text-sm text-[#CCC3DF] leading-relaxed">
+          Pilih alam kebudayaan untuk membuka babak petualangan baru. Taklukkan tantangan adat, kumpulkan artefak pusaka terdaftar DAPOBUD, dan raih gelar Maestro Kebudayaan.
+        </p>
+
+        <!-- World Stats Bar -->
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs font-bold text-[#CCC3DF]">
+          <span class="bg-[#1A1228] px-3.5 py-1.5 rounded-full border border-[#8B5CF6]/20 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#24CBA2]"></span>
+            <span>1 Wilayah Aktif (Sumatra)</span>
+          </span>
+          <span class="bg-[#1A1228] px-3.5 py-1.5 rounded-full border border-[#8B5CF6]/20 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#FFCA55]"></span>
+            <span>2 Wilayah Siap Dijelajahi (Jawa & Bali)</span>
+          </span>
+          <span class="bg-[#1A1228] px-3.5 py-1.5 rounded-full border border-[#8B5CF6]/20 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#8E83A8]"></span>
+            <span>4 Wilayah Terkunci</span>
+          </span>
+        </div>
+      </section>
+
+      <!-- 7 MAJOR DESTINATION GROUPINGS (REALMS OF NUSANTARA) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- REALM 1: SUMATRA (CURRENTLY ACTIVE) -->
+        <div class="realm-card is-active cursor-pointer" onclick="openRegionDrawer('Sumatra', 'Ranah Serambi Mekkah, Minangkabau & Sriwijaya', 'Aktif', '65%', 'assets/images/rumah_gadang.png', ['Bab 1: Serambi Mekkah (Aceh - Tuntas)', 'Bab 2: Ranah Minang (Sumbar - Misi 4 Berjalan)', 'Bab 3: Kerajaan Sriwijaya (Sumsel - Terbuka)'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#FFCA55]/40 shadow">
+            <img src="assets/images/rumah_gadang.png" alt="Alam Sumatra" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#FF786B] text-white text-[10px] font-black uppercase tracking-wider shadow flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
+              Sedang Dijalani 🚩
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#FFCA55]">65% Selesai</span>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Sumatera
+              <span class="text-xs font-bold text-[#FFCA55] bg-[#2D2445] px-2 py-0.5 rounded-full">3 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Ranah Serambi Mekkah, arsitektur gonjong Rumah Gadang, aksara Ka Ga Nga, dan kain tenun Songket Palembang.
+            </p>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#24CBA2] font-bold">Sahabat: Raga Deta Minang</span>
+              <button onclick="event.stopPropagation(); switchView('belajar')" class="btn btn-primary text-xs py-1.5 px-4">
+                Masuk Jalur Belajar ➔
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- REALM 2: JAWA (UNLOCKED / AVAILABLE) -->
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Jawa', 'Pusat Peradaban Keraton, Candi & Wayang Purwa', 'Tersedia', '10%', 'assets/images/alam_jawa.jpg', ['Bab 1: Mahakarya Batik Keraton', 'Bab 2: Kidung Gamelan Slendro-Pelog', 'Bab 3: Arsitektur Borobudur & Prambanan'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
+            <img src="assets/images/alam_jawa.jpg" alt="Alam Jawa" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
+              Tersedia Untuk Dijelajahi 🔓
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#FFCA55]">10% Selesai</span>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Jawa
+              <span class="text-xs font-bold text-[#CCC3DF] bg-[#2D2445] px-2 py-0.5 rounded-full">4 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Warisan agung Batik Keraton, harmoni mistis Gamelan Jawa, filosofi Wayang Kulit, dan relief kemegahan candi.
+            </p>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#CCC3DF]">Sahabat: Raga Blangkon</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Jawa', 'Pusat Peradaban Keraton, Candi & Wayang Purwa', 'Tersedia', '10%', 'assets/images/alam_jawa.jpg', ['Bab 1: Mahakarya Batik Keraton', 'Bab 2: Kidung Gamelan Slendro-Pelog', 'Bab 3: Arsitektur Borobudur & Prambanan'])" class="btn btn-secondary text-xs py-1.5 px-4">
+                Lihat Bab ➔
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- REALM 3: BALI & NUSA TENGGARA (UNLOCKED / AVAILABLE) -->
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Bali & Nusa Tenggara', 'Pulau Dewata, Kidung Suci & Senar Sasando', 'Tersedia', '0%', 'assets/images/alam_bali_nt.jpg', ['Bab 1: Sakralitas Tari Kecak & Barong', 'Bab 2: Alunan Ajaib Sasando Pulau Rote', 'Bab 3: Tenun Ikat Tradisional Sumba'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
+            <img src="assets/images/alam_bali_nt.jpg" alt="Alam Bali & Nusa Tenggara" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
+              Tersedia Untuk Dijelajahi 🔓
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#CCC3DF]">0% Baru</span>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Bali & Nusa Tenggara
+              <span class="text-xs font-bold text-[#CCC3DF] bg-[#2D2445] px-2 py-0.5 rounded-full">3 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Gemuruh vokal Kecak sakral, ukiran Candi Bentar, getaran dawai Sasando Rote, dan kain tenun ikat legendaris Sumba.
+            </p>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#CCC3DF]">Sahabat: Raga Udeng & Komo</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Bali & Nusa Tenggara', 'Pulau Dewata, Kidung Suci & Senar Sasando', 'Tersedia', '0%', 'assets/images/alam_bali_nt.jpg', ['Bab 1: Sakralitas Tari Kecak & Barong', 'Bab 2: Alunan Ajaib Sasando Pulau Rote', 'Bab 3: Tenun Ikat Tradisional Sumba'])" class="btn btn-secondary text-xs py-1.5 px-4">
+                Lihat Bab ➔
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- REALM 4: KALIMANTAN (AVAILABLE & ENRICHED) -->
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Kalimantan', 'Bumi Borneo, Rumah Betang & Rimba Mahakam', 'Tersedia', '50%', 'assets/images/alam_kalimantan.jpg', ['Bab 1: Kedamaian Bersama di Rumah Betang Dayak', 'Bab 2: Anatomi & Makna Filosofis Mandau Dayak', 'Bab 3: Kriya Anyaman Rotan Anjat Kutai', 'Bab 4: Musik Sape Sentuhan Jiwa Hutan Kalimantan'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
+            <img src="assets/images/alam_kalimantan.jpg" alt="Alam Kalimantan" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
+              Tersedia Untuk Dijelajahi 🔓
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#FFCA55]">50% Selesai</span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Kalimantan
+              <span class="text-xs font-bold text-[#CCC3DF] bg-[#2D2445] px-2 py-0.5 rounded-full">4 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Arsitektur megah Rumah Betang Panjang Dayak, pusaka bilah Mandau, anyaman rotan Anjat, dan alunan damai alat musik Sape.
+            </p>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#24CBA2] font-bold">Sahabat: Bekti si Bekantan</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Kalimantan', 'Bumi Borneo, Rumah Betang & Rimba Mahakam', 'Tersedia', '50%', 'assets/images/alam_kalimantan.jpg', ['Bab 1: Kedamaian Bersama di Rumah Betang Dayak', 'Bab 2: Anatomi & Makna Filosofis Mandau Dayak', 'Bab 3: Kriya Anyaman Rotan Anjat Kutai', 'Bab 4: Musik Sape Sentuhan Jiwa Hutan Kalimantan'])" class="btn btn-secondary text-xs py-1.5 px-4">
+                Lihat Bab ➔
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- REALM 5: SULAWESI (AVAILABLE & ENRICHED) -->
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Sulawesi', 'Celebes & Negeri Bahari Phinisi', 'Tersedia', '35%', 'assets/images/alam_sulawesi.jpg', ['Bab 1: Kemahiran Galangan Kapal Layar Phinisi Bulukumba', 'Bab 2: Filosofi Ukiran Toraja Pa’tedong & Tongkonan', 'Bab 3: Senjata Pusaka Badik Gecong Bugis', 'Bab 4: Kuliner Tradisional Coto & Konro Rempah Melimpah'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
+            <img src="assets/images/alam_sulawesi.jpg" alt="Alam Sulawesi" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
+              Tersedia Untuk Dijelajahi 🔓
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#FFCA55]">35% Selesai</span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Sulawesi
+              <span class="text-xs font-bold text-[#CCC3DF] bg-[#2D2445] px-2 py-0.5 rounded-full">4 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Puncak melengkung Rumah Adat Tongkonan Toraja, perahu Phinisi mahakarya UNESCO pengarung samudra, dan pusaka Badik Bugis.
+            </p>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#24CBA2] font-bold">Sahabat: Maleo si Burung Pasir</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Sulawesi', 'Celebes & Negeri Bahari Phinisi', 'Tersedia', '35%', 'assets/images/alam_sulawesi.jpg', ['Bab 1: Kemahiran Galangan Kapal Layar Phinisi Bulukumba', 'Bab 2: Filosofi Ukiran Toraja Pa’tedong & Tongkonan', 'Bab 3: Senjata Pusaka Badik Gecong Bugis', 'Bab 4: Kuliner Tradisional Coto & Konro Rempah Melimpah'])" class="btn btn-secondary text-xs py-1.5 px-4">
+                Lihat Bab ➔
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- REALM 6: MALUKU (AVAILABLE & ENRICHED) -->
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Maluku', 'Kepulauan Rempah Bersejarah', 'Tersedia', '25%', 'assets/images/alam_maluku.jpg', ['Bab 1: Sasi Adat: Kearifan Konservasi Laut Tradisional', 'Bab 2: Irama Tifa Maluku & Lagu Daerah Hela Rotan', 'Bab 3: Tari Perang Cakalele & Busana Merah Menyala', 'Bab 4: Benteng Kerajaan Banda Neira & Jalur Rempah'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
+            <img src="assets/images/alam_maluku.jpg" alt="Alam Maluku" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
+              Tersedia Untuk Dijelajahi 🔓
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#FFCA55]">25% Selesai</span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Maluku
+              <span class="text-xs font-bold text-[#CCC3DF] bg-[#2D2445] px-2 py-0.5 rounded-full">4 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Dentuman perkusi Tifa, kobaran tari perang Cakalele, kejayaan jalur rempah pala Banda Neira, dan kearifan konservasi Sasi Adat.
+            </p>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#24CBA2] font-bold">Sahabat: Kakatua Seram</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Maluku', 'Kepulauan Rempah Bersejarah', 'Tersedia', '25%', 'assets/images/alam_maluku.jpg', ['Bab 1: Sasi Adat: Kearifan Konservasi Laut Tradisional', 'Bab 2: Irama Tifa Maluku & Lagu Daerah Hela Rotan', 'Bab 3: Tari Perang Cakalele & Busana Merah Menyala', 'Bab 4: Benteng Kerajaan Banda Neira & Jalur Rempah'])" class="btn btn-secondary text-xs py-1.5 px-4">
+                Lihat Bab ➔
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- REALM 7: PAPUA (AVAILABLE & ENRICHED) -->
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Papua', 'Tanah Cenderawasih & Puncak Salju', 'Tersedia', '45%', 'assets/images/alam_papua.jpg', ['Bab 1: Filosofi Tas Noken: Rahim Kehidupan Alam Papua', 'Bab 2: Struktur Hangat Rumah Honai Lembah Baliem', 'Bab 3: Ukiran Spiritual Patung Asmat Mbis Pole', 'Bab 4: Tifa Totobuang & Pesta Bakar Batu Perdamaian'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
+            <img src="assets/images/alam_papua.jpg" alt="Alam Papua" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
+              Tersedia Untuk Dijelajahi 🔓
+            </div>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#FFCA55]">45% Selesai</span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Papua
+              <span class="text-xs font-bold text-[#CCC3DF] bg-[#2D2445] px-2 py-0.5 rounded-full">4 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Arsitektur melingkar Rumah Honai Lembah Baliem, rajutan serat kayu Noken warisan dunia UNESCO, dan patung ukir sakral Asmat.
+            </p>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#24CBA2] font-bold">Sahabat: Cendro si Cenderawasih</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Papua', 'Tanah Cenderawasih & Puncak Salju', 'Tersedia', '45%', 'assets/images/alam_papua.jpg', ['Bab 1: Filosofi Tas Noken: Rahim Kehidupan Alam Papua', 'Bab 2: Struktur Hangat Rumah Honai Lembah Baliem', 'Bab 3: Ukiran Spiritual Patung Asmat Mbis Pole', 'Bab 4: Tifa Totobuang & Pesta Bakar Batu Perdamaian'])" class="btn btn-secondary text-xs py-1.5 px-4">
+                Lihat Bab ➔
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         VIEW 3: BELAJAR (LEARNING JOURNEY — CONNECTED LEVEL PROGRESSION)
+         ========================================================================== -->
+    <div id="view-belajar" class="view-pane max-w-7xl mx-auto px-4 md:px-8 py-4">
+      
+      <!-- CHAPTER HERO BANNER -->
+      <section class="relative overflow-hidden rounded-3xl bg-[#211B35] p-6 md:p-8 border border-[#8B5CF6]/25 shadow-[0_12px_40px_rgba(15,8,24,0.8)] mb-8">
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-[#6338D4]/25 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-10 -bottom-10 w-60 h-60 bg-[#FFCA55]/20 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div class="space-y-3 max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#2D2445] border border-[#FFCA55]/30 shadow-[0_2px_0_#0F0818]">
+              <span class="material-symbols-outlined text-[16px] text-[#FFCA55]" style="font-variation-settings: 'FILL' 1;">stars</span>
+              <span class="text-xs uppercase tracking-wider font-extrabold text-[#FFCA55]">Bab 2 • Sumatra Barat</span>
+              <span class="text-xs text-[#CCC3DF]">• Ranah Minang Nan Elok</span>
+            </div>
+
+            <h1 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#FFF8EB] tracking-tight">
+              Kekayaan Budaya Ranah Minangkabau
+            </h1>
+
+            <p class="text-sm md:text-base text-[#CCC3DF] leading-relaxed">
+              Kuasai filosofi <span class="text-[#FFCA55] font-bold">Alam Takambang Jadi Guru</span>, rahasia atap Gonjong Rumah Gadang, tradisi matrilineal, motif ukiran songket, serta hentakan mistis Saluang & Talempong.
+            </p>
+
+            <div class="inline-flex items-center gap-2 pt-1">
+              <span class="material-symbols-outlined text-[#24CBA2] text-[20px]">military_tech</span>
+              <span class="text-xs font-bold text-[#CCC3DF]">Hadiah Bab:</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-[#2D2445] text-xs font-bold text-[#FFCA55] border border-[#FFCA55]/20 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">workspace_premium</span>
+                Avatar Eksklusif Raga Deta Minang
+              </span>
+            </div>
+          </div>
+
+          <!-- Progress Widget -->
+          <div class="w-full lg:w-80 shrink-0 bg-[#1A1228] p-5 rounded-2xl border border-[#8B5CF6]/20 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] flex flex-col gap-3">
+            <div class="flex items-center justify-between text-sm font-bold">
+              <span class="text-[#FFF8EB] flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[18px] text-[#FFCA55]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                Progres Pembelajaran
+              </span>
+              <span class="text-[#FFCA55] font-extrabold text-lg" id="learning-progress-val">80%</span>
+            </div>
+
+            <div class="progress-track">
+              <div class="progress-fill progress-fill-gold" id="learning-progress-fill" style="width: 80%;"></div>
+            </div>
+
+            <div class="flex items-center justify-between text-[#CCC3DF] text-xs pt-1">
+              <span id="learning-progress-sub">4 dari 5 Misi Tuntas</span>
+              <span class="text-[#24CBA2] font-bold uppercase">Level 4 Aktif</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MINI-GAME ARENA LAUNCHPAD BAR (PHASE 04) -->
+      <section class="bg-[#211B35] p-5 rounded-3xl border-2 border-[#8B5CF6]/30 shadow-[0_8px_0_#0F0818] mb-8">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#8B5CF6]/15">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-[#6338D4] flex items-center justify-center text-[#FFCA55] shrink-0 border border-[#FFCA55]/40 shadow">
+              <span class="material-symbols-outlined text-[24px]">sports_esports</span>
+            </div>
+            <div>
+              <h3 class="font-black text-base text-white">Arena Mini-Game Budaya Interaktif</h3>
+              <p class="text-xs text-[#CCC3DF]">Uji ketangkasan kearifan adat melalui 6 mekanik gameplay otentik.</p>
+            </div>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-[#1A1228] text-xs font-black text-[#24CBA2] border border-[#24CBA2]/30 w-fit">
+            6 Mode Siap Dimainkan 🎮
+          </span>
+        </div>
+
+        <!-- 6 Mini-Game Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-4">
+          <button onclick="MiniGameEngine.openArena('A')" class="p-3.5 rounded-2xl bg-[#2D2445] hover:bg-[#3A3057] border border-[#8B5CF6]/30 text-center flex flex-col items-center justify-center gap-1.5 transition-all group hover:scale-105 cursor-pointer">
+            <span class="material-symbols-outlined text-2xl text-[#FFCA55] group-hover:animate-bounce">quiz</span>
+            <span class="text-xs font-black text-white">A. Pilihan Ganda</span>
+            <span class="text-[10px] text-[#CCC3DF]">Motif Songket</span>
+          </button>
+
+          <button onclick="MiniGameEngine.openArena('B')" class="p-3.5 rounded-2xl bg-[#2D2445] hover:bg-[#3A3057] border border-[#8B5CF6]/30 text-center flex flex-col items-center justify-center gap-1.5 transition-all group hover:scale-105 cursor-pointer">
+            <span class="material-symbols-outlined text-2xl text-[#24CBA2] group-hover:animate-bounce">link</span>
+            <span class="text-xs font-black text-white">B. Pasangan Budaya</span>
+            <span class="text-[10px] text-[#CCC3DF]">Pusaka & Daerah</span>
+          </button>
+
+          <button onclick="MiniGameEngine.openArena('C')" class="p-3.5 rounded-2xl bg-[#2D2445] hover:bg-[#3A3057] border border-[#8B5CF6]/30 text-center flex flex-col items-center justify-center gap-1.5 transition-all group hover:scale-105 cursor-pointer">
+            <span class="material-symbols-outlined text-2xl text-[#FF786B] group-hover:animate-bounce">drag_indicator</span>
+            <span class="text-xs font-black text-white">C. Susun Struktur</span>
+            <span class="text-[10px] text-[#CCC3DF]">Arsitektur Gadang</span>
+          </button>
+
+          <button onclick="MiniGameEngine.openArena('D')" class="p-3.5 rounded-2xl bg-[#2D2445] hover:bg-[#3A3057] border border-[#8B5CF6]/30 text-center flex flex-col items-center justify-center gap-1.5 transition-all group hover:scale-105 cursor-pointer">
+            <span class="material-symbols-outlined text-2xl text-[#8B5CF6] group-hover:animate-bounce">hearing</span>
+            <span class="text-xs font-black text-white">D. Tebak Irama</span>
+            <span class="text-[10px] text-[#CCC3DF]">Audio Saluang</span>
+          </button>
+
+          <button onclick="MiniGameEngine.openArena('E')" class="p-3.5 rounded-2xl bg-[#2D2445] hover:bg-[#3A3057] border border-[#8B5CF6]/30 text-center flex flex-col items-center justify-center gap-1.5 transition-all group hover:scale-105 cursor-pointer">
+            <span class="material-symbols-outlined text-2xl text-[#FFCA55] group-hover:animate-bounce">auto_stories</span>
+            <span class="text-xs font-black text-white">E. Kisah Adat</span>
+            <span class="text-[10px] text-[#CCC3DF]">Dilema Nagari</span>
+          </button>
+
+          <button onclick="MiniGameEngine.openArena('F')" class="p-3.5 rounded-2xl bg-[#2D2445] hover:bg-[#3A3057] border border-[#8B5CF6]/30 text-center flex flex-col items-center justify-center gap-1.5 transition-all group hover:scale-105 cursor-pointer">
+            <span class="material-symbols-outlined text-2xl text-[#24CBA2] group-hover:animate-bounce">extension</span>
+            <span class="text-xs font-black text-white">F. Teka-Teki Ukir</span>
+            <span class="text-[10px] text-[#CCC3DF]">Saik Kalamai</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 3-COLUMN ADVENTURE MAP GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- LEFT ASIDE: CHAPTER SELECTOR & RAGA'S TIP -->
+        <aside class="lg:col-span-3 space-y-6 order-2 lg:order-1">
+          
+          <div class="bg-[#211B35] p-5 rounded-2xl border border-[#8B5CF6]/20 shadow-[0_6px_0_#0F0818]">
+            <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/15">
+              <h3 class="font-bold text-base text-[#FFF8EB] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#8B5CF6] text-[20px]">map</span>
+                Jalur Wilayah
+              </h3>
+              <span class="text-xs font-bold text-[#FFCA55] uppercase tracking-wider">Sumatra</span>
+            </div>
+
+            <div class="space-y-3 mt-4">
+              <div class="p-3 rounded-xl bg-[#2D2445] flex items-center justify-between opacity-80 cursor-pointer" onclick="showToast('📜 Bab 1: Serambi Mekkah telah selesai (100%)!')">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-[#1A1228] flex items-center justify-center text-[#FFCA55]">
+                    <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">check</span>
+                  </div>
+                  <div>
+                    <p class="font-bold text-xs text-[#FFF8EB]">Bab 1: Serambi Mekkah</p>
+                    <p class="text-[11px] text-[#CCC3DF]">Aceh • 5/5 Selesai</p>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined text-[#24CBA2] text-[18px]">verified</span>
+              </div>
+
+              <div class="p-3 rounded-xl bg-[#6338D4] border border-[#FFCA55]/40 flex items-center justify-between shadow-[0_4px_12px_rgba(99,56,212,0.4)]">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-[#FFCA55] text-[#382400] flex items-center justify-center font-bold">
+                    <span class="material-symbols-outlined text-[18px]">explore</span>
+                  </div>
+                  <div>
+                    <p class="font-bold text-xs text-white">Bab 2: Ranah Minang</p>
+                    <p class="text-[11px] text-[#FFF8EB]/80">Sumbar • Misi 4 Berjalan</p>
+                  </div>
+                </div>
+                <span class="w-2.5 h-2.5 rounded-full bg-[#FFCA55] animate-ping"></span>
+              </div>
+
+              <div class="p-3 rounded-xl bg-[#1A1228] flex items-center justify-between opacity-50 cursor-not-allowed">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-full bg-[#2D2445] flex items-center justify-center text-[#8E83A8]">
+                    <span class="material-symbols-outlined text-[18px]">lock</span>
+                  </div>
+                  <div>
+                    <p class="font-bold text-xs text-[#8E83A8]">Bab 3: Bumi Sriwijaya</p>
+                    <p class="text-[11px] text-[#6F6684]">Sumsel • Buka setelah Bab 2</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mascot Tip Bubble -->
+          <div class="bg-[#2D2445] p-5 rounded-2xl border border-[#8B5CF6]/30 shadow-[0_6px_0_#0F0818] relative overflow-hidden">
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 rounded-full bg-[#6338D4] p-1 shrink-0 border-2 border-[#FFCA55] shadow-[0_3px_0_#3F1D91] overflow-hidden">
+                <img class="w-full h-full object-cover" alt="Raga Avatar" src="assets/images/mascot_raga_avatar.png"/>
+              </div>
+              <div class="space-y-1">
+                <p class="text-xs uppercase tracking-wider font-extrabold text-[#FFCA55]">Bisikan Teman Berpetualang</p>
+                <p class="text-xs text-[#FFF8EB] italic leading-relaxed" id="mascot-trail-tip">
+                  “Pola ukiran songket bukan sekadar hiasan! Motif <em>Itik Pulang Patang</em> mengajarkan kita tentang kerukunan hidup bermasyarakat.”
+                </p>
+                <p class="text-[11px] text-[#24CBA2] font-bold pt-1">— Raga si Badak Penjelajah</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Navigation to Adventure Map -->
+          <button onclick="switchView('petualangan')" class="btn btn-secondary w-full py-3 text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">public</span>
+            <span>Lihat Peta Kepulauan ➔</span>
+          </button>
+        </aside>
+
+        <!-- CENTER STAGE: CONNECTED LEVEL PROGRESSION PATH -->
+        <main class="lg:col-span-6 flex flex-col items-center relative py-4 order-1 lg:order-2">
+          <div class="relative w-full max-w-md mx-auto flex flex-col items-center">
+            
+            <!-- SVG Winding Curved Route -->
+            <svg class="absolute top-8 left-1/2 -translate-x-1/2 w-full h-[980px] pointer-events-none z-0" fill="none" viewBox="0 0 380 980" xmlns="http://www.w3.org/2000/svg">
+              <path class="text-[#6338D4]/20" d="M 190,40 C 90,90 90,160 190,200 C 290,240 290,320 190,360 C 90,400 90,490 190,530 C 290,570 290,650 190,690 C 100,730 110,810 190,850 L 190,920" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></path>
+              <path class="text-[#FFCA55]" d="M 190,40 C 90,90 90,160 190,200 C 290,240 290,320 190,360 C 90,400 90,490 190,530" stroke="currentColor" stroke-dasharray="14 10" stroke-linecap="round" stroke-width="10"></path>
+              <path class="text-[#3A3057]" d="M 190,530 C 290,570 290,650 190,690 C 100,730 110,810 190,850 L 190,920" stroke="currentColor" stroke-dasharray="12 12" stroke-linecap="round" stroke-width="10"></path>
+            </svg>
+
+            <!-- Node 1: Completed -->
+            <div class="relative z-10 flex flex-col items-center mb-14">
+              <button onclick="MiniGameEngine.openArena('A')" class="level-node-btn level-node-completed hover:scale-105 transition-transform cursor-pointer" title="Level 1: Main Ulang Kuis Alam Takambang">
+                <span class="material-symbols-outlined text-[34px] font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              </button>
+              <div class="mt-2 flex items-center gap-1 bg-[#2D2445] px-3 py-1 rounded-full shadow">
+                <span class="material-symbols-outlined text-[#FFCA55] text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-[#FFCA55] text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-[#FFCA55] text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <div class="text-center mt-1">
+                <span class="font-bold text-sm text-[#FFF8EB]">Level 1: Alam Takambang</span>
+                <p class="text-xs text-[#FFCA55]">Selesai (3 Bintang) • Main Ulang ➔</p>
+              </div>
+            </div>
+
+            <!-- Node 2: Completed -->
+            <div class="relative z-10 flex flex-col items-center mb-14 translate-x-16 sm:translate-x-24">
+              <button onclick="openArtifactModal('Rumah Gadang Minangkabau', 'Arsitektur vernakular suku Minangkabau dengan atap gonjong melengkung seperti tanduk kerbau. Menggunakan sistem pasak kayu elastis tahan gempa tanpa paku besi.', 'assets/images/rumah_gadang.png', 'C')" class="level-node-btn level-node-completed hover:scale-105 transition-transform cursor-pointer" title="Level 2: Tantangan Arsitektur Gadang">
+                <span class="material-symbols-outlined text-[34px] font-bold" style="font-variation-settings: 'FILL' 1;">roofing</span>
+              </button>
+              <div class="mt-2 flex items-center gap-1 bg-[#2D2445] px-3 py-1 rounded-full shadow">
+                <span class="material-symbols-outlined text-[#FFCA55] text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-[#FFCA55] text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-[#FFCA55] text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <div class="text-center mt-1">
+                <span class="font-bold text-sm text-[#FFF8EB]">Level 2: Arsitektur Gadang</span>
+                <p class="text-xs text-[#FFCA55]">Selesai • Tantang Struktur ➔</p>
+              </div>
+            </div>
+
+            <!-- Node 3: Completed -->
+            <div class="relative z-10 flex flex-col items-center mb-14 -translate-x-16 sm:-translate-x-24">
+              <button onclick="openArtifactModal('Saluang & Talempong Pacik', 'Ansambel musik tradisional Minangkabau. Saluang ditiup dengan teknik pernapasan tanpa putus (manyisiahan angok), dipadu denting logam talempong pacik poliritmik.', 'assets/images/saluang_talempong.png', 'D')" class="level-node-btn level-node-completed hover:scale-105 transition-transform cursor-pointer" title="Level 3: Alunan Saluang & Talempong">
+                <span class="material-symbols-outlined text-[34px] font-bold" style="font-variation-settings: 'FILL' 1;">music_note</span>
+              </button>
+              <div class="mt-2 flex items-center gap-1 bg-[#2D2445] px-3 py-1 rounded-full shadow">
+                <span class="material-symbols-outlined text-[#FFCA55] text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-[#FFCA55] text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="material-symbols-outlined text-[#FFCA55] text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+              <div class="text-center mt-1">
+                <span class="font-bold text-sm text-[#FFF8EB]">Level 3: Saluang & Talempong</span>
+                <p class="text-xs text-[#FFCA55]">Selesai • Uji Nada Saluang ➔</p>
+              </div>
+            </div>
+
+            <!-- Node 4: ACTIVE NODE (ATTRACTS IMMEDIATE ATTENTION) -->
+            <div class="relative z-30 flex flex-col items-center mb-16 w-full">
+              
+              <!-- Mascot Flag Indicator -->
+              <div class="absolute -top-16 -left-4 sm:-left-8 flex items-end pointer-events-none z-20">
+                <img class="w-24 h-24 sm:w-28 sm:h-28 object-contain filter drop-shadow-[0_8px_16px_rgba(139,92,246,0.4)] animate-bounce" alt="Raga Flag" src="assets/images/mascot_raga_flag.png"/>
+                <div class="badge-flag -ml-2 mb-4">
+                  Mulai Di Sini! 🚩
+                </div>
+              </div>
+
+              <!-- Pulsing Tactical Node Button -->
+              <div class="relative flex items-center justify-center">
+                <div class="active-pulse-halo"></div>
+                <button class="level-node-btn level-node-active" id="active-level-btn" onclick="MiniGameEngine.openArena('A')" title="Buka Level 4: Motif Songket">
+                  <span class="material-symbols-outlined text-[40px] text-white">brush</span>
+                </button>
+              </div>
+
+              <div class="text-center mt-3">
+                <span class="font-extrabold text-base text-[#FFCA55]">
+                  Level 4: Motif Songket Pandai Sikek
+                </span>
+                <p class="text-xs font-bold text-[#8B5CF6] uppercase tracking-wider">Level Aktif • Sedang Dikerjakan</p>
+              </div>
+
+              <!-- Dimensional Launchpad Card -->
+              <div class="mt-4 w-full max-w-sm bg-[#2D2445] rounded-2xl p-5 border border-[#8B5CF6]/30 shadow-[0_12px_32px_rgba(15,8,24,0.9)]">
+                <div class="flex items-center justify-between text-xs font-bold">
+                  <div class="flex items-center gap-1.5 text-[#FFF8EB]">
+                    <span class="material-symbols-outlined text-[#FFCA55] text-[18px]">timer</span>
+                    <span>Durasi ~5 Menit</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-[#24CBA2]">
+                    <span class="material-symbols-outlined text-[16px]">quiz</span>
+                    <span>6 Mode Mini-Game</span>
+                  </div>
+                </div>
+
+                <p class="text-xs text-[#CCC3DF] mt-2.5 leading-relaxed">
+                  Eksplorasi makna filosofis ragam hias <em>Saik Kalamai</em>, <em>Itik Pulang Patang</em>, dan filosofi benang emas Minang.
+                </p>
+
+                <button onclick="MiniGameEngine.openArena('A')" class="btn btn-primary w-full mt-4 py-3 text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+                  <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  <span>Mulai Petualangan Kuis!</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Node 5: Milestone Treasure Chest -->
+            <div class="relative z-10 flex flex-col items-center mb-14 translate-x-12">
+              <button id="treasure-chest-btn" class="level-node-chest cursor-pointer hover:scale-110 transition-transform" onclick="claimTreasureChest()" title="Buka Peti Pusaka Minang">
+                <span class="material-symbols-outlined text-[32px] text-[#FFCA55]" style="font-variation-settings: 'FILL' 1;">lock_open</span>
+                <span class="absolute -top-2 -right-2 px-1.5 py-0.5 rounded-full bg-[#24CBA2] text-[#06382B] text-[9px] font-extrabold">50 💎</span>
+              </button>
+              <div class="text-center mt-2">
+                <span class="font-bold text-xs text-[#FFF8EB]">Peti Pusaka Minang</span>
+                <p class="text-[11px] text-[#24CBA2] font-semibold">Klik untuk Klaim 50 💎 & 100 XP!</p>
+              </div>
+            </div>
+
+            <!-- Node 6: Level 5 (Randai & Silek) -->
+            <div class="relative z-10 flex flex-col items-center mb-14 -translate-x-14">
+              <button class="level-node-btn level-node-completed hover:scale-105 transition-transform cursor-pointer" onclick="MiniGameEngine.openArena('E')" title="Buka Level 5: Randai & Seni Silek">
+                <span class="material-symbols-outlined text-[28px] text-[#FFCA55]">theater_comedy</span>
+              </button>
+              <div class="text-center mt-2">
+                <span class="font-bold text-xs text-[#CCC3DF]">Level 5: Randai & Seni Silek</span>
+                <p class="text-[11px] text-[#FFCA55] font-semibold">Kisah Adat Dilema ➔</p>
+              </div>
+            </div>
+
+            <!-- Node 7: Boss Stage (Maestro Minangkabau) -->
+            <div class="relative z-10 flex flex-col items-center mb-8">
+              <button class="level-node-boss hover:scale-105 transition-transform cursor-pointer" onclick="MiniGameEngine.openArena('F')" title="Buka Ujian Akhir Maestro">
+                <span class="material-symbols-outlined text-[44px]" style="font-variation-settings: 'FILL' 1;">trophy</span>
+              </button>
+              <div class="text-center mt-3 max-w-xs">
+                <span class="font-extrabold text-sm text-[#FFF8EB]">Ujian Akhir: Maestro Minangkabau</span>
+                <p class="text-xs text-[#FFCA55]">Teka-Teki Pusaka Saik Kalamai ➔</p>
+              </div>
+            </div>
+
+          </div>
+        </main>
+
+        <!-- RIGHT ASIDE: DISCOVERED CULTURAL ARTIFACTS (DAPOBUD REPOSITORY) -->
+        <aside class="lg:col-span-3 space-y-6 order-3">
+          
+          <div class="bg-[#211B35] p-5 rounded-2xl border border-[#8B5CF6]/20 shadow-[0_6px_0_#0F0818]">
+            <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/15">
+              <h3 class="font-bold text-base text-[#FFF8EB] flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#24CBA2] text-[20px]">style</span>
+                Kartu Budaya Terbuka
+              </h3>
+              <span class="px-2 py-0.5 rounded-full bg-[#1A1228] text-xs font-bold text-[#FFCA55] border border-[#FFCA55]/20">
+                3 Koleksi
+              </span>
+            </div>
+
+            <!-- Cultural Card 1: Rumah Gadang -->
+            <div class="card-cultural mt-4 cursor-pointer" onclick="openArtifactModal('Rumah Gadang Minangkabau', 'Warisan Budaya Takbenda Indonesia. Rumah panggung beratap lancip melengkung seperti tanduk kerbau (Gonjong). Dirancang tahan gempa menggunakan pasak kayu fleksibel tanpa paku.', 'assets/images/rumah_gadang.png')">
+              <div class="card-cultural-media h-36" style="background-image: url('assets/images/rumah_gadang.png');">
+                <span class="card-cultural-tag">WBTb Nasional</span>
+              </div>
+              <div class="p-3.5 space-y-1">
+                <h4 class="font-bold text-sm text-[#FFF8EB]">Atap Gonjong Bagonjong</h4>
+                <p class="text-[11px] text-[#CCC3DF] line-clamp-2">Arsitektur pasak kayu tanpa paku tahan gempa.</p>
+                <div class="pt-1 flex justify-between items-center text-[10px]">
+                  <span class="text-[#24CBA2] font-bold">Sumber: DAPOBUD RI</span>
+                  <span class="text-[#FFCA55]">Lihat ➔</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cultural Card 2: Saluang Talempong -->
+            <div class="card-cultural mt-3 cursor-pointer" onclick="openArtifactModal('Saluang & Talempong Pacik', 'Alat musik tradisional Minangkabau. Saluang dibuat dari bambu tipis (talang), dimainkan dengan melodi melankolis khas dendang Minang.', 'assets/images/saluang_talempong.png')">
+              <div class="card-cultural-media h-36" style="background-image: url('assets/images/saluang_talempong.png');">
+                <span class="card-cultural-tag">Alat Musik Tradisi</span>
+              </div>
+              <div class="p-3.5 space-y-1">
+                <h4 class="font-bold text-sm text-[#FFF8EB]">Saluang & Talempong</h4>
+                <p class="text-[11px] text-[#CCC3DF] line-clamp-2">Kombinasi melodi serunai bambu dan logam pacik.</p>
+                <div class="pt-1 flex justify-between items-center text-[10px]">
+                  <span class="text-[#24CBA2] font-bold">Sumber: DAPOBUD RI</span>
+                  <span class="text-[#FFCA55]">Lihat ➔</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Practice Button -->
+            <button onclick="startQuickPractice()" class="btn btn-surface w-full mt-4 py-2.5 text-xs flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-[16px]">replay</span>
+              <span>Latihan Kilat Review (+15 XP)</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= VIEW 4: KOLEKSI (CULTUREPEDIA & ECOSYSTEM HUB) ================= -->
+    <div id="view-koleksi" class="view-pane hidden max-w-7xl mx-auto px-4 md:px-8 py-4 space-y-8">
+      
+      <!-- Top Title & Navigation Segmented Controls -->
+      <div class="bg-gradient-to-r from-[#211B35] via-[#2D2445] to-[#211B35] p-6 sm:p-8 rounded-3xl border border-[#8B5CF6]/30 shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-[#6338D4]/20 blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6338D4]/50 border border-[#FFCA55]/40 text-[#FFCA55] text-xs font-black uppercase tracking-wider mb-2">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              <span>DAPOBUD RI × Wikipedia Indonesia</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-black text-[#FFF8EB] drop-shadow-md">
+              Culturepedia & Koleksi Pusaka
+            </h2>
+            <p class="text-xs sm:text-sm text-[#CCC3DF] mt-1.5 max-w-2xl leading-relaxed">
+              Eksplorasi khazanah 10 Objek Pemajuan Kebudayaan (OPK) Indonesia, interaksi ekspresi bersama Raga si Badak Jawa, serta pantau lencana pencapaian luhurmu.
+            </p>
+          </div>
+
+          <!-- Sub-Tab Switcher -->
+          <div class="flex items-center gap-1.5 bg-[#150E22] p-1.5 rounded-2xl border border-[#8B5CF6]/30 self-start md:self-auto shrink-0 shadow-inner">
+            <button onclick="switchKoleksiTab('culturepedia')" id="btn-tab-culturepedia" class="koleksi-subtab px-4 py-2.5 rounded-xl font-extrabold text-xs text-white bg-[#6338D4] shadow-[0_4px_0_#392071] transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">auto_stories</span>
+              <span>Culturepedia</span>
+            </button>
+            <button onclick="switchKoleksiTab('maskot')" id="btn-tab-maskot" class="koleksi-subtab px-4 py-2.5 rounded-xl font-bold text-xs text-[#CCC3DF] hover:text-white transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">cruelty_free</span>
+              <span>Galeri Maskot</span>
+            </button>
+            <button onclick="switchKoleksiTab('prestasi')" id="btn-tab-prestasi" class="koleksi-subtab px-4 py-2.5 rounded-xl font-bold text-xs text-[#CCC3DF] hover:text-white transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">military_tech</span>
+              <span>Prestasi & Lencana</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SUBVIEW A: CULTUREPEDIA ================= -->
+      <div id="koleksi-subview-culturepedia" class="space-y-6">
+        
+        <!-- Search & Quick Filters Bar -->
+        <div class="bg-[#211B35] p-5 rounded-3xl border border-[#8B5CF6]/25 space-y-4 shadow-xl">
+          <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+            
+            <!-- Live Search Bar -->
+            <div class="relative flex-1">
+              <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#8B5CF6] text-xl">search</span>
+              <input type="text" id="culturepedia-search" oninput="RagamaraEcosystem.Culturepedia.searchQuery = this.value; RagamaraEcosystem.Culturepedia.render();" placeholder="Cari pusaka, motif, tradisi lisan, senjata, atau provinsi..." class="w-full pl-12 pr-4 py-3 rounded-2xl bg-[#150E22] border border-[#8B5CF6]/30 text-white placeholder-[#CCC3DF]/50 text-xs sm:text-sm focus:outline-none focus:border-[#FFCA55] transition-all">
+            </div>
+
+            <!-- View Modes: Semua vs Tersimpan -->
+            <div class="flex items-center gap-2 shrink-0">
+              <button onclick="RagamaraEcosystem.Culturepedia.activeTab = 'all'; document.querySelectorAll('.culture-view-mode').forEach(b => b.classList.remove('btn-primary')); this.classList.add('btn-primary'); RagamaraEcosystem.Culturepedia.render();" class="culture-view-mode btn btn-primary text-xs py-2.5 px-4 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px]">travel_explore</span>
+                <span>Semua Artefak</span>
+              </button>
+              <button onclick="RagamaraEcosystem.Culturepedia.activeTab = 'saved'; document.querySelectorAll('.culture-view-mode').forEach(b => b.classList.remove('btn-primary')); this.classList.add('btn-primary'); RagamaraEcosystem.Culturepedia.render();" class="culture-view-mode btn btn-secondary text-xs py-2.5 px-4 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-[#FF786B]">favorite</span>
+                <span>Tersimpan</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 10 Objek Pemajuan Kebudayaan (OPK) Filters -->
+          <div class="space-y-2 pt-2 border-t border-[#8B5CF6]/15">
+            <span class="text-[10px] font-black uppercase text-[#FFCA55] tracking-wider block">Kategori Objek Pemajuan Kebudayaan (OPK):</span>
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+              <button onclick="selectOpkFilter('Semua', this)" class="opk-filter-btn active-filter px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Semua">Semua Kategori</button>
+              <button onclick="selectOpkFilter('Tradisi Lisan', this)" class="opk-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Tradisi Lisan">Tradisi Lisan</button>
+              <button onclick="selectOpkFilter('Manuskrip', this)" class="opk-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Manuskrip">Manuskrip</button>
+              <button onclick="selectOpkFilter('Adat Istiadat', this)" class="opk-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Adat Istiadat">Adat Istiadat</button>
+              <button onclick="selectOpkFilter('Ritus', this)" class="opk-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Ritus">Ritus</button>
+              <button onclick="selectOpkFilter('Pengetahuan Tradisional', this)" class="opk-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Pengetahuan Tradisional">Pengetahuan Tradisional</button>
+              <button onclick="selectOpkFilter('Teknologi Tradisional', this)" class="opk-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Teknologi Tradisional">Teknologi Tradisional</button>
+              <button onclick="selectOpkFilter('Seni', this)" class="opk-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Seni">Seni Pertunjukan</button>
+              <button onclick="selectOpkFilter('Bahasa', this)" class="opk-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Bahasa">Bahasa & Aksara</button>
+              <button onclick="selectOpkFilter('Permainan Rakyat', this)" class="opk-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Permainan Rakyat">Permainan Rakyat</button>
+              <button onclick="selectOpkFilter('Olahraga Tradisional', this)" class="opk-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-cat="Olahraga Tradisional">Olahraga Tradisional</button>
+            </div>
+          </div>
+
+          <!-- Regional Geographic Filters -->
+          <div class="space-y-2 pt-1 border-t border-[#8B5CF6]/15">
+            <span class="text-[10px] font-black uppercase text-[#24CBA2] tracking-wider block">Gugusan Wilayah Geografis:</span>
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+              <button onclick="selectRegionFilter('Semua', this)" class="region-filter-btn active-filter px-3 py-1 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-reg="Semua">Semua Wilayah</button>
+              <button onclick="selectRegionFilter('Sumatra', this)" class="region-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-reg="Sumatra">Sumatra</button>
+              <button onclick="selectRegionFilter('Jawa', this)" class="region-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-reg="Jawa">Jawa</button>
+              <button onclick="selectRegionFilter('Bali & Nusa Tenggara', this)" class="region-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-reg="Bali & Nusa Tenggara">Bali & NT</button>
+              <button onclick="selectRegionFilter('Kalimantan', this)" class="region-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-reg="Kalimantan">Kalimantan</button>
+              <button onclick="selectRegionFilter('Sulawesi', this)" class="region-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-reg="Sulawesi">Sulawesi</button>
+              <button onclick="selectRegionFilter('Maluku', this)" class="region-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-reg="Maluku">Maluku</button>
+              <button onclick="selectRegionFilter('Papua', this)" class="region-filter-btn px-3 py-1 rounded-full text-xs font-bold bg-[#150E22] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white shrink-0 transition-all" data-reg="Papua">Papua</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Counter & Results Status -->
+        <div class="flex items-center justify-between px-2">
+          <span id="culturepedia-count" class="text-xs font-bold text-[#CCC3DF]">Memuat data entri kebudayaan...</span>
+          <span class="text-[11px] text-[#24CBA2] font-semibold flex items-center gap-1">
+            <span class="material-symbols-outlined text-[15px]">verified_user</span> Terverifikasi Resmi Kemendikbud
+          </span>
+        </div>
+
+        <!-- Dynamic Grid of Cultural Artifact Cards -->
+        <div id="culturepedia-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Rendered by RagamaraEcosystem.Culturepedia.render() -->
+        </div>
+      </div>
+
+      <!-- ================= SUBVIEW B: MASCOT GALLERY & EXPRESSION STUDIO ================= -->
+      <div id="koleksi-subview-maskot" class="hidden space-y-8">
+        
+        <!-- Flagship Hero Showcase: Raga si Badak Jawa -->
+        <div class="bg-gradient-to-br from-[#211B35] via-[#2D2445] to-[#150E22] p-6 sm:p-10 rounded-3xl border-2 border-[#FFCA55]/50 shadow-2xl relative overflow-hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Left: Mascot 3D Expression Viewport -->
+            <div class="lg:col-span-5 flex flex-col items-center justify-center text-center space-y-4">
+              <div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-3xl bg-gradient-to-tr from-[#6338D4]/40 via-[#8B5CF6]/20 to-transparent p-4 flex items-center justify-center border-2 border-[#8B5CF6]/30 shadow-2xl">
+                <!-- Mascot Image Container -->
+                <div id="raga-expression-viewer" class="relative z-10 w-full h-full flex items-center justify-center">
+                  <img src="assets/images/mascot_raga_transparent.png" alt="Raga si Badak Jawa" class="w-48 h-48 sm:w-56 sm:h-56 object-contain drop-shadow-[0_12px_24px_rgba(99,56,212,0.4)] animate-float-gentle">
+                </div>
+                <!-- Ambient Glow Ring -->
+                <div class="absolute inset-4 rounded-full border border-[#FFCA55]/30 pointer-events-none animate-pulse"></div>
+              </div>
+
+              <!-- Live Mascot Speech Bubble -->
+              <div class="speech-bubble relative max-w-sm bg-[#150E22]/95 border-2 border-[#8B5CF6]/50 p-4 rounded-2xl shadow-xl text-left">
+                <div class="flex items-center gap-1.5 text-[#FFCA55] text-[11px] font-black uppercase mb-1">
+                  <span class="material-symbols-outlined text-[15px]">record_voice_over</span>
+                  <span>Tutur Kata Raga</span>
+                </div>
+                <p id="raga-expression-speech" class="text-xs text-[#FFF8EB] leading-relaxed">
+                  Aku Raga! Senang sekali bisa menemani petualangan budayamu hari ini!
+                </p>
+              </div>
+            </div>
+
+            <!-- Right: Mascot Lore, Status & Expression Switcher Studio -->
+            <div class="lg:col-span-7 space-y-6">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="px-3 py-1 rounded-full bg-[#24CBA2] text-[#0A382C] font-black text-xs uppercase tracking-wider">
+                    Rekan Aktif Pemain
+                  </span>
+                  <span class="px-3 py-1 rounded-full bg-[#6338D4] text-white font-extrabold text-xs">
+                    Maskot Utama RAGAMARA
+                  </span>
+                </div>
+                <h3 class="text-3xl sm:text-4xl font-black text-[#FFF8EB] mt-2">
+                  Raga si Badak Jawa
+                </h3>
+                <p class="text-xs sm:text-sm text-[#FFCA55] font-bold mt-1">
+                  Pusaka Hayati Ujung Kulon • Pelindung Falsafah Luhur Nusantara
+                </p>
+              </div>
+
+              <div class="space-y-2 text-xs text-[#CCC3DF] leading-relaxed text-justify bg-[#150E22]/60 p-4 rounded-2xl border border-white/5">
+                <p>
+                  <strong>Raga</strong> adalah Badak Jawa bercula satu (*Rhinoceros sondaicus*) yang ceria, bijaksana, dan penuh rasa ingin tahu terhadap keragaman budaya Nusantara. Ia mengenakan selendang tenun merah bermotif bunga bintang tradisional yang melambangkan kebersamaan, persatuan, dan perlindungan warisan leluhur.
+                </p>
+                <p class="text-[#24CBA2] font-semibold">
+                  🛡️ Efek Pendamping: Memberikan bonus +10% XP pada setiap sesi pembelajaran Culturepedia dan mini-game budaya!
+                </p>
+              </div>
+
+              <!-- Interactive Expression Switcher -->
+              <div class="space-y-2.5">
+                <span class="text-xs font-black text-[#FFF8EB] uppercase tracking-wider block">
+                  Studio Ekspresi Interaktif Raga:
+                </span>
+                <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                  <button onclick="RagamaraEcosystem.MascotCollection.setExpression('neutral')" class="expression-pill-btn active-expr p-2 rounded-xl bg-[#150E22] border border-[#8B5CF6]/30 text-xs font-bold text-center text-[#CCC3DF] hover:text-white transition-all" data-expr="neutral">
+                    😊 Netral
+                  </button>
+                  <button onclick="RagamaraEcosystem.MascotCollection.setExpression('curious')" class="expression-pill-btn p-2 rounded-xl bg-[#150E22] border border-[#8B5CF6]/30 text-xs font-bold text-center text-[#CCC3DF] hover:text-white transition-all" data-expr="curious">
+                    🧐 Penasaran
+                  </button>
+                  <button onclick="RagamaraEcosystem.MascotCollection.setExpression('happy')" class="expression-pill-btn p-2 rounded-xl bg-[#150E22] border border-[#8B5CF6]/30 text-xs font-bold text-center text-[#CCC3DF] hover:text-white transition-all" data-expr="happy">
+                    😄 Bahagia
+                  </button>
+                  <button onclick="RagamaraEcosystem.MascotCollection.setExpression('celebrating')" class="expression-pill-btn p-2 rounded-xl bg-[#150E22] border border-[#8B5CF6]/30 text-xs font-bold text-center text-[#CCC3DF] hover:text-white transition-all" data-expr="celebrating">
+                    🎉 Merayakan
+                  </button>
+                  <button onclick="RagamaraEcosystem.MascotCollection.setExpression('thinking')" class="expression-pill-btn p-2 rounded-xl bg-[#150E22] border border-[#8B5CF6]/30 text-xs font-bold text-center text-[#CCC3DF] hover:text-white transition-all" data-expr="thinking">
+                    🤔 Berpikir
+                  </button>
+                  <button onclick="RagamaraEcosystem.MascotCollection.setExpression('encouraging')" class="expression-pill-btn p-2 rounded-xl bg-[#150E22] border border-[#8B5CF6]/30 text-xs font-bold text-center text-[#CCC3DF] hover:text-white transition-all" data-expr="encouraging">
+                    💪 Semangat
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Regional Companion Mascots Collection -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="text-xl font-black text-white">Sahabat Maskot Regional Nusantara</h4>
+              <p class="text-xs text-[#CCC3DF]">Koleksi rekan petualangan satwa khas daerah dari seluruh pulau Indonesia.</p>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-[#2D2445] text-xs font-extrabold text-[#FFCA55] border border-[#FFCA55]/30">
+              3 dari 6 Terbuka (50%)
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Cendro (Papua) -->
+            <div class="bg-[#211B35] p-5 rounded-2xl border border-[#24CBA2]/40 hover:border-[#24CBA2] transition-all cursor-pointer flex items-center gap-4" onclick="RagamaraEcosystem.MascotCollection.openDetail('cendro_cenderawasih')">
+              <div class="w-16 h-16 rounded-2xl bg-[#6338D4] p-1 border-2 border-[#24CBA2] shadow overflow-hidden shrink-0">
+                <img src="assets/images/mascot_raga_avatar.png" alt="Cendro" class="w-full h-full object-cover">
+              </div>
+              <div class="space-y-1 flex-1">
+                <span class="px-2 py-0.2 rounded-full bg-[#24CBA2]/20 text-[#24CBA2] text-[10px] font-black uppercase">Terbuka</span>
+                <h5 class="font-extrabold text-sm text-white">Cendro si Cenderawasih</h5>
+                <p class="text-[11px] text-[#CCC3DF]">Papua Pegunungan • Penyanyi Nada</p>
+              </div>
+            </div>
+
+            <!-- Bekti (Kalimantan) -->
+            <div class="bg-[#211B35] p-5 rounded-2xl border border-[#24CBA2]/40 hover:border-[#24CBA2] transition-all cursor-pointer flex items-center gap-4" onclick="RagamaraEcosystem.MascotCollection.openDetail('bekti_bekantan')">
+              <div class="w-16 h-16 rounded-2xl bg-[#6338D4] p-1 border-2 border-[#24CBA2] shadow overflow-hidden shrink-0">
+                <img src="assets/images/mascot_raga_avatar.png" alt="Bekti" class="w-full h-full object-cover">
+              </div>
+              <div class="space-y-1 flex-1">
+                <span class="px-2 py-0.2 rounded-full bg-[#24CBA2]/20 text-[#24CBA2] text-[10px] font-black uppercase">Terbuka</span>
+                <h5 class="font-extrabold text-sm text-white">Bekti si Bekantan</h5>
+                <p class="text-[11px] text-[#CCC3DF]">Kalimantan Timur • Rimba Mahakam</p>
+              </div>
+            </div>
+
+            <!-- Jalak (Bali) -->
+            <div class="bg-[#211B35] p-5 rounded-2xl border border-[#FFCA55]/40 hover:border-[#FFCA55] transition-all cursor-pointer flex items-center gap-4" onclick="RagamaraEcosystem.MascotCollection.openDetail('jalak_curik')">
+              <div class="w-16 h-16 rounded-2xl bg-[#2D2445] p-1 border-2 border-[#FFCA55] shadow overflow-hidden shrink-0">
+                <img src="assets/images/mascot_raga_avatar.png" alt="Jalak" class="w-full h-full object-cover">
+              </div>
+              <div class="space-y-1 flex-1">
+                <span class="px-2 py-0.2 rounded-full bg-[#FFCA55]/20 text-[#FFCA55] text-[10px] font-black uppercase">Berjalan (70%)</span>
+                <h5 class="font-extrabold text-sm text-white">Jalak Curik Bali</h5>
+                <p class="text-[11px] text-[#CCC3DF]">Bali Barat • Tirta Subak</p>
+              </div>
+            </div>
+
+            <!-- Komo (NTT) -->
+            <div class="bg-[#1A1228] p-5 rounded-2xl border border-white/5 opacity-60 hover:opacity-100 transition-all cursor-pointer flex items-center gap-4" onclick="RagamaraEcosystem.MascotCollection.openDetail('komo_komodo')">
+              <div class="w-16 h-16 rounded-2xl bg-[#150E22] p-1 border border-white/10 shadow overflow-hidden shrink-0 flex items-center justify-center">
+                <span class="material-symbols-outlined text-2xl text-[#CCC3DF]">lock</span>
+              </div>
+              <div class="space-y-1 flex-1">
+                <span class="px-2 py-0.2 rounded-full bg-white/10 text-[#CCC3DF] text-[10px] font-black uppercase">Terkunci (Lv.12)</span>
+                <h5 class="font-extrabold text-sm text-white">Komo si Naga Purba</h5>
+                <p class="text-[11px] text-[#CCC3DF]">Nusa Tenggara Timur</p>
+              </div>
+            </div>
+
+            <!-- Maleo (Sulawesi) -->
+            <div class="bg-[#1A1228] p-5 rounded-2xl border border-white/5 opacity-60 hover:opacity-100 transition-all cursor-pointer flex items-center gap-4" onclick="RagamaraEcosystem.MascotCollection.openDetail('maleo_sulawesi')">
+              <div class="w-16 h-16 rounded-2xl bg-[#150E22] p-1 border border-white/10 shadow overflow-hidden shrink-0 flex items-center justify-center">
+                <span class="material-symbols-outlined text-2xl text-[#CCC3DF]">lock</span>
+              </div>
+              <div class="space-y-1 flex-1">
+                <span class="px-2 py-0.2 rounded-full bg-white/10 text-[#CCC3DF] text-[10px] font-black uppercase">Terkunci (Lv.15)</span>
+                <h5 class="font-extrabold text-sm text-white">Maleo si Burung Pasir</h5>
+                <p class="text-[11px] text-[#CCC3DF]">Sulawesi Tengah</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= SUBVIEW C: ACHIEVEMENTS & BADGES ================= -->
+      <div id="koleksi-subview-prestasi" class="hidden space-y-6">
+        
+        <!-- Filter Tabs -->
+        <div class="flex items-center justify-between flex-wrap gap-3 pb-2 border-b border-[#8B5CF6]/20">
+          <div>
+            <h4 class="text-xl font-black text-white">Lencana & Rekor Kehormatan</h4>
+            <p class="text-xs text-[#CCC3DF]">Buktikan kecakapan dan dedikasimu dalam melestarikan budaya bangsa.</p>
+          </div>
+          <div class="flex items-center gap-1.5 bg-[#150E22] p-1 rounded-xl border border-[#8B5CF6]/20">
+            <button onclick="RagamaraEcosystem.Achievements.setFilter('all')" class="ach-filter-btn active-filter px-3 py-1.5 rounded-lg text-xs font-bold text-white transition-all" data-filter="all">Semua</button>
+            <button onclick="RagamaraEcosystem.Achievements.setFilter('unlocked')" class="ach-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold text-[#CCC3DF] hover:text-white transition-all" data-filter="unlocked">Terbuka (3)</button>
+            <button onclick="RagamaraEcosystem.Achievements.setFilter('in_progress')" class="ach-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold text-[#CCC3DF] hover:text-white transition-all" data-filter="in_progress">Sedang Berjalan (2)</button>
+            <button onclick="RagamaraEcosystem.Achievements.setFilter('locked')" class="ach-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold text-[#CCC3DF] hover:text-white transition-all" data-filter="locked">Terkunci (1)</button>
+          </div>
+        </div>
+
+        <!-- Achievements Grid -->
+        <div id="achievements-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Rendered by RagamaraEcosystem.Achievements.render() -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ================= VIEW 5: PROFIL (RPG PLAYER IDENTITY) ================= -->
+    <div id="view-profil" class="view-pane hidden max-w-7xl mx-auto px-4 md:px-8 py-4 space-y-8">
+      
+      <!-- Player Profile Hero Card -->
+      <div class="bg-gradient-to-r from-[#211B35] via-[#2D2445] to-[#211B35] p-6 sm:p-8 rounded-3xl border border-[#8B5CF6]/30 shadow-2xl relative overflow-hidden">
+        <div class="flex flex-col md:flex-row items-center gap-6 pb-6 border-b border-[#8B5CF6]/20">
+          
+          <!-- Customizable Avatar with Equippable Frame -->
+          <div class="relative shrink-0">
+            <div id="profile-main-avatar" class="w-28 h-28 rounded-3xl bg-[#6338D4] p-1.5 border-4 border-[#FFCA55] overflow-hidden shadow-[0_0_20px_rgba(255,202,85,0.5)] transition-all">
+              <img alt="Raga Avatar" class="w-full h-full object-cover" src="assets/images/mascot_raga_avatar.png"/>
+            </div>
+            <span class="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full bg-[#FFCA55] text-[#382400] text-xs font-black shadow-lg">
+              Lv. 8
+            </span>
+          </div>
+
+          <!-- Identity Details & Title Customization -->
+          <div class="text-center md:text-left space-y-2 flex-1">
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+              <span class="px-3 py-0.5 rounded-full bg-[#6338D4] text-white text-[11px] font-black uppercase tracking-wider">
+                Gelar Kehormatan Nusantara
+              </span>
+              <span class="px-2.5 py-0.5 rounded-full bg-[#24CBA2]/20 text-[#24CBA2] text-[11px] font-bold">
+                Status: Penjelajah Aktif
+              </span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-white">
+              Firza Penjelajah Nusantara
+            </h2>
+            <p id="profile-player-title" class="text-xs sm:text-sm text-[#FFCA55] font-bold">
+              Gelar: Ahli Warisan Minang • Bergabung 2026
+            </p>
+          </div>
+
+          <!-- Settings & Actions -->
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="RagamaraEcosystem.Settings.openModal()" class="btn btn-secondary text-xs py-2 px-4 flex items-center gap-1.5 shadow">
+              <span class="material-symbols-outlined text-[16px]">settings</span>
+              <span>Pengaturan</span>
+            </button>
+            <button onclick="openDailyMissionsModal()" class="btn btn-primary text-xs py-2 px-4 flex items-center gap-1.5 shadow">
+              <span class="material-symbols-outlined text-[16px]">flag</span>
+              <span>Misi Harian</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Frame & Title Customization Row -->
+        <div class="mt-4 pt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-[#CCC3DF] font-bold">Pilih Bingkai Avatar:</span>
+            <button onclick="RagamaraEcosystem.Profile.equipFrame('frame_gold_minang')" class="px-2.5 py-1 rounded-lg bg-[#150E22] border border-[#FFCA55] text-[#FFCA55] font-bold hover:scale-105 transition-all text-[11px]">
+              Emas Minang
+            </button>
+            <button onclick="RagamaraEcosystem.Profile.equipFrame('frame_majapahit')" class="px-2.5 py-1 rounded-lg bg-[#150E22] border border-[#FF786B] text-[#FF786B] font-bold hover:scale-105 transition-all text-[11px]">
+              Surya Majapahit
+            </button>
+            <button onclick="RagamaraEcosystem.Profile.equipFrame('frame_asmat')" class="px-2.5 py-1 rounded-lg bg-[#150E22] border border-[#24CBA2] text-[#24CBA2] font-bold hover:scale-105 transition-all text-[11px]">
+              Ukir Asmat
+            </button>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <span class="text-[#CCC3DF] font-bold">Gelar:</span>
+            <select onchange="RagamaraEcosystem.Profile.setTitle(this.value)" class="bg-[#150E22] border border-[#8B5CF6]/30 text-white rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-[#FFCA55]">
+              <option value="Ahli Warisan Minang">Ahli Warisan Minang</option>
+              <option value="Penjaga Adat Nusantara">Penjaga Adat Nusantara</option>
+              <option value="Kurator Pusaka Bahari">Kurator Pusaka Bahari</option>
+              <option value="Cendekiawan Budaya Luhur">Cendekiawan Budaya Luhur</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 4 Core Stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 text-center">
+          <div class="bg-[#150E22] p-4 rounded-2xl border border-[#8B5CF6]/30 shadow">
+            <span class="text-xs text-[#CCC3DF] font-bold">Total XP</span>
+            <p class="text-2xl font-black text-[#FFCA55] mt-1" id="profile-xp-val">2.450</p>
+          </div>
+          <div class="bg-[#150E22] p-4 rounded-2xl border border-[#8B5CF6]/30 shadow">
+            <span class="text-xs text-[#CCC3DF] font-bold">Permata Berlian</span>
+            <p class="text-2xl font-black text-[#24CBA2] mt-1" id="profile-gem-val">480</p>
+          </div>
+          <div class="bg-[#150E22] p-4 rounded-2xl border border-[#8B5CF6]/30 shadow">
+            <span class="text-xs text-[#CCC3DF] font-bold">Rentetan Nyala</span>
+            <p class="text-2xl font-black text-[#FF786B] mt-1">7 Hari 🔥</p>
+          </div>
+          <div class="bg-[#150E22] p-4 rounded-2xl border border-[#8B5CF6]/30 shadow">
+            <span class="text-xs text-[#CCC3DF] font-bold">Pusaka Ditemukan</span>
+            <p class="text-2xl font-black text-[#FFF8EB] mt-1">18 Objek</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dual Column: Learning Activity Chart & Discovery Timeline -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left: Weekly Learning Activity Chart -->
+        <div class="lg:col-span-7 bg-[#211B35] p-6 rounded-3xl border border-[#8B5CF6]/25 space-y-4 shadow-xl">
+          <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/15">
+            <div>
+              <h4 class="font-extrabold text-base text-white">Aktivitas Belajar Pekan Ini</h4>
+              <p class="text-xs text-[#CCC3DF]">Grafik perolehan XP harian menuju target mingguan.</p>
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-[#6338D4]/40 text-xs font-bold text-[#FFCA55]">
+              Target: 400 XP (Tercapai!)
+            </span>
+          </div>
+
+          <!-- Bar Chart Container -->
+          <div class="h-44 flex items-end justify-between gap-3 pt-4 px-2">
+            <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+              <span class="text-[10px] text-[#CCC3DF] font-mono">40</span>
+              <div class="w-full rounded-t-lg bg-[#6338D4]/60 hover:bg-[#6338D4] transition-all" style="height: 45%;"></div>
+              <span class="text-[11px] font-bold text-[#CCC3DF]">Sen</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+              <span class="text-[10px] text-[#CCC3DF] font-mono">60</span>
+              <div class="w-full rounded-t-lg bg-[#6338D4]/60 hover:bg-[#6338D4] transition-all" style="height: 65%;"></div>
+              <span class="text-[11px] font-bold text-[#CCC3DF]">Sel</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+              <span class="text-[10px] text-[#CCC3DF] font-mono">50</span>
+              <div class="w-full rounded-t-lg bg-[#6338D4]/60 hover:bg-[#6338D4] transition-all" style="height: 55%;"></div>
+              <span class="text-[11px] font-bold text-[#CCC3DF]">Rab</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+              <span class="text-[10px] text-[#CCC3DF] font-mono">75</span>
+              <div class="w-full rounded-t-lg bg-[#6338D4]/60 hover:bg-[#6338D4] transition-all" style="height: 80%;"></div>
+              <span class="text-[11px] font-bold text-[#CCC3DF]">Kam</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+              <span class="text-[10px] text-[#CCC3DF] font-mono">55</span>
+              <div class="w-full rounded-t-lg bg-[#6338D4]/60 hover:bg-[#6338D4] transition-all" style="height: 60%;"></div>
+              <span class="text-[11px] font-bold text-[#CCC3DF]">Jum</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+              <span class="text-[10px] text-[#CCC3DF] font-mono">90</span>
+              <div class="w-full rounded-t-lg bg-[#6338D4]/60 hover:bg-[#6338D4] transition-all" style="height: 95%;"></div>
+              <span class="text-[11px] font-bold text-[#CCC3DF]">Sab</span>
+            </div>
+            <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+              <span class="text-[10px] text-[#FFCA55] font-black font-mono">50</span>
+              <div class="w-full rounded-t-lg bg-gradient-to-t from-[#FFCA55] to-[#FF786B] shadow-[0_0_12px_rgba(255,202,85,0.6)]" style="height: 55%;"></div>
+              <span class="text-[11px] font-black text-[#FFCA55]">Min</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Verified Cultural Discovery Timeline -->
+        <div class="lg:col-span-5 bg-[#211B35] p-6 rounded-3xl border border-[#8B5CF6]/25 space-y-4 shadow-xl">
+          <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/15">
+            <h4 class="font-extrabold text-base text-white">Riwayat Penemuan Budaya</h4>
+            <span class="text-xs text-[#24CBA2] font-bold">Terverifikasi</span>
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-3 rounded-xl bg-[#150E22] border border-[#8B5CF6]/20 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-[#24CBA2]">DAPOBUD: REK/WBTB/2013</span>
+                <h5 class="text-xs font-bold text-white">Rencong Meucugek Aceh</h5>
+                <p class="text-[10px] text-[#CCC3DF]">Simbol keberanian & kemandirian</p>
+              </div>
+              <span class="text-[10px] text-[#FFCA55] font-bold">Kemarin</span>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#150E22] border border-[#8B5CF6]/20 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-[#24CBA2]">DAPOBUD: REK/WBTB/2014</span>
+                <h5 class="text-xs font-bold text-white">Arsitektur Rumah Gadang Minang</h5>
+                <p class="text-[10px] text-[#CCC3DF]">Gonjong, Rangkiang, & Singkok</p>
+              </div>
+              <span class="text-[10px] text-[#FFCA55] font-bold">2 Hari Lalu</span>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#150E22] border border-[#8B5CF6]/20 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-mono text-[#24CBA2]">DAPOBUD: REK/WBTB/2015</span>
+                <h5 class="text-xs font-bold text-white">Tenun Songket Pandai Sikek</h5>
+                <p class="text-[10px] text-[#CCC3DF]">Motif Saik Kalamai & Itik Pulang</p>
+              </div>
+              <span class="text-[10px] text-[#FFCA55] font-bold">3 Hari Lalu</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       3. INTERACTIVE AUDIO CONTROLLER FLOATING PILL
+       ========================================================================== -->
+  <div class="fixed bottom-20 lg:bottom-6 right-6 z-40">
+    <button id="music-toggle-btn" class="flex items-center gap-2 px-4 py-2 rounded-full bg-[#211B35]/95 border-2 border-[#8B5CF6]/40 text-[#CCC3DF] hover:text-white shadow-[0_8px_24px_rgba(10,5,18,0.8)] backdrop-blur-md transition-all text-xs font-bold" title="Mainkan / Hentikan Alunan Gamelan Tradisional">
+      <span class="material-symbols-outlined text-[18px] text-[#FFCA55]" id="music-icon">music_note</span>
+      <span id="music-text">Gamelan: Nyala</span>
+    </button>
+  </div>
+
+  <!-- ==========================================================================
+       4. MOBILE PERSISTENT BOTTOM NAVIGATION
+       ========================================================================== -->
+  <nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 bg-[#0F0818]/95 backdrop-blur-xl border-t border-[#8B5CF6]/20 py-2 px-4 flex items-center justify-around" id="mobile-game-nav">
+    <button onclick="switchView('beranda')" class="bottom-nav-item flex flex-col items-center gap-1 text-[#CCC3DF]" data-route="beranda">
+      <span class="material-symbols-outlined text-[20px]">home</span>
+      <span class="text-[10px] font-bold">Beranda</span>
+    </button>
+    <button onclick="switchView('petualangan')" class="bottom-nav-item flex flex-col items-center gap-1 text-[#CCC3DF]" data-route="petualangan">
+      <span class="material-symbols-outlined text-[20px]">public</span>
+      <span class="text-[10px] font-bold">Peta</span>
+    </button>
+    <button onclick="switchView('belajar')" class="bottom-nav-item flex flex-col items-center gap-1 is-active text-[#FFCA55]" data-route="belajar">
+      <span class="material-symbols-outlined text-[20px]">explore</span>
+      <span class="text-[10px] font-bold">Belajar</span>
+    </button>
+    <button onclick="switchView('koleksi')" class="bottom-nav-item flex flex-col items-center gap-1 text-[#CCC3DF]" data-route="koleksi">
+      <span class="material-symbols-outlined text-[20px]">style</span>
+      <span class="text-[10px] font-bold">Koleksi</span>
+    </button>
+    <button onclick="switchView('profil')" class="bottom-nav-item flex flex-col items-center gap-1 text-[#CCC3DF]" data-route="profil">
+      <span class="material-symbols-outlined text-[20px]">account_circle</span>
+      <span class="text-[10px] font-bold">Profil</span>
+    </button>
+  </nav>
+
+  <!-- ==========================================================================
+       5. MODALS, ARENA & DRAWERS
+       ========================================================================== -->
+
+  <!-- ==========================================================================
+       ARENA MINI-GAME INTERAKTIF (PHASE 04)
+       ========================================================================== -->
+  <div id="gameplay-arena" class="fixed inset-0 z-50 bg-[#0F0818]/95 backdrop-blur-2xl flex flex-col justify-between hidden overflow-y-auto">
+    <!-- Top HUD Bar -->
+    <header class="h-20 shrink-0 border-b border-[#8B5CF6]/20 px-4 md:px-8 flex items-center justify-between gap-4 max-w-7xl mx-auto w-full">
+      <div class="flex items-center gap-3">
+        <button onclick="MiniGameEngine.closeArena()" class="w-10 h-10 rounded-2xl bg-[#211B35] border border-[#8B5CF6]/30 text-[#CCC3DF] hover:text-white flex items-center justify-center transition-colors cursor-pointer" title="Keluar / Jeda (Esc)">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+        <div>
+          <span class="text-[10px] font-black uppercase text-[#FFCA55] tracking-wider">Arena Belajar Interaktif</span>
+          <h2 class="text-sm sm:text-base font-black text-white">Bab 2 • Minangkabau Nan Elok</h2>
+        </div>
+      </div>
+
+      <!-- Mode Selector Pills (Direct Switch between 6 Mini-Games A-F) -->
+      <div class="hidden lg:flex items-center gap-1.5 bg-[#1A1228] p-1.5 rounded-full border border-[#8B5CF6]/30">
+        <button onclick="MiniGameEngine.openArena('A')" class="arena-game-tab px-3 py-1 rounded-full text-xs font-bold transition-all" data-type="A">A. Pilihan Ganda</button>
+        <button onclick="MiniGameEngine.openArena('B')" class="arena-game-tab px-3 py-1 rounded-full text-xs font-bold transition-all" data-type="B">B. Pasangan Budaya</button>
+        <button onclick="MiniGameEngine.openArena('C')" class="arena-game-tab px-3 py-1 rounded-full text-xs font-bold transition-all" data-type="C">C. Susun Struktur</button>
+        <button onclick="MiniGameEngine.openArena('D')" class="arena-game-tab px-3 py-1 rounded-full text-xs font-bold transition-all" data-type="D">D. Tebak Irama</button>
+        <button onclick="MiniGameEngine.openArena('E')" class="arena-game-tab px-3 py-1 rounded-full text-xs font-bold transition-all" data-type="E">E. Kisah Adat</button>
+        <button onclick="MiniGameEngine.openArena('F')" class="arena-game-tab px-3 py-1 rounded-full text-xs font-bold transition-all" data-type="F">F. Teka-Teki Ukir</button>
+      </div>
+
+      <!-- Quick Hint Button -->
+      <button onclick="MiniGameEngine.setMascotReaction('curious', '💡 Nasihat Raga: Pahami nilai keselarasan dengan alam dan penghormatan musyawarah adat!')" class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-[#2D2445] border border-[#FFCA55]/30 text-xs font-bold text-[#FFCA55] hover:border-[#FFCA55] cursor-pointer">
+        <span class="material-symbols-outlined text-[16px]">lightbulb</span>
+        <span class="hidden sm:inline">Petunjuk</span>
+      </button>
+    </header>
+
+    <!-- Center Stage -->
+    <main class="flex-1 max-w-5xl mx-auto w-full px-4 py-6 flex flex-col justify-center" id="arena-stage-container">
+      <!-- Dynamic Mini-Game Content Injected Here -->
+    </main>
+
+    <!-- Bottom Mascot Feedback Bar -->
+    <footer class="h-24 sm:h-28 shrink-0 border-t border-[#8B5CF6]/20 bg-[#150E24]/90 px-4 md:px-8 flex items-center justify-between max-w-7xl mx-auto w-full">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#211B35] p-1 border-2 border-[#FFCA55] shrink-0 overflow-hidden flex items-center justify-center" id="arena-mascot-container">
+          <img src="assets/images/mascot_raga_transparent.png" alt="Raga Maskot" class="w-full h-full object-contain">
+        </div>
+        <div class="space-y-0.5 text-left max-w-xl">
+          <span class="text-[10px] font-black uppercase text-[#24CBA2]">Sahabat Petualang</span>
+          <p class="text-xs text-[#FFF8EB] italic leading-snug" id="arena-mascot-speech">
+            “Kuasai tantangan dengan tenang. Setiap jawaban mengajarimu kearifan luhur Nusantara!”
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="MiniGameEngine.closeArena()" class="btn btn-surface text-xs py-2 px-4">
+          Tutup Arena
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal 1: Interactive Cultural Quiz Modal (Level 4 Songket) -->
+  <div class="modal-backdrop" id="quest-modal">
+    <div class="modal-sheet">
+      <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/20">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded bg-[#FFCA55] text-[#382400] text-[10px] font-black uppercase">Level 4</span>
+          <h3 class="text-lg font-black text-[#FFF8EB]">Teka-Teki Motif Songket Minang</h3>
+        </div>
+        <button onclick="closeQuestModal()" class="w-8 h-8 rounded-full bg-[#2D2445] text-[#CCC3DF] hover:text-white flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- Quiz Content -->
+      <div class="py-4 space-y-4" id="quiz-question-box">
+        <div class="p-3.5 rounded-2xl bg-[#1A1228] border border-[#8B5CF6]/20 text-xs text-[#CCC3DF] leading-relaxed">
+          <span class="text-[#FFCA55] font-extrabold">Petunjuk Raga:</span> Perhatikan pola berbaris itik yang pulang ke kandang pada sore hari tanpa pernah saling mendahului.
+        </div>
+
+        <p class="font-bold text-sm sm:text-base text-white leading-snug">
+          Apa filosofi luhur di balik motif ukiran songket <span class="text-[#FFCA55]">"Itik Pulang Patang"</span> dalam adat Minangkabau?
+        </p>
+
+        <!-- Quiz Options -->
+        <div class="space-y-2.5 pt-1" id="quiz-options">
+          <button onclick="checkAnswer(this, true)" class="w-full text-left p-3.5 rounded-2xl bg-[#2D2445] hover:bg-[#3A3057] border border-[#8B5CF6]/20 text-xs font-bold transition-all flex items-center justify-between group">
+            <span>A. Keteraturan, kerukunan, dan kesepakatan dalam bermusyawarah</span>
+            <span class="material-symbols-outlined text-[#24CBA2] opacity-0 check-mark">check_circle</span>
+          </button>
+          <button onclick="checkAnswer(this, false)" class="w-full text-left p-3.5 rounded-2xl bg-[#2D2445] hover:bg-[#3A3057] border border-[#8B5CF6]/20 text-xs font-bold transition-all flex items-center justify-between group">
+            <span>B. Keberanian prajurit dalam menghadapi serangan musuh</span>
+            <span class="material-symbols-outlined text-[#FF786B] opacity-0 check-mark">cancel</span>
+          </button>
+          <button onclick="checkAnswer(this, false)" class="w-full text-left p-3.5 rounded-2xl bg-[#2D2445] hover:bg-[#3A3057] border border-[#8B5CF6]/20 text-xs font-bold transition-all flex items-center justify-between group">
+            <span>C. Kemampuan berlayar mengarungi samudra Hindia</span>
+            <span class="material-symbols-outlined text-[#FF786B] opacity-0 check-mark">cancel</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-3 border-t border-[#8B5CF6]/20 flex items-center justify-between">
+        <span class="text-xs text-[#CCC3DF]">Hadiah: <strong class="text-[#FFCA55]">+50 XP</strong> & <strong class="text-[#24CBA2]">+20 💎</strong></span>
+        <button id="modal-next-btn" onclick="completeQuest()" disabled class="btn btn-primary text-xs py-2 px-6 disabled:opacity-50 disabled:cursor-not-allowed">
+          Klaim & Lanjutkan
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Artifact & Culturepedia Details Modal -->
+  <div class="modal-backdrop" id="artifact-modal">
+    <div class="modal-sheet" id="artifact-sheet">
+      <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/20">
+        <span class="text-xs uppercase font-extrabold text-[#FFCA55]">Ensiklopedia Pusaka Nusantara</span>
+        <button onclick="closeArtifactModal()" class="w-8 h-8 rounded-full bg-[#2D2445] text-[#CCC3DF] hover:text-white flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+      <div id="artifact-content" class="py-4"></div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Region Details Drawer (Adventure Map) -->
+  <div class="modal-backdrop" id="region-drawer">
+    <div class="modal-sheet max-w-xl">
+      <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/20">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[#FFCA55]">public</span>
+          <h3 class="text-lg font-black text-white" id="drawer-region-title">Sumatra</h3>
+        </div>
+        <button onclick="closeRegionDrawer()" class="w-8 h-8 rounded-full bg-[#2D2445] text-[#CCC3DF] hover:text-white flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <div class="py-4 space-y-4">
+        <div class="h-44 rounded-2xl bg-cover bg-center border border-[#8B5CF6]/30 shadow" id="drawer-region-img"></div>
+        
+        <div>
+          <span class="text-xs font-bold text-[#FFCA55] uppercase" id="drawer-region-status">Sedang Berjalan</span>
+          <p class="text-xs sm:text-sm text-[#CCC3DF] mt-1 leading-relaxed" id="drawer-region-desc"></p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-black uppercase text-white tracking-wider mb-2">Daftar Bab Pembelajaran:</h4>
+          <div class="space-y-2" id="drawer-region-chapters"></div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-[#8B5CF6]/20 flex items-center justify-between">
+        <span class="text-xs text-[#CCC3DF]">Data Resmi: <strong class="text-[#24CBA2]">DAPOBUD RI</strong></span>
+        <button onclick="closeRegionDrawer(); switchView('belajar');" class="btn btn-primary text-xs py-2.5 px-6">
+          Mulai Jalur Wilayah ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Achievement Details Modal -->
+  <div class="modal-backdrop" id="achievement-modal">
+    <div class="modal-sheet text-center">
+      <div class="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-[#FFCA55] to-[#FF786B] flex items-center justify-center text-[#382400] shadow-[0_8px_24px_rgba(255,202,85,0.4)] my-2">
+        <span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+      </div>
+      <span class="text-xs uppercase font-extrabold text-[#24CBA2]">Pencapaian Terbuka</span>
+      <h3 class="text-xl font-black text-white mt-1" id="achieve-title">Penakluk Atap Bagonjong</h3>
+      <p class="text-xs text-[#CCC3DF] mt-2 max-w-sm mx-auto" id="achieve-desc">Menyelesaikan tantangan arsitektur Rumah Gadang.</p>
+      
+      <div class="my-4 p-3 rounded-2xl bg-[#1A1228] border border-[#8B5CF6]/20 text-xs font-bold text-[#FFCA55]" id="achieve-reward">
+        Hadiah: +100 XP & Lencana Emas
+      </div>
+
+      <button onclick="closeAchievementModal()" class="btn btn-primary w-full py-2.5 text-xs">
+        Tutup & Simpan ke Profil
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast" id="app-toast">
+    <span class="material-symbols-outlined text-[#FFCA55]">info</span>
+    <span class="text-xs font-bold" id="toast-msg">Notifikasi RAGAMARA</span>
+  </div>
+
+  <!-- ==========================================================================
+       6. GAME CLIENT LOGIC & STATE ENGINE
+       ========================================================================== -->
+  <script src="js/mascot.js"></script>
+  <script src="js/illustrations.js"></script>
+  <script src="js/minigames.js"></script>
+  <script>
+    // Unified Game State
+    const GameState = {
+      player: {
+        name: "Firza Penjelajah",
+        title: "Ahli Warisan Minang",
+        level: 8,
+        xp: 2450,
+        xpToNext: 3000,
+        gems: 480,
+        streakDays: 7
+      },
+      currentRealm: "Sumatra",
+      currentChapter: "Bab 2: Ranah Minangkabau",
+      levelCompleted: 3, // Level 1, 2, 3 completed; 4 is active
+      activeLevel: 4,
+      cultureCardsUnlocked: [
+        {
+          id: "id_dapobud_f31f397c",
+          name: "Rencong",
+          category: "Senjata Tradisional",
+          province: "Aceh",
+          desc: "Senjata simbol keberanian ureueng Aceh sejak masa Kesultanan Sultan Ali Mughayat Syah.",
+          image: "assets/images/mascot_raga_avatar.png"
+        },
+        {
+          id: "wbtb_rumah_gadang",
+          name: "Rumah Gadang Minangkabau",
+          category: "Arsitektur Tradisional",
+          province: "Sumatera Barat",
+          desc: "Rumah adat bernilai filosofi tinggi dengan atap gonjong bertanduk kerbau dan teknologi kayu anti gempa.",
+          image: "assets/images/rumah_gadang.png"
+        },
+        {
+          id: "wbtb_saluang",
+          name: "Saluang & Talempong Pacik",
+          category: "Seni Musik Tradisi",
+          province: "Sumatera Barat",
+          desc: "Alat musik tiup bambu talang khas Minang dipadu denting logam talempong pacik poliritmik.",
+          image: "assets/images/saluang_talempong.png"
+        }
+      ]
+    };
+
+    // View Switcher Router
+    function switchView(routeId) {
+      document.querySelectorAll('.view-pane').forEach(el => el.classList.add('hidden'));
+      const activePane = document.getElementById('view-' + routeId);
+      if (activePane) {
+        activePane.classList.remove('hidden');
+        if (window.RagamaraMotion) window.RagamaraMotion.animateViewEntrance(activePane);
+      }
+
+      // Update Desktop Tabs
+      document.querySelectorAll('#desktop-game-nav .game-nav-tab').forEach(btn => {
+        if (btn.getAttribute('data-route') === routeId) {
+          btn.classList.add('bg-[#6338D4]', 'text-white', 'shadow-[0_4px_0_#3F1D91]');
+          btn.classList.remove('text-[#CCC3DF]');
+        } else {
+          btn.classList.remove('bg-[#6338D4]', 'text-white', 'shadow-[0_4px_0_#3F1D91]');
+          btn.classList.add('text-[#CCC3DF]');
+        }
+      });
+
+      // Update Mobile Bottom Nav
+      document.querySelectorAll('#mobile-game-nav .bottom-nav-item').forEach(btn => {
+        if (btn.getAttribute('data-route') === routeId) {
+          btn.classList.add('is-active', 'text-[#FFCA55]');
+          btn.classList.remove('text-[#CCC3DF]');
+        } else {
+          btn.classList.remove('is-active', 'text-[#FFCA55]');
+          btn.classList.add('text-[#CCC3DF]');
+        }
+      });
+
+      if (routeId === 'koleksi') {
+        renderKoleksiGrid();
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Audio State & Web Audio Synthesizer (Pentatonic Gamelan)
+    let audioPlaying = false;
+    let audioCtx = null;
+    let ambientTimer = null;
+
+    function playGamelanChime() {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25];
+        const freq = notes[Math.floor(Math.random() * notes.length)];
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.2);
+      } catch (e) {}
+    }
+
+    document.getElementById('music-toggle-btn')?.addEventListener('click', function() {
+      audioPlaying = !audioPlaying;
+      const text = document.getElementById('music-text');
+      const icon = document.getElementById('music-icon');
+      if (audioPlaying) {
+        text.innerText = 'Gamelan: Mengalun';
+        icon.innerText = 'volume_up';
+        this.classList.add('bg-[#6338D4]', 'text-white');
+        playGamelanChime();
+        ambientTimer = setInterval(playGamelanChime, 3000);
+        showToast('🎵 Alunan Gamelan Slendro Diaktifkan');
+      } else {
+        text.innerText = 'Gamelan: Nyala';
+        icon.innerText = 'music_note';
+        this.classList.remove('bg-[#6338D4]', 'text-white');
+        clearInterval(ambientTimer);
+        showToast('🔇 Alunan Suara Latar Dihentikan');
+      }
+    });
+
+    // Mascot Voice Rotation
+    const mascotQuotes = [
+      "“Pola ukiran Itik Pulang Patang mengajarkan kita tentang kerukunan hidup bermasyarakat.”",
+      "“Alam Takambang Jadi Guru: belajarlah dari tanda-tanda alam dan kearifan leluhur.”",
+      "“Atap gonjong Rumah Gadang tahan gempa karena dirangkai dengan pasak kayu lentur tanpa paku besi!”",
+      "“Tiap helai benang emas songket Pandai Sikek ditenun dengan doa dan kesabaran seorang maestro.”",
+      "“Hebat, Firza! Rentetan 7 hari nyala membuktikan kecintaanmu pada kebudayaan Nusantara!”"
+    ];
+    let quoteIndex = 0;
+
+    function triggerMascotVoice() {
+      quoteIndex = (quoteIndex + 1) % mascotQuotes.length;
+      const quoteEl = document.getElementById('mascot-hq-quote');
+      if (quoteEl) {
+        quoteEl.innerHTML = mascotQuotes[quoteIndex];
+      }
+      playGamelanChime();
+      showToast('💬 Raga berbagi nasihat adat!');
+    }
+
+    // Daily Mission Claim Handler
+    function claimMissionReward(btn) {
+      if (btn.getAttribute('data-claimed') === 'true') return;
+      btn.setAttribute('data-claimed', 'true');
+      btn.classList.remove('btn-gold', 'animate-bounce');
+      btn.classList.add('btn-surface', 'opacity-60');
+      btn.innerText = 'Diklaim ✓';
+
+      GameState.player.xp += 30;
+      GameState.player.gems += 10;
+      updateHud();
+      playGamelanChime();
+      showToast('🎁 Berhasil Mengklaim +30 XP dan +10 Permata!');
+    }
+
+    function startQuickPractice() {
+      playGamelanChime();
+      showToast('⚡ Memulai Latihan Kilat: +15 XP...');
+      setTimeout(() => openQuestModal(), 600);
+    }
+
+    // Quest Modal
+    const questModal = document.getElementById('quest-modal');
+    function openQuestModal() {
+      questModal?.classList.add('is-open');
+    }
+    function closeQuestModal() {
+      questModal?.classList.remove('is-open');
+    }
+
+    function checkAnswer(btn, isCorrect) {
+      const options = document.querySelectorAll('#quiz-options button');
+      options.forEach(b => {
+        b.disabled = true;
+        b.classList.remove('bg-[#2D2445]', 'hover:bg-[#3A3057]');
+      });
+
+      if (isCorrect) {
+        btn.classList.add('bg-[#24CBA2]', 'text-[#06382B]');
+        btn.querySelector('.check-mark').classList.remove('opacity-0');
+        playGamelanChime();
+        showToast('✨ Jawaban Tepat! Makna luhur kerukunan bermusyawarah.');
+        document.getElementById('modal-next-btn').disabled = false;
+      } else {
+        btn.classList.add('bg-[#FF786B]', 'text-white');
+        showToast('❌ Kurang tepat, coba renungkan kembali filosofinya.');
+        setTimeout(() => {
+          options.forEach(b => {
+            b.disabled = false;
+            b.classList.remove('bg-[#FF786B]', 'text-white');
+            b.classList.add('bg-[#2D2445]', 'hover:bg-[#3A3057]');
+          });
+        }, 1200);
+      }
+    }
+
+    function completeQuest() {
+      closeQuestModal();
+      GameState.player.xp += 50;
+      GameState.player.gems += 20;
+      updateHud();
+      playGamelanChime();
+      if (window.RagamaraMotion) {
+        window.RagamaraMotion.spawnXpBurst(window.innerWidth / 2, window.innerHeight / 2, 50);
+        window.RagamaraMotion.triggerMascotReaction('celebrate');
+      }
+      showToast('🎉 Misi 4 Tuntas! +50 XP & +20 Permata. Peti Pusaka Terbuka!');
+
+      // Update active level styling
+      const activeBtn = document.getElementById('active-level-btn');
+      if (activeBtn) {
+        activeBtn.classList.remove('level-node-active');
+        activeBtn.classList.add('level-node-completed');
+        activeBtn.innerHTML = '<span class="material-symbols-outlined text-[34px] font-bold" style="font-variation-settings: \'FILL\' 1;">check_circle</span>';
+      }
+    }
+
+    // Region Drawer & Dossier Integration (Phase 05)
+    const regionDrawer = document.getElementById('region-drawer');
+    function openRegionDrawer(title, desc, status, progress, img, chapters) {
+      if (window.RagamaraEcosystem && window.RagamaraEcosystem.RegionalDossier) {
+        const keyMap = {
+          'Sumatra': 'sumatra',
+          'Jawa': 'jawa',
+          'Bali & Nusa Tenggara': 'bali_nt',
+          'Kalimantan': 'kalimantan',
+          'Sulawesi': 'sulawesi',
+          'Maluku': 'maluku',
+          'Papua': 'papua'
+        };
+        const regionKey = keyMap[title] || 'sumatra';
+        window.RagamaraEcosystem.RegionalDossier.open(regionKey);
+        return;
+      }
+      document.getElementById('drawer-region-title').innerText = title;
+      document.getElementById('drawer-region-desc').innerText = desc;
+      document.getElementById('drawer-region-status').innerText = 'Status: ' + status + ' (' + progress + ')';
+      document.getElementById('drawer-region-img').style.backgroundImage = `url('${img}')`;
+      
+      const chapContainer = document.getElementById('drawer-region-chapters');
+      chapContainer.innerHTML = chapters.map(ch => `
+        <div class="p-2.5 rounded-xl bg-[#2D2445] text-xs font-bold text-white flex items-center justify-between border border-[#8B5CF6]/20">
+          <span>${ch}</span>
+          <span class="material-symbols-outlined text-[16px] text-[#FFCA55]">chevron_right</span>
+        </div>
+      `).join('');
+
+      regionDrawer.classList.add('is-open');
+    }
+    function closeRegionDrawer() {
+      regionDrawer.classList.remove('is-open');
+    }
+
+    // Achievement Modal
+    const achievementModal = document.getElementById('achievement-modal');
+    function openAchievementModal(title, desc, img, reward) {
+      document.getElementById('achieve-title').innerText = title;
+      document.getElementById('achieve-desc').innerText = desc;
+      document.getElementById('achieve-reward').innerText = 'Hadiah: ' + reward;
+      achievementModal.classList.add('is-open');
+    }
+    function closeAchievementModal() {
+      achievementModal.classList.remove('is-open');
+    }
+
+    // Artifact Modal with Direct Mini-Game Action Bridge
+    const artifactModal = document.getElementById('artifact-modal');
+    function openArtifactModal(title, description, imgUrl, challengeArena) {
+      const content = document.getElementById('artifact-content');
+      const arena = challengeArena || (title.includes('Saluang') ? 'D' : title.includes('Gadang') ? 'C' : 'A');
+      content.innerHTML = `
+        <div class="h-48 w-full rounded-2xl bg-cover bg-center mb-4 border border-[#8B5CF6]/30 shadow" style="background-image: url('${imgUrl}');"></div>
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase font-extrabold text-[#FFCA55]">Ensiklopedia Pusaka Nusantara</span>
+          <span class="text-[11px] text-[#24CBA2] font-mono font-bold">DAPOBUD RI</span>
+        </div>
+        <h3 class="text-xl font-extrabold text-[#FFF8EB] mt-1">${title}</h3>
+        <p class="text-xs text-[#CCC3DF] mt-2 leading-relaxed text-justify">${description}</p>
+        <div class="mt-4 pt-4 border-t border-[#8B5CF6]/20 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <button class="btn btn-primary text-xs py-2 px-5 w-full sm:w-auto flex items-center justify-center gap-1.5" onclick="closeArtifactModal(); MiniGameEngine.openArena('${arena}')">
+            <span class="material-symbols-outlined text-[16px]">sports_esports</span>
+            <span>Tantangan Terkait di Arena (Mode ${arena}) ➔</span>
+          </button>
+          <button class="btn btn-secondary text-xs py-2 px-5 w-full sm:w-auto" onclick="closeArtifactModal()">Tutup</button>
+        </div>
+      `;
+      artifactModal.classList.add('is-open');
+    }
+    function closeArtifactModal() {
+      artifactModal.classList.remove('is-open');
+    }
+
+    // Milestone Treasure Chest Claim
+    function claimTreasureChest() {
+      const isClaimed = localStorage.getItem('ragamara_chest_claimed') === 'true';
+      if (isClaimed || GameState.chestClaimed) {
+        showToast('🎁 Peti Pusaka Minang sudah diklaim sebelumnya (+50 💎)!');
+        return;
+      }
+      GameState.chestClaimed = true;
+      GameState.player.gems = (GameState.player.gems || 0) + 50;
+      GameState.player.xp = (GameState.player.xp || 0) + 100;
+      try {
+        localStorage.setItem('ragamara_player_state', JSON.stringify(GameState.player));
+        localStorage.setItem('ragamara_chest_claimed', 'true');
+      } catch(e) {}
+      updateHud();
+      playGamelanChime();
+      if (window.RagamaraMotion) {
+        window.RagamaraMotion.spawnXpBurst(window.innerWidth / 2, window.innerHeight / 2, 100);
+        window.RagamaraMotion.triggerMascotReaction('celebrate');
+      }
+      showToast('🎉 Selamat! Peti Pusaka Minang Terbuka: +50 💎 Berlian & +100 XP!');
+      const chestBtn = document.getElementById('treasure-chest-btn');
+      if (chestBtn) {
+        chestBtn.innerHTML = '<span class="material-symbols-outlined text-[32px] text-[#24CBA2]" style="font-variation-settings: \'FILL\' 1;">lock_open</span><span class="absolute -top-2 -right-2 px-1.5 py-0.5 rounded-full bg-[#24CBA2] text-[#06382B] text-[9px] font-extrabold">Klaim ✅</span>';
+      }
+    }
+
+    // Render Koleksi Grid
+    function renderKoleksiGrid() {
+      const grid = document.getElementById('koleksi-grid');
+      if (!grid) return;
+      grid.innerHTML = GameState.cultureCardsUnlocked.map(card => `
+        <div class="card-cultural cursor-pointer" onclick="openArtifactModal('${card.name}', '${card.desc}', '${card.image}')">
+          <div class="card-cultural-media h-40" style="background-image: url('${card.image}');">
+            <span class="card-cultural-tag">${card.category}</span>
+          </div>
+          <div class="p-4 space-y-1.5">
+            <span class="text-[10px] text-[#FFCA55] font-extrabold uppercase">${card.province}</span>
+            <h4 class="font-bold text-sm text-white">${card.name}</h4>
+            <p class="text-xs text-[#CCC3DF] line-clamp-2">${card.desc}</p>
+            <div class="pt-2 flex justify-between items-center text-[11px] border-t border-[#8B5CF6]/20">
+              <span class="text-[#24CBA2] font-bold">ID: ${card.id.substring(0, 14)}...</span>
+              <span class="text-[#FFCA55] font-extrabold">Telusuri ➔</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Update HUD
+    function updateHud() {
+      const xpEl = document.getElementById('stat-xp');
+      const gemEl = document.getElementById('stat-gems');
+      const profileXp = document.getElementById('profile-xp-val');
+      const profileGem = document.getElementById('profile-gem-val');
+      if (xpEl) xpEl.innerText = GameState.player.xp.toLocaleString('id-ID') + ' XP';
+      if (gemEl) gemEl.innerText = GameState.player.gems.toString();
+      if (profileXp) profileXp.innerText = GameState.player.xp.toLocaleString('id-ID');
+      if (profileGem) profileGem.innerText = GameState.player.gems.toString();
+    }
+
+    // Toast
+    function showToast(msg) {
+      const toast = document.getElementById('app-toast');
+      document.getElementById('toast-msg').innerText = msg;
+      toast.classList.add('is-visible');
+      setTimeout(() => toast.classList.remove('is-visible'), 3200);
+    }
+
+    // Expose Global State & Helper Functions on Window
+    window.GameState = GameState;
+    window.updateHud = updateHud;
+    window.showToast = showToast;
+    window.playGamelanChime = playGamelanChime;
+    window.openRegionDrawer = openRegionDrawer;
+    window.claimTreasureChest = claimTreasureChest;
+    window.openArtifactModal = openArtifactModal;
+
+    // Load persisted player state from localStorage if available
+    try {
+      const savedPlayer = JSON.parse(localStorage.getItem('ragamara_player_state'));
+      if (savedPlayer && typeof savedPlayer === 'object') {
+        Object.assign(GameState.player, savedPlayer);
+        updateHud();
+      }
+      if (localStorage.getItem('ragamara_chest_claimed') === 'true') {
+        GameState.chestClaimed = true;
+        const chestBtn = document.getElementById('treasure-chest-btn');
+        if (chestBtn) {
+          chestBtn.innerHTML = '<span class="material-symbols-outlined text-[32px] text-[#24CBA2]" style="font-variation-settings: \'FILL\' 1;">lock_open</span><span class="absolute -top-2 -right-2 px-1.5 py-0.5 rounded-full bg-[#24CBA2] text-[#06382B] text-[9px] font-extrabold">Klaim ✅</span>';
+        }
+      }
+    } catch(e) {
+      console.warn('Could not restore player state', e);
+    }
+  </script>
+  <!-- ==========================================================================
+       MODALS FOR PHASE 05: CULTUREPEDIA, REGIONS, MASCOTS, LEADERBOARD, MISSIONS, SETTINGS
+       ========================================================================== -->
+
+  <!-- 1. CULTUREPEDIA ARTICLE DETAIL MODAL -->
+  <div id="culturepedia-detail-modal" class="modal-backdrop">
+    <div class="modal-card max-w-4xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto" id="culturepedia-detail-body">
+      <!-- Injected by RagamaraEcosystem.Culturepedia.openDetail -->
+    </div>
+  </div>
+
+  <!-- 2. REGIONAL CULTURAL DOSSIER MODAL -->
+  <div id="regional-dossier-modal" class="modal-backdrop">
+    <div class="modal-card max-w-4xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto" id="regional-dossier-body">
+      <!-- Injected by RagamaraEcosystem.RegionalDossier.open -->
+    </div>
+  </div>
+
+  <!-- 3. MASCOT DETAIL MODAL -->
+  <div id="mascot-detail-modal" class="modal-backdrop">
+    <div class="modal-card max-w-lg p-6 sm:p-8" id="mascot-detail-body">
+      <!-- Injected by RagamaraEcosystem.MascotCollection.openDetail -->
+    </div>
+  </div>
+
+  <!-- 4. COMPETITIVE LEADERBOARD MODAL (Reference E inspired) -->
+  <div id="leaderboard-modal" class="modal-backdrop">
+    <div class="modal-card max-w-xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto space-y-6">
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/20">
+        <div>
+          <span class="text-[10px] font-black uppercase text-[#FFCA55] tracking-wider">Kompetisi Mingguan</span>
+          <h3 class="text-2xl font-black text-white">🏆 Papan Peringkat Garuda</h3>
+        </div>
+        <button onclick="closeLeaderboardModal()" class="w-8 h-8 rounded-full bg-[#150E22] text-[#CCC3DF] hover:text-white flex items-center justify-center border border-white/10">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- League Tier Notice -->
+      <div class="bg-gradient-to-r from-[#6338D4]/30 to-[#2D2445] p-3.5 rounded-2xl border border-[#FFCA55]/30 flex items-center justify-between text-xs">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-2xl text-[#FFCA55]">military_tech</span>
+          <div>
+            <span class="font-extrabold text-white">Liga Garuda • Divisi I</span>
+            <p class="text-[11px] text-[#CCC3DF]">Top 3 promosi ke Liga Kencana. 3 hari tersisa.</p>
+          </div>
+        </div>
+        <span class="px-2.5 py-1 rounded-full bg-[#FFCA55] text-[#382400] text-[10px] font-black uppercase">
+          Zona Promosi
+        </span>
+      </div>
+
+      <!-- Timeframe Tabs -->
+      <div class="flex items-center gap-1 bg-[#150E22] p-1 rounded-xl border border-[#8B5CF6]/30">
+        <button onclick="RagamaraEcosystem.Leaderboard.switchTab('weekly')" class="leaderboard-tab-btn active-lead-tab flex-1 py-1.5 rounded-lg text-xs font-bold text-center text-white" data-tab="weekly">
+          Mingguan
+        </button>
+        <button onclick="RagamaraEcosystem.Leaderboard.switchTab('monthly')" class="leaderboard-tab-btn flex-1 py-1.5 rounded-lg text-xs font-bold text-center text-[#CCC3DF]" data-tab="monthly">
+          Bulanan
+        </button>
+        <button onclick="RagamaraEcosystem.Leaderboard.switchTab('friends')" class="leaderboard-tab-btn flex-1 py-1.5 rounded-lg text-xs font-bold text-center text-[#CCC3DF]" data-tab="friends">
+          Teman
+        </button>
+      </div>
+
+      <!-- 3-Tier Visual Podium (1st, 2nd, 3rd) -->
+      <div class="grid grid-cols-3 gap-2 items-end pt-4 pb-2 text-center">
+        <!-- 2nd Place -->
+        <div class="flex flex-col items-center">
+          <div class="w-14 h-14 rounded-2xl bg-[#94A3B8] p-1 border-2 border-white shadow-lg overflow-hidden relative">
+            <img src="assets/images/mascot_raga_avatar.png" alt="2nd" class="w-full h-full object-cover">
+            <span class="absolute bottom-0 right-0 px-1 bg-black/70 text-[9px] font-bold text-white rounded">🥈</span>
+          </div>
+          <p class="text-xs font-bold text-white mt-1.5 truncate max-w-[90px]">Gede Arya</p>
+          <span class="text-[10px] text-[#24CBA2] font-extrabold">2.910 XP</span>
+          <div class="w-full h-16 podium-pedestal-2 rounded-t-xl mt-2 flex items-center justify-center font-black text-xl text-[#0F172A]">2</div>
+        </div>
+
+        <!-- 1st Place (Highest Pedestal) -->
+        <div class="flex flex-col items-center">
+          <span class="text-2xl animate-bounce">👑</span>
+          <div class="w-16 h-16 rounded-2xl bg-[#FFCA55] p-1 border-2 border-white shadow-xl overflow-hidden relative -mt-1">
+            <img src="assets/images/mascot_raga_avatar.png" alt="1st" class="w-full h-full object-cover">
+            <span class="absolute bottom-0 right-0 px-1 bg-black/70 text-[9px] font-bold text-white rounded">🥇</span>
+          </div>
+          <p class="text-xs font-bold text-[#FFCA55] mt-1.5 truncate max-w-[100px]">Dewi Gandawati</p>
+          <span class="text-[10px] text-[#FFCA55] font-black">3.420 XP</span>
+          <div class="w-full h-24 podium-pedestal-1 rounded-t-xl mt-2 flex items-center justify-center font-black text-2xl text-[#382400]">1</div>
+        </div>
+
+        <!-- 3rd Place -->
+        <div class="flex flex-col items-center">
+          <div class="w-14 h-14 rounded-2xl bg-[#F97316] p-1 border-2 border-white shadow-lg overflow-hidden relative">
+            <img src="assets/images/mascot_raga_avatar.png" alt="3rd" class="w-full h-full object-cover">
+            <span class="absolute bottom-0 right-0 px-1 bg-black/70 text-[9px] font-bold text-white rounded">🥉</span>
+          </div>
+          <p class="text-xs font-bold text-white mt-1.5 truncate max-w-[90px]">Cut Meutia</p>
+          <span class="text-[10px] text-[#24CBA2] font-extrabold">2.740 XP</span>
+          <div class="w-full h-12 podium-pedestal-3 rounded-t-xl mt-2 flex items-center justify-center font-black text-lg text-white">3</div>
+        </div>
+      </div>
+
+      <!-- 4th-10th List -->
+      <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+        <div class="p-3 rounded-xl bg-[#2D2445] border-2 border-[#FFCA55] flex items-center justify-between text-xs">
+          <div class="flex items-center gap-3">
+            <span class="font-black text-sm text-[#FFCA55] w-5 text-center">4</span>
+            <div class="w-8 h-8 rounded-full bg-[#6338D4] p-0.5 border border-[#FFCA55] overflow-hidden">
+              <img src="assets/images/mascot_raga_avatar.png" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <span class="font-bold text-white">Firza Penjelajah (Anda)</span>
+              <span class="text-[10px] text-[#24CBA2] block font-mono">▲ Naik 2 Peringkat</span>
+            </div>
+          </div>
+          <span class="font-black text-[#FFCA55]">2.450 XP</span>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-[#211B35] border border-white/5 flex items-center justify-between text-xs opacity-80">
+          <div class="flex items-center gap-3">
+            <span class="font-bold text-[#CCC3DF] w-5 text-center">5</span>
+            <div class="w-8 h-8 rounded-full bg-[#2D2445] p-0.5 overflow-hidden">
+              <img src="assets/images/mascot_raga_avatar.png" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <span class="font-bold text-white">Bagus Setyawan</span>
+              <span class="text-[10px] text-[#FF786B] block font-mono">▼ Turun 1 Peringkat</span>
+            </div>
+          </div>
+          <span class="font-bold text-[#CCC3DF]">2.280 XP</span>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-[#211B35] border border-white/5 flex items-center justify-between text-xs opacity-80">
+          <div class="flex items-center gap-3">
+            <span class="font-bold text-[#CCC3DF] w-5 text-center">6</span>
+            <div class="w-8 h-8 rounded-full bg-[#2D2445] p-0.5 overflow-hidden">
+              <img src="assets/images/mascot_raga_avatar.png" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <span class="font-bold text-white">Nyoman Triadi</span>
+              <span class="text-[10px] text-[#CCC3DF] block font-mono">- Tetap</span>
+            </div>
+          </div>
+          <span class="font-bold text-[#CCC3DF]">2.150 XP</span>
+        </div>
+      </div>
+
+      <div class="pt-2">
+        <button onclick="closeLeaderboardModal()" class="btn btn-secondary w-full text-xs py-2.5">
+          Tutup Papan Peringkat
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. DAILY MISSIONS CENTER MODAL -->
+  <div id="daily-missions-modal" class="modal-backdrop">
+    <div class="modal-card max-w-xl p-6 sm:p-8 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/20">
+        <div>
+          <span class="text-[10px] font-black uppercase text-[#24CBA2] tracking-wider">Tantangan Harian</span>
+          <h3 class="text-2xl font-black text-white">🎯 Pusat Misi Penjelajah</h3>
+        </div>
+        <button onclick="closeDailyMissionsModal()" class="w-8 h-8 rounded-full bg-[#150E22] text-[#CCC3DF] hover:text-white flex items-center justify-center border border-white/10">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <!-- Real Countdown Timer to Midnight -->
+      <div class="bg-[#150E22] p-3 rounded-2xl border border-[#8B5CF6]/30 flex items-center justify-between text-xs">
+        <div class="flex items-center gap-2 text-[#CCC3DF]">
+          <span class="material-symbols-outlined text-[#FF786B] text-[18px]">alarm</span>
+          <span>Reset Misi Harian Berikutnya:</span>
+        </div>
+        <span id="daily-missions-timer" class="font-mono font-black text-[#FFCA55] text-sm">--:--:--</span>
+      </div>
+
+      <!-- Dynamic Mission List -->
+      <div id="daily-missions-list" class="space-y-3">
+        <!-- Rendered by RagamaraEcosystem.DailyMissions.render() -->
+      </div>
+
+      <div class="pt-2 flex justify-between items-center border-t border-[#8B5CF6]/20">
+        <span class="text-xs text-[#24CBA2] font-semibold">Bonus Sempurna: Peti Emas Terbuka</span>
+        <button onclick="closeDailyMissionsModal()" class="btn btn-secondary text-xs py-2 px-6">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. SETTINGS & ACCESSIBILITY MODAL -->
+  <div id="settings-modal" class="modal-backdrop">
+    <div class="modal-card max-w-lg p-6 sm:p-8 space-y-6">
+      <div class="flex items-center justify-between pb-3 border-b border-[#8B5CF6]/20">
+        <div>
+          <span class="text-[10px] font-black uppercase text-[#8B5CF6] tracking-wider">Preferensi Game</span>
+          <h3 class="text-2xl font-black text-white">⚙️ Pengaturan & Aksesibilitas</h3>
+        </div>
+        <button onclick="RagamaraEcosystem.Settings.closeModal()" class="w-8 h-8 rounded-full bg-[#150E22] text-[#CCC3DF] hover:text-white flex items-center justify-center border border-white/10">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <!-- SFX Web Audio Toggle -->
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-[#211B35] border border-[#8B5CF6]/20">
+          <div>
+            <h5 class="font-bold text-white">Efek Suara Tradisional & SFX</h5>
+            <p class="text-[11px] text-[#CCC3DF]">Gamelan, lonceng C-Major, dan nada Saluang</p>
+          </div>
+          <button id="setting-sfx-toggle" onclick="RagamaraEcosystem.Settings.toggleSfx()" class="btn btn-secondary text-xs py-1.5 px-4">
+            Aktif
+          </button>
+        </div>
+
+        <!-- High Contrast Accessibility Mode -->
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-[#211B35] border border-[#8B5CF6]/20">
+          <div>
+            <h5 class="font-bold text-white">Mode Kontras Tinggi (A11y)</h5>
+            <p class="text-[11px] text-[#CCC3DF]">Tingkatkan kontras warna teks dan kartu</p>
+          </div>
+          <button onclick="RagamaraEcosystem.Settings.toggleHighContrast()" class="btn btn-secondary text-xs py-1.5 px-4">
+            Ubah
+          </button>
+        </div>
+
+        <!-- Reduced Motion Mode -->
+        <div class="flex items-center justify-between p-3.5 rounded-xl bg-[#211B35] border border-[#8B5CF6]/20">
+          <div>
+            <h5 class="font-bold text-white">Animasi Halus (Reduced Motion)</h5>
+            <p class="text-[11px] text-[#CCC3DF]">Minimalkan efek goyangan dan partikel melayang</p>
+          </div>
+          <button onclick="RagamaraEcosystem.Settings.toggleReducedMotion()" class="btn btn-secondary text-xs py-1.5 px-4">
+            Ubah
+          </button>
+        </div>
+
+        <!-- Daily Target Learning -->
+        <div class="p-3.5 rounded-xl bg-[#211B35] border border-[#8B5CF6]/20 space-y-2">
+          <div class="flex justify-between">
+            <h5 class="font-bold text-white">Target Belajar Harian</h5>
+            <span class="text-[#FFCA55] font-bold">20 Menit / Hari</span>
+          </div>
+          <p class="text-[11px] text-[#CCC3DF]">Menyesuaikan jumlah pengingat dan misi petualangan.</p>
+        </div>
+      </div>
+
+      <div class="pt-2 flex justify-between items-center border-t border-[#8B5CF6]/20">
+        <button onclick="window.showToast('ℹ️ Akun Anda terhubung sebagai Penjelajah Mandiri');" class="text-xs text-[#FF786B] font-bold hover:underline">
+          Keluar Sesi
+        </button>
+        <button onclick="RagamaraEcosystem.Settings.closeModal()" class="btn btn-primary text-xs py-2 px-6">
+          Simpan & Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cultural Database & Ecosystem Scripts -->
+  <script src="js/culture_db_data.js"></script>
+  <script src="js/ecosystem.js"></script>
+  <script src="js/motion.js"></script>
+
+  <script>
+    // Sub-tab switcher inside view-koleksi
+    function switchKoleksiTab(tab) {
+      document.getElementById('koleksi-subview-culturepedia').classList.toggle('hidden', tab !== 'culturepedia');
+      document.getElementById('koleksi-subview-maskot').classList.toggle('hidden', tab !== 'maskot');
+      document.getElementById('koleksi-subview-prestasi').classList.toggle('hidden', tab !== 'prestasi');
+
+      document.querySelectorAll('.koleksi-subtab').forEach(b => {
+        b.classList.remove('bg-[#6338D4]', 'text-white', 'shadow-[0_4px_0_#392071]');
+        b.classList.add('text-[#CCC3DF]');
+      });
+
+      const activeBtn = document.getElementById(`btn-tab-${tab}`);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-[#6338D4]', 'text-white', 'shadow-[0_4px_0_#392071]');
+        activeBtn.classList.remove('text-[#CCC3DF]');
+      }
+
+      if (tab === 'culturepedia') RagamaraEcosystem.Culturepedia.render();
+      if (tab === 'prestasi') RagamaraEcosystem.Achievements.render();
+    }
+
+    function selectOpkFilter(cat, btn) {
+      document.querySelectorAll('.opk-filter-btn').forEach(b => b.classList.remove('active-filter'));
+      btn.classList.add('active-filter');
+      RagamaraEcosystem.Culturepedia.selectedOpk = cat;
+      RagamaraEcosystem.Culturepedia.render();
+    }
+
+    function selectRegionFilter(reg, btn) {
+      document.querySelectorAll('.region-filter-btn').forEach(b => b.classList.remove('active-filter'));
+      btn.classList.add('active-filter');
+      RagamaraEcosystem.Culturepedia.selectedRegion = reg;
+      RagamaraEcosystem.Culturepedia.render();
+    }
+
+    // Modal controllers for Leaderboard & Daily Missions
+    function openLeaderboardModal() {
+      document.getElementById('leaderboard-modal').classList.add('is-open');
+    }
+    function closeLeaderboardModal() {
+      document.getElementById('leaderboard-modal').classList.remove('is-open');
+    }
+    function openDailyMissionsModal() {
+      document.getElementById('daily-missions-modal').classList.add('is-open');
+    }
+    function closeDailyMissionsModal() {
+      document.getElementById('daily-missions-modal').classList.remove('is-open');
+    }
+
+    // Hook DOMContentLoaded to init ecosystem
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.RagamaraEcosystem) {
+        window.RagamaraEcosystem.init();
+      }
+    });
+  </script>
+</body>
+</html>

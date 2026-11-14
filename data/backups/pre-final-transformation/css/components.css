@@ -1,0 +1,795 @@
+/**
+ * RAGAMARA DESIGN SYSTEM — COMPONENT LIBRARY
+ * Full stateful components adhering to "Playful Nusantara" aesthetic
+ */
+
+/* ==========================================================================
+   1. BUTTONS (TOMBOL TAKTIL)
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-family-sans);
+  font-size: var(--type-body-md);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 12px 24px;
+  line-height: 1;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  user-select: none;
+  position: relative;
+}
+
+/* Primary Purple Button */
+.btn-primary {
+  background-color: var(--color-primary-purple);
+  color: var(--color-white);
+  box-shadow: var(--shadow-tactile-purple);
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-purple-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 var(--color-primary-purple-dark);
+}
+.btn-primary:active:not(:disabled),
+.btn-primary.is-pressed {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Surya Gold (Reward / Milestone) Button */
+.btn-gold {
+  background-color: var(--color-warm-yellow);
+  color: #382400;
+  box-shadow: var(--shadow-tactile-yellow);
+}
+.btn-gold:hover:not(:disabled) {
+  background-color: var(--color-warm-yellow-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 var(--color-warm-yellow-dark);
+}
+.btn-gold:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Turquoise (Discovery / Action) Button */
+.btn-turquoise {
+  background-color: var(--color-turquoise);
+  color: #06382B;
+  box-shadow: var(--shadow-tactile-turquoise);
+}
+.btn-turquoise:hover:not(:disabled) {
+  background-color: var(--color-turquoise-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 var(--color-turquoise-dark);
+}
+.btn-turquoise:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Coral (Challenge / Streak) Button */
+.btn-coral {
+  background-color: var(--color-coral);
+  color: var(--color-white);
+  box-shadow: var(--shadow-tactile-coral);
+}
+.btn-coral:hover:not(:disabled) {
+  background-color: var(--color-coral-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 var(--color-coral-dark);
+}
+.btn-coral:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Secondary Surface Button */
+.btn-surface {
+  background-color: var(--surface-high);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-tactile-surface);
+}
+.btn-surface:hover:not(:disabled) {
+  background-color: var(--surface-highest);
+  color: var(--color-white);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 var(--surface-lowest);
+}
+.btn-surface:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Outline / Ghost Button */
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-lavender);
+  border: 2px solid rgba(139, 92, 246, 0.4);
+}
+.btn-outline:hover:not(:disabled) {
+  background-color: rgba(139, 92, 246, 0.12);
+  border-color: var(--color-lavender);
+  color: var(--color-white);
+}
+
+/* Disabled & Loading States */
+.btn:disabled,
+.btn.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.5);
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.btn.is-loading {
+  pointer-events: none;
+  position: relative;
+  color: transparent !important;
+}
+.btn.is-loading::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: calc(50% - 9px);
+  left: calc(50% - 9px);
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ==========================================================================
+   2. GAMIFIED RESOURCE CHIPS (XP, STREAK, PERMATA)
+   ========================================================================== */
+.chip-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--surface-high);
+  color: var(--text-primary);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: var(--type-body-sm);
+  font-weight: 700;
+  box-shadow: 0 3px 0 var(--surface-lowest);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+.chip-stat:hover {
+  transform: translateY(-1px);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.chip-streak {
+  color: var(--color-coral);
+}
+.chip-gem {
+  color: var(--color-turquoise);
+}
+.chip-xp {
+  color: var(--color-lavender);
+}
+.chip-level {
+  background: linear-gradient(135deg, var(--color-deep-purple), var(--surface-high));
+  border-color: var(--color-primary-purple);
+}
+
+/* ==========================================================================
+   3. PROGRESS INDICATORS (DUOLINGO-STYLE STRIPED PROGRESS BARS)
+   ========================================================================== */
+.progress-track {
+  width: 100%;
+  height: 16px;
+  background-color: var(--surface-lowest);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  padding: 2px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  background-size: 24px 24px;
+}
+
+.progress-fill-gold {
+  background: linear-gradient(90deg, #E6B03D, var(--color-warm-yellow));
+  box-shadow: 0 0 12px rgba(255, 202, 85, 0.5);
+}
+
+.progress-fill-purple {
+  background: linear-gradient(90deg, var(--color-deep-purple), var(--color-primary-purple), var(--color-lavender));
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+}
+
+.progress-fill-turquoise {
+  background: linear-gradient(90deg, #127A60, var(--color-turquoise));
+  box-shadow: 0 0 12px rgba(36, 203, 162, 0.5);
+}
+
+/* Highlight glint */
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  right: 6px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+}
+
+/* ==========================================================================
+   4. GAME LEVEL STEPPING NODES (PETA JELAJAH)
+   ========================================================================== */
+.level-node-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+.level-node-btn {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+}
+
+/* Completed Node */
+.level-node-completed {
+  background: linear-gradient(180deg, var(--color-warm-yellow), #D49B28);
+  box-shadow: 0 6px 0 var(--color-warm-yellow-dark);
+  color: #382400;
+}
+.level-node-completed:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 0 var(--color-warm-yellow-dark);
+}
+.level-node-completed:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Active Node */
+.level-node-active {
+  background: linear-gradient(180deg, var(--color-primary-purple-hover), var(--color-primary-purple));
+  box-shadow: 0 8px 0 var(--color-primary-purple-dark);
+  color: var(--color-white);
+  border: 4px solid var(--color-warm-yellow);
+}
+.level-node-active:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 0 var(--color-primary-purple-dark);
+}
+.level-node-active:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Locked Node */
+.level-node-locked {
+  background-color: var(--surface-high);
+  box-shadow: 0 6px 0 var(--surface-lowest);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+/* Pulse Ring on Active Node */
+.active-pulse-halo {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background-color: rgba(99, 56, 212, 0.4);
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  pointer-events: none;
+}
+
+/* Mystery Treasure Chest Node */
+.level-node-chest {
+  width: 68px;
+  height: 68px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-warm-yellow), var(--color-deep-purple));
+  box-shadow: 0 6px 0 var(--color-warm-yellow-dark);
+  color: var(--color-warm-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+.level-node-chest:hover {
+  transform: translateY(-2px) scale(1.06);
+}
+
+/* Boss / Final Challenge Node */
+.level-node-boss {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--surface-highest), var(--surface-lowest));
+  border: 4px solid var(--color-warm-yellow);
+  box-shadow: 0 8px 0 var(--surface-lowest), 0 0 32px rgba(255, 202, 85, 0.3);
+  color: var(--color-warm-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   5. MASCOT CALLOUTS & SPEECH BUBBLES
+   ========================================================================== */
+.speech-bubble {
+  position: relative;
+  background-color: var(--surface-high);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 6px 0 var(--surface-lowest);
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid var(--surface-high);
+}
+
+/* Flag Badge ("Mulai Di Sini!") */
+.badge-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--color-warm-yellow);
+  color: #382400;
+  font-size: var(--type-label-sm);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 3px 0 var(--color-warm-yellow-dark);
+  animation: bounce-subtle 1.8s infinite;
+}
+
+/* ==========================================================================
+   6. INPUT FIELDS & SEARCH BARS
+   ========================================================================== */
+.input-pill {
+  width: 100%;
+  background-color: var(--surface-low);
+  border: 2px solid rgba(139, 92, 246, 0.2);
+  border-radius: var(--radius-full);
+  padding: 12px 20px;
+  font-family: var(--font-family-sans);
+  font-size: var(--type-body-md);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.input-pill:hover {
+  border-color: rgba(139, 92, 246, 0.45);
+}
+
+.input-pill:focus {
+  border-color: var(--color-lavender);
+  background-color: var(--surface-base);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.25);
+}
+
+.input-pill::placeholder {
+  color: var(--text-muted);
+}
+
+.input-pill.is-error {
+  border-color: var(--color-coral);
+  box-shadow: 0 0 0 4px rgba(255, 120, 107, 0.2);
+}
+
+.input-pill:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--surface-lowest);
+}
+
+/* ==========================================================================
+   7. CULTURAL CARDS & 3D CYLINDRICAL PRESENTATION (REF C & D)
+   ========================================================================== */
+.card-cultural {
+  background-color: var(--surface-base);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  box-shadow: 0 6px 0 var(--surface-lowest);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.card-cultural:hover {
+  transform: translateY(-4px);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 10px 0 var(--surface-lowest), 0 12px 24px rgba(99, 56, 212, 0.25);
+}
+
+.card-cultural-media {
+  height: 160px;
+  width: 100%;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-cultural-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, var(--surface-base) 100%);
+}
+
+/* ==========================================================================
+   8. TABS & SWITCHERS
+   ========================================================================== */
+.tab-pills-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--surface-low);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.tab-pill {
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: var(--type-body-sm);
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tab-pill:hover {
+  color: var(--text-primary);
+}
+
+.tab-pill.is-active {
+  background-color: var(--color-primary-purple);
+  color: var(--color-white);
+  box-shadow: 0 3px 0 var(--color-primary-purple-dark);
+}
+
+/* ==========================================================================
+   9. MOBILE BOTTOM NAVIGATION BAR (< 1024px)
+   ========================================================================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 68px;
+  background-color: rgba(15, 8, 24, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 100;
+  padding: 0 8px;
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: var(--type-label-xs);
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.bottom-nav-item .material-symbols-outlined {
+  font-size: 22px;
+  transition: transform var(--transition-fast);
+}
+
+.bottom-nav-item:hover,
+.bottom-nav-item.is-active {
+  color: var(--color-warm-yellow);
+}
+
+.bottom-nav-item.is-active .material-symbols-outlined {
+  transform: translateY(-2px);
+  font-variation-settings: 'FILL' 1;
+}
+
+/* ==========================================================================
+   10. MODAL & VICTORY SHEETS
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 5, 18, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+  padding: 16px;
+}
+
+.modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-sheet {
+  width: 100%;
+  max-width: 520px;
+  background-color: var(--surface-base);
+  border-radius: var(--radius-xl);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 16px 48px rgba(10, 5, 18, 0.9), 0 0 32px rgba(99, 56, 212, 0.35);
+  padding: 28px;
+  transform: scale(0.92) translateY(16px);
+  transition: transform var(--transition-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-backdrop.is-open .modal-sheet {
+  transform: scale(1) translateY(0);
+}
+
+/* ==========================================================================
+   11. TOAST NOTIFICATION
+   ========================================================================== */
+.toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background-color: var(--surface-highest);
+  color: var(--text-primary);
+  border-radius: var(--radius-full);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 24px rgba(10, 5, 18, 0.7);
+  z-index: 300;
+  transform: translateY(-80px);
+  opacity: 0;
+  transition: transform var(--transition-spring), opacity var(--transition-fast);
+}
+
+.toast.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   12. CORE GAME EXPERIENCE ENHANCEMENTS (PHASE 03)
+   ========================================================================== */
+
+/* Realm / Island Card */
+.realm-card {
+  background-color: var(--surface-base);
+  border-radius: var(--radius-xl);
+  border: 2px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 8px 0 #0F0818, 0 12px 24px rgba(10, 5, 18, 0.6);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.realm-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 202, 85, 0.6);
+  box-shadow: 0 12px 0 #0F0818, 0 16px 32px rgba(99, 56, 212, 0.3);
+}
+
+.realm-card.is-active {
+  border-color: var(--color-warm-yellow);
+  box-shadow: 0 8px 0 #0F0818, 0 0 24px rgba(255, 202, 85, 0.25);
+}
+
+.realm-card.is-locked {
+  opacity: 0.65;
+  filter: grayscale(0.2);
+}
+
+.realm-card.is-locked:hover {
+  transform: none;
+  border-color: rgba(139, 92, 246, 0.25);
+  box-shadow: 0 8px 0 #0F0818;
+}
+
+/* Mascot Speech Bubble */
+.speech-bubble {
+  position: relative;
+  background-color: var(--surface-elevated);
+  border: 1.5px solid rgba(139, 92, 246, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  box-shadow: 0 6px 16px rgba(10, 5, 18, 0.4);
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  bottom: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--surface-elevated);
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  left: 23px;
+  bottom: -12px;
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 12px solid rgba(139, 92, 246, 0.35);
+  z-index: -1;
+}
+
+/* Weekly Activity Bar */
+.activity-bar-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 64px;
+  padding-top: 8px;
+}
+
+.activity-bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.activity-bar-fill {
+  width: 100%;
+  max-width: 18px;
+  border-radius: 4px;
+  background-color: var(--surface-higher);
+  transition: height var(--transition-spring), background-color var(--transition-fast);
+}
+
+.activity-bar-fill.active {
+  background: linear-gradient(180deg, var(--color-warm-yellow) 0%, var(--color-coral) 100%);
+  box-shadow: 0 0 10px rgba(255, 202, 85, 0.4);
+}
+
+/* Keyframe Helpers */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.2; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* ==========================================================================
+   PHASE 05: ECOSYSTEM & CULTUREPEDIA ENHANCEMENTS
+   ========================================================================== */
+
+/* Active Filter Pill */
+.active-filter {
+  background: var(--color-primary-purple) !important;
+  color: #FFFFFF !important;
+  border-color: var(--color-warm-yellow) !important;
+  box-shadow: 0 4px 12px rgba(99, 56, 212, 0.45);
+}
+
+/* Mascot Expression Pills */
+.expression-pill-btn.active-expr {
+  background: linear-gradient(135deg, var(--color-primary-purple) 0%, var(--color-lavender) 100%) !important;
+  color: #FFFFFF !important;
+  border-color: var(--color-warm-yellow) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(255, 202, 85, 0.35);
+}
+
+/* Leaderboard Tab & Podium */
+.leaderboard-tab-btn.active-lead-tab {
+  background: var(--color-primary-purple) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 0 #392071;
+}
+
+.podium-pedestal-1 {
+  background: linear-gradient(180deg, #FFCA55 0%, #B8860B 100%);
+  box-shadow: 0 10px 30px rgba(255, 202, 85, 0.4);
+}
+
+.podium-pedestal-2 {
+  background: linear-gradient(180deg, #E2E8F0 0%, #94A3B8 100%);
+  box-shadow: 0 10px 30px rgba(148, 163, 184, 0.3);
+}
+
+.podium-pedestal-3 {
+  background: linear-gradient(180deg, #F97316 0%, #C2410C 100%);
+  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+}
+
+/* High Contrast Accessibility Mode */
+body.high-contrast-mode {
+  --surface-ground: #000000;
+  --surface-base: #0B0814;
+  --surface-elevated: #161026;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E2E8F0;
+  filter: contrast(1.15);
+}
+
+body.reduced-motion *,
+body.reduced-motion *::before,
+body.reduced-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+

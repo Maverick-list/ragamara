@@ -1,0 +1,406 @@
+{
+  "timestamp": "2026-11-14T13:39:53.375Z",
+  "viewports": [
+    {
+      "page": "index.html",
+      "viewport": "320x568",
+      "scrollWidth": 320,
+      "innerWidth": 320,
+      "passed": true
+    },
+    {
+      "page": "index.html",
+      "viewport": "360x800",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "passed": true
+    },
+    {
+      "page": "index.html",
+      "viewport": "375x812",
+      "scrollWidth": 375,
+      "innerWidth": 375,
+      "passed": true
+    },
+    {
+      "page": "index.html",
+      "viewport": "390x844",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "passed": true
+    },
+    {
+      "page": "index.html",
+      "viewport": "430x932",
+      "scrollWidth": 430,
+      "innerWidth": 430,
+      "passed": true
+    },
+    {
+      "page": "index.html",
+      "viewport": "768x1024",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "passed": true
+    },
+    {
+      "page": "index.html",
+      "viewport": "1024x768",
+      "scrollWidth": 1009,
+      "innerWidth": 1024,
+      "passed": true
+    },
+    {
+      "page": "index.html",
+      "viewport": "1280x800",
+      "scrollWidth": 1265,
+      "innerWidth": 1280,
+      "passed": true
+    },
+    {
+      "page": "index.html",
+      "viewport": "1440x900",
+      "scrollWidth": 1425,
+      "innerWidth": 1440,
+      "passed": true
+    },
+    {
+      "page": "index.html",
+      "viewport": "1920x1080",
+      "scrollWidth": 1905,
+      "innerWidth": 1920,
+      "passed": true
+    },
+    {
+      "page": "app.html",
+      "viewport": "320x568",
+      "scrollWidth": 320,
+      "innerWidth": 320,
+      "passed": true
+    },
+    {
+      "page": "app.html",
+      "viewport": "360x800",
+      "scrollWidth": 360,
+      "innerWidth": 360,
+      "passed": true
+    },
+    {
+      "page": "app.html",
+      "viewport": "375x812",
+      "scrollWidth": 375,
+      "innerWidth": 375,
+      "passed": true
+    },
+    {
+      "page": "app.html",
+      "viewport": "390x844",
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "passed": true
+    },
+    {
+      "page": "app.html",
+      "viewport": "430x932",
+      "scrollWidth": 430,
+      "innerWidth": 430,
+      "passed": true
+    },
+    {
+      "page": "app.html",
+      "viewport": "768x1024",
+      "scrollWidth": 768,
+      "innerWidth": 768,
+      "passed": true
+    },
+    {
+      "page": "app.html",
+      "viewport": "1024x768",
+      "scrollWidth": 1009,
+      "innerWidth": 1024,
+      "passed": true
+    },
+    {
+      "page": "app.html",
+      "viewport": "1280x800",
+      "scrollWidth": 1265,
+      "innerWidth": 1280,
+      "passed": true
+    },
+    {
+      "page": "app.html",
+      "viewport": "1440x900",
+      "scrollWidth": 1425,
+      "innerWidth": 1440,
+      "passed": true
+    },
+    {
+      "page": "app.html",
+      "viewport": "1920x1080",
+      "scrollWidth": 1905,
+      "innerWidth": 1920,
+      "passed": true
+    }
+  ],
+  "journeys": [
+    {
+      "name": "Homepage & Honest Metrics Verification",
+      "passed": true,
+      "details": {
+        "has45Entities": true,
+        "has50Dapobud": true,
+        "hasAll7Realms": true,
+        "hasProfileNav": true
+      }
+    },
+    {
+      "name": "World Map & 7 Regional Dossiers (10-Part Check)",
+      "passed": false,
+      "details": {
+        "sumatra": false,
+        "jawa": false,
+        "bali_nt": false,
+        "kalimantan": false,
+        "sulawesi": false,
+        "maluku": false,
+        "papua": false
+      }
+    },
+    {
+      "name": "Journey 3: Culturepedia 45 Entities & Dual-Layer Provenance Modal",
+      "passed": true,
+      "details": {
+        "entityCount": 45,
+        "hasDapobudLayer": true,
+        "hasWikiLayer": true,
+        "hasArenaBridge": true
+      }
+    },
+    {
+      "name": "Journey 2: Returning Player State Persistence Across Reload",
+      "passed": true,
+      "details": {
+        "beforeReload": {
+          "xp": 4100,
+          "gems": 960,
+          "frame": "frame_asmat",
+          "title": "Penjaga Adat Nusantara"
+        },
+        "afterReload": {
+          "xp": 4100,
+          "gems": 960,
+          "frame": "frame_asmat",
+          "title": "Penjaga Adat Nusantara"
+        }
+      }
+    },
+    {
+      "name": "Journey 5: Corrupted localStorage Recovery",
+      "passed": true,
+      "details": {
+        "schemaVersion": "2.0.0",
+        "validXp": true,
+        "validBookmarks": true
+      }
+    }
+  ],
+  "miniGameSessions": [
+    {
+      "mode": "A",
+      "run": 1,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 1,
+      "passed": true
+    },
+    {
+      "mode": "B",
+      "run": 1,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 1,
+      "passed": true
+    },
+    {
+      "mode": "C",
+      "run": 1,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 1,
+      "passed": true
+    },
+    {
+      "mode": "D",
+      "run": 1,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 1,
+      "passed": true
+    },
+    {
+      "mode": "E",
+      "run": 1,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 1,
+      "passed": true
+    },
+    {
+      "mode": "F",
+      "run": 1,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 1,
+      "passed": true
+    },
+    {
+      "mode": "A",
+      "run": 2,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 2,
+      "passed": true
+    },
+    {
+      "mode": "B",
+      "run": 2,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 2,
+      "passed": true
+    },
+    {
+      "mode": "C",
+      "run": 2,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 2,
+      "passed": true
+    },
+    {
+      "mode": "D",
+      "run": 2,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 2,
+      "passed": true
+    },
+    {
+      "mode": "E",
+      "run": 2,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 2,
+      "passed": true
+    },
+    {
+      "mode": "F",
+      "run": 2,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 2,
+      "passed": true
+    },
+    {
+      "mode": "A",
+      "run": 3,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 3,
+      "passed": true
+    },
+    {
+      "mode": "B",
+      "run": 3,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 3,
+      "passed": true
+    },
+    {
+      "mode": "C",
+      "run": 3,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 3,
+      "passed": true
+    },
+    {
+      "mode": "D",
+      "run": 3,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 3,
+      "passed": true
+    },
+    {
+      "mode": "E",
+      "run": 3,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 3,
+      "passed": true
+    },
+    {
+      "mode": "F",
+      "run": 3,
+      "state": "COMPLETED",
+      "score": 100,
+      "accuracy": 100,
+      "completedCount": 3,
+      "passed": true
+    }
+  ],
+  "edgeCases": [
+    {
+      "name": "Game Engine Lifecycle & Negative Tests",
+      "passed": true,
+      "details": {
+        "replayWorks": true,
+        "pausedWorks": true,
+        "resumedWorks": true,
+        "wrongHandled": true,
+        "closedCleanly": true
+      }
+    }
+  ],
+  "screenshots": [
+    "01_homepage_desktop.png",
+    "02_homepage_mobile.png",
+    "05_learning_journey_desktop.png",
+    "06_learning_journey_mobile.png",
+    "03_world_map_desktop.png",
+    "04_regional_dossier_modal.png",
+    "07_minigame_A_multiple_choice.png",
+    "08_minigame_B_cultural_matching.png",
+    "09_minigame_C_sequence_builder.png",
+    "10_minigame_D_rhythm_simulation.png",
+    "11_minigame_E_cultural_dilemma.png",
+    "12_minigame_F_artifact_puzzle.png",
+    "13_minigame_completion_screen.png",
+    "14_culturepedia_desktop.png",
+    "15_culturepedia_detail_modal.png",
+    "16_mascot_collection.png",
+    "17_daily_missions_and_leaderboard.png",
+    "18_player_profile_and_achievements.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": []
+}

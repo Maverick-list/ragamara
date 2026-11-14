@@ -1,10 +1,56 @@
 /**
- * RAGAMARA DESIGN SYSTEM — COMPONENT LIBRARY
- * Full stateful components adhering to "Playful Nusantara" aesthetic
+ * RAGAMARA DESIGN SYSTEM — COMPONENT LIBRARY (css/components.css)
+ * Aesthetic Direction: "The Living Atlas of Nusantara"
+ * Distinct visual personalities for Expedition Atlas, Parchment Dossier/Museum,
+ * RPG Learning Journey, and Midnight Indigo Mini-Game Arena.
  */
 
 /* ==========================================================================
-   1. BUTTONS (TOMBOL TAKTIL)
+   0. NUSANTARA TEXTURES, BORDERS & EXPERIENCE PERSONALITY SURFACES
+   ========================================================================== */
+.surface-parchment {
+  background-color: var(--atlas-parchment);
+  color: var(--atlas-charcoal);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(212, 164, 71, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(182, 95, 69, 0.06) 0%, transparent 50%);
+}
+
+.surface-ivory-card {
+  background-color: var(--atlas-ivory);
+  color: var(--atlas-charcoal);
+  border: 1.5px solid #D6C3A5;
+  box-shadow: 0 6px 0 #D6C3A5, 0 12px 24px rgba(41, 40, 32, 0.08);
+  border-radius: var(--radius-lg);
+}
+
+.surface-atlas-forest {
+  background-color: var(--atlas-forest-deep);
+  color: var(--atlas-ivory);
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(40, 126, 122, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(212, 164, 71, 0.12) 0%, transparent 45%);
+}
+
+.surface-arena-night {
+  background-color: var(--atlas-indigo-deep);
+  color: var(--atlas-ivory);
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(212, 164, 71, 0.14) 0%, transparent 55%),
+    radial-gradient(circle at 10% 90%, rgba(40, 126, 122, 0.15) 0%, transparent 45%);
+}
+
+/* Subtle Nusantara Kawung / Geometric Divider */
+.nusantara-divider {
+  height: 12px;
+  width: 100%;
+  background-image: radial-gradient(circle, var(--atlas-gold) 2px, transparent 2.5px);
+  background-size: 16px 12px;
+  opacity: 0.45;
+}
+
+/* ==========================================================================
+   1. BUTTONS (TOMBOL TAKTIL NUSANTARA)
    ========================================================================== */
 .btn {
   display: inline-flex;
@@ -19,90 +65,102 @@
   border: none;
   border-radius: var(--radius-full);
   padding: 12px 24px;
-  line-height: 1;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  line-height: 1.15;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
   user-select: none;
   position: relative;
 }
 
-/* Primary Purple Button */
+.btn:focus-visible {
+  outline: 3px solid var(--atlas-gold-bright);
+  outline-offset: 2px;
+}
+
+/* Primary Terracotta Expedition Button */
 .btn-primary {
-  background-color: var(--color-primary-purple);
+  background-color: var(--atlas-terracotta);
   color: var(--color-white);
-  box-shadow: var(--shadow-tactile-purple);
+  box-shadow: 0 5px 0 var(--atlas-terracotta-dark), 0 8px 16px rgba(10, 29, 24, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .btn-primary:hover:not(:disabled) {
-  background-color: var(--color-primary-purple-hover);
+  background-color: var(--atlas-terracotta-hover);
   transform: translateY(-1px);
-  box-shadow: 0 5px 0 var(--color-primary-purple-dark);
+  box-shadow: 0 6px 0 var(--atlas-terracotta-dark), 0 10px 20px rgba(10, 29, 24, 0.45);
 }
 .btn-primary:active:not(:disabled),
 .btn-primary.is-pressed {
   transform: translateY(4px);
-  box-shadow: 0 0 0 transparent;
+  box-shadow: 0 1px 0 var(--atlas-terracotta-dark);
 }
 
 /* Surya Gold (Reward / Milestone) Button */
 .btn-gold {
   background-color: var(--color-warm-yellow);
-  color: #382400;
-  box-shadow: var(--shadow-tactile-yellow);
+  color: #292820;
+  box-shadow: 0 5px 0 var(--color-warm-yellow-dark), 0 8px 16px rgba(10, 29, 24, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 .btn-gold:hover:not(:disabled) {
   background-color: var(--color-warm-yellow-hover);
   transform: translateY(-1px);
-  box-shadow: 0 5px 0 var(--color-warm-yellow-dark);
+  box-shadow: 0 6px 0 var(--color-warm-yellow-dark);
 }
 .btn-gold:active:not(:disabled) {
   transform: translateY(4px);
-  box-shadow: 0 0 0 transparent;
+  box-shadow: 0 1px 0 var(--color-warm-yellow-dark);
 }
 
-/* Turquoise (Discovery / Action) Button */
+/* Ocean Teal (Discovery / Action) Button */
 .btn-turquoise {
   background-color: var(--color-turquoise);
-  color: #06382B;
-  box-shadow: var(--shadow-tactile-turquoise);
+  color: #072624;
+  box-shadow: 0 5px 0 var(--color-turquoise-dark);
 }
 .btn-turquoise:hover:not(:disabled) {
   background-color: var(--color-turquoise-hover);
   transform: translateY(-1px);
-  box-shadow: 0 5px 0 var(--color-turquoise-dark);
+  box-shadow: 0 6px 0 var(--color-turquoise-dark);
 }
 .btn-turquoise:active:not(:disabled) {
   transform: translateY(4px);
-  box-shadow: 0 0 0 transparent;
+  box-shadow: 0 1px 0 var(--color-turquoise-dark);
 }
 
 /* Coral (Challenge / Streak) Button */
 .btn-coral {
   background-color: var(--color-coral);
   color: var(--color-white);
-  box-shadow: var(--shadow-tactile-coral);
+  box-shadow: 0 5px 0 var(--color-coral-dark);
 }
 .btn-coral:hover:not(:disabled) {
   background-color: var(--color-coral-hover);
   transform: translateY(-1px);
-  box-shadow: 0 5px 0 var(--color-coral-dark);
+  box-shadow: 0 6px 0 var(--color-coral-dark);
 }
 .btn-coral:active:not(:disabled) {
   transform: translateY(4px);
-  box-shadow: 0 0 0 transparent;
+  box-shadow: 0 1px 0 var(--color-coral-dark);
 }
 
 /* Secondary Surface Button */
-.btn-surface {
+.btn-surface,
+.btn-secondary {
   background-color: var(--surface-high);
   color: var(--text-primary);
-  box-shadow: var(--shadow-tactile-surface);
+  border: 1px solid rgba(212, 164, 71, 0.3);
+  box-shadow: 0 4px 0 var(--surface-lowest);
 }
-.btn-surface:hover:not(:disabled) {
+.btn-surface:hover:not(:disabled),
+.btn-secondary:hover:not(:disabled) {
   background-color: var(--surface-highest);
   color: var(--color-white);
+  border-color: var(--atlas-gold);
   transform: translateY(-1px);
   box-shadow: 0 5px 0 var(--surface-lowest);
 }
-.btn-surface:active:not(:disabled) {
+.btn-surface:active:not(:disabled),
+.btn-secondary:active:not(:disabled) {
   transform: translateY(4px);
   box-shadow: 0 0 0 transparent;
 }
@@ -110,12 +168,12 @@
 /* Outline / Ghost Button */
 .btn-outline {
   background-color: transparent;
-  color: var(--color-lavender);
-  border: 2px solid rgba(139, 92, 246, 0.4);
+  color: var(--color-warm-yellow);
+  border: 2px solid rgba(212, 164, 71, 0.55);
 }
 .btn-outline:hover:not(:disabled) {
-  background-color: rgba(139, 92, 246, 0.12);
-  border-color: var(--color-lavender);
+  background-color: rgba(212, 164, 71, 0.14);
+  border-color: var(--color-warm-yellow);
   color: var(--color-white);
 }
 
@@ -162,30 +220,24 @@
   font-size: var(--type-body-sm);
   font-weight: 700;
   box-shadow: 0 3px 0 var(--surface-lowest);
-  border: 1px solid rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(212, 164, 71, 0.25);
   transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
 .chip-stat:hover {
   transform: translateY(-1px);
-  border-color: rgba(139, 92, 246, 0.4);
+  border-color: rgba(212, 164, 71, 0.55);
 }
 
-.chip-streak {
-  color: var(--color-coral);
-}
-.chip-gem {
-  color: var(--color-turquoise);
-}
-.chip-xp {
-  color: var(--color-lavender);
-}
+.chip-streak { color: var(--color-coral); }
+.chip-gem { color: var(--color-turquoise); }
+.chip-xp { color: var(--color-warm-yellow); }
 .chip-level {
-  background: linear-gradient(135deg, var(--color-deep-purple), var(--surface-high));
-  border-color: var(--color-primary-purple);
+  background: linear-gradient(135deg, var(--atlas-terracotta), var(--atlas-forest));
+  border-color: var(--color-warm-yellow);
 }
 
 /* ==========================================================================
-   3. PROGRESS INDICATORS (DUOLINGO-STYLE STRIPED PROGRESS BARS)
+   3. PROGRESS INDICATORS (TACTILE EXPEDITION PROGRESS BARS)
    ========================================================================== */
 .progress-track {
   width: 100%;
@@ -196,32 +248,31 @@
   padding: 2px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
   position: relative;
+  border: 1px solid rgba(212, 164, 71, 0.2);
 }
 
 .progress-fill {
   height: 100%;
   border-radius: var(--radius-full);
-  transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: relative;
-  background-size: 24px 24px;
 }
 
 .progress-fill-gold {
-  background: linear-gradient(90deg, #E6B03D, var(--color-warm-yellow));
-  box-shadow: 0 0 12px rgba(255, 202, 85, 0.5);
+  background: linear-gradient(90deg, #C89128, var(--color-warm-yellow));
+  box-shadow: 0 0 12px rgba(242, 196, 90, 0.45);
 }
 
 .progress-fill-purple {
-  background: linear-gradient(90deg, var(--color-deep-purple), var(--color-primary-purple), var(--color-lavender));
-  box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+  background: linear-gradient(90deg, var(--atlas-terracotta), var(--color-warm-yellow));
+  box-shadow: 0 0 12px rgba(182, 95, 69, 0.45);
 }
 
 .progress-fill-turquoise {
-  background: linear-gradient(90deg, #127A60, var(--color-turquoise));
-  box-shadow: 0 0 12px rgba(36, 203, 162, 0.5);
+  background: linear-gradient(90deg, #195653, var(--color-turquoise));
+  box-shadow: 0 0 12px rgba(52, 165, 159, 0.45);
 }
 
-/* Highlight glint */
 .progress-fill::after {
   content: '';
   position: absolute;
@@ -234,7 +285,7 @@
 }
 
 /* ==========================================================================
-   4. GAME LEVEL STEPPING NODES (PETA JELAJAH)
+   4. GAME LEVEL STEPPING NODES (JALUR BELAJAR NUSANTARA)
    ========================================================================== */
 .level-node-wrapper {
   position: relative;
@@ -245,8 +296,8 @@
 }
 
 .level-node-btn {
-  width: 76px;
-  height: 76px;
+  width: 78px;
+  height: 78px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -257,11 +308,17 @@
   position: relative;
 }
 
-/* Completed Node */
+.level-node-btn:focus-visible {
+  outline: 3px solid var(--color-warm-yellow);
+  outline-offset: 4px;
+}
+
+/* Completed / Mastered Node */
 .level-node-completed {
-  background: linear-gradient(180deg, var(--color-warm-yellow), #D49B28);
-  box-shadow: 0 6px 0 var(--color-warm-yellow-dark);
-  color: #382400;
+  background: linear-gradient(180deg, var(--color-warm-yellow), #C48E24);
+  box-shadow: 0 6px 0 var(--color-warm-yellow-dark), 0 8px 16px rgba(0, 0, 0, 0.35);
+  color: #292820;
+  border: 3px solid #FAF6EF;
 }
 .level-node-completed:hover {
   transform: translateY(-2px) scale(1.04);
@@ -272,20 +329,28 @@
   box-shadow: 0 0 0 transparent;
 }
 
-/* Active Node */
+/* Active / In-Progress Node */
 .level-node-active {
-  background: linear-gradient(180deg, var(--color-primary-purple-hover), var(--color-primary-purple));
-  box-shadow: 0 8px 0 var(--color-primary-purple-dark);
+  background: linear-gradient(180deg, var(--atlas-terracotta-hover), var(--atlas-terracotta));
+  box-shadow: 0 8px 0 var(--atlas-terracotta-dark), 0 12px 24px rgba(182, 95, 69, 0.45);
   color: var(--color-white);
   border: 4px solid var(--color-warm-yellow);
 }
 .level-node-active:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 10px 0 var(--color-primary-purple-dark);
+  box-shadow: 0 10px 0 var(--atlas-terracotta-dark);
 }
 .level-node-active:active {
   transform: translateY(6px);
   box-shadow: 0 0 0 transparent;
+}
+
+/* Available Node */
+.level-node-available {
+  background: linear-gradient(180deg, var(--color-turquoise), #1E706C);
+  box-shadow: 0 6px 0 var(--color-turquoise-dark);
+  color: #FAF6EF;
+  border: 3px solid var(--color-warm-yellow);
 }
 
 /* Locked Node */
@@ -294,27 +359,29 @@
   box-shadow: 0 6px 0 var(--surface-lowest);
   color: var(--text-muted);
   cursor: not-allowed;
-  opacity: 0.75;
+  opacity: 0.78;
+  border: 2px dashed rgba(212, 164, 71, 0.25);
 }
 
 /* Pulse Ring on Active Node */
 .active-pulse-halo {
   position: absolute;
-  inset: -8px;
+  inset: -10px;
   border-radius: 50%;
-  background-color: rgba(99, 56, 212, 0.4);
+  background-color: rgba(212, 164, 71, 0.35);
   animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
   pointer-events: none;
 }
 
 /* Mystery Treasure Chest Node */
 .level-node-chest {
-  width: 68px;
-  height: 68px;
+  width: 72px;
+  height: 72px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, var(--color-warm-yellow), var(--color-deep-purple));
+  background: linear-gradient(135deg, var(--color-warm-yellow), var(--atlas-terracotta));
   box-shadow: 0 6px 0 var(--color-warm-yellow-dark);
-  color: var(--color-warm-yellow);
+  color: #292820;
+  border: 3px solid #FAF6EF;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -331,9 +398,9 @@
   width: 92px;
   height: 92px;
   border-radius: 50%;
-  background: linear-gradient(180deg, var(--surface-highest), var(--surface-lowest));
+  background: linear-gradient(180deg, var(--atlas-indigo-elevated), var(--atlas-indigo-deep));
   border: 4px solid var(--color-warm-yellow);
-  box-shadow: 0 8px 0 var(--surface-lowest), 0 0 32px rgba(255, 202, 85, 0.3);
+  box-shadow: 0 8px 0 var(--surface-lowest), 0 0 32px rgba(242, 196, 90, 0.35);
   color: var(--color-warm-yellow);
   display: flex;
   align-items: center;
@@ -346,33 +413,21 @@
    ========================================================================== */
 .speech-bubble {
   position: relative;
-  background-color: var(--surface-high);
+  background-color: var(--surface-elevated);
   color: var(--text-primary);
-  border-radius: var(--radius-md);
-  padding: 16px;
-  border: 1px solid rgba(139, 92, 246, 0.25);
-  box-shadow: 0 6px 0 var(--surface-lowest);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  border: 1.5px solid rgba(212, 164, 71, 0.4);
+  box-shadow: 0 6px 16px rgba(10, 29, 24, 0.45);
 }
 
-.speech-bubble::before {
-  content: '';
-  position: absolute;
-  left: -8px;
-  top: 20px;
-  width: 0;
-  height: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 8px solid var(--surface-high);
-}
-
-/* Flag Badge ("Mulai Di Sini!") */
+. badge-flag,
 .badge-flag {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   background-color: var(--color-warm-yellow);
-  color: #382400;
+  color: #292820;
   font-size: var(--type-label-sm);
   font-weight: 800;
   text-transform: uppercase;
@@ -389,7 +444,7 @@
 .input-pill {
   width: 100%;
   background-color: var(--surface-low);
-  border: 2px solid rgba(139, 92, 246, 0.2);
+  border: 2px solid rgba(212, 164, 71, 0.3);
   border-radius: var(--radius-full);
   padding: 12px 20px;
   font-family: var(--font-family-sans);
@@ -400,46 +455,35 @@
 }
 
 .input-pill:hover {
-  border-color: rgba(139, 92, 246, 0.45);
+  border-color: rgba(212, 164, 71, 0.55);
 }
 
 .input-pill:focus {
-  border-color: var(--color-lavender);
+  border-color: var(--color-warm-yellow);
   background-color: var(--surface-base);
-  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 0 0 4px rgba(212, 164, 71, 0.22);
 }
 
 .input-pill::placeholder {
   color: var(--text-muted);
 }
 
-.input-pill.is-error {
-  border-color: var(--color-coral);
-  box-shadow: 0 0 0 4px rgba(255, 120, 107, 0.2);
-}
-
-.input-pill:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background-color: var(--surface-lowest);
-}
-
 /* ==========================================================================
-   7. CULTURAL CARDS & 3D CYLINDRICAL PRESENTATION (REF C & D)
+   7. CULTURAL CARDS & DIGITAL MUSEUM PRESENTATION
    ========================================================================== */
 .card-cultural {
   background-color: var(--surface-base);
   border-radius: var(--radius-md);
   overflow: hidden;
-  border: 1px solid rgba(139, 92, 246, 0.18);
+  border: 1.5px solid rgba(212, 164, 71, 0.26);
   box-shadow: 0 6px 0 var(--surface-lowest);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .card-cultural:hover {
   transform: translateY(-4px);
-  border-color: rgba(139, 92, 246, 0.4);
-  box-shadow: 0 10px 0 var(--surface-lowest), 0 12px 24px rgba(99, 56, 212, 0.25);
+  border-color: var(--color-warm-yellow);
+  box-shadow: 0 10px 0 var(--surface-lowest), 0 12px 24px rgba(10, 29, 24, 0.5);
 }
 
 .card-cultural-media {
@@ -454,7 +498,23 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, var(--surface-base) 100%);
+  background: linear-gradient(180deg, transparent 40%, rgba(16, 43, 37, 0.9) 100%);
+}
+
+.card-cultural-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  background-color: rgba(16, 43, 37, 0.9);
+  color: var(--color-warm-yellow);
+  border: 1px solid rgba(212, 164, 71, 0.45);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 /* ==========================================================================
@@ -467,6 +527,7 @@
   background-color: var(--surface-low);
   padding: 4px;
   border-radius: var(--radius-full);
+  border: 1px solid rgba(212, 164, 71, 0.25);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
@@ -487,9 +548,9 @@
 }
 
 .tab-pill.is-active {
-  background-color: var(--color-primary-purple);
+  background-color: var(--atlas-terracotta);
   color: var(--color-white);
-  box-shadow: 0 3px 0 var(--color-primary-purple-dark);
+  box-shadow: 0 3px 0 var(--atlas-terracotta-dark);
 }
 
 /* ==========================================================================
@@ -501,10 +562,10 @@
   left: 0;
   right: 0;
   height: 68px;
-  background-color: rgba(15, 8, 24, 0.95);
+  background-color: rgba(10, 29, 24, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  border-top: 1px solid rgba(212, 164, 71, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -543,14 +604,14 @@
 }
 
 /* ==========================================================================
-   10. MODAL & VICTORY SHEETS
+   10. MODAL & DOSSIER SHEETS
    ========================================================================== */
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(10, 5, 18, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(8, 22, 18, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -566,21 +627,23 @@
   pointer-events: auto;
 }
 
-.modal-sheet {
+.modal-sheet,
+.modal-card {
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   background-color: var(--surface-base);
   border-radius: var(--radius-xl);
-  border: 2px solid rgba(139, 92, 246, 0.3);
-  box-shadow: 0 16px 48px rgba(10, 5, 18, 0.9), 0 0 32px rgba(99, 56, 212, 0.35);
+  border: 2px solid rgba(212, 164, 71, 0.4);
+  box-shadow: 0 18px 48px rgba(5, 16, 13, 0.9), 0 0 32px rgba(212, 164, 71, 0.15);
   padding: 28px;
-  transform: scale(0.92) translateY(16px);
+  transform: scale(0.94) translateY(12px);
   transition: transform var(--transition-spring);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-.modal-backdrop.is-open .modal-sheet {
+.modal-backdrop.is-open .modal-sheet,
+.modal-backdrop.is-open .modal-card {
   transform: scale(1) translateY(0);
 }
 
@@ -591,6 +654,7 @@
   position: fixed;
   top: 24px;
   right: 24px;
+  max-width: calc(100vw - 32px);
   background-color: var(--surface-highest);
   color: var(--text-primary);
   border-radius: var(--radius-full);
@@ -598,11 +662,12 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  box-shadow: 0 8px 24px rgba(10, 5, 18, 0.7);
+  border: 1.5px solid var(--color-warm-yellow);
+  box-shadow: 0 8px 24px rgba(5, 16, 13, 0.75);
   z-index: 300;
-  transform: translateY(-80px);
+  transform: translateY(-90px);
   opacity: 0;
+  pointer-events: none;
   transition: transform var(--transition-spring), opacity var(--transition-fast);
 }
 
@@ -612,16 +677,14 @@
 }
 
 /* ==========================================================================
-   12. CORE GAME EXPERIENCE ENHANCEMENTS (PHASE 03)
+   12. REALM CARDS & ARCHIPELAGO ATLAS PINS
    ========================================================================== */
-
-/* Realm / Island Card */
 .realm-card {
   background-color: var(--surface-base);
   border-radius: var(--radius-xl);
-  border: 2px solid rgba(139, 92, 246, 0.25);
-  box-shadow: 0 8px 0 #0F0818, 0 12px 24px rgba(10, 5, 18, 0.6);
-  padding: 24px;
+  border: 2px solid rgba(212, 164, 71, 0.28);
+  box-shadow: 0 8px 0 var(--surface-lowest), 0 12px 24px rgba(5, 16, 13, 0.55);
+  padding: 22px;
   position: relative;
   overflow: hidden;
   transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
@@ -629,59 +692,22 @@
 
 .realm-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 202, 85, 0.6);
-  box-shadow: 0 12px 0 #0F0818, 0 16px 32px rgba(99, 56, 212, 0.3);
+  border-color: var(--color-warm-yellow);
+  box-shadow: 0 12px 0 var(--surface-lowest), 0 16px 32px rgba(212, 164, 71, 0.22);
 }
 
 .realm-card.is-active {
   border-color: var(--color-warm-yellow);
-  box-shadow: 0 8px 0 #0F0818, 0 0 24px rgba(255, 202, 85, 0.25);
+  box-shadow: 0 8px 0 var(--surface-lowest), 0 0 24px rgba(242, 196, 90, 0.28);
 }
 
-.realm-card.is-locked {
-  opacity: 0.65;
-  filter: grayscale(0.2);
+.atlas-island-group {
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
-
-.realm-card.is-locked:hover {
-  transform: none;
-  border-color: rgba(139, 92, 246, 0.25);
-  box-shadow: 0 8px 0 #0F0818;
-}
-
-/* Mascot Speech Bubble */
-.speech-bubble {
-  position: relative;
-  background-color: var(--surface-elevated);
-  border: 1.5px solid rgba(139, 92, 246, 0.35);
-  border-radius: var(--radius-lg);
-  padding: 14px 18px;
-  box-shadow: 0 6px 16px rgba(10, 5, 18, 0.4);
-}
-
-.speech-bubble::before {
-  content: '';
-  position: absolute;
-  left: 24px;
-  bottom: -10px;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid var(--surface-elevated);
-}
-
-.speech-bubble::after {
-  content: '';
-  position: absolute;
-  left: 23px;
-  bottom: -12px;
-  width: 0;
-  height: 0;
-  border-left: 11px solid transparent;
-  border-right: 11px solid transparent;
-  border-top: 12px solid rgba(139, 92, 246, 0.35);
-  z-index: -1;
+.atlas-island-group:hover,
+.atlas-island-group:focus-visible {
+  filter: drop-shadow(0 0 12px rgba(242, 196, 90, 0.75));
 }
 
 /* Weekly Activity Bar */
@@ -707,23 +733,22 @@
   width: 100%;
   max-width: 18px;
   border-radius: 4px;
-  background-color: var(--surface-higher);
+  background-color: var(--surface-high);
   transition: height var(--transition-spring), background-color var(--transition-fast);
 }
 
 .activity-bar-fill.active {
-  background: linear-gradient(180deg, var(--color-warm-yellow) 0%, var(--color-coral) 100%);
-  box-shadow: 0 0 10px rgba(255, 202, 85, 0.4);
+  background: linear-gradient(180deg, var(--color-warm-yellow) 0%, var(--atlas-terracotta) 100%);
+  box-shadow: 0 0 10px rgba(242, 196, 90, 0.4);
 }
 
-/* Keyframe Helpers */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
 @keyframes pulse-ring {
   0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.15); opacity: 0.2; }
+  50% { transform: scale(1.15); opacity: 0.25; }
   100% { transform: scale(1.25); opacity: 0; }
 }
 
@@ -732,37 +757,33 @@
   50% { transform: translateY(-4px); }
 }
 
-/* ==========================================================================
-   PHASE 05: ECOSYSTEM & CULTUREPEDIA ENHANCEMENTS
-   ========================================================================== */
-
 /* Active Filter Pill */
 .active-filter {
-  background: var(--color-primary-purple) !important;
+  background: var(--atlas-terracotta) !important;
   color: #FFFFFF !important;
   border-color: var(--color-warm-yellow) !important;
-  box-shadow: 0 4px 12px rgba(99, 56, 212, 0.45);
+  box-shadow: 0 4px 12px rgba(182, 95, 69, 0.45);
 }
 
 /* Mascot Expression Pills */
 .expression-pill-btn.active-expr {
-  background: linear-gradient(135deg, var(--color-primary-purple) 0%, var(--color-lavender) 100%) !important;
+  background: linear-gradient(135deg, var(--atlas-terracotta) 0%, var(--atlas-gold) 100%) !important;
   color: #FFFFFF !important;
   border-color: var(--color-warm-yellow) !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(255, 202, 85, 0.35);
+  box-shadow: 0 4px 14px rgba(242, 196, 90, 0.35);
 }
 
 /* Leaderboard Tab & Podium */
 .leaderboard-tab-btn.active-lead-tab {
-  background: var(--color-primary-purple) !important;
+  background: var(--atlas-terracotta) !important;
   color: #FFFFFF !important;
-  box-shadow: 0 4px 0 #392071;
+  box-shadow: 0 3px 0 var(--atlas-terracotta-dark);
 }
 
 .podium-pedestal-1 {
-  background: linear-gradient(180deg, #FFCA55 0%, #B8860B 100%);
-  box-shadow: 0 10px 30px rgba(255, 202, 85, 0.4);
+  background: linear-gradient(180deg, #F2C45A 0%, #9A7123 100%);
+  box-shadow: 0 10px 30px rgba(242, 196, 90, 0.4);
 }
 
 .podium-pedestal-2 {
@@ -771,18 +792,19 @@
 }
 
 .podium-pedestal-3 {
-  background: linear-gradient(180deg, #F97316 0%, #C2410C 100%);
-  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+  background: linear-gradient(180deg, #D96B4E 0%, #8A422D 100%);
+  box-shadow: 0 10px 30px rgba(217, 107, 78, 0.3);
 }
 
 /* High Contrast Accessibility Mode */
 body.high-contrast-mode {
-  --surface-ground: #000000;
-  --surface-base: #0B0814;
-  --surface-elevated: #161026;
+  --bg-app: #05100D;
+  --surface-lowest: #000000;
+  --surface-base: #0A1E18;
+  --surface-elevated: #112E25;
   --text-primary: #FFFFFF;
-  --text-secondary: #E2E8F0;
-  filter: contrast(1.15);
+  --text-secondary: #FAF6EF;
+  filter: contrast(1.12);
 }
 
 body.reduced-motion *,
@@ -792,4 +814,3 @@ body.reduced-motion *::after {
   animation-iteration-count: 1 !important;
   transition-duration: 0.001ms !important;
 }
-

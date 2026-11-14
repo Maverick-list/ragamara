@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RAGAMARA — Design System Living Showcase</title>
+  <title>RAGAMARA — The Living Atlas of Nusantara Design System</title>
 
-  <!-- Typography: Plus Jakarta Sans -->
+  <!-- Typography: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   
   <!-- Material Symbols Outlined -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/tokens.css"/>
   <link rel="stylesheet" href="css/components.css"/>
   <link rel="stylesheet" href="css/animations.css"/>
+  <link rel="stylesheet" href="css/landing.css"/>
 
   <style>
     * {
@@ -45,15 +46,17 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-wrap: wrap;
     }
     .section-subtitle {
       font-size: var(--type-body-md);
       color: var(--text-secondary);
       margin-bottom: 32px;
+      max-width: 820px;
     }
     .system-card {
       background-color: var(--surface-base);
-      border: 1px solid rgba(139, 92, 246, 0.2);
+      border: 1.5px solid rgba(212, 164, 71, 0.28);
       border-radius: var(--radius-lg);
       padding: 28px;
       margin-bottom: 40px;
@@ -61,17 +64,17 @@
     }
     .grid-swatches {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
       gap: 16px;
     }
     .color-swatch {
       border-radius: var(--radius-md);
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(212, 164, 71, 0.25);
       box-shadow: 0 4px 0 var(--surface-lowest);
     }
     .swatch-preview {
-      height: 90px;
+      height: 88px;
       width: 100%;
       position: relative;
       display: flex;
@@ -89,26 +92,26 @@
     }
     .swatch-hex {
       font-size: var(--type-label-sm);
-      color: var(--text-muted);
-      font-family: monospace;
+      color: var(--color-warm-yellow);
+      font-family: var(--font-family-mono);
     }
     .mascot-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 20px;
     }
     .mascot-card {
       background-color: var(--surface-high);
       border-radius: var(--radius-lg);
       padding: 20px;
       text-align: center;
-      border: 1px solid rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(212, 164, 71, 0.25);
       box-shadow: 0 4px 0 var(--surface-lowest);
       transition: transform var(--transition-fast);
     }
     .mascot-card:hover {
       transform: translateY(-4px);
-      border-color: var(--color-lavender);
+      border-color: var(--color-warm-yellow);
     }
     .mascot-label {
       margin-top: 12px;
@@ -131,32 +134,32 @@
       margin-bottom: 24px;
     }
     .component-label {
-      width: 140px;
+      width: 150px;
       font-size: var(--type-label-sm);
-      color: var(--text-muted);
+      color: var(--color-warm-yellow);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       font-weight: 700;
     }
     .banner-hero {
-      background: linear-gradient(135deg, var(--color-deep-purple), var(--surface-base));
+      background: linear-gradient(135deg, #173F32 0%, #102B25 65%, #202136 100%);
       border-radius: var(--radius-xl);
-      padding: 40px;
-      border: 1px solid rgba(139, 92, 246, 0.3);
-      box-shadow: 0 16px 40px rgba(10, 5, 18, 0.8);
+      padding: 36px 28px;
+      border: 2px solid rgba(212, 164, 71, 0.45);
+      box-shadow: 0 16px 40px rgba(5, 16, 13, 0.8);
       position: relative;
       overflow: hidden;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
-    .banner-hero::after {
-      content: '';
-      position: absolute;
-      top: -40px;
-      right: -40px;
-      width: 240px;
-      height: 240px;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent 70%);
-      pointer-events: none;
+    .surface-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .surface-sample {
+      padding: 20px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid rgba(212, 164, 71, 0.35);
     }
   </style>
 </head>
@@ -167,23 +170,26 @@
     <header class="banner-hero">
       <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
         <div>
-          <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(99, 56, 212, 0.3); padding: 6px 14px; border-radius: var(--radius-full); margin-bottom: 16px; border: 1px solid var(--color-lavender);">
-            <span class="material-symbols-outlined" style="color: var(--color-warm-yellow); font-size: 18px;">palette</span>
-            <span style="font-size: var(--type-label-sm); font-weight: 800; color: var(--color-warm-yellow); text-transform: uppercase; letter-spacing: 0.05em;">Design System Specification</span>
+          <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(182, 95, 69, 0.25); padding: 6px 14px; border-radius: var(--radius-full); margin-bottom: 16px; border: 1px solid var(--color-warm-yellow);">
+            <span class="material-symbols-outlined" style="color: var(--color-warm-yellow); font-size: 18px;">explore</span>
+            <span style="font-size: var(--type-label-sm); font-weight: 800; color: var(--color-warm-yellow); text-transform: uppercase; letter-spacing: 0.05em;">Living Atlas of Nusantara • Design System v2.5</span>
           </div>
           <h1 style="font-size: var(--type-display-2xl); font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em;">
-            RAGAMARA — Playful Nusantara
+            RAGAMARA — The Living Atlas of Nusantara
           </h1>
-          <p style="font-size: var(--type-body-lg); color: var(--text-secondary); max-width: 680px; margin-top: 10px;">
-            Sistem identitas visual, token semantik, pustaka komponen taktil, dan pustaka ekspresi maskot Raga si Badak Penjelajah untuk platform petualangan budaya nusantara terakbar.
+          <p style="font-size: var(--type-body-lg); color: var(--text-secondary); max-width: 720px; margin-top: 10px;">
+            Arsitektur identitas visual budaya Indonesia yang memadukan lembaran naskah ekspedisi (Warm Parchment), hutan tropis kepulauan (Deep Forest Green), terakota ukir (Terracotta), kuningan pusaka (Golden Ochre), dan samudra zamrud (Ocean Teal).
           </p>
         </div>
-        <div style="text-align: right;">
-          <a href="code.html" class="btn btn-primary" style="margin-bottom: 8px;">
-            <span class="material-symbols-outlined">map</span>
-            Lihat Jalur Belajar Asli
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <a href="app.html" class="btn btn-primary">
+            <span class="material-symbols-outlined">sports_esports</span>
+            Buka Aplikasi Petualangan
           </a>
-          <p style="font-size: var(--type-label-sm); color: var(--text-muted);">Budaya Go! 2026 Edition</p>
+          <a href="index.html" class="btn btn-surface">
+            <span class="material-symbols-outlined">home</span>
+            Kembali ke Beranda Utama
+          </a>
         </div>
       </div>
     </header>
@@ -191,160 +197,179 @@
     <!-- 1. COLOR SYSTEM -->
     <section class="system-card">
       <h2 class="section-title">
-        <span class="material-symbols-outlined" style="color: var(--color-lavender);">colorize</span>
-        1. Palet Warna Semantik & Desain Token
+        <span class="material-symbols-outlined" style="color: var(--color-warm-yellow);">palette</span>
+        1. Palet Warna "The Living Atlas of Nusantara"
       </h2>
       <p class="section-subtitle">
-        Palet semantik dirancang untuk menghasilkan kontras tajam pada latar belakang midnight plum gelap serta memberikan aksen surya gold, zamrud turquoise, dan api coral yang memancarkan aura petualangan Nusantara.
+        Setiap warna berakar pada materialitas warisan Nusantara: lembaran lontar & kertas naskah kuno, hutan hujan tropis Sumatera-Kalimantan-Papua, bata terakota Majapahit, benang emas songket, dan perairan kepulauan rempah.
       </p>
 
       <div class="grid-swatches">
         <div class="color-swatch">
-          <div class="swatch-preview" style="background-color: #6338D4;"></div>
+          <div class="swatch-preview" style="background-color: #F4EBDD; border-bottom: 1px solid #D6C3A5;"></div>
           <div class="swatch-info">
-            <p class="swatch-name">Primary Purple</p>
-            <p class="swatch-hex">#6338D4</p>
+            <p class="swatch-name">Warm Parchment</p>
+            <p class="swatch-hex">#F4EBDD</p>
           </div>
         </div>
         <div class="color-swatch">
-          <div class="swatch-preview" style="background-color: #392071;"></div>
-          <div class="swatch-info">
-            <p class="swatch-name">Deep Purple</p>
-            <p class="swatch-hex">#392071</p>
-          </div>
-        </div>
-        <div class="color-swatch">
-          <div class="swatch-preview" style="background-color: #211B35;"></div>
-          <div class="swatch-info">
-            <p class="swatch-name">Dark Plum</p>
-            <p class="swatch-hex">#211B35</p>
-          </div>
-        </div>
-        <div class="color-swatch">
-          <div class="swatch-preview" style="background-color: #8B5CF6;"></div>
-          <div class="swatch-info">
-            <p class="swatch-name">Lavender</p>
-            <p class="swatch-hex">#8B5CF6</p>
-          </div>
-        </div>
-        <div class="color-swatch">
-          <div class="swatch-preview" style="background-color: #FFCA55;"></div>
-          <div class="swatch-info">
-            <p class="swatch-name">Warm Yellow (Surya)</p>
-            <p class="swatch-hex">#FFCA55</p>
-          </div>
-        </div>
-        <div class="color-swatch">
-          <div class="swatch-preview" style="background-color: #FF786B;"></div>
-          <div class="swatch-info">
-            <p class="swatch-name">Coral (Api)</p>
-            <p class="swatch-hex">#FF786B</p>
-          </div>
-        </div>
-        <div class="color-swatch">
-          <div class="swatch-preview" style="background-color: #24CBA2;"></div>
-          <div class="swatch-info">
-            <p class="swatch-name">Turquoise (Zamrud)</p>
-            <p class="swatch-hex">#24CBA2</p>
-          </div>
-        </div>
-        <div class="color-swatch">
-          <div class="swatch-preview" style="background-color: #FFF8EB; border: 1px solid #CCC;"></div>
+          <div class="swatch-preview" style="background-color: #FAF6EF; border-bottom: 1px solid #D6C3A5;"></div>
           <div class="swatch-info">
             <p class="swatch-name">Warm Ivory</p>
-            <p class="swatch-hex">#FFF8EB</p>
+            <p class="swatch-hex">#FAF6EF</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #173F32;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Deep Forest Green</p>
+            <p class="swatch-hex">#173F32</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #102B25;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Archipelago Jungle</p>
+            <p class="swatch-hex">#102B25</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #B65F45;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Majapahit Terracotta</p>
+            <p class="swatch-hex">#B65F45</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #D4A447;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Golden Ochre</p>
+            <p class="swatch-hex">#D4A447</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #287E7A;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Ocean Teal</p>
+            <p class="swatch-hex">#287E7A</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #202136;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Midnight Indigo</p>
+            <p class="swatch-hex">#202136</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #292820;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Natural Charcoal</p>
+            <p class="swatch-hex">#292820</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. TYPOGRAPHY SYSTEM -->
+    <!-- 2. MULTI-SURFACE EXPERIENCE PERSONALITIES -->
+    <section class="system-card">
+      <h2 class="section-title">
+        <span class="material-symbols-outlined" style="color: var(--color-turquoise);">layers</span>
+        2. Karakter Permukaan Berdasarkan Pengalaman (Experience Personalities)
+      </h2>
+      <p class="section-subtitle">
+        Berbeda dari template seragam, RAGAMARA menghadirkan atmosfer permukaan yang kontras sesuai fungsi: Atlas Hutan Kepulauan untuk peta eksplorasi, Naskah Lontar/Parchment untuk bacaan sejarah & museum, serta Arena Indigo Malam untuk fokus permainan mini-game.
+      </p>
+
+      <div class="surface-matrix">
+        <div class="surface-sample surface-parchment">
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #8A422D;">Permukaan 1 • Editorial & Dossier</span>
+          <h3 style="font-size: 18px; font-weight: 800; color: #292820; margin-top: 4px;">Lembaran Naskah Lontar (#F4EBDD)</h3>
+          <p style="font-size: 13px; color: #5C5849; margin-top: 6px;">Digunakan pada bagian naratif Dossier Wilayah dan kartu bacaan Culturepedia agar nyaman dibaca seperti katalog museum.</p>
+        </div>
+
+        <div class="surface-sample surface-atlas-forest">
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #F2C45A;">Permukaan 2 • Peta & RPG Jalur Belajar</span>
+          <h3 style="font-size: 18px; font-weight: 800; color: #FAF6EF; margin-top: 4px;">Rimba & Laut Nusantara (#102B25)</h3>
+          <p style="font-size: 13px; color: #DFD5C3; margin-top: 6px;">Digunakan pada Peta Eksplorasi 7 Wilayah dan Jalur Belajar RPG dengan kontras lencana emas dan zamrud.</p>
+        </div>
+
+        <div class="surface-sample surface-arena-night">
+          <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #34A59F;">Permukaan 3 • Arena Mini-Game</span>
+          <h3 style="font-size: 18px; font-weight: 800; color: #FAF6EF; margin-top: 4px;">Panggung Malam Indigo (#151626)</h3>
+          <p style="font-size: 13px; color: #DFD5C3; margin-top: 6px;">Digunakan khusus di dalam Arena Mini-Game A–F agar perhatian pemain terpusat pada kartu dan teka-teki budaya.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TYPOGRAPHY SYSTEM -->
     <section class="system-card">
       <h2 class="section-title">
         <span class="material-symbols-outlined" style="color: var(--color-warm-yellow);">text_fields</span>
-        2. Sistem Tipografi Nusantara (Plus Jakarta Sans)
+        3. Sistem Tipografi Nusantara (Plus Jakarta Sans & JetBrains Mono)
       </h2>
       <p class="section-subtitle">
-        Tipografi geometris terbuka yang memberikan ritme ramah dan kejelasan tinggi pada kontras layar gelap, mendukung aksara budaya Indonesia dan istilah adat berbobot.
+        Tipografi geometris terbuka untuk judul ekspresif dan narasi budaya panjang, dipadukan dengan font monospace untuk nomor registrasi resmi DAPOBUD RI dan indikator skor teknis.
       </p>
 
       <div style="display: flex; flex-direction: column; gap: 20px;">
-        <div style="border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding-bottom: 16px;">
-          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: monospace;">Display 2XL — 44px / 800</span>
+        <div style="border-bottom: 1px solid rgba(212, 164, 71, 0.2); padding-bottom: 16px;">
+          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: var(--font-family-mono);">Display 2XL — clamp(2.15rem, 4vw, 3.25rem) / 800</span>
           <h1 style="font-size: var(--type-display-2xl); font-weight: 800; color: var(--color-warm-yellow); letter-spacing: -0.02em;">
             Alam Takambang Jadi Guru
           </h1>
         </div>
-        <div style="border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding-bottom: 16px;">
-          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: monospace;">Display XL — 36px / 800</span>
+        <div style="border-bottom: 1px solid rgba(212, 164, 71, 0.2); padding-bottom: 16px;">
+          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: var(--font-family-mono);">Display XL — clamp(1.75rem, 3vw, 2.5rem) / 800</span>
           <h2 style="font-size: var(--type-display-xl); font-weight: 800; color: var(--text-primary); letter-spacing: -0.01em;">
-            Kekayaan Budaya Ranah Minangkabau
+            Atlas Hidup Kebudayaan Nusantara
           </h2>
         </div>
-        <div style="border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding-bottom: 16px;">
-          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: monospace;">Headline MD — 22px / 700</span>
-          <h3 style="font-size: var(--type-headline-md); font-weight: 700; color: var(--color-lavender);">
-            Level 4: Motif Songket Pandai Sikek & Makna Filosofis
+        <div style="border-bottom: 1px solid rgba(212, 164, 71, 0.2); padding-bottom: 16px;">
+          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: var(--font-family-mono);">Headline MD — 22px / 700</span>
+          <h3 style="font-size: var(--type-headline-md); font-weight: 700; color: var(--color-turquoise);">
+            Bab 2: Motif Songket Pandai Sikek & Ragam Hias Minangkabau
           </h3>
         </div>
-        <div style="border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding-bottom: 16px;">
-          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: monospace;">Body LG — 16px / 500</span>
-          <p style="font-size: var(--type-body-lg); color: var(--text-secondary); max-width: 800px;">
-            Pola ukiran songket bukan sekadar ornamen hiasan! Motif <em>Itik Pulang Patang</em> dan <em>Saik Kalamai</em> mengajarkan tentang nilai keselarasan sosial, ketertiban musyawarah, dan kearifan hidup masyarakat adat.
+        <div style="border-bottom: 1px solid rgba(212, 164, 71, 0.2); padding-bottom: 16px;">
+          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: var(--font-family-mono);">Provenance Code — JetBrains Mono 12px / 700</span>
+          <p style="font-family: var(--font-family-mono); font-size: 13px; color: var(--color-warm-yellow); margin-top: 4px;">
+            DAPOBUD RI • Reg: 2013003578 • UUID: f31f397c-83b5-4f42-b1a1-084ac92e4e01 • Status: VERIFIED_CANONICAL
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 3. COMPONENT SYSTEM & INTERACTION STATES -->
+    <!-- 4. COMPONENT SYSTEM & INTERACTION STATES -->
     <section class="system-card">
       <h2 class="section-title">
         <span class="material-symbols-outlined" style="color: var(--color-turquoise);">widgets</span>
-        3. Pustaka Komponen Taktil & Ragam Status
+        4. Pustaka Komponen Taktil & Status Interaksi
       </h2>
       <p class="section-subtitle">
-        Komponen gamifikasi fisik dengan push-shadow 3D yang memberikan umpan balik mekanis saat disentuh/ditekan.
+        Komponen permainan fisik dengan bayangan tekan 3D (push-shadow) yang merespons sentuhan, klik, dan navigasi papan ketik (`focus-visible`).
       </p>
 
-      <!-- Buttons across states -->
       <h3 style="font-size: var(--type-headline-sm); margin-bottom: 16px; color: var(--color-warm-yellow);">A. Tombol Aksi Taktil (Button States)</h3>
       
       <div class="component-row">
         <span class="component-label">Default / Normal</span>
-        <button class="btn btn-primary">Mulai Belajar</button>
-        <button class="btn btn-gold">Klaim Hadiah 50 💎</button>
+        <button class="btn btn-primary">Mulai Ekspedisi</button>
+        <button class="btn btn-gold">Klaim Pusaka 50 💎</button>
         <button class="btn btn-turquoise">Buka Culturepedia</button>
         <button class="btn btn-coral">Misi Harian</button>
         <button class="btn btn-surface">Tinjau Kembali</button>
-        <button class="btn btn-outline">Lihat Peringkat</button>
+        <button class="btn btn-outline">Papan Peringkat</button>
       </div>
 
       <div class="component-row">
-        <span class="component-label">Hover State</span>
-        <button class="btn btn-primary" style="background-color: var(--color-primary-purple-hover); transform: translateY(-1px); box-shadow: 0 5px 0 var(--color-primary-purple-dark);">Mulai Belajar</button>
-        <button class="btn btn-gold" style="background-color: var(--color-warm-yellow-hover); transform: translateY(-1px); box-shadow: 0 5px 0 var(--color-warm-yellow-dark);">Klaim Hadiah</button>
-        <button class="btn btn-turquoise" style="background-color: var(--color-turquoise-hover); transform: translateY(-1px); box-shadow: 0 5px 0 var(--color-turquoise-dark);">Buka Peta</button>
-      </div>
-
-      <div class="component-row">
-        <span class="component-label">Pressed State (Active)</span>
-        <button class="btn btn-primary is-pressed">Ditekan (4px Down)</button>
-        <button class="btn btn-gold is-pressed">Ditekan (4px Down)</button>
-      </div>
-
-      <div class="component-row">
-        <span class="component-label">Disabled State</span>
+        <span class="component-label">Pressed & Disabled</span>
+        <button class="btn btn-primary is-pressed">Ditekan (Active)</button>
+        <button class="btn btn-gold is-pressed">Ditekan (Active)</button>
         <button class="btn btn-primary" disabled>Terkunci</button>
-        <button class="btn btn-gold" disabled>Belum Tersedia</button>
+        <button class="btn btn-turquoise is-loading">Memproses</button>
       </div>
 
-      <div class="component-row">
-        <span class="component-label">Loading State</span>
-        <button class="btn btn-primary is-loading">Memproses...</button>
-        <button class="btn btn-turquoise is-loading">Memproses...</button>
-      </div>
-
-      <!-- Resource Chips -->
       <h3 style="font-size: var(--type-headline-sm); margin: 32px 0 16px; color: var(--color-warm-yellow);">B. Gamified Resource Chips</h3>
       <div class="component-row">
         <div class="chip-stat chip-streak">
@@ -356,7 +381,7 @@
           <span>480 Permata</span>
         </div>
         <div class="chip-stat chip-xp">
-          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-lavender); font-variation-settings: 'FILL' 1;">bolt</span>
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-warm-yellow); font-variation-settings: 'FILL' 1;">bolt</span>
           <span>2.450 XP</span>
         </div>
         <div class="chip-stat chip-level">
@@ -365,228 +390,94 @@
         </div>
       </div>
 
-      <!-- Progress Track -->
-      <h3 style="font-size: var(--type-headline-sm); margin: 32px 0 16px; color: var(--color-warm-yellow);">C. Duolingo-Style Progress Bars</h3>
-      <div style="max-width: 480px; display: flex; flex-direction: column; gap: 14px;">
-        <div>
-          <div style="display: flex; justify-content: space-between; font-size: var(--type-body-sm); margin-bottom: 6px;">
-            <span>Progres Bab 2: Ranah Minangkabau</span>
-            <span style="color: var(--color-warm-yellow); font-weight: 700;">80%</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill progress-fill-gold" style="width: 80%;"></div>
-          </div>
-        </div>
-
-        <div>
-          <div style="display: flex; justify-content: space-between; font-size: var(--type-body-sm); margin-bottom: 6px;">
-            <span>Stamina Belajar Harian</span>
-            <span style="color: var(--color-turquoise); font-weight: 700;">100%</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill progress-fill-turquoise" style="width: 100%;"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Level Stepping Nodes -->
-      <h3 style="font-size: var(--type-headline-sm); margin: 32px 0 16px; color: var(--color-warm-yellow);">D. Game Stepping Nodes (Peta Jelajah Nusantara)</h3>
-      <div style="display: flex; align-items: center; gap: 32px; flex-wrap: wrap; background-color: var(--surface-low); padding: 24px; border-radius: var(--radius-lg);">
+      <h3 style="font-size: var(--type-headline-sm); margin: 32px 0 16px; color: var(--color-warm-yellow);">C. Game Stepping Nodes (6 Status Eksplisit Jalur Belajar)</h3>
+      <div style="display: flex; align-items: center; gap: 28px; flex-wrap: wrap; background-color: var(--surface-low); padding: 24px; border-radius: var(--radius-lg); border: 1px solid rgba(212, 164, 71, 0.25);">
         
-        <!-- Completed Node -->
         <div class="level-node-wrapper">
-          <button class="level-node-btn level-node-completed" title="Level 1 Selesai">
+          <button class="level-node-btn level-node-completed" title="MASTERED / COMPLETED">
             <span class="material-symbols-outlined" style="font-size: 34px; font-variation-settings: 'FILL' 1;">check_circle</span>
           </button>
-          <div style="display: flex; gap: 2px; margin-top: 6px;">
-            <span class="material-symbols-outlined" style="font-size: 14px; color: var(--color-warm-yellow); font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined" style="font-size: 14px; color: var(--color-warm-yellow); font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined" style="font-size: 14px; color: var(--color-warm-yellow); font-variation-settings: 'FILL' 1;">star</span>
-          </div>
-          <span style="font-size: var(--type-label-sm); color: var(--text-primary); margin-top: 4px; font-weight: 700;">Selesai (100 XP)</span>
+          <span style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); margin-top: 6px; font-weight: 800;">MASTERED (3★)</span>
         </div>
 
-        <!-- Active Node -->
         <div class="level-node-wrapper">
           <div class="active-pulse-halo"></div>
-          <button class="level-node-btn level-node-active" title="Level Aktif">
+          <button class="level-node-btn level-node-active" title="IN_PROGRESS">
             <span class="material-symbols-outlined" style="font-size: 36px;">brush</span>
           </button>
-          <span class="badge-flag" style="margin-top: 8px;">Mulai Di Sini!</span>
-          <span style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); margin-top: 4px; font-weight: 800;">Level Aktif</span>
+          <span style="font-size: var(--type-label-sm); color: var(--color-coral); margin-top: 6px; font-weight: 800;">IN_PROGRESS</span>
         </div>
 
-        <!-- Treasure Chest -->
         <div class="level-node-wrapper">
-          <button class="level-node-chest" title="Peti Harta Karun">
-            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">lock_open</span>
+          <button class="level-node-btn level-node-available" title="AVAILABLE">
+            <span class="material-symbols-outlined" style="font-size: 32px;">explore</span>
           </button>
-          <span style="font-size: var(--type-label-sm); color: var(--color-turquoise); margin-top: 8px; font-weight: 700;">+50 Permata</span>
+          <span style="font-size: var(--type-label-sm); color: var(--color-turquoise); margin-top: 6px; font-weight: 800;">AVAILABLE</span>
         </div>
 
-        <!-- Locked Node -->
         <div class="level-node-wrapper">
-          <button class="level-node-btn level-node-locked" title="Level Terkunci">
+          <button class="level-node-chest" title="REWARD_CLAIMED">
+            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">redeem</span>
+          </button>
+          <span style="font-size: var(--type-label-sm); color: var(--text-primary); margin-top: 6px; font-weight: 700;">REWARD NODE</span>
+        </div>
+
+        <div class="level-node-wrapper">
+          <button class="level-node-btn level-node-locked" title="LOCKED">
             <span class="material-symbols-outlined" style="font-size: 32px;">lock</span>
           </button>
-          <span style="font-size: var(--type-label-sm); color: var(--text-muted); margin-top: 8px;">Terkunci</span>
+          <span style="font-size: var(--type-label-sm); color: var(--text-muted); margin-top: 6px;">LOCKED</span>
         </div>
 
-        <!-- Boss Trophy Node -->
         <div class="level-node-wrapper">
-          <button class="level-node-boss" title="Ujian Maestro">
-            <span class="material-symbols-outlined" style="font-size: 44px; font-variation-settings: 'FILL' 1;">trophy</span>
+          <button class="level-node-boss" title="BOSS CHALLENGE">
+            <span class="material-symbols-outlined" style="font-size: 42px; font-variation-settings: 'FILL' 1;">trophy</span>
           </button>
-          <span style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); margin-top: 8px; font-weight: 800; text-transform: uppercase;">Ujian Maestro</span>
+          <span style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); margin-top: 6px; font-weight: 800;">UJIAN MAESTRO</span>
         </div>
 
       </div>
     </section>
 
-    <!-- 4. MASCOT SYSTEM: RAGA'S 9 EXPRESSIONS -->
+    <!-- 5. MASCOT SYSTEM: RAGA'S EXPRESSIONS & REGIONAL COMPANIONS -->
     <section class="system-card">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 8px;">
         <h2 class="section-title">
           <span class="material-symbols-outlined" style="color: var(--color-coral);">sentiment_very_satisfied</span>
-          4. Sistem Maskot: Raga si Badak Penjelajah (9 Ekspresi)
+          5. Ekosistem Maskot: Raga si Badak Jawa & Sahabat Regional
         </h2>
         <button id="toggle-deta-btn" class="btn btn-outline" style="font-size: var(--type-body-sm); padding: 8px 16px;">
           <span class="material-symbols-outlined">style</span>
-          Toggle Deta Minang
+          Ganti Busana Deta Minang
         </button>
       </div>
       <p class="section-subtitle">
-        Berdasarkan anatomi Badak Jawa (<em>Rhinoceros sondaicus</em>) bermuka ramah, bertanduk tunggal, mengenakan kain selempang/bib dada motif bunga bintang Minangkabau dengan rumbai permata.
+        Raga si Badak Jawa (<em>Rhinoceros sondaicus</em>) dengan 9 ekspresi emosi vektor interaktif serta 5 maskot satwa endemik pendamping wilayah Nusantara.
       </p>
 
       <div class="mascot-grid" id="mascot-container">
         <!-- Rendered via js/mascot.js -->
       </div>
     </section>
-
-    <!-- 5. 3D CURVED CAROUSEL (REFERENCE C DEMO) -->
-    <section class="system-card perspective-stage">
-      <h2 class="section-title">
-        <span class="material-symbols-outlined" style="color: var(--color-primary-purple);">view_carousel</span>
-        5. Komposisi Busur Perspektif 3D Culturepedia (Referensi C)
-      </h2>
-      <p class="section-subtitle">
-        Kartu artefak budaya disusun dalam kurva busur silindris dengan kedalaman visual nyata dan pencahayaan atmosferik.
-      </p>
-
-      <div class="curved-arc-container">
-        <div class="card-cultural curved-card curved-card-left-2" style="width: 220px;">
-          <div class="card-cultural-media" style="background-image: url('assets/images/saluang_talempong.png');"></div>
-          <div style="padding: 14px;">
-            <p style="font-size: var(--type-label-sm); color: var(--color-turquoise); text-transform: uppercase;">Musik Adat</p>
-            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Saluang Minang</h4>
-          </div>
-        </div>
-
-        <div class="card-cultural curved-card curved-card-left-1" style="width: 240px;">
-          <div class="card-cultural-media" style="background-image: url('assets/images/rumah_gadang.png');"></div>
-          <div style="padding: 14px;">
-            <p style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); text-transform: uppercase;">Arsitektur</p>
-            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Rumah Gadang</h4>
-          </div>
-        </div>
-
-        <div class="card-cultural curved-card curved-card-center" style="width: 280px; border-color: var(--color-lavender);">
-          <div class="card-cultural-media" style="background-image: url('assets/images/batik_keraton.jpg');"></div>
-          <div style="padding: 18px;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); font-weight: 800;">#01 MAESTRO</span>
-              <span class="chip-stat" style="padding: 2px 8px; font-size: 10px;">Masterpiece</span>
-            </div>
-            <h3 style="font-size: var(--type-headline-sm); font-weight: 800; margin-top: 4px; color: var(--text-primary);">
-              Songket Pandai Sikek
-            </h3>
-            <p style="font-size: var(--type-body-sm); color: var(--text-secondary); margin-top: 6px;">
-              Tenunan benang emas legendaris dengan filosofi ketertiban sosial <em>Itik Pulang Patang</em>.
-            </p>
-            <button class="btn btn-primary" style="width: 100%; margin-top: 14px; padding: 10px;">
-              Buka Arsip Budaya
-            </button>
-          </div>
-        </div>
-
-        <div class="card-cultural curved-card curved-card-right-1" style="width: 240px;">
-          <div class="card-cultural-media" style="background-image: url('assets/images/rumah_gadang.png');"></div>
-          <div style="padding: 14px;">
-            <p style="font-size: var(--type-label-sm); color: var(--color-coral); text-transform: uppercase;">Seni Teater</p>
-            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Randai & Silek</h4>
-          </div>
-        </div>
-
-        <div class="card-cultural curved-card curved-card-right-2" style="width: 220px;">
-          <div class="card-cultural-media" style="background-image: url('assets/images/saluang_talempong.png');"></div>
-          <div style="padding: 14px;">
-            <p style="font-size: var(--type-label-sm); color: var(--color-lavender); text-transform: uppercase;">Perkusi Perunggu</p>
-            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Talempong Pacik</h4>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. MOBILE BOTTOM NAVIGATION DEMO (< 1024px) -->
-    <section class="system-card">
-      <h2 class="section-title">
-        <span class="material-symbols-outlined" style="color: var(--color-turquoise);">phone_iphone</span>
-        6. Navigasi Mobile Responsif (Bottom Navigation Bar)
-      </h2>
-      <p class="section-subtitle">
-        Memastikan aksesibilitas penuh bagi pengguna mobile dan tablet yang sebelumnya kehilangan akses navigasi utama.
-      </p>
-
-      <div style="background-color: var(--surface-lowest); padding: 20px; border-radius: var(--radius-lg); max-width: 480px; margin: 0 auto; border: 1px solid rgba(139, 92, 246, 0.2);">
-        <p style="font-size: var(--type-label-sm); color: var(--text-muted); margin-bottom: 12px; text-align: center;">Preview Mobile Shell (390px Width)</p>
-        <div style="position: relative; height: 120px; border: 2px dashed rgba(139, 92, 246, 0.3); border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: flex-end;">
-          <div class="bottom-nav" style="position: absolute; bottom: 0;">
-            <a href="#" class="bottom-nav-item">
-              <span class="material-symbols-outlined">home</span>
-              <span>Beranda</span>
-            </a>
-            <a href="#" class="bottom-nav-item is-active">
-              <span class="material-symbols-outlined">explore</span>
-              <span>Jalur</span>
-            </a>
-            <a href="#" class="bottom-nav-item">
-              <span class="material-symbols-outlined">auto_stories</span>
-              <span>Kamus</span>
-            </a>
-            <a href="#" class="bottom-nav-item">
-              <span class="material-symbols-outlined">leaderboard</span>
-              <span>Skor</span>
-            </a>
-            <a href="#" class="bottom-nav-item">
-              <span class="material-symbols-outlined">person</span>
-              <span>Profil</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
   </div>
 
   <!-- SCRIPTS -->
   <script src="js/mascot.js"></script>
   <script src="js/illustrations.js"></script>
   <script>
-    // Render all 9 Mascot Emotions
     const expressions = [
-      { id: 'happy', label: '1. Happy (Gembira)', desc: 'Ekspresi ceria default saat menyapa pemain.' },
-      { id: 'curious', label: '2. Curious (Ingin Tahu)', desc: 'Kepala miring saat menemukan teka-teki baru.' },
-      { id: 'excited', label: '3. Excited (Bersemangat)', desc: 'Mata bintang saat unlock level baru.' },
-      { id: 'thinking', label: '4. Thinking (Berpikir)', desc: 'Melirik atas saat membaca soal kuis.' },
-      { id: 'confused', label: '5. Confused (Bingung)', desc: 'Mata spiral saat jawaban salah.' },
-      { id: 'encouraging', label: '6. Encouraging (Menyemangati)', desc: 'Acungan jempol saat memberi dorongan.' },
-      { id: 'celebrating', label: '7. Celebrating (Merayakan)', desc: 'Hujan konfeti saat lulus Bab Maestro.' },
-      { id: 'surprised', label: '8. Surprised (Terkesima)', desc: 'Mata bulat saat membuka peti langka.' },
-      { id: 'sleepy', label: '9. Sleepy (Mengantuk)', desc: 'Zzz saat lama tidak ada interaksi.' }
+      { id: 'happy', label: '1. Happy / Greeting', desc: 'Menyapa penjelajah dengan ramah di Beranda.' },
+      { id: 'curious', label: '2. Curious / Learning', desc: 'Menyimak penjelasan fakta budaya baru.' },
+      { id: 'excited', label: '3. Excited', desc: 'Mata berbinar saat membuka wilayah baru.' },
+      { id: 'thinking', label: '4. Thinking', desc: 'Merenungkan petunjuk di dalam kuis.' },
+      { id: 'encouraging', label: '5. Encouraging', desc: 'Memberi semangat saat jawaban kurang tepat.' },
+      { id: 'celebrating', label: '6. Celebrating', desc: 'Merayakan keberhasilan menyelesaikan misi.' },
+      { id: 'surprised', label: '7. Achievement', desc: 'Terkesima saat membuka lencana pusaka.' },
+      { id: 'confused', label: '8. Confused', desc: 'Ekspresi saat menghadapi teka-teki rumit.' },
+      { id: 'sleepy', label: '9. Idle / Sleepy', desc: 'Beristirahat sejenak di kemah ekspedisi.' }
     ];
 
-    let hasHeadpiece = false;
+    let hasHeadpiece = true;
 
     function renderMascots() {
       const container = document.getElementById('mascot-container');
@@ -610,7 +501,6 @@
       renderMascots();
     });
 
-    // Initial Mascot Render
     renderMascots();
   </script>
 </body>

@@ -1,131 +1,152 @@
 /**
- * RAGAMARA DESIGN SYSTEM — DESIGN TOKENS
- * Brand Art Direction: "Playful Nusantara"
- * Cultural Gaming & Interactive Learning Platform
+ * RAGAMARA DESIGN SYSTEM — TOKENS (css/tokens.css)
+ * Aesthetic Direction: "The Living Atlas of Nusantara"
+ * Inspired by expedition field journals, Nusantara batik/ikat geometry,
+ * carved wood, brass ornaments, archipelago seas, and tropical forests.
  */
 
 :root {
   /* ==========================================================================
-     1. BRAND CORE PALETTE
+     1. LIVING ATLAS OF NUSANTARA — CORE COLOR PALETTE
      ========================================================================== */
-  --color-primary-purple: #6338D4;
-  --color-deep-purple: #392071;
-  --color-dark-plum: #211B35;
-  --color-lavender: #8B5CF6;
-  --color-warm-yellow: #FFCA55;
-  --color-coral: #FF786B;
-  --color-turquoise: #24CBA2;
-  --color-warm-ivory: #FFF8EB;
+  /* Warm Parchment & Ivory Surfaces (Editorial, Museum, Dossier, Homepage) */
+  --atlas-parchment: #F4EBDD;
+  --atlas-parchment-deep: #E8DAC3;
+  --atlas-ivory: #FAF6EF;
+  --atlas-sand: #DFCBB0;
+
+  /* Tropical Forest & Expedition Greens (Archipelago Map, RPG Journey, Headers) */
+  --atlas-forest: #173F32;
+  --atlas-forest-deep: #102B25;
+  --atlas-forest-mid: #1F5242;
+  --atlas-forest-surface: #14352B;
+  --atlas-forest-elevated: #1D4A3C;
+
+  /* Cultural Earth & Metal Accents */
+  --atlas-terracotta: #B65F45;
+  --atlas-terracotta-hover: #C96E53;
+  --atlas-terracotta-dark: #8A422D;
+
+  --atlas-gold: #D4A447;
+  --atlas-gold-bright: #F2C45A;
+  --atlas-gold-dark: #9A7123;
+
+  --atlas-teal: #287E7A;
+  --atlas-teal-bright: #34A59F;
+  --atlas-teal-dark: #195653;
+
+  /* Night Sky & Deep Ink (Mini-Game Arena & High-Contrast Surfaces) */
+  --atlas-indigo: #202136;
+  --atlas-indigo-deep: #151626;
+  --atlas-indigo-elevated: #2A2C47;
+  --atlas-charcoal: #292820;
+  --atlas-ink-muted: #5C5849;
+
+  /* ==========================================================================
+     2. SEMANTIC & BACKWARD-COMPATIBLE TOKENS
+     Mapped to the Living Atlas palette so every component shares one cohesive DNA
+     ========================================================================== */
+  --color-primary-purple: #B65F45;       /* Mapped to Terracotta Primary CTA */
+  --color-primary-purple-hover: #C96E53;
+  --color-primary-purple-dark: #8A422D;
+  --color-deep-purple: #173F32;          /* Mapped to Deep Forest */
+  --color-dark-plum: #14352B;            /* Mapped to Forest Surface */
+  --color-lavender: #D4A447;             /* Mapped to Golden Ochre */
+
+  --color-warm-yellow: #F2C45A;
+  --color-warm-yellow-hover: #F7D279;
+  --color-warm-yellow-dark: #9A7123;
+
+  --color-coral: #D96B4E;
+  --color-coral-hover: #E67E62;
+  --color-coral-dark: #96412B;
+
+  --color-turquoise: #34A59F;
+  --color-turquoise-hover: #46B8B2;
+  --color-turquoise-dark: #195653;
+
+  --color-warm-ivory: #FAF6EF;
   --color-white: #FFFFFF;
 
-  /* Extended Tonal Variants */
-  --color-primary-purple-hover: #7548E5;
-  --color-primary-purple-active: #5027B8;
-  --color-primary-purple-dark: #3F1D91; /* 3D shadow depth */
+  /* Surface Elevation Hierarchy (Expedition Atlas Default) */
+  --bg-app: #102B25;
+  --surface-lowest: #0A1D18;
+  --surface-low: #122E27;
+  --surface-base: #173F32;
+  --surface-high: #1E4E3E;
+  --surface-highest: #27604E;
+  --surface-elevated: #215443;
+  --surface-glass: rgba(23, 63, 50, 0.88);
 
-  --color-warm-yellow-hover: #FFD470;
-  --color-warm-yellow-active: #E6B03D;
-  --color-warm-yellow-dark: #B5841D;   /* 3D shadow depth */
+  /* Parchment / Museum Light Surface Tokens */
+  --surface-parchment-bg: #F4EBDD;
+  --surface-parchment-card: #FAF6EF;
+  --surface-parchment-border: #D6C3A5;
+  --text-parchment-primary: #292820;
+  --text-parchment-secondary: #5C5849;
 
-  --color-coral-hover: #FF8F83;
-  --color-coral-active: #E66155;
-  --color-coral-dark: #B83A2E;        /* 3D shadow depth */
-
-  --color-turquoise-hover: #3CDDB5;
-  --color-turquoise-active: #1CAE8A;
-  --color-turquoise-dark: #127A60;    /* 3D shadow depth */
-
-  /* ==========================================================================
-     2. SEMANTIC SURFACES & BACKGROUNDS (DARK THEME DEFAULT)
-     ========================================================================== */
-  --bg-app: #150E24;
-  --bg-canvas: #120A1E;
-  
-  --surface-lowest: #0F0818;
-  --surface-low: #1A1228;
-  --surface-base: #211B35;
-  --surface-high: #2D2445;
-  --surface-highest: #3A3057;
-  --surface-glass: rgba(33, 27, 53, 0.75);
-  --surface-glass-border: rgba(139, 92, 246, 0.25);
-
-  /* Alternative Warm Light Surfaces (for contrast sections & modals) */
-  --surface-light-base: #FFF8EB;
-  --surface-light-card: #FFFFFF;
-  --surface-light-border: #E8DCC8;
+  /* Text Hierarchy on Expedition Surfaces */
+  --text-primary: #FAF6EF;
+  --text-secondary: #DFD5C3;
+  --text-muted: #A99E8B;
+  --text-on-yellow: #292820;
+  --text-on-purple: #FAF6EF;
 
   /* ==========================================================================
-     3. TYPOGRAPHY SCALES & COLORS
+     3. TYPOGRAPHY SYSTEM
+     Expressive Cultural Display + Clean UI Sans + Technical Provenance Mono
      ========================================================================== */
+  --font-family-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', serif;
   --font-family-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-display: 'Plus Jakarta Sans', sans-serif;
+  --font-family-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Text Colors on Dark Surfaces */
-  --text-primary: #FFF8EB;          /* Warm Ivory */
-  --text-secondary: #CCC3DF;        /* Soft Lavender-Gray */
-  --text-muted: #8E83A8;            /* Subdued Violet */
-  --text-accent: #FFCA55;           /* Surya Gold Accent */
-  --text-highlight: #24CBA2;        /* Zamrud Green */
-  --text-link: #8B5CF6;
-
-  /* Text Colors on Light Surfaces */
-  --text-light-primary: #1C152B;
-  --text-light-secondary: #574D70;
-  --text-light-muted: #84799E;
-
-  /* Type Scale */
-  --type-display-2xl: 44px;
-  --type-display-xl: 36px;
-  --type-display-lg: 28px;
-  --type-headline-md: 22px;
-  --type-headline-sm: 18px;
-  --type-body-lg: 16px;
-  --type-body-md: 14px;
-  --type-body-sm: 12px;
-  --type-label-sm: 11px;
-  --type-label-xs: 10px;
+  /* Font Scale */
+  --type-display-2xl: clamp(2.15rem, 4vw, 3.25rem);
+  --type-display-xl: clamp(1.75rem, 3vw, 2.5rem);
+  --type-display-lg: clamp(1.45rem, 2.4vw, 1.95rem);
+  --type-headline-md: 1.375rem;
+  --type-headline-sm: 1.125rem;
+  --type-body-lg: 1rem;
+  --type-body-md: 0.875rem;
+  --type-body-sm: 0.8125rem;
+  --type-label-sm: 0.75rem;
+  --type-label-xs: 0.6875rem;
 
   /* ==========================================================================
-     4. GAME REWARDS & STATUS TOKENS
+     4. SPACING, RADII & TACTILE ELEVATION
      ========================================================================== */
-  --reward-xp: #8B5CF6;
-  --reward-streak: #FF786B;
-  --reward-gold: #FFCA55;
-  --reward-gem: #24CBA2;
-  --reward-badge: #FFCA55;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
 
-  --status-success: #24CBA2;
-  --status-warning: #FFCA55;
-  --status-error: #FF786B;
-  --status-info: #8B5CF6;
-
-  /* ==========================================================================
-     5. SPACING, ELEVATION, AND RADII
-     ========================================================================== */
-  --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  --radius-sm: 0.625rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
   --radius-full: 9999px;
 
-  /* Tactile 3D Physical Push-Shadows */
-  --shadow-tactile-purple: 0 4px 0 var(--color-primary-purple-dark);
-  --shadow-tactile-purple-lg: 0 6px 0 var(--color-primary-purple-dark);
-  --shadow-tactile-yellow: 0 4px 0 var(--color-warm-yellow-dark);
-  --shadow-tactile-coral: 0 4px 0 var(--color-coral-dark);
-  --shadow-tactile-turquoise: 0 4px 0 var(--color-turquoise-dark);
-  --shadow-tactile-surface: 0 4px 0 var(--surface-lowest);
-  --shadow-tactile-surface-lg: 0 6px 0 var(--surface-lowest);
+  /* Tactile 3D Button & Card Shadows (Carved Wood / Brass / Terracotta feel) */
+  --shadow-tactile-purple: 0 5px 0 #8A422D, 0 8px 18px rgba(10, 29, 24, 0.45);
+  --shadow-tactile-yellow: 0 5px 0 #9A7123, 0 8px 18px rgba(10, 29, 24, 0.4);
+  --shadow-tactile-turquoise: 0 5px 0 #195653, 0 8px 18px rgba(10, 29, 24, 0.4);
+  --shadow-tactile-coral: 0 5px 0 #8A422D, 0 8px 18px rgba(10, 29, 24, 0.4);
+  --shadow-tactile-surface: 0 4px 0 #0A1D18, 0 6px 14px rgba(10, 29, 24, 0.45);
+  --shadow-card: 0 12px 32px -4px rgba(10, 29, 24, 0.55), 0 0 1px 1px rgba(212, 164, 71, 0.22);
+  --shadow-parchment-card: 0 6px 0 #D6C3A5, 0 12px 28px rgba(41, 40, 32, 0.12);
+  --shadow-glow-gold: 0 0 24px rgba(242, 196, 90, 0.45);
+  --shadow-glow-purple: 0 0 28px rgba(182, 95, 69, 0.4);
 
-  /* Ambient Glows */
-  --glow-purple: 0 0 24px rgba(99, 56, 212, 0.45);
-  --glow-yellow: 0 0 24px rgba(255, 202, 85, 0.5);
-  --glow-turquoise: 0 0 24px rgba(36, 203, 162, 0.4);
-  --glow-coral: 0 0 24px rgba(255, 120, 107, 0.45);
-
-  /* Transition Timings */
+  /* ==========================================================================
+     5. MOTION & ACCESSIBILITY TOKENS
+     ========================================================================== */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
