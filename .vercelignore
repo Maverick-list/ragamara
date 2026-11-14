@@ -1,0 +1,12 @@
+.git
+.env
+.env.*
+venv/
+__pycache__/
+.pytest_cache/
+data/backups/
+ragamara-data-engine/
+reports/
+tests/
+code.html
+*.log
