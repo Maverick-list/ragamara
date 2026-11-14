@@ -1,25 +1,25 @@
 {
-  "timestamp": "2026-11-14T13:39:53.375Z",
+  "timestamp": "2026-11-14T13:55:16.894Z",
   "viewports": [
     {
       "page": "index.html",
       "viewport": "320x568",
-      "scrollWidth": 320,
-      "innerWidth": 320,
+      "scrollWidth": 352,
+      "innerWidth": 352,
       "passed": true
     },
     {
       "page": "index.html",
       "viewport": "360x800",
-      "scrollWidth": 360,
-      "innerWidth": 360,
+      "scrollWidth": 373,
+      "innerWidth": 373,
       "passed": true
     },
     {
       "page": "index.html",
       "viewport": "375x812",
-      "scrollWidth": 375,
-      "innerWidth": 375,
+      "scrollWidth": 379,
+      "innerWidth": 379,
       "passed": true
     },
     {
@@ -155,15 +155,15 @@
     },
     {
       "name": "World Map & 7 Regional Dossiers (10-Part Check)",
-      "passed": false,
+      "passed": true,
       "details": {
-        "sumatra": false,
-        "jawa": false,
-        "bali_nt": false,
-        "kalimantan": false,
-        "sulawesi": false,
-        "maluku": false,
-        "papua": false
+        "sumatra": true,
+        "jawa": true,
+        "bali_nt": true,
+        "kalimantan": true,
+        "sulawesi": true,
+        "maluku": true,
+        "papua": true
       }
     },
     {

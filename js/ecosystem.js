@@ -484,7 +484,7 @@ window.RagamaraEcosystem = (function() {
         : 'Entri ini tercatat resmi dalam pangkalan Data Pokok Kebudayaan (DAPOBUD) sebagai Objek Pemajuan Kebudayaan (OPK), namun teks deskripsi naratif pada sumber asal masih berupa metadata administratif singkat.';
       const wikiExtract = r.wikipedia?.extract
         ? r.wikipedia.extract
-        : 'Entitas budaya spesifik daerah ini belum memiliki artikel terpisah yang terverifikasi semantik di Wikipedia Bahasa Indonesia. Sistem RAGAMARA tidak memfabrikasi ringkasan demi menjaga kejujuran sumber.';
+        : 'Entitas budaya spesifik daerah ini belum memiliki artikel terpisah yang terverifikasi semantik di Wikipedia Bahasa Indonesia. Sistem NULAR (Nusa Learn) tidak memfabrikasi ringkasan demi menjaga kejujuran sumber.';
       const isSaved = this.savedIds.has(r.record_id);
 
       // Find related cultural items from same region
@@ -1678,3 +1678,7 @@ window.RagamaraEcosystem = (function() {
     }
   };
 })();
+window.NularEcosystem = window.RagamaraEcosystem;
+if (window.RAGAMARA_CULTURE_DB) {
+  window.NULAR_CULTURE_DB = window.RAGAMARA_CULTURE_DB;
+}

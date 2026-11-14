@@ -438,9 +438,9 @@ const MiniGameEngine = {
   gameAQuestions: [
     {
       badge: 'Babak 1/4 • Ragam Hias Minangkabau',
-      category: 'Kriya Tenun & Ukir (Sumatera Barat)',
-      dapobudRef: 'DAPOBUD WBTb • Songket Pandai Sikek',
-      question: 'Apa makna filosofis luhur di balik motif tenun dan ukiran "Itik Pulang Patang" pada masyarakat adat Minangkabau?',
+      category: 'Arsitektur & Ukiran Tradisional (Sumatera Barat)',
+      dapobudRef: 'DAPOBUD WBTb: REK/WBTB/2013/01/00006 • Ragam Hias Rumah Gadang',
+      question: 'Apa makna filosofis luhur di balik motif ukiran dan tenun tradisional "Itik Pulang Patang" pada masyarakat adat Minangkabau?',
       options: [
         { text: 'Keteraturan sosial, kerukunan bersama, dan keselarasan hidup bermusyawarah', isCorrect: true },
         { text: 'Keunggulan kekuatan militer kerajaan dalam menaklukkan wilayah seberang', isCorrect: false },
