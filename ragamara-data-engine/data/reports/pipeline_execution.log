@@ -1,0 +1,237 @@
+[2026-11-14 01:48:12] [INFO] [ragamara.pipeline]: Starting Cultural Data Pipeline at 2026-11-13T18:48:12.931547+00:00
+[2026-11-14 01:48:12] [INFO] [ragamara.pipeline]: Extracting WBTb records from DAPOBUD...
+[2026-11-14 01:48:13] [DEBUG] [urllib3.connectionpool]: Starting new HTTPS connection (1): dapobud.kemenbud.go.id:443
+[2026-11-14 01:48:14] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:15] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:16] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:17] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:18] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:20] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:20] [INFO] [ragamara.pipeline]: Extracting OPK records from DAPOBUD...
+[2026-11-14 01:48:23] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:25] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:26] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:27] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:28] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:30] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:48:30] [INFO] [ragamara.pipeline]: Total raw records gathered from DAPOBUD: 10
+[2026-11-14 01:48:30] [INFO] [ragamara.pipeline]: [1/10] Enriching: Rencong (WBTB)
+[2026-11-14 01:48:31] [DEBUG] [urllib3.connectionpool]: Starting new HTTPS connection (1): id.wikipedia.org:443
+[2026-11-14 01:48:31] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Rencong&srlimit=5&utf8=1&format=json HTTP/1.1" 200 811
+[2026-11-14 01:48:32] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Rencong&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:48:34] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3ACOLLECTIE_TROPENMUSEUM_Dolk_met_rechthoekig_gebogen_hoornen_greep_en_houten_schede_TMnr_151-19.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:48:34] [INFO] [ragamara.pipeline]: [2/10] Enriching: Tor-Tor (WBTB)
+[2026-11-14 01:48:35] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Tor-Tor&srlimit=5&utf8=1&format=json HTTP/1.1" 200 872
+[2026-11-14 01:48:36] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Tortor&utf8=1&format=json HTTP/1.1" 200 679
+[2026-11-14 01:48:38] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3ATor-Tor_Pose.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:48:38] [INFO] [ragamara.pipeline]: [3/10] Enriching: Gordang Sambilan (WBTB)
+[2026-11-14 01:48:39] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Gordang+Sambilan&srlimit=5&utf8=1&format=json HTTP/1.1" 200 809
+[2026-11-14 01:48:40] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Gordang+Sambilan&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:48:42] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3AGendang_sambilan_tampak_dari_samping.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:48:42] [INFO] [ragamara.pipeline]: [4/10] Enriching: Rumah Adat Karo (WBTB)
+[2026-11-14 01:48:43] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Rumah+Adat+Karo&srlimit=5&utf8=1&format=json HTTP/1.1" 200 810
+[2026-11-14 01:48:43] [INFO] [ragamara.pipeline]: [5/10] Enriching: Randang (WBTB)
+[2026-11-14 01:48:44] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Randang&srlimit=5&utf8=1&format=json HTTP/1.1" 200 790
+[2026-11-14 01:48:46] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Rendang&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:48:47] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3ARendang_daging_sapi_asli_Padang.JPG&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 795
+[2026-11-14 01:48:47] [INFO] [ragamara.pipeline]: [6/10] Enriching: 12 menit untuk selamanya (OPK)
+[2026-11-14 01:48:49] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=12+menit+untuk+selamanya&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:48:50] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=12+Menit%3A+Kemenangan+untuk+Selamanya&utf8=1&format=json HTTP/1.1" 200 530
+[2026-11-14 01:48:50] [INFO] [ragamara.pipeline]: [7/10] Enriching: ABIT GODANG (OPK)
+[2026-11-14 01:48:51] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=ABIT+GODANG&srlimit=5&utf8=1&format=json HTTP/1.1" 200 733
+[2026-11-14 01:48:51] [INFO] [ragamara.pipeline]: [8/10] Enriching: Acaineno (terjadinya kali acai ) (OPK)
+[2026-11-14 01:48:53] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Acaineno+%28terjadinya+kali+acai&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:48:53] [INFO] [ragamara.pipeline]: [9/10] Enriching: Acaineno (terjadinya kali acai ) (OPK)
+[2026-11-14 01:48:53] [INFO] [ragamara.pipeline]: [10/10] Enriching: Acara Penyerahan Mempelai Laki-laki (OPK)
+[2026-11-14 01:48:54] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Acara+Penyerahan+Mempelai+Laki-laki&srlimit=5&utf8=1&format=json HTTP/1.1" 200 907
+[2026-11-14 01:48:54] [DEBUG] [ragamara.storage]: Checkpoint saved successfully.
+[2026-11-14 01:48:54] [INFO] [ragamara.pipeline]: Running quality audit and schema validation...
+[2026-11-14 01:48:54] [INFO] [ragamara.validator]: Saved data quality report to /home/firza-ilmi/.gemini/antigravity/scratch/ragamara/ragamara-data-engine/data/reports/data_quality_report.json
+[2026-11-14 01:48:54] [INFO] [ragamara.storage]: Successfully saved atomic JSON to /home/firza-ilmi/.gemini/antigravity/scratch/ragamara/ragamara-data-engine/ragamara_culture_db.json
+[2026-11-14 01:48:54] [INFO] [ragamara.pipeline]: Pipeline complete! Database successfully written to /home/firza-ilmi/.gemini/antigravity/scratch/ragamara/ragamara-data-engine/ragamara_culture_db.json
+[2026-11-14 01:49:26] [INFO] [ragamara.pipeline]: Starting Cultural Data Pipeline at 2026-11-13T18:49:26.402616+00:00
+[2026-11-14 01:49:26] [INFO] [ragamara.pipeline]: Extracting WBTb records from DAPOBUD...
+[2026-11-14 01:49:27] [DEBUG] [urllib3.connectionpool]: Starting new HTTPS connection (1): dapobud.kemenbud.go.id:443
+[2026-11-14 01:49:29] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:29] [DEBUG] [ragamara.dapobud]: Cache hit for key wbtb_detail_f31f397c-0647-4667-bbfb-6aa1397ca224
+[2026-11-14 01:49:29] [DEBUG] [ragamara.dapobud]: Cache hit for key wbtb_detail_e8e717be-2fd1-47bf-b29e-32b28ce5458d
+[2026-11-14 01:49:29] [DEBUG] [ragamara.dapobud]: Cache hit for key wbtb_detail_6761b7f5-e164-4bcf-8f3a-c9bdfb96255d
+[2026-11-14 01:49:29] [DEBUG] [ragamara.dapobud]: Cache hit for key wbtb_detail_2c8817e3-7755-40c8-93ff-c517f9fb4bdb
+[2026-11-14 01:49:29] [DEBUG] [ragamara.dapobud]: Cache hit for key wbtb_detail_0ac0530c-4201-44d4-8aab-c4a02a91134a
+[2026-11-14 01:49:30] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:31] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:32] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:33] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:34] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:35] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:36] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:37] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:38] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:39] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:41] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:42] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:43] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:44] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:45] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:46] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:47] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:48] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:49] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:50] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:50] [INFO] [ragamara.pipeline]: Extracting OPK records from DAPOBUD...
+[2026-11-14 01:49:55] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:55] [DEBUG] [ragamara.dapobud]: Cache hit for key opk_detail_65225024-7db4-47e4-a3e0-678576f9c099
+[2026-11-14 01:49:55] [DEBUG] [ragamara.dapobud]: Cache hit for key opk_detail_7c6b2ad4-c05b-46d1-9485-fceb6db274f8
+[2026-11-14 01:49:55] [DEBUG] [ragamara.dapobud]: Cache hit for key opk_detail_64373054-bc5c-415b-8f9f-ace66ee24195
+[2026-11-14 01:49:55] [DEBUG] [ragamara.dapobud]: Cache hit for key opk_detail_c6e2e236-59e1-4d46-9811-ffbbb49b1534
+[2026-11-14 01:49:55] [DEBUG] [ragamara.dapobud]: Cache hit for key opk_detail_11ab2314-93f4-41fe-81d0-dea3a54ab39f
+[2026-11-14 01:49:56] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:57] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:58] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:49:59] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:01] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:02] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:03] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:04] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:06] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:07] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:08] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:09] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:10] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:11] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:13] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:14] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:15] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:16] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:18] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:19] [DEBUG] [urllib3.connectionpool]: https://dapobud.kemenbud.go.id:443 "POST /backend/graphql HTTP/1.1" 200 None
+[2026-11-14 01:50:19] [INFO] [ragamara.pipeline]: Total raw records gathered from DAPOBUD: 50
+[2026-11-14 01:50:19] [INFO] [ragamara.pipeline]: [1/50] Enriching: Rencong (WBTB)
+[2026-11-14 01:50:19] [INFO] [ragamara.pipeline]: [2/50] Enriching: Tor-Tor (WBTB)
+[2026-11-14 01:50:19] [INFO] [ragamara.pipeline]: [3/50] Enriching: Gordang Sambilan (WBTB)
+[2026-11-14 01:50:19] [INFO] [ragamara.pipeline]: [4/50] Enriching: Rumah Adat Karo (WBTB)
+[2026-11-14 01:50:19] [INFO] [ragamara.pipeline]: [5/50] Enriching: Randang (WBTB)
+[2026-11-14 01:50:19] [INFO] [ragamara.pipeline]: [6/50] Enriching: Rumah Gadang (WBTB)
+[2026-11-14 01:50:20] [DEBUG] [urllib3.connectionpool]: Starting new HTTPS connection (1): id.wikipedia.org:443
+[2026-11-14 01:50:30] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Rumah+Gadang&srlimit=5&utf8=1&format=json HTTP/1.1" 200 728
+[2026-11-14 01:50:32] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Rumah+Gadang&utf8=1&format=json HTTP/1.1" 200 864
+[2026-11-14 01:50:33] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3ARumah_Gadang.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:50:33] [INFO] [ragamara.pipeline]: [7/50] Enriching: Sistem Garis Keturunan Ibu di Masyarakat Minangkabau (WBTB)
+[2026-11-14 01:50:34] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Sistem+Garis+Keturunan+Ibu+di+Masyarakat+Minangkabau&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:50:34] [INFO] [ragamara.pipeline]: [8/50] Enriching: Dulmuluk (WBTB)
+[2026-11-14 01:50:36] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Dulmuluk&srlimit=5&utf8=1&format=json HTTP/1.1" 200 845
+[2026-11-14 01:50:37] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Dulmuluk&utf8=1&format=json HTTP/1.1" 200 655
+[2026-11-14 01:50:37] [INFO] [ragamara.pipeline]: [9/50] Enriching: Songket Palembang (WBTB)
+[2026-11-14 01:50:39] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Songket+Palembang&srlimit=5&utf8=1&format=json HTTP/1.1" 200 768
+[2026-11-14 01:50:40] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Songket+Palembang&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:50:42] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3AAesan_Gede_Songket_Palembang.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:50:42] [INFO] [ragamara.pipeline]: [10/50] Enriching: Aksara dan Naskah Ka Ga Nga (WBTB)
+[2026-11-14 01:50:43] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Aksara+dan+Naskah+Ka+Ga+Nga&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:50:43] [DEBUG] [ragamara.storage]: Checkpoint saved successfully.
+[2026-11-14 01:50:43] [INFO] [ragamara.pipeline]: [11/50] Enriching: Tabot atau Tabuik (WBTB)
+[2026-11-14 01:50:45] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Tabot+atau+Tabuik&srlimit=5&utf8=1&format=json HTTP/1.1" 200 821
+[2026-11-14 01:50:45] [INFO] [ragamara.pipeline]: [12/50] Enriching: Krinok (WBTB)
+[2026-11-14 01:50:47] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Krinok&srlimit=5&utf8=1&format=json HTTP/1.1" 200 925
+[2026-11-14 01:50:49] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Krinok&utf8=1&format=json HTTP/1.1" 200 658
+[2026-11-14 01:50:49] [INFO] [ragamara.pipeline]: [13/50] Enriching: Tenun Siak (WBTB)
+[2026-11-14 01:50:50] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Tenun+Siak&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:50:52] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Tenun+Siak&utf8=1&format=json HTTP/1.1" 200 894
+[2026-11-14 01:50:52] [INFO] [ragamara.pipeline]: [14/50] Enriching: Makyong (WBTB)
+[2026-11-14 01:50:53] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Makyong&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:50:54] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Mak+Yong&utf8=1&format=json HTTP/1.1" 200 929
+[2026-11-14 01:50:56] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3AShowMakyonginRama5.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 876
+[2026-11-14 01:50:56] [INFO] [ragamara.pipeline]: [15/50] Enriching: Gurindam Dua Belas (WBTB)
+[2026-11-14 01:50:57] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Gurindam+Dua+Belas&srlimit=5&utf8=1&format=json HTTP/1.1" 200 929
+[2026-11-14 01:50:59] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Gurindam+Dua+Belas&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:01] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3AGurindam_12_of_Raja_Ali_Haji_written_in_1847.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 797
+[2026-11-14 01:51:01] [INFO] [ragamara.pipeline]: [16/50] Enriching: Gazal (WBTB)
+[2026-11-14 01:51:02] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Gazal&srlimit=5&utf8=1&format=json HTTP/1.1" 200 888
+[2026-11-14 01:51:04] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Gazal&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:05] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3ALjs44.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:05] [INFO] [ragamara.pipeline]: [17/50] Enriching: Dambus (WBTB)
+[2026-11-14 01:51:07] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Dambus&srlimit=5&utf8=1&format=json HTTP/1.1" 200 798
+[2026-11-14 01:51:08] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Dambus&utf8=1&format=json HTTP/1.1" 200 533
+[2026-11-14 01:51:10] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3AStamp_of_Indonesia_-_2015_-_Colnect_667023_-_Dambus_Kepulauan_Bangka_Belitung.jpeg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:10] [INFO] [ragamara.pipeline]: [18/50] Enriching: Muang Jong (WBTB)
+[2026-11-14 01:51:11] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Muang+Jong&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:11] [INFO] [ragamara.pipeline]: [19/50] Enriching: Tapis (WBTB)
+[2026-11-14 01:51:13] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Tapis&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:14] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Kain+tapis&utf8=1&format=json HTTP/1.1" 200 813
+[2026-11-14 01:51:16] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3AKain_tapis.JPG&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:16] [INFO] [ragamara.pipeline]: [20/50] Enriching: Debus Banten (WBTB)
+[2026-11-14 01:51:17] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Debus+Banten&srlimit=5&utf8=1&format=json HTTP/1.1" 200 800
+[2026-11-14 01:51:19] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Suku+Banten&utf8=1&format=json HTTP/1.1" 200 739
+[2026-11-14 01:51:20] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3ABantenese_wedding.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:20] [DEBUG] [ragamara.storage]: Checkpoint saved successfully.
+[2026-11-14 01:51:20] [INFO] [ragamara.pipeline]: [21/50] Enriching: Gerabah Kasongan (WBTB)
+[2026-11-14 01:51:21] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Gerabah+Kasongan&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:23] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Gerabah+Kasongan&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:24] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3AGerabah_dari_Kasongan.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:24] [INFO] [ragamara.pipeline]: [22/50] Enriching: Rumah Panjang Dayak (WBTB)
+[2026-11-14 01:51:26] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Rumah+Panjang+Dayak&srlimit=5&utf8=1&format=json HTTP/1.1" 200 831
+[2026-11-14 01:51:27] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Rumah+panjang&utf8=1&format=json HTTP/1.1" 200 993
+[2026-11-14 01:51:28] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3AUma_Daro_in_Sungai_Asap%2C_Sarawak.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:28] [INFO] [ragamara.pipeline]: [23/50] Enriching: Batik Indonesia (WBTB)
+[2026-11-14 01:51:30] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Batik+Indonesia&srlimit=5&utf8=1&format=json HTTP/1.1" 200 810
+[2026-11-14 01:51:31] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Museum+Batik+Indonesia&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:32] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3AMuseum_batik_indonesia.png&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:32] [INFO] [ragamara.pipeline]: [24/50] Enriching: Ondel-ondel (WBTB)
+[2026-11-14 01:51:34] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Ondel-ondel&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:35] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Ondel-ondel&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:36] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3AOndel_Ondel_Khas_Betawi_-_panoramio.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:36] [INFO] [ragamara.pipeline]: [25/50] Enriching: Topeng Betawi dan Lenong (WBTB)
+[2026-11-14 01:51:38] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Topeng+Betawi+dan+Lenong&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:39] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Topeng+Betawi&utf8=1&format=json HTTP/1.1" 200 694
+[2026-11-14 01:51:41] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3ACOLLECTIE_TROPENMUSEUM_Topeng_Betawi_danseres_en_muzikanten_Java_TMnr_10004639.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:41] [INFO] [ragamara.pipeline]: [26/50] Enriching: 12 menit untuk selamanya (OPK)
+[2026-11-14 01:51:41] [INFO] [ragamara.pipeline]: [27/50] Enriching: ABIT GODANG (OPK)
+[2026-11-14 01:51:41] [INFO] [ragamara.pipeline]: [28/50] Enriching: Acaineno (terjadinya kali acai ) (OPK)
+[2026-11-14 01:51:41] [INFO] [ragamara.pipeline]: [29/50] Enriching: Acaineno (terjadinya kali acai ) (OPK)
+[2026-11-14 01:51:41] [INFO] [ragamara.pipeline]: [30/50] Enriching: Acara Penyerahan Mempelai Laki-laki (OPK)
+[2026-11-14 01:51:41] [DEBUG] [ragamara.storage]: Checkpoint saved successfully.
+[2026-11-14 01:51:41] [INFO] [ragamara.pipeline]: [31/50] Enriching: Acar Lemo (OPK)
+[2026-11-14 01:51:42] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Acar+Lemo&srlimit=5&utf8=1&format=json HTTP/1.1" 200 855
+[2026-11-14 01:51:42] [INFO] [ragamara.pipeline]: [32/50] Enriching: ADAT BUANTAK (OPK)
+[2026-11-14 01:51:44] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=ADAT+BUANTAK&srlimit=5&utf8=1&format=json HTTP/1.1" 200 737
+[2026-11-14 01:51:44] [INFO] [ragamara.pipeline]: [33/50] Enriching: ADAT BUANTAK (OPK)
+[2026-11-14 01:51:44] [INFO] [ragamara.pipeline]: [34/50] Enriching: Adat Istiadat Tepung Cai (OPK)
+[2026-11-14 01:51:45] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Adat+Istiadat+Tepung+Cai&srlimit=5&utf8=1&format=json HTTP/1.1" 200 463
+[2026-11-14 01:51:45] [INFO] [ragamara.pipeline]: [35/50] Enriching: Adat Kehamilan dan Kelahiran Masyarakat Kuta Ciamis (OPK)
+[2026-11-14 01:51:46] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Adat+Kehamilan+dan+Kelahiran+Masyarakat+Kuta+Ciamis&srlimit=5&utf8=1&format=json HTTP/1.1" 200 676
+[2026-11-14 01:51:46] [INFO] [ragamara.pipeline]: [36/50] Enriching: Adat Mawah (OPK)
+[2026-11-14 01:51:48] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Adat+Mawah&srlimit=5&utf8=1&format=json HTTP/1.1" 200 453
+[2026-11-14 01:51:49] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Adat+Mawah&utf8=1&format=json HTTP/1.1" 200 491
+[2026-11-14 01:51:49] [INFO] [ragamara.pipeline]: [37/50] Enriching: Adat Mendirikan dan Mendiami Rumah (OPK)
+[2026-11-14 01:51:51] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Adat+Mendirikan+dan+Mendiami+Rumah&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:51] [INFO] [ragamara.pipeline]: [38/50] Enriching: ADAT PLAKAT PANJANG SURIAN (OPK)
+[2026-11-14 01:51:52] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=ADAT+PLAKAT+PANJANG+SURIAN&srlimit=5&utf8=1&format=json HTTP/1.1" 200 673
+[2026-11-14 01:51:52] [INFO] [ragamara.pipeline]: [39/50] Enriching: Adat Setakatan (Kawin Lari) (OPK)
+[2026-11-14 01:51:53] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Adat+Setakatan+%28Kawin+Lari&srlimit=5&utf8=1&format=json HTTP/1.1" 200 83
+[2026-11-14 01:51:53] [INFO] [ragamara.pipeline]: [40/50] Enriching: Adat Sumando Pesisir Tapanuli Tengah (OPK)
+[2026-11-14 01:51:55] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Adat+Sumando+Pesisir+Tapanuli+Tengah&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:55] [DEBUG] [ragamara.storage]: Checkpoint saved successfully.
+[2026-11-14 01:51:55] [INFO] [ragamara.pipeline]: [41/50] Enriching: Ada' Tuho (OPK)
+[2026-11-14 01:51:56] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Ada%27+Tuho&srlimit=5&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:51:56] [INFO] [ragamara.pipeline]: [42/50] Enriching: ADIDANG (OPK)
+[2026-11-14 01:51:58] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=ADIDANG&srlimit=5&utf8=1&format=json HTTP/1.1" 200 433
+[2026-11-14 01:51:59] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Adidang&utf8=1&format=json HTTP/1.1" 200 603
+[2026-11-14 01:51:59] [INFO] [ragamara.pipeline]: [43/50] Enriching: ADIDANG (OPK)
+[2026-11-14 01:51:59] [INFO] [ragamara.pipeline]: [44/50] Enriching: Adil Ka' Talino, Bacuramin Ka' Saruga, Basengat Ka' Jubata (OPK)
+[2026-11-14 01:52:01] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Adil+Ka%27+Talino%2C+Bacuramin+Ka%27+Saruga%2C+Basengat+Ka%27+Jubata&srlimit=5&utf8=1&format=json HTTP/1.1" 200 541
+[2026-11-14 01:52:01] [INFO] [ragamara.pipeline]: [45/50] Enriching: Adrem (OPK)
+[2026-11-14 01:52:02] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Adrem&srlimit=5&utf8=1&format=json HTTP/1.1" 200 800
+[2026-11-14 01:52:03] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&prop=extracts%7Cpageimages%7Cinfo&inprop=url&exintro=1&explaintext=1&pithumbsize=800&piprop=thumbnail%7Cname%7Coriginal&titles=Adrem&utf8=1&format=json HTTP/1.1" 200 654
+[2026-11-14 01:52:05] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&titles=File%3A14._Adrem_1.jpg&prop=imageinfo&iiprop=url%7Cuser%7Cextmetadata&utf8=1&format=json HTTP/1.1" 200 None
+[2026-11-14 01:52:05] [INFO] [ragamara.pipeline]: [46/50] Enriching: Adrem (OPK)
+[2026-11-14 01:52:05] [INFO] [ragamara.pipeline]: [47/50] Enriching: Adzan Pitu (OPK)
+[2026-11-14 01:52:06] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Adzan+Pitu&srlimit=5&utf8=1&format=json HTTP/1.1" 200 125
+[2026-11-14 01:52:06] [INFO] [ragamara.pipeline]: [48/50] Enriching: Aek Serbat Kabupaten Mempawah (OPK)
+[2026-11-14 01:52:07] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Aek+Serbat+Kabupaten+Mempawah&srlimit=5&utf8=1&format=json HTTP/1.1" 200 484
+[2026-11-14 01:52:07] [INFO] [ragamara.pipeline]: [49/50] Enriching: Aek Soap (OPK)
+[2026-11-14 01:52:09] [DEBUG] [urllib3.connectionpool]: https://id.wikipedia.org:443 "GET /w/api.php?action=query&list=search&srsearch=Aek+Soap&srlimit=5&utf8=1&format=json HTTP/1.1" 200 331
+[2026-11-14 01:52:09] [INFO] [ragamara.pipeline]: [50/50] Enriching: Aek Soap (OPK)
+[2026-11-14 01:52:09] [DEBUG] [ragamara.storage]: Checkpoint saved successfully.
+[2026-11-14 01:52:09] [INFO] [ragamara.pipeline]: Running quality audit and schema validation...
+[2026-11-14 01:52:09] [INFO] [ragamara.validator]: Saved data quality report to /home/firza-ilmi/.gemini/antigravity/scratch/ragamara/ragamara-data-engine/data/reports/data_quality_report.json
+[2026-11-14 01:52:09] [INFO] [ragamara.storage]: Successfully saved atomic JSON to /home/firza-ilmi/.gemini/antigravity/scratch/ragamara/ragamara-data-engine/ragamara_culture_db.json
+[2026-11-14 01:52:09] [INFO] [ragamara.pipeline]: Pipeline complete! Database successfully written to /home/firza-ilmi/.gemini/antigravity/scratch/ragamara/ragamara-data-engine/ragamara_culture_db.json

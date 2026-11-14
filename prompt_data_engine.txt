@@ -1,0 +1,1440 @@
+<USER_REQUEST>
+# SYSTEM PROMPT: RAGAMARA CULTURAL DATA ENRICHMENT ENGINE
+## DAPOBUD × Wikipedia Indonesia × Structured Cultural Knowledge Database
+
+---
+
+# 1. YOUR ROLE
+
+Act as a Senior AI Prompt Engineer, Lead Data Engineer, Python Backend Engineer, Web Scraping Specialist, and Data Quality Architect.
+
+You are operating as an autonomous coding agent inside the existing RAGAMARA development workspace.
+
+Your mission is to design, implement, execute, test, and document a robust automated data enrichment pipeline that collects official Indonesian cultural records and enriches them with supplementary encyclopedic information and image references.
+
+You are responsible for delivering working Python code, not merely writing a technical proposal.
+
+Think and operate like a senior engineer building a real data ingestion system for a production application.
+
+The final primary deliverable must be:
+
+**ragamara_culture_db.json**
+
+This database will become one of the foundational cultural knowledge sources for the RAGAMARA gamified cultural learning platform.
+
+# 2. PRODUCT CONTEXT
+
+RAGAMARA is an interactive Indonesian cultural learning and adventure gaming platform.
+
+Its goal is to introduce Indonesian cultural heritage through:
+
+- Interactive cultural learning.
+- Regional exploration.
+- Educational mini-games.
+- Cultural storytelling.
+- Character and mascot collections.
+- Digital cultural encyclopedias.
+- Gamified learning missions.
+
+The application requires structured cultural information that can be consumed by its frontend and backend.
+
+We need reliable cultural records containing official names, geographical information, categories, descriptions, historical context, images, and source attribution.
+
+The pipeline must combine two primary data sources.
+
+## DATA SOURCE A — DAPOBUD
+
+Official website:
+
+https://dapobud.kemenbud.go.id/
+
+DAPOBUD stands for Data Pokok Kebudayaan and is managed by Indonesia's Ministry of Culture.
+
+It serves as the primary official reference for cultural data.
+
+Our goal is to extract available public records containing:
+
+1. Official cultural name.
+2. Geographic region.
+3. Cultural category.
+4. Entity type.
+5. Official record identifier, when available.
+6. Official record URL.
+7. Other useful metadata provided by the source.
+
+Important distinction:
+
+DAPOBUD contains several cultural entity types, including:
+
+- Objek Pemajuan Kebudayaan (OPK).
+- Warisan Budaya Takbenda (WBTb).
+- Cagar Budaya.
+- Objek Diduga Cagar Budaya.
+- Sumber Daya Manusia Kebudayaan.
+- Lembaga Kebudayaan.
+- Sarana dan Prasarana Kebudayaan.
+
+Do not mix these entity types into one indistinguishable category.
+
+For the initial RAGAMARA cultural learning database, prioritize:
+
+- Objek Pemajuan Kebudayaan (OPK).
+- Warisan Budaya Takbenda (WBTb).
+
+Make the target entity types configurable so additional datasets can be added later.
+
+Preserve the official classification exactly as presented by DAPOBUD.
+
+Do not assume that a particular DAPOBUD endpoint, field, or page structure exists until verified.
+
+## DATA SOURCE B — WIKIPEDIA INDONESIA
+
+MediaWiki API endpoint:
+
+https://id.wikipedia.org/w/api.php
+
+Use the official MediaWiki Action API.
+
+Our goal is to enrich DAPOBUD records with supplementary information:
+
+1. Encyclopedic description.
+2. Historical context, where documented.
+3. Traditional and cultural background.
+4. Geographical context.
+5. Related article URL.
+6. Image URL.
+7. Image thumbnail URL.
+8. Image attribution.
+9. Image licensing information.
+10. Wikipedia page metadata.
+
+IMPORTANT:
+
+Wikipedia enrichment is supplementary information.
+
+DAPOBUD remains the authoritative source for the official registry name, entity type, and official regional classification.
+
+Do not represent Wikipedia content as an official Ministry of Culture statement.
+
+Do not fabricate missing cultural information.
+
+If a record has no relevant Wikipedia article, keep its official DAPOBUD information and mark its enrichment status as unavailable.
+
+---
+
+# 3. CORE PIPELINE ARCHITECTURE
+
+Build the pipeline using the following architecture:
+
+DAPOBUD PUBLIC DATA DISCOVERY
+        |
+        v
+PUBLIC API IDENTIFICATION
+        |
+        v
+OFFICIAL CULTURAL RECORD EXTRACTION
+        |
+        v
+DATA CLEANING AND NORMALIZATION
+        |
+        v
+WIKIPEDIA INDONESIA SEARCH
+        |
+        v
+ARTICLE MATCHING AND VALIDATION
+        |
+        v
+DESCRIPTION AND IMAGE EXTRACTION
+        |
+        v
+LICENSE AND ATTRIBUTION COLLECTION
+        |
+        v
+DATA MERGING
+        |
+        v
+DATA QUALITY VALIDATION
+        |
+        v
+JSON DATABASE GENERATION
+        |
+        v
+ragamara_culture_db.json
+
+Every stage must have a clearly separated implementation.
+
+Never place the entire pipeline into one enormous Python function.
+
+---
+
+# 4. PHASE A — ENVIRONMENT AND PROJECT DISCOVERY
+
+Before writing code:
+
+1. Inspect the existing RAGAMARA workspace.
+2. Identify the current project structure.
+3. Check Python availability.
+4. Inspect installed packages.
+5. Identify existing configuration files.
+6. Check whether cultural datasets already exist.
+7. Identify whether the frontend already expects a specific JSON schema.
+8. Avoid overwriting existing project data.
+
+Determine the best location for the data pipeline.
+
+Create a clean and maintainable structure.
+
+Suggested architecture:
+
+ragamara-data-engine/
+│
+├── main.py
+├── requirements.txt
+├── README.md
+├── .env.example
+├── .gitignore
+│
+├── config/
+│   └── settings.py
+│
+├── src/
+│   ├── __init__.py
+│   ├── dapobud_client.py
+│   ├── dapobud_discovery.py
+│   ├── mediawiki_client.py
+│   ├── matching.py
+│   ├── normalization.py
+│   ├── enrichment.py
+│   ├── data_validator.py
+│   ├── storage.py
+│   └── pipeline.py
+│
+├── data/
+│   ├── cache/
+│   ├── raw/
+│   ├── checkpoints/
+│   └── reports/
+│
+├── tests/
+│   ├── test_dapobud.py
+│   ├── test_mediawiki.py
+│   ├── test_matching.py
+│   ├── test_validation.py
+│   └── test_pipeline.py
+│
+└── ragamara_culture_db.json
+
+Adapt this structure to the existing workspace if necessary.
+
+Do not create duplicate projects or nested repositories unnecessarily.
+
+---
+
+# 5. PHASE B — DAPOBUD SOURCE DISCOVERY
+
+THIS IS A CRITICAL REQUIREMENT.
+
+Before using BeautifulSoup or scraping page elements, investigate whether DAPOBUD exposes publicly accessible internal APIs.
+
+Do not immediately begin scraping visible HTML.
+
+## Step 1: Inspect public website infrastructure
+
+Inspect:
+
+- Main public website.
+- robots.txt.
+- sitemap.xml, if available.
+- Public HTML source.
+- JavaScript application bundles.
+- Public application configuration.
+- Publicly accessible JSON resources.
+
+Use standard Python requests for initial inspection.
+
+Check HTTP status codes and response content types.
+
+Do not assume that the website is accessible or that its technology stack is React, Next.js, Vue, or another framework.
+
+Identify the actual implementation.
+
+## Step 2: Investigate publicly exposed API endpoints
+
+If DAPOBUD is an SPA or JavaScript-driven application, use Playwright in a temporary discovery script.
+
+Open the normal public DAPOBUD interface.
+
+Record publicly observable browser network activity, especially:
+
+- XHR requests.
+- Fetch requests.
+- JSON responses.
+- GraphQL requests, if present.
+- Pagination requests.
+- Public search requests.
+- Public filter requests.
+- Public dataset endpoints.
+
+Inspect requests initiated during normal navigation through the website.
+
+Look for public endpoints used to retrieve cultural records.
+
+Record:
+
+- Endpoint URL.
+- HTTP method.
+- Required public parameters.
+- Pagination mechanism.
+- JSON response structure.
+- Available data fields.
+- Geographic fields.
+- Entity classifications.
+- Record identifiers.
+
+Check the browser's publicly available response payloads and compare them with the information visible on the website.
+
+## Step 3: Inspect public JavaScript references
+
+If network activity does not reveal the relevant API immediately:
+
+- Inspect publicly served JavaScript assets.
+- Search for endpoint references in delivered application bundles.
+- Identify public data-fetching functions.
+- Examine publicly exposed JSON configuration.
+- Check for SSR hydration data such as __NEXT_DATA__ only if present.
+
+Do not guess endpoint URLs randomly.
+
+Do not brute-force server routes.
+
+Do not inspect private administrative endpoints.
+
+Do not attempt to extract authentication credentials, session cookies, secrets, or API keys.
+
+Do not bypass login requirements, CAPTCHA, access controls, or other anti-bot protections.
+
+Only use endpoints that are publicly accessible and permitted for ordinary public data access.
+
+## Step 4: Verify the discovered endpoint
+
+Before using an endpoint for extraction:
+
+1. Send a minimal request.
+2. Confirm the HTTP response.
+3. Confirm the returned content type.
+4. Inspect a sample record.
+5. Confirm that the data corresponds to the visible official website.
+6. Determine the pagination mechanism.
+7. Check whether there are filters for entity type and region.
+
+Do not treat a successful HTTP response as proof that the data is correct.
+
+Create a discovery report.
+
+## Step 5: Fallback to HTML scraping
+
+Only use DOM scraping if a suitable public API is unavailable.
+
+Use:
+
+- requests.
+- BeautifulSoup4.
+
+If the content is rendered dynamically and cannot be obtained through public JSON endpoints or ordinary HTML requests, use Playwright to render the public page and inspect the resulting DOM.
+
+Avoid Selenium unless Playwright is unavailable and the environment genuinely requires Selenium.
+
+If the website returns 401, 403, CAPTCHA, or a clear access restriction, do not try to circumvent it.
+
+Document the limitation and stop that extraction path.
+
+## Step 6: Extract official records
+
+Extract available:
+
+- Record ID.
+- Name.
+- Entity type.
+- Category.
+- Province.
+- Regency or city.
+- District, if available.
+- Village, if available.
+- Detail page URL.
+- Source metadata.
+
+Preserve original source labels.
+
+Do not assume all geographic fields exist for every record.
+
+Never fabricate missing regions.
+
+## Step 7: Pagination
+
+Support every legitimate public pagination mechanism discovered.
+
+Examples include:
+
+- Page-based pagination.
+- Offset and limit.
+- Cursor pagination.
+- Infinite scrolling.
+- Server-side filtering.
+
+Continue until all relevant available records have been retrieved or a documented limit is reached.
+
+Detect repeated pages and prevent infinite pagination loops.
+
+## Step 8: Record provenance
+
+Every extracted record must retain its originating DAPOBUD URL.
+
+Store the original field names and, where practical, the raw record in a separate raw-data cache.
+
+This allows future audit and reprocessing.
+
+---
+
+# 6. PHASE C — ETHICAL SCRAPING AND HTTP CLIENT
+
+Build a reusable HTTP client.
+
+Use requests.Session() to reuse connections and centralize request configuration.
+
+## User-Agent policy
+
+Implement a configurable, descriptive User-Agent.
+
+Suggested format:
+
+RAGAMARA-DataPipeline/1.0 (+PROJECT_CONTACT_URL_OR_EMAIL)
+
+Build it from actual project configuration.
+
+Requirements:
+
+- Include the application name.
+- Include the version.
+- Include a real contact URL or email supplied through configuration.
+- Do not invent contact details.
+- Do not impersonate popular browsers.
+- Do not randomly rotate User-Agent strings.
+- Do not use User-Agent rotation to bypass access restrictions.
+
+For Wikimedia, maintain one consistent and identifiable User-Agent across all requests.
+
+The User-Agent should be configurable without modifying source code.
+
+## Request throttling
+
+Implement configurable delays.
+
+Recommended initial behavior:
+
+- DAPOBUD: approximately 1–3 seconds between ordinary requests.
+- Wikipedia: approximately 1–2 seconds between requests.
+
+Adjust these values according to the website's actual guidance and response behavior.
+
+Use sequential requests by default.
+
+Do not run aggressive parallel scraping.
+
+Use time.sleep() between requests.
+
+Optional small random jitter may be used to avoid perfectly synchronized polling, but never to disguise high-volume traffic.
+
+## Request timeout
+
+Every request must include explicit connection and read timeouts.
+
+For example:
+
+connect timeout: 10 seconds
+read timeout: 30 seconds
+
+Make these configurable.
+
+## Retry strategy
+
+Implement bounded retries for temporary failures.
+
+Requirements:
+
+- Maximum three ordinary retry attempts.
+- Exponential backoff.
+- Respect Retry-After when provided.
+- Retry recoverable network failures.
+- Retry temporary server errors when appropriate.
+- Handle malformed JSON safely.
+
+For HTTP 429:
+
+- Read Retry-After.
+- Pause accordingly.
+- Reduce request frequency.
+- Resume only when appropriate.
+
+For HTTP 403, CAPTCHA, authentication restrictions, or explicit blocking:
+
+- Do not switch identities to bypass the restriction.
+- Do not create proxy rotation.
+- Stop the affected source gracefully.
+- Record the error.
+
+## Error handling
+
+Handle:
+
+- ConnectionError.
+- Timeout.
+- HTTPError.
+- TooManyRedirects.
+- JSONDecodeError.
+- Unexpected content type.
+- Empty response.
+- Missing HTML elements.
+- Missing expected JSON fields.
+- Pagination failures.
+- Unicode errors.
+- Invalid image URLs.
+
+Use structured logging.
+
+Never silently discard important errors.
+
+---
+
+# 7. PHASE D — WIKIPEDIA INDONESIA MEDIAWIKI ENRICHMENT
+
+Use the official MediaWiki Action API.
+
+API endpoint:
+
+https://id.wikipedia.org/w/api.php
+
+Use standard GET requests for read-only operations.
+
+Do not scrape Wikipedia HTML when the API provides the required information.
+
+## STEP 1: Search for the cultural article
+
+For each DAPOBUD record:
+
+Use the official cultural name as the initial search query.
+
+Suggested Action API parameters:
+
+action=query
+list=search
+srsearch=<CULTURAL_NAME>
+srnamespace=0
+srlimit=5
+format=json
+formatversion=2
+
+Perform matching in the Indonesian Wikipedia namespace.
+
+Do not automatically select the first search result.
+
+Retrieve available candidate titles and relevant snippets.
+
+## STEP 2: Candidate matching
+
+Implement a dedicated matching module.
+
+Compare:
+
+- Original cultural name.
+- Normalized cultural name.
+- Candidate Wikipedia title.
+- Alternative spelling, if verifiable.
+- Regional context.
+- Relevant article content.
+
+Normalization may include:
+
+- Unicode normalization.
+- Case folding.
+- Whitespace normalization.
+- Punctuation normalization.
+- Consistent handling of diacritics without discarding the original text.
+
+Use exact title matching as the strongest signal.
+
+Fuzzy matching may use RapidFuzz or Python's standard difflib.
+
+Suggested confidence rules:
+
+| Matching result | Status |
+|---|---|
+| Unique exact title match | High confidence |
+| Exact normalized title match | High confidence, subject to contextual validation |
+| Very close fuzzy match | Requires review |
+| Several similarly ranked candidates | Ambiguous |
+| Weak similarity | No automatic match |
+
+Use configurable scoring thresholds.
+
+Never merge ambiguous candidates automatically.
+
+Keep alternative candidates and matching evidence for manual review.
+
+A matching cultural name is not sufficient when the candidate article clearly describes a different object, individual, place, or event.
+
+## STEP 3: Retrieve article data
+
+For a validated candidate, request:
+
+action=query
+prop=extracts|pageimages|info
+titles=<MATCHED_TITLE>
+explaintext=1
+exintro=0
+redirects=1
+inprop=url
+piprop=thumbnail|original|name
+pithumbsize=1000
+format=json
+formatversion=2
+
+Adapt parameters to the API response and available extension support.
+
+Extract:
+
+- Page ID.
+- Canonical title.
+- Full page URL.
+- Plain-text extract.
+- Thumbnail URL.
+- Original image URL when provided.
+- Image filename when available.
+- Redirect information if relevant.
+
+Store a clean article extract.
+
+Preserve paragraph boundaries where practical.
+
+Avoid saving raw HTML in the final JSON.
+
+Set reasonable length limits for very long descriptions and record whether truncation occurred.
+
+Do not invent historical summaries from an article title.
+
+## STEP 4: Image metadata
+
+If an image is returned:
+
+Retrieve additional image metadata using MediaWiki's imageinfo capability.
+
+Use:
+
+prop=imageinfo
+iiprop=url|extmetadata
+
+Retrieve, when available:
+
+- Original image URL.
+- Thumbnail URL.
+- File title.
+- Wikimedia file description page.
+- Image author or creator.
+- License name.
+- License URL.
+- Attribution requirement.
+- Relevant descriptive metadata.
+
+Do not assume that every image is freely usable merely because it appears on Wikipedia.
+
+If licensing information is missing, mark it as unknown and require manual verification.
+
+Do not download and redistribute images unless their applicable licenses and conditions permit it.
+
+For RAGAMARA, save image links and attribution metadata rather than copying unrestricted image assets into the frontend.
+
+## STEP 5: Source attribution
+
+For each matched article, retain:
+
+- Wikipedia article title.
+- Article URL.
+- Wikipedia project.
+- Retrieval timestamp.
+- Relevant article revision identifier, if obtainable.
+- Applicable article license information.
+
+For images, retain independent image-level attribution and license metadata.
+
+Keep the original source link visible in the final record.
+
+## STEP 6: No-match behavior
+
+If a candidate cannot be reliably matched:
+
+Do not fabricate an article.
+
+Do not substitute another similar cultural entry.
+
+Set:
+
+wikipedia.status = "no_match"
+
+Keep the DAPOBUD record.
+
+Allow future manual enrichment.
+
+---
+
+# 8. PHASE E — DATA NORMALIZATION AND MERGING
+
+Build a reusable normalization layer.
+
+The objective is to combine official source data and Wikipedia enrichment without losing source integrity.
+
+## Normalization rules
+
+- Preserve original Indonesian names.
+- Preserve official capitalization where practical.
+- Normalize whitespace.
+- Normalize Unicode.
+- Remove irrelevant HTML markup.
+- Preserve meaningful punctuation.
+- Preserve regional names.
+- Separate entity type from cultural category.
+- Keep missing values as null.
+- Never replace unknown values with fabricated defaults.
+
+Do not overwrite the original data with normalized text.
+
+Store both original and normalized values where appropriate.
+
+## Merge rules
+
+DAPOBUD owns:
+
+- Official record name.
+- Official region.
+- Official entity type.
+- Official category.
+- Official record identifier.
+
+Wikipedia supplements:
+
+- Encyclopedic description.
+- Historical context, when supported.
+- Supplementary article information.
+- Article URL.
+- Image URL.
+- Image attribution.
+- Image license.
+
+When fields conflict:
+
+Prefer DAPOBUD for its official registry fields.
+
+Keep Wikipedia information in its own source-specific object.
+
+Never silently replace official values.
+
+---
+
+# 9. PHASE F — FINAL JSON DATABASE SCHEMA
+
+Generate:
+
+ragamara_culture_db.json
+
+Use valid UTF-8 JSON.
+
+Use:
+
+json.dump(
+    data,
+    file,
+    ensure_ascii=False,
+    indent=2
+)
+
+The JSON must be human-readable and ready for integration into RAGAMARA.
+
+Suggested schema:
+
+{
+  "metadata": {
+    "database_name": "RAGAMARA Cultural Knowledge Database",
+    "schema_version": "1.0.0",
+    "generated_at": "ISO-8601 UTC timestamp",
+    "language": "id",
+    "primary_source": "DAPOBUD",
+    "enrichment_source": "Wikipedia Indonesia",
+    "total_records": 0,
+    "successful_enrichments": 0,
+    "unmatched_records": 0,
+    "records_requiring_review": 0
+  },
+  "sources": {
+    "dapobud": {
+      "name": "Data Pokok Kebudayaan",
+      "base_url": "https://dapobud.kemenbud.go.id/",
+      "role": "official_cultural_registry"
+    },
+    "wikipedia": {
+      "name": "Wikipedia Indonesia",
+      "api_url": "https://id.wikipedia.org/w/api.php",
+      "role": "supplementary_encyclopedic_enrichment"
+    }
+  },
+  "records": [
+    {
+      "record_id": "stable_unique_identifier",
+      "name": "Official cultural name",
+      "normalized_name": "normalized cultural name",
+
+      "dapobud": {
+        "official_id": null,
+        "entity_type": "OPK",
+        "category": "Seni",
+        "region": {
+          "province": null,
+          "regency_city": null,
+          "district": null,
+          "village": null
+        },
+        "source_url": null,
+        "original_record": {}
+      },
+
+      "wikipedia": {
+        "status": "matched",
+        "language": "id",
+        "page_id": null,
+        "page_title": null,
+        "page_url": null,
+        "extract": null,
+        "historical_context": null,
+        "image": {
+          "thumbnail_url": null,
+          "original_url": null,
+          "file_title": null,
+          "file_page_url": null,
+          "creator": null,
+          "license": null,
+          "license_url": null,
+          "attribution": null
+        },
+        "match": {
+          "confidence": null,
+          "method": null,
+          "review_status": "not_required",
+          "candidate_titles": []
+        },
+        "retrieved_at": null,
+        "revision_id": null
+      },
+
+      "provenance": {
+        "official_source": "DAPOBUD",
+        "supplementary_source": "Wikipedia Indonesia",
+        "last_enriched_at": null
+      },
+
+      "quality": {
+        "record_valid": true,
+        "has_official_region": false,
+        "has_wikipedia_enrichment": false,
+        "requires_manual_review": false,
+        "validation_issues": []
+      }
+    }
+  ]
+}
+
+This is a reference schema.
+
+Adapt optional fields to the actual extracted data.
+
+Do not create empty fake articles or misleading URLs.
+
+Ensure record_id is deterministic and stable across repeated pipeline runs.
+
+Use DAPOBUD's official record ID when available, supplemented by a stable hash when necessary.
+
+Do not use array indexes as persistent identifiers.
+
+---
+
+# 10. PHASE G — MODULAR PYTHON IMPLEMENTATION
+
+Implement clean, modular, maintainable Python.
+
+Recommended libraries:
+
+- requests: HTTP communication.
+- beautifulsoup4: HTML parsing.
+- playwright: optional browser rendering and API discovery for JavaScript-driven pages.
+- python-dotenv: optional environment configuration.
+- rapidfuzz: optional fuzzy matching.
+- pytest: automated testing.
+
+Use Python's standard library for JSON, logging, pathlib, hashlib, datetime, time, and retry helpers where appropriate.
+
+Avoid unnecessary libraries.
+
+## Required modules
+
+### dapobud_discovery.py
+
+Responsibilities:
+
+- Inspect the public website.
+- Discover accessible public endpoints.
+- Identify pagination.
+- Generate a discovery report.
+- Confirm source structures.
+
+### dapobud_client.py
+
+Responsibilities:
+
+- Fetch official records.
+- Handle pagination.
+- Parse API or HTML results.
+- Preserve source fields.
+- Handle missing records.
+- Cache raw responses.
+
+### mediawiki_client.py
+
+Responsibilities:
+
+- Search Wikipedia.
+- Fetch page extracts.
+- Retrieve image URLs.
+- Retrieve image metadata.
+- Handle API errors.
+- Cache successful results.
+
+### normalization.py
+
+Responsibilities:
+
+- Normalize names.
+- Normalize region fields.
+- Clean extracted content.
+- Preserve original values.
+
+### matching.py
+
+Responsibilities:
+
+- Compare DAPOBUD names with Wikipedia candidates.
+- Calculate match scores.
+- Identify ambiguous records.
+- Produce review recommendations.
+
+### enrichment.py
+
+Responsibilities:
+
+- Enrich verified DAPOBUD records.
+- Attach article metadata.
+- Attach image information.
+- Preserve source attribution.
+
+### data_validator.py
+
+Responsibilities:
+
+- Validate schema.
+- Detect missing required fields.
+- Detect duplicate records.
+- Detect invalid URLs.
+- Detect incomplete enrichment.
+- Generate quality metrics.
+
+### storage.py
+
+Responsibilities:
+
+- Save JSON.
+- Load cached records.
+- Generate stable IDs.
+- Perform atomic writes.
+- Manage checkpoints.
+
+### pipeline.py
+
+Responsibilities:
+
+- Coordinate the complete pipeline.
+- Execute stages in order.
+- Maintain checkpoints.
+- Resume interrupted processes.
+
+### main.py
+
+Responsibilities:
+
+- Parse CLI arguments.
+- Load configuration.
+- Start the pipeline.
+- Display progress.
+- Report completion.
+
+---
+
+# 11. PHASE H — PERFORMANCE, CACHING AND RESUMABILITY
+
+The pipeline must be practical for repeated execution.
+
+Implement:
+
+1. HTTP response caching.
+2. DAPOBUD record caching.
+3. Wikipedia article caching.
+4. Duplicate detection.
+5. Incremental enrichment.
+6. Checkpoint persistence.
+7. Resume after interruption.
+8. Atomic JSON writing.
+
+Do not re-request an already enriched Wikipedia article unnecessarily.
+
+Use cache expiry settings that can be adjusted.
+
+When a pipeline run fails:
+
+- Preserve the last valid database.
+- Preserve completed records.
+- Save the failure details.
+- Allow execution to resume.
+
+Never corrupt or partially overwrite the final JSON file.
+
+If refreshing existing data:
+
+- Preserve stable record IDs.
+- Update only fields that are actually refreshed.
+- Keep original official-source values.
+- Maintain retrieval timestamps.
+
+---
+
+# 12. PHASE I — COMMAND-LINE INTERFACE
+
+Implement an understandable command-line interface.
+
+Suggested commands:
+
+Initial discovery:
+
+python main.py --discover
+
+Small pilot:
+
+python main.py --limit 10
+
+Full pipeline:
+
+python main.py
+
+Resume:
+
+python main.py --resume
+
+Dry run:
+
+python main.py --dry-run
+
+Force refresh:
+
+python main.py --force-refresh
+
+Select entity types:
+
+python main.py --entity-types OPK WBTb
+
+Display statistics:
+
+python main.py --stats
+
+Adjust output:
+
+python main.py --output ragamara_culture_db.json
+
+Make sure all commands work with the actual implemented architecture.
+
+Do not expose commands that have not been implemented.
+
+---
+
+# 13. PHASE J — DATA QUALITY AND VALIDATION
+
+Before finalizing the JSON, validate every record.
+
+Required checks:
+
+- Cultural name exists.
+- Record ID is stable.
+- Entity type is recognized.
+- Category is correctly assigned where available.
+- Geographic fields preserve source values.
+- Source URL is valid.
+- Wikipedia URL is valid when matched.
+- Image URL is valid when supplied.
+- Attribution is retained when available.
+- Ambiguous matches are marked for review.
+- Unmatched records are preserved.
+- Duplicate records are detected.
+- JSON syntax is valid.
+
+Generate a quality report containing:
+
+- Total DAPOBUD records collected.
+- OPK records.
+- WBTb records.
+- Successfully matched Wikipedia articles.
+- Unmatched Wikipedia searches.
+- Records requiring manual review.
+- Records with images.
+- Records with verified image-license metadata.
+- Records missing regions.
+- Duplicate records detected.
+- Extraction errors.
+- API errors.
+
+Do not report fabricated statistics.
+
+Calculate all statistics from the actual generated data.
+
+Do not discard incomplete but valid official records solely because enrichment is unavailable.
+
+---
+
+# 14. PHASE K — AUTOMATED TESTING
+
+Create automated tests.
+
+Use mock responses and local fixtures whenever possible.
+
+Do not send repeated live requests during unit tests.
+
+Test:
+
+1. DAPOBUD API response parsing.
+2. DAPOBUD HTML fallback parsing.
+3. Pagination.
+4. Missing field handling.
+5. Unicode normalization.
+6. Wikipedia search responses.
+7. Wikipedia article extraction.
+8. Image metadata extraction.
+9. Exact matching.
+10. Ambiguous matching.
+11. Fuzzy matching.
+12. No-match behavior.
+13. JSON schema validity.
+14. Duplicate detection.
+15. Cache behavior.
+16. Checkpoint recovery.
+17. Retry handling.
+18. HTTP 429 handling.
+19. HTTP 403 handling.
+20. Atomic file writing.
+
+Ensure failures are reported clearly.
+
+---
+
+# 15. PHASE L — EXECUTION STRATEGY
+
+Execute the pipeline systematically.
+
+## Stage 1 — Discovery
+
+Inspect DAPOBUD and identify the actual public data source.
+
+Do not guess endpoints.
+
+Deliver:
+
+- Discovery report.
+- Endpoint details.
+- Entity types found.
+- Pagination method.
+- Extraction method.
+
+## Stage 2 — Implementation
+
+Build the modular Python project.
+
+Implement error handling, throttling, normalization, caching, and data validation.
+
+## Stage 3 — Pilot extraction
+
+Collect a small sample of approximately 10 records.
+
+Run the complete enrichment pipeline on the sample.
+
+Inspect the resulting JSON.
+
+Check:
+
+- Correct names.
+- Correct regions.
+- Correct categories.
+- Accurate Wikipedia matches.
+- Correct article links.
+- Image attribution.
+- Valid JSON structure.
+
+If the pilot reveals incorrect matching or incomplete source fields, fix the pipeline before proceeding.
+
+## Stage 4 — Full extraction
+
+When the pilot passes validation and the source permits the requested access, collect all available records within the configured target entity types.
+
+Respect website policies and throttling.
+
+Use serial requests by default.
+
+Do not overload DAPOBUD or Wikimedia.
+
+## Stage 5 — Final enrichment
+
+Enrich eligible records with Wikipedia information.
+
+Preserve unmatched and ambiguous records.
+
+## Stage 6 — Final generation
+
+Generate:
+
+ragamara_culture_db.json
+
+Save it in the agreed RAGAMARA workspace.
+
+Validate the entire file.
+
+## Stage 7 — Final verification
+
+Load the generated JSON back into Python.
+
+Verify:
+
+- File exists.
+- JSON parses correctly.
+- Record count matches the actual extracted dataset.
+- Required structural fields exist.
+- IDs are stable.
+- No unhandled duplicates remain.
+- No fabricated information is present.
+- Provenance is retained.
+
+---
+
+# 16. SECURITY, ETHICS AND CULTURAL INTEGRITY
+
+These are mandatory requirements.
+
+## Ethical scraping
+
+- Respect robots.txt and published website terms.
+- Use publicly accessible data only.
+- Identify the application honestly.
+- Implement request throttling.
+- Respect Retry-After.
+- Do not circumvent IP blocks.
+- Do not bypass authentication.
+- Do not evade CAPTCHA.
+- Do not rotate identities to escape rate limits.
+- Stop when explicit access restrictions are encountered.
+
+## Data rights
+
+- Preserve source URLs.
+- Record article attribution.
+- Record image licenses independently.
+- Do not assume all images are unrestricted.
+- Follow applicable reuse and attribution conditions.
+- Do not misrepresent Wikimedia material as officially verified cultural documentation.
+
+## Cultural integrity
+
+- Do not invent descriptions.
+- Do not fabricate historical facts.
+- Do not merge unrelated traditions.
+- Do not treat regional names as proof of cultural origin.
+- Do not erase original cultural terminology.
+- Preserve source context.
+- Mark uncertain information for human review.
+
+RAGAMARA should promote cultural appreciation and accurate cultural knowledge.
+
+---
+
+# 17. DEVELOPMENT QUALITY REQUIREMENTS
+
+Write clean, production-oriented Python.
+
+Your code must be:
+
+- Modular.
+- Readable.
+- Type-annotated where appropriate.
+- Documented.
+- Testable.
+- Resumable.
+- Configurable.
+- Maintainable.
+- Fault-tolerant.
+
+Use meaningful function and variable names.
+
+Avoid:
+
+- One giant scraping function.
+- Hardcoded undocumented endpoints.
+- Hardcoded credentials.
+- Silent exceptions.
+- Blind fuzzy matching.
+- Duplicate records.
+- Aggressive concurrent requests.
+- Fake image URLs.
+- Unverified cultural descriptions.
+- Incomplete JSON writes.
+
+Use structured logging rather than excessive print statements.
+
+Ensure error messages explain which source and operation failed.
+
+---
+
+# 18. REQUIRED FINAL DELIVERABLES
+
+The task is not complete until these deliverables are produced or their unavailability is explicitly explained.
+
+### A. Main database
+
+ragamara_culture_db.json
+
+The complete, validated, merged cultural database.
+
+### B. Source discovery report
+
+data/reports/dapobud_discovery_report.json
+
+Contains discovered public endpoints, extraction strategy, source fields, and pagination details.
+
+### C. Data quality report
+
+data/reports/data_quality_report.json
+
+Contains actual extraction and enrichment statistics.
+
+### D. Pipeline execution log
+
+data/reports/pipeline_execution.log
+
+Contains execution activity, warnings, and recoverable errors.
+
+### E. Python implementation
+
+All modular source files.
+
+### F. Automated tests
+
+All relevant test files and test results.
+
+### G. README.md
+
+Explain:
+
+- Project purpose.
+- Architecture.
+- Installation.
+- Configuration.
+- Environment variables.
+- Commands.
+- Pipeline workflow.
+- JSON schema.
+- Data sources.
+- Attribution policy.
+- Known limitations.
+- Troubleshooting.
+
+---
+
+# 19. FINAL DEFINITION OF DONE
+
+The implementation will be considered complete only when:
+
+[ ] DAPOBUD public data discovery has been performed.
+
+[ ] Public API availability has been investigated before DOM scraping.
+
+[ ] The selected extraction method has been verified.
+
+[ ] Official names are extracted correctly.
+
+[ ] Official region information is preserved.
+
+[ ] Entity types and categories are separated.
+
+[ ] Wikipedia enrichment uses MediaWiki API.
+
+[ ] Article matching is validated.
+
+[ ] Ambiguous matches are not silently accepted.
+
+[ ] Article descriptions have source URLs.
+
+[ ] Image URLs have independent attribution metadata where available.
+
+[ ] Ethical throttling is implemented.
+
+[ ] User-Agent identification is compliant.
+
+[ ] Errors are logged and handled.
+
+[ ] Caching and resume mechanisms work.
+
+[ ] Automated tests pass.
+
+[ ] JSON schema validation passes.
+
+[ ] ragamara_culture_db.json exists and loads correctly.
+
+[ ] Final extraction statistics are calculated from actual records.
+
+[ ] README and execution reports are available.
+
+Do not mark the implementation as complete if these requirements have not been verified.
+
+---
+
+# 20. YOUR FIRST ACTION
+
+Begin by inspecting the existing RAGAMARA workspace.
+
+Then investigate DAPOBUD's publicly exposed data architecture.
+
+Do not start by writing a scraper based on guessed HTML selectors.
+
+Discover the actual public data access method first.
+
+Produce a brief discovery report, then implement the pipeline.
+
+Work autonomously through implementation, pilot testing, validation, and full extraction when permitted.
+
+If a source is unavailable, document the blocker and preserve the ability to run the rest of the pipeline.
+
+Do not fabricate missing source data or pretend that an unavailable source was successfully scraped.
+
+The ultimate goal is to deliver a reliable, traceable, structured cultural knowledge database that can power the RAGAMARA cultural learning and gaming ecosystem.
+
+**Build this as a real data engineering pipeline, not a quick scraping experiment.**
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-11-14T01:33:59+07:00.
+</ADDITIONAL_METADATA>

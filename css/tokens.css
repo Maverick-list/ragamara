@@ -1,0 +1,131 @@
+/**
+ * RAGAMARA DESIGN SYSTEM — DESIGN TOKENS
+ * Brand Art Direction: "Playful Nusantara"
+ * Cultural Gaming & Interactive Learning Platform
+ */
+
+:root {
+  /* ==========================================================================
+     1. BRAND CORE PALETTE
+     ========================================================================== */
+  --color-primary-purple: #6338D4;
+  --color-deep-purple: #392071;
+  --color-dark-plum: #211B35;
+  --color-lavender: #8B5CF6;
+  --color-warm-yellow: #FFCA55;
+  --color-coral: #FF786B;
+  --color-turquoise: #24CBA2;
+  --color-warm-ivory: #FFF8EB;
+  --color-white: #FFFFFF;
+
+  /* Extended Tonal Variants */
+  --color-primary-purple-hover: #7548E5;
+  --color-primary-purple-active: #5027B8;
+  --color-primary-purple-dark: #3F1D91; /* 3D shadow depth */
+
+  --color-warm-yellow-hover: #FFD470;
+  --color-warm-yellow-active: #E6B03D;
+  --color-warm-yellow-dark: #B5841D;   /* 3D shadow depth */
+
+  --color-coral-hover: #FF8F83;
+  --color-coral-active: #E66155;
+  --color-coral-dark: #B83A2E;        /* 3D shadow depth */
+
+  --color-turquoise-hover: #3CDDB5;
+  --color-turquoise-active: #1CAE8A;
+  --color-turquoise-dark: #127A60;    /* 3D shadow depth */
+
+  /* ==========================================================================
+     2. SEMANTIC SURFACES & BACKGROUNDS (DARK THEME DEFAULT)
+     ========================================================================== */
+  --bg-app: #150E24;
+  --bg-canvas: #120A1E;
+  
+  --surface-lowest: #0F0818;
+  --surface-low: #1A1228;
+  --surface-base: #211B35;
+  --surface-high: #2D2445;
+  --surface-highest: #3A3057;
+  --surface-glass: rgba(33, 27, 53, 0.75);
+  --surface-glass-border: rgba(139, 92, 246, 0.25);
+
+  /* Alternative Warm Light Surfaces (for contrast sections & modals) */
+  --surface-light-base: #FFF8EB;
+  --surface-light-card: #FFFFFF;
+  --surface-light-border: #E8DCC8;
+
+  /* ==========================================================================
+     3. TYPOGRAPHY SCALES & COLORS
+     ========================================================================== */
+  --font-family-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-display: 'Plus Jakarta Sans', sans-serif;
+
+  /* Text Colors on Dark Surfaces */
+  --text-primary: #FFF8EB;          /* Warm Ivory */
+  --text-secondary: #CCC3DF;        /* Soft Lavender-Gray */
+  --text-muted: #8E83A8;            /* Subdued Violet */
+  --text-accent: #FFCA55;           /* Surya Gold Accent */
+  --text-highlight: #24CBA2;        /* Zamrud Green */
+  --text-link: #8B5CF6;
+
+  /* Text Colors on Light Surfaces */
+  --text-light-primary: #1C152B;
+  --text-light-secondary: #574D70;
+  --text-light-muted: #84799E;
+
+  /* Type Scale */
+  --type-display-2xl: 44px;
+  --type-display-xl: 36px;
+  --type-display-lg: 28px;
+  --type-headline-md: 22px;
+  --type-headline-sm: 18px;
+  --type-body-lg: 16px;
+  --type-body-md: 14px;
+  --type-body-sm: 12px;
+  --type-label-sm: 11px;
+  --type-label-xs: 10px;
+
+  /* ==========================================================================
+     4. GAME REWARDS & STATUS TOKENS
+     ========================================================================== */
+  --reward-xp: #8B5CF6;
+  --reward-streak: #FF786B;
+  --reward-gold: #FFCA55;
+  --reward-gem: #24CBA2;
+  --reward-badge: #FFCA55;
+
+  --status-success: #24CBA2;
+  --status-warning: #FFCA55;
+  --status-error: #FF786B;
+  --status-info: #8B5CF6;
+
+  /* ==========================================================================
+     5. SPACING, ELEVATION, AND RADII
+     ========================================================================== */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  /* Tactile 3D Physical Push-Shadows */
+  --shadow-tactile-purple: 0 4px 0 var(--color-primary-purple-dark);
+  --shadow-tactile-purple-lg: 0 6px 0 var(--color-primary-purple-dark);
+  --shadow-tactile-yellow: 0 4px 0 var(--color-warm-yellow-dark);
+  --shadow-tactile-coral: 0 4px 0 var(--color-coral-dark);
+  --shadow-tactile-turquoise: 0 4px 0 var(--color-turquoise-dark);
+  --shadow-tactile-surface: 0 4px 0 var(--surface-lowest);
+  --shadow-tactile-surface-lg: 0 6px 0 var(--surface-lowest);
+
+  /* Ambient Glows */
+  --glow-purple: 0 0 24px rgba(99, 56, 212, 0.45);
+  --glow-yellow: 0 0 24px rgba(255, 202, 85, 0.5);
+  --glow-turquoise: 0 0 24px rgba(36, 203, 162, 0.4);
+  --glow-coral: 0 0 24px rgba(255, 120, 107, 0.45);
+
+  /* Transition Timings */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RAGAMARA — Design System Living Showcase</title>
+
+  <!-- Typography: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Core Design System CSS -->
+  <link rel="stylesheet" href="css/tokens.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg-app);
+      color: var(--text-primary);
+      font-family: var(--font-family-sans);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px 24px 100px;
+    }
+    .section-title {
+      font-size: var(--type-display-lg);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-subtitle {
+      font-size: var(--type-body-md);
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+    .system-card {
+      background-color: var(--surface-base);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 0 var(--surface-lowest);
+    }
+    .grid-swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .color-swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 0 var(--surface-lowest);
+    }
+    .swatch-preview {
+      height: 90px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 8px;
+    }
+    .swatch-info {
+      background-color: var(--surface-high);
+      padding: 12px;
+    }
+    .swatch-name {
+      font-size: var(--type-body-sm);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .swatch-hex {
+      font-size: var(--type-label-sm);
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+    .mascot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .mascot-card {
+      background-color: var(--surface-high);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: center;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      box-shadow: 0 4px 0 var(--surface-lowest);
+      transition: transform var(--transition-fast);
+    }
+    .mascot-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-lavender);
+    }
+    .mascot-label {
+      margin-top: 12px;
+      font-weight: 800;
+      font-size: var(--type-body-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-warm-yellow);
+    }
+    .mascot-desc {
+      font-size: var(--type-body-sm);
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .component-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .component-label {
+      width: 140px;
+      font-size: var(--type-label-sm);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+    }
+    .banner-hero {
+      background: linear-gradient(135deg, var(--color-deep-purple), var(--surface-base));
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      box-shadow: 0 16px 40px rgba(10, 5, 18, 0.8);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .banner-hero::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent 70%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- HERO HEADER -->
+    <header class="banner-hero">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
+        <div>
+          <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(99, 56, 212, 0.3); padding: 6px 14px; border-radius: var(--radius-full); margin-bottom: 16px; border: 1px solid var(--color-lavender);">
+            <span class="material-symbols-outlined" style="color: var(--color-warm-yellow); font-size: 18px;">palette</span>
+            <span style="font-size: var(--type-label-sm); font-weight: 800; color: var(--color-warm-yellow); text-transform: uppercase; letter-spacing: 0.05em;">Design System Specification</span>
+          </div>
+          <h1 style="font-size: var(--type-display-2xl); font-weight: 800; color: var(--text-primary); letter-spacing: -0.02em;">
+            RAGAMARA — Playful Nusantara
+          </h1>
+          <p style="font-size: var(--type-body-lg); color: var(--text-secondary); max-width: 680px; margin-top: 10px;">
+            Sistem identitas visual, token semantik, pustaka komponen taktil, dan pustaka ekspresi maskot Raga si Badak Penjelajah untuk platform petualangan budaya nusantara terakbar.
+          </p>
+        </div>
+        <div style="text-align: right;">
+          <a href="code.html" class="btn btn-primary" style="margin-bottom: 8px;">
+            <span class="material-symbols-outlined">map</span>
+            Lihat Jalur Belajar Asli
+          </a>
+          <p style="font-size: var(--type-label-sm); color: var(--text-muted);">Budaya Go! 2026 Edition</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- 1. COLOR SYSTEM -->
+    <section class="system-card">
+      <h2 class="section-title">
+        <span class="material-symbols-outlined" style="color: var(--color-lavender);">colorize</span>
+        1. Palet Warna Semantik & Desain Token
+      </h2>
+      <p class="section-subtitle">
+        Palet semantik dirancang untuk menghasilkan kontras tajam pada latar belakang midnight plum gelap serta memberikan aksen surya gold, zamrud turquoise, dan api coral yang memancarkan aura petualangan Nusantara.
+      </p>
+
+      <div class="grid-swatches">
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #6338D4;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Primary Purple</p>
+            <p class="swatch-hex">#6338D4</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #392071;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Deep Purple</p>
+            <p class="swatch-hex">#392071</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #211B35;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Dark Plum</p>
+            <p class="swatch-hex">#211B35</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #8B5CF6;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Lavender</p>
+            <p class="swatch-hex">#8B5CF6</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #FFCA55;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Warm Yellow (Surya)</p>
+            <p class="swatch-hex">#FFCA55</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #FF786B;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Coral (Api)</p>
+            <p class="swatch-hex">#FF786B</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #24CBA2;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Turquoise (Zamrud)</p>
+            <p class="swatch-hex">#24CBA2</p>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background-color: #FFF8EB; border: 1px solid #CCC;"></div>
+          <div class="swatch-info">
+            <p class="swatch-name">Warm Ivory</p>
+            <p class="swatch-hex">#FFF8EB</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TYPOGRAPHY SYSTEM -->
+    <section class="system-card">
+      <h2 class="section-title">
+        <span class="material-symbols-outlined" style="color: var(--color-warm-yellow);">text_fields</span>
+        2. Sistem Tipografi Nusantara (Plus Jakarta Sans)
+      </h2>
+      <p class="section-subtitle">
+        Tipografi geometris terbuka yang memberikan ritme ramah dan kejelasan tinggi pada kontras layar gelap, mendukung aksara budaya Indonesia dan istilah adat berbobot.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding-bottom: 16px;">
+          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: monospace;">Display 2XL — 44px / 800</span>
+          <h1 style="font-size: var(--type-display-2xl); font-weight: 800; color: var(--color-warm-yellow); letter-spacing: -0.02em;">
+            Alam Takambang Jadi Guru
+          </h1>
+        </div>
+        <div style="border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding-bottom: 16px;">
+          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: monospace;">Display XL — 36px / 800</span>
+          <h2 style="font-size: var(--type-display-xl); font-weight: 800; color: var(--text-primary); letter-spacing: -0.01em;">
+            Kekayaan Budaya Ranah Minangkabau
+          </h2>
+        </div>
+        <div style="border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding-bottom: 16px;">
+          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: monospace;">Headline MD — 22px / 700</span>
+          <h3 style="font-size: var(--type-headline-md); font-weight: 700; color: var(--color-lavender);">
+            Level 4: Motif Songket Pandai Sikek & Makna Filosofis
+          </h3>
+        </div>
+        <div style="border-bottom: 1px solid rgba(139, 92, 246, 0.15); padding-bottom: 16px;">
+          <span style="font-size: var(--type-label-sm); color: var(--text-muted); font-family: monospace;">Body LG — 16px / 500</span>
+          <p style="font-size: var(--type-body-lg); color: var(--text-secondary); max-width: 800px;">
+            Pola ukiran songket bukan sekadar ornamen hiasan! Motif <em>Itik Pulang Patang</em> dan <em>Saik Kalamai</em> mengajarkan tentang nilai keselarasan sosial, ketertiban musyawarah, dan kearifan hidup masyarakat adat.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. COMPONENT SYSTEM & INTERACTION STATES -->
+    <section class="system-card">
+      <h2 class="section-title">
+        <span class="material-symbols-outlined" style="color: var(--color-turquoise);">widgets</span>
+        3. Pustaka Komponen Taktil & Ragam Status
+      </h2>
+      <p class="section-subtitle">
+        Komponen gamifikasi fisik dengan push-shadow 3D yang memberikan umpan balik mekanis saat disentuh/ditekan.
+      </p>
+
+      <!-- Buttons across states -->
+      <h3 style="font-size: var(--type-headline-sm); margin-bottom: 16px; color: var(--color-warm-yellow);">A. Tombol Aksi Taktil (Button States)</h3>
+      
+      <div class="component-row">
+        <span class="component-label">Default / Normal</span>
+        <button class="btn btn-primary">Mulai Belajar</button>
+        <button class="btn btn-gold">Klaim Hadiah 50 💎</button>
+        <button class="btn btn-turquoise">Buka Culturepedia</button>
+        <button class="btn btn-coral">Misi Harian</button>
+        <button class="btn btn-surface">Tinjau Kembali</button>
+        <button class="btn btn-outline">Lihat Peringkat</button>
+      </div>
+
+      <div class="component-row">
+        <span class="component-label">Hover State</span>
+        <button class="btn btn-primary" style="background-color: var(--color-primary-purple-hover); transform: translateY(-1px); box-shadow: 0 5px 0 var(--color-primary-purple-dark);">Mulai Belajar</button>
+        <button class="btn btn-gold" style="background-color: var(--color-warm-yellow-hover); transform: translateY(-1px); box-shadow: 0 5px 0 var(--color-warm-yellow-dark);">Klaim Hadiah</button>
+        <button class="btn btn-turquoise" style="background-color: var(--color-turquoise-hover); transform: translateY(-1px); box-shadow: 0 5px 0 var(--color-turquoise-dark);">Buka Peta</button>
+      </div>
+
+      <div class="component-row">
+        <span class="component-label">Pressed State (Active)</span>
+        <button class="btn btn-primary is-pressed">Ditekan (4px Down)</button>
+        <button class="btn btn-gold is-pressed">Ditekan (4px Down)</button>
+      </div>
+
+      <div class="component-row">
+        <span class="component-label">Disabled State</span>
+        <button class="btn btn-primary" disabled>Terkunci</button>
+        <button class="btn btn-gold" disabled>Belum Tersedia</button>
+      </div>
+
+      <div class="component-row">
+        <span class="component-label">Loading State</span>
+        <button class="btn btn-primary is-loading">Memproses...</button>
+        <button class="btn btn-turquoise is-loading">Memproses...</button>
+      </div>
+
+      <!-- Resource Chips -->
+      <h3 style="font-size: var(--type-headline-sm); margin: 32px 0 16px; color: var(--color-warm-yellow);">B. Gamified Resource Chips</h3>
+      <div class="component-row">
+        <div class="chip-stat chip-streak">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-coral); font-variation-settings: 'FILL' 1;">local_fire_department</span>
+          <span>7 Hari Nyala</span>
+        </div>
+        <div class="chip-stat chip-gem">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-turquoise);">diamond</span>
+          <span>480 Permata</span>
+        </div>
+        <div class="chip-stat chip-xp">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-lavender); font-variation-settings: 'FILL' 1;">bolt</span>
+          <span>2.450 XP</span>
+        </div>
+        <div class="chip-stat chip-level">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-warm-yellow); font-variation-settings: 'FILL' 1;">military_tech</span>
+          <span>Lv.8 Penjelajah Adat</span>
+        </div>
+      </div>
+
+      <!-- Progress Track -->
+      <h3 style="font-size: var(--type-headline-sm); margin: 32px 0 16px; color: var(--color-warm-yellow);">C. Duolingo-Style Progress Bars</h3>
+      <div style="max-width: 480px; display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: var(--type-body-sm); margin-bottom: 6px;">
+            <span>Progres Bab 2: Ranah Minangkabau</span>
+            <span style="color: var(--color-warm-yellow); font-weight: 700;">80%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill progress-fill-gold" style="width: 80%;"></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: var(--type-body-sm); margin-bottom: 6px;">
+            <span>Stamina Belajar Harian</span>
+            <span style="color: var(--color-turquoise); font-weight: 700;">100%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill progress-fill-turquoise" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Level Stepping Nodes -->
+      <h3 style="font-size: var(--type-headline-sm); margin: 32px 0 16px; color: var(--color-warm-yellow);">D. Game Stepping Nodes (Peta Jelajah Nusantara)</h3>
+      <div style="display: flex; align-items: center; gap: 32px; flex-wrap: wrap; background-color: var(--surface-low); padding: 24px; border-radius: var(--radius-lg);">
+        
+        <!-- Completed Node -->
+        <div class="level-node-wrapper">
+          <button class="level-node-btn level-node-completed" title="Level 1 Selesai">
+            <span class="material-symbols-outlined" style="font-size: 34px; font-variation-settings: 'FILL' 1;">check_circle</span>
+          </button>
+          <div style="display: flex; gap: 2px; margin-top: 6px;">
+            <span class="material-symbols-outlined" style="font-size: 14px; color: var(--color-warm-yellow); font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-size: 14px; color: var(--color-warm-yellow); font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-size: 14px; color: var(--color-warm-yellow); font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <span style="font-size: var(--type-label-sm); color: var(--text-primary); margin-top: 4px; font-weight: 700;">Selesai (100 XP)</span>
+        </div>
+
+        <!-- Active Node -->
+        <div class="level-node-wrapper">
+          <div class="active-pulse-halo"></div>
+          <button class="level-node-btn level-node-active" title="Level Aktif">
+            <span class="material-symbols-outlined" style="font-size: 36px;">brush</span>
+          </button>
+          <span class="badge-flag" style="margin-top: 8px;">Mulai Di Sini!</span>
+          <span style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); margin-top: 4px; font-weight: 800;">Level Aktif</span>
+        </div>
+
+        <!-- Treasure Chest -->
+        <div class="level-node-wrapper">
+          <button class="level-node-chest" title="Peti Harta Karun">
+            <span class="material-symbols-outlined" style="font-size: 32px; font-variation-settings: 'FILL' 1;">lock_open</span>
+          </button>
+          <span style="font-size: var(--type-label-sm); color: var(--color-turquoise); margin-top: 8px; font-weight: 700;">+50 Permata</span>
+        </div>
+
+        <!-- Locked Node -->
+        <div class="level-node-wrapper">
+          <button class="level-node-btn level-node-locked" title="Level Terkunci">
+            <span class="material-symbols-outlined" style="font-size: 32px;">lock</span>
+          </button>
+          <span style="font-size: var(--type-label-sm); color: var(--text-muted); margin-top: 8px;">Terkunci</span>
+        </div>
+
+        <!-- Boss Trophy Node -->
+        <div class="level-node-wrapper">
+          <button class="level-node-boss" title="Ujian Maestro">
+            <span class="material-symbols-outlined" style="font-size: 44px; font-variation-settings: 'FILL' 1;">trophy</span>
+          </button>
+          <span style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); margin-top: 8px; font-weight: 800; text-transform: uppercase;">Ujian Maestro</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. MASCOT SYSTEM: RAGA'S 9 EXPRESSIONS -->
+    <section class="system-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 8px;">
+        <h2 class="section-title">
+          <span class="material-symbols-outlined" style="color: var(--color-coral);">sentiment_very_satisfied</span>
+          4. Sistem Maskot: Raga si Badak Penjelajah (9 Ekspresi)
+        </h2>
+        <button id="toggle-deta-btn" class="btn btn-outline" style="font-size: var(--type-body-sm); padding: 8px 16px;">
+          <span class="material-symbols-outlined">style</span>
+          Toggle Deta Minang
+        </button>
+      </div>
+      <p class="section-subtitle">
+        Berdasarkan anatomi Badak Jawa (<em>Rhinoceros sondaicus</em>) bermuka ramah, bertanduk tunggal, mengenakan kain selempang/bib dada motif bunga bintang Minangkabau dengan rumbai permata.
+      </p>
+
+      <div class="mascot-grid" id="mascot-container">
+        <!-- Rendered via js/mascot.js -->
+      </div>
+    </section>
+
+    <!-- 5. 3D CURVED CAROUSEL (REFERENCE C DEMO) -->
+    <section class="system-card perspective-stage">
+      <h2 class="section-title">
+        <span class="material-symbols-outlined" style="color: var(--color-primary-purple);">view_carousel</span>
+        5. Komposisi Busur Perspektif 3D Culturepedia (Referensi C)
+      </h2>
+      <p class="section-subtitle">
+        Kartu artefak budaya disusun dalam kurva busur silindris dengan kedalaman visual nyata dan pencahayaan atmosferik.
+      </p>
+
+      <div class="curved-arc-container">
+        <div class="card-cultural curved-card curved-card-left-2" style="width: 220px;">
+          <div class="card-cultural-media" style="background-image: url('assets/images/saluang_talempong.png');"></div>
+          <div style="padding: 14px;">
+            <p style="font-size: var(--type-label-sm); color: var(--color-turquoise); text-transform: uppercase;">Musik Adat</p>
+            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Saluang Minang</h4>
+          </div>
+        </div>
+
+        <div class="card-cultural curved-card curved-card-left-1" style="width: 240px;">
+          <div class="card-cultural-media" style="background-image: url('assets/images/rumah_gadang.png');"></div>
+          <div style="padding: 14px;">
+            <p style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); text-transform: uppercase;">Arsitektur</p>
+            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Rumah Gadang</h4>
+          </div>
+        </div>
+
+        <div class="card-cultural curved-card curved-card-center" style="width: 280px; border-color: var(--color-lavender);">
+          <div class="card-cultural-media" style="background-image: url('assets/references/ref_c_curved_portfolio.jpg');"></div>
+          <div style="padding: 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); font-weight: 800;">#01 MAESTRO</span>
+              <span class="chip-stat" style="padding: 2px 8px; font-size: 10px;">Masterpiece</span>
+            </div>
+            <h3 style="font-size: var(--type-headline-sm); font-weight: 800; margin-top: 4px; color: var(--text-primary);">
+              Songket Pandai Sikek
+            </h3>
+            <p style="font-size: var(--type-body-sm); color: var(--text-secondary); margin-top: 6px;">
+              Tenunan benang emas legendaris dengan filosofi ketertiban sosial <em>Itik Pulang Patang</em>.
+            </p>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 14px; padding: 10px;">
+              Buka Arsip Budaya
+            </button>
+          </div>
+        </div>
+
+        <div class="card-cultural curved-card curved-card-right-1" style="width: 240px;">
+          <div class="card-cultural-media" style="background-image: url('assets/images/rumah_gadang.png');"></div>
+          <div style="padding: 14px;">
+            <p style="font-size: var(--type-label-sm); color: var(--color-coral); text-transform: uppercase;">Seni Teater</p>
+            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Randai & Silek</h4>
+          </div>
+        </div>
+
+        <div class="card-cultural curved-card curved-card-right-2" style="width: 220px;">
+          <div class="card-cultural-media" style="background-image: url('assets/images/saluang_talempong.png');"></div>
+          <div style="padding: 14px;">
+            <p style="font-size: var(--type-label-sm); color: var(--color-lavender); text-transform: uppercase;">Perkusi Perunggu</p>
+            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Talempong Pacik</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. MOBILE BOTTOM NAVIGATION DEMO (< 1024px) -->
+    <section class="system-card">
+      <h2 class="section-title">
+        <span class="material-symbols-outlined" style="color: var(--color-turquoise);">phone_iphone</span>
+        6. Navigasi Mobile Responsif (Bottom Navigation Bar)
+      </h2>
+      <p class="section-subtitle">
+        Memastikan aksesibilitas penuh bagi pengguna mobile dan tablet yang sebelumnya kehilangan akses navigasi utama.
+      </p>
+
+      <div style="background-color: var(--surface-lowest); padding: 20px; border-radius: var(--radius-lg); max-width: 480px; margin: 0 auto; border: 1px solid rgba(139, 92, 246, 0.2);">
+        <p style="font-size: var(--type-label-sm); color: var(--text-muted); margin-bottom: 12px; text-align: center;">Preview Mobile Shell (390px Width)</p>
+        <div style="position: relative; height: 120px; border: 2px dashed rgba(139, 92, 246, 0.3); border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: flex-end;">
+          <div class="bottom-nav" style="position: absolute; bottom: 0;">
+            <a href="#" class="bottom-nav-item">
+              <span class="material-symbols-outlined">home</span>
+              <span>Beranda</span>
+            </a>
+            <a href="#" class="bottom-nav-item is-active">
+              <span class="material-symbols-outlined">explore</span>
+              <span>Jalur</span>
+            </a>
+            <a href="#" class="bottom-nav-item">
+              <span class="material-symbols-outlined">auto_stories</span>
+              <span>Kamus</span>
+            </a>
+            <a href="#" class="bottom-nav-item">
+              <span class="material-symbols-outlined">leaderboard</span>
+              <span>Skor</span>
+            </a>
+            <a href="#" class="bottom-nav-item">
+              <span class="material-symbols-outlined">person</span>
+              <span>Profil</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/mascot.js"></script>
+  <script src="js/illustrations.js"></script>
+  <script>
+    // Render all 9 Mascot Emotions
+    const expressions = [
+      { id: 'happy', label: '1. Happy (Gembira)', desc: 'Ekspresi ceria default saat menyapa pemain.' },
+      { id: 'curious', label: '2. Curious (Ingin Tahu)', desc: 'Kepala miring saat menemukan teka-teki baru.' },
+      { id: 'excited', label: '3. Excited (Bersemangat)', desc: 'Mata bintang saat unlock level baru.' },
+      { id: 'thinking', label: '4. Thinking (Berpikir)', desc: 'Melirik atas saat membaca soal kuis.' },
+      { id: 'confused', label: '5. Confused (Bingung)', desc: 'Mata spiral saat jawaban salah.' },
+      { id: 'encouraging', label: '6. Encouraging (Menyemangati)', desc: 'Acungan jempol saat memberi dorongan.' },
+      { id: 'celebrating', label: '7. Celebrating (Merayakan)', desc: 'Hujan konfeti saat lulus Bab Maestro.' },
+      { id: 'surprised', label: '8. Surprised (Terkesima)', desc: 'Mata bulat saat membuka peti langka.' },
+      { id: 'sleepy', label: '9. Sleepy (Mengantuk)', desc: 'Zzz saat lama tidak ada interaksi.' }
+    ];
+
+    let hasHeadpiece = false;
+
+    function renderMascots() {
+      const container = document.getElementById('mascot-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      expressions.forEach(exp => {
+        const card = document.createElement('div');
+        card.className = 'mascot-card';
+        card.innerHTML = `
+          ${RagaMascot.render(exp.id, { size: 130, withHeadpiece: hasHeadpiece })}
+          <div class="mascot-label">${exp.label}</div>
+          <div class="mascot-desc">${exp.desc}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    document.getElementById('toggle-deta-btn')?.addEventListener('click', () => {
+      hasHeadpiece = !hasHeadpiece;
+      renderMascots();
+    });
+
+    // Initial Mascot Render
+    renderMascots();
+  </script>
+</body>
+</html>

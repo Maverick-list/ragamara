@@ -1,0 +1,371 @@
+/**
+ * RAGAMARA DESIGN SYSTEM — ANIMATION & MOTION TOKENS (Phase 06)
+ * Purposeful motion combining arcade dynamism with Nusantara cultural warmth.
+ */
+
+:root {
+  /* Motion Duration Tokens */
+  --duration-instant: 100ms;
+  --duration-fast: 180ms;
+  --duration-normal: 280ms;
+  --duration-expressive: 420ms;
+  --duration-celebrate: 650ms;
+
+  /* Easing Curves */
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ==========================================================================
+   1. FLOATING & AMBIENT MOTIONS
+   ========================================================================== */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes mascot-breath {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.015);
+  }
+}
+
+@keyframes mascot-celebrate {
+  0% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-16px) scale(1.08) rotate(-2deg); }
+  60% { transform: translateY(-8px) scale(1.05) rotate(2deg); }
+  80% { transform: translateY(-2px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes mascot-nod {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  40% { transform: translateY(4px) rotate(2deg); }
+  70% { transform: translateY(-2px) rotate(-1deg); }
+}
+
+@keyframes float-cloud {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(12px);
+  }
+}
+
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 202, 85, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 202, 85, 0.8));
+  }
+}
+
+@keyframes ring-burst {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes fly-xp-up {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(-10px) scale(1.2);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-35px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px) scale(0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes view-slide-fade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   2. MOTION UTILITY CLASSES
+   ========================================================================== */
+.animate-float {
+  animation: float-gentle 4s var(--ease-standard) infinite;
+  will-change: transform;
+}
+
+.animate-mascot-idle {
+  animation: mascot-breath 3.5s var(--ease-standard) infinite;
+  will-change: transform;
+}
+
+.animate-mascot-celebrate {
+  animation: mascot-celebrate 0.65s var(--ease-spring) both;
+}
+
+.animate-mascot-nod {
+  animation: mascot-nod 0.45s var(--ease-standard) both;
+}
+
+.animate-cloud-drift {
+  animation: float-cloud 8s var(--ease-standard) infinite;
+}
+
+.animate-twinkle {
+  animation: star-twinkle 2.5s var(--ease-standard) infinite;
+}
+
+.animate-glow {
+  animation: pulse-glow 2s var(--ease-standard) infinite;
+}
+
+.view-fade-in {
+  animation: view-slide-fade var(--duration-expressive) var(--ease-out) both;
+  will-change: transform, opacity;
+}
+
+/* Tactile 3D Buttons */
+.btn-tactile {
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  will-change: transform, box-shadow;
+}
+
+.btn-tactile:hover {
+  transform: translateY(-2px);
+}
+
+.btn-tactile:active {
+  transform: translateY(2px) !important;
+  box-shadow: 0 2px 0 #392071 !important;
+}
+
+/* Interactive Card Elevation */
+.card-interactive {
+  transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out), border-color var(--duration-fast) ease;
+  will-change: transform, box-shadow;
+}
+
+.card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(15, 8, 24, 0.6);
+}
+
+/* Scroll Reveal Elements */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-expressive) var(--ease-out), transform var(--duration-expressive) var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* XP Particle Floating Badge */
+.xp-particle-toast {
+  position: absolute;
+  pointer-events: none;
+  font-weight: 900;
+  color: var(--color-warm-yellow);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  font-size: 14px;
+  animation: fly-xp-up 1.2s var(--ease-out) forwards;
+  z-index: 100;
+}
+
+/* Accessible Focus States */
+:focus-visible {
+  outline: 3px solid var(--color-warm-yellow) !important;
+  outline-offset: 3px !important;
+}
+
+/* ==========================================================================
+   3. PERSPECTIVE CAROUSEL TRANSFORMATIONS (REF C)
+   ========================================================================== */
+.perspective-stage {
+  perspective: 1200px;
+  perspective-origin: center 40%;
+}
+
+.curved-arc-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  transform-style: preserve-3d;
+  padding: 40px 20px;
+}
+
+.curved-card {
+  transition: transform var(--duration-expressive) var(--ease-out), box-shadow var(--duration-expressive) ease, opacity var(--duration-normal) ease;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+.curved-card-left-2 {
+  transform: rotateY(24deg) translateZ(-60px) scale(0.88);
+  opacity: 0.7;
+}
+
+.curved-card-left-1 {
+  transform: rotateY(12deg) translateZ(-20px) scale(0.95);
+  opacity: 0.9;
+}
+
+.curved-card-center {
+  transform: rotateY(0deg) translateZ(40px) scale(1.05);
+  z-index: 10;
+  box-shadow: 0 16px 40px rgba(99, 56, 212, 0.35);
+}
+
+.curved-card-right-1 {
+  transform: rotateY(-12deg) translateZ(-20px) scale(0.95);
+  opacity: 0.9;
+}
+
+.curved-card-right-2 {
+  transform: rotateY(-24deg) translateZ(-60px) scale(0.88);
+  opacity: 0.7;
+}
+
+.curved-card:hover {
+  transform: translateY(-8px) scale(1.08) translateZ(50px) !important;
+  opacity: 1 !important;
+  z-index: 20;
+}
+
+/* ==========================================================================
+   4. SCALLOPED CLOUD TRANSITION BORDERS (REF B)
+   ========================================================================== */
+.cloud-border-top {
+  position: relative;
+  overflow: hidden;
+}
+
+.cloud-border-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background: radial-gradient(circle at 14px 28px, transparent 14px, var(--surface-base) 15px) repeat-x;
+  background-size: 28px 28px;
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   5. GAMEPLAY & MINI-GAME ANIMATIONS (PHASE 04 & 06)
+   ========================================================================== */
+@keyframes shake-wiggle {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+@keyframes pop-success {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes soundwave-bounce {
+  0%, 100% { height: 6px; }
+  50% { height: 28px; }
+}
+
+.animate-wiggle {
+  animation: shake-wiggle 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.animate-pop {
+  animation: pop-success 0.4s var(--ease-bounce) both;
+}
+
+.soundwave-bar {
+  width: 4px;
+  background-color: var(--color-warm-yellow);
+  border-radius: 4px;
+  animation: soundwave-bounce 0.8s ease-in-out infinite;
+}
+
+.soundwave-bar:nth-child(2) { animation-delay: 0.15s; }
+.soundwave-bar:nth-child(3) { animation-delay: 0.3s; }
+.soundwave-bar:nth-child(4) { animation-delay: 0.45s; }
+.soundwave-bar:nth-child(5) { animation-delay: 0.2s; }
+
+/* ==========================================================================
+   6. REDUCED MOTION ACCESSIBILITY OVERRIDES
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-float,
+  .animate-mascot-idle,
+  .animate-cloud-drift,
+  .animate-twinkle,
+  .animate-glow,
+  .soundwave-bar {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .view-fade-in {
+    animation: none !important;
+  }
+}
+
+

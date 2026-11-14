@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-11-14T03:37:33.446041+00:00",
+  "summary": {
+    "total_records": 1,
+    "wbtb_records": 1,
+    "opk_records": 0,
+    "matched_wikipedia_articles": 0,
+    "unmatched_wikipedia_searches": 1,
+    "enrichment_success_rate_percent": 0.0,
+    "records_requiring_manual_review": 0,
+    "records_with_images": 0,
+    "records_with_verified_licenses": 0,
+    "records_missing_region": 0,
+    "duplicate_ids_detected": 0,
+    "duplicate_keys_detected": 0,
+    "total_validation_issues": 0
+  },
+  "duplicate_samples": [],
+  "validation_issues_sample": []
+}
