@@ -1,6 +1,7 @@
 """
 RAGAMARA Cultural Data Enrichment Engine CLI Entrypoint.
 DAPOBUD × Wikipedia Indonesia Cultural Pipeline.
+Schema Version: 2.0.0
 """
 
 import argparse
@@ -27,17 +28,14 @@ def setup_logging(log_file: Path = settings.LOG_FILE) -> None:
         datefmt="%Y-%m-%d %H:%M:%S"
     )
 
-    # File handler
     file_handler = logging.FileHandler(log_file, encoding="utf-8")
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
 
-    # Console handler
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setLevel(logging.INFO)
     console_handler.setFormatter(formatter)
 
-    # Root logger
     root_logger = logging.getLogger()
     root_logger.setLevel(logging.DEBUG)
     root_logger.addHandler(file_handler)
@@ -45,7 +43,7 @@ def setup_logging(log_file: Path = settings.LOG_FILE) -> None:
 
 
 def display_stats(db_path: Path) -> None:
-    """Displays statistics of an existing database."""
+    """Displays statistics of Schema v2.0.0 database."""
     if not db_path.exists():
         print(f"Error: Database file not found at {db_path}")
         return
@@ -54,35 +52,37 @@ def display_stats(db_path: Path) -> None:
         db = json.load(f)
 
     meta = db.get("metadata", {})
+    entities = db.get("entities", [])
     records = db.get("records", [])
 
-    wbtb_count = sum(1 for r in records if r.get("dapobud", {}).get("entity_type") == "WBTB")
-    opk_count = sum(1 for r in records if r.get("dapobud", {}).get("entity_type") == "OPK")
-    matched_wiki = sum(1 for r in records if r.get("wikipedia", {}).get("status") == "matched")
-    with_img = sum(1 for r in records if r.get("wikipedia", {}).get("image", {}).get("thumbnail_url"))
-    with_license = sum(1 for r in records if r.get("wikipedia", {}).get("image", {}).get("license"))
-    reviews = sum(1 for r in records if r.get("quality", {}).get("requires_manual_review"))
+    total_canon = len(entities) or len(records)
+    total_sources = meta.get("total_source_records", len(records))
 
-    print("\n" + "=" * 55)
-    print("  RAGAMARA CULTURAL KNOWLEDGE DATABASE STATISTICS")
-    print("=" * 55)
-    print(f"  Database File            : {db_path.name}")
-    print(f"  Schema Version           : {meta.get('schema_version')}")
-    print(f"  Generated At             : {meta.get('generated_at')}")
-    print(f"  Total Cultural Records   : {len(records)}")
-    print(f"    - WBTb Records         : {wbtb_count}")
-    print(f"    - OPK Records          : {opk_count}")
-    print(f"  Wikipedia Matched        : {matched_wiki} ({round(matched_wiki/len(records)*100, 1) if records else 0}%)")
-    print(f"  Records with Images      : {with_img}")
-    print(f"  Records with License Info: {with_license}")
-    print(f"  Flagged for Manual Review: {reviews}")
-    print("=" * 55 + "\n")
+    matched_count = sum(1 for e in entities if e.get("enrichment", {}).get("status") == "matched") if entities else sum(1 for r in records if r.get("wikipedia", {}).get("status") == "matched")
+    with_media = sum(1 for e in entities if e.get("media")) if entities else sum(1 for r in records if r.get("wikipedia", {}).get("image", {}).get("thumbnail_url"))
+    reviews = sum(1 for e in entities if e.get("enrichment", {}).get("matching_metadata", {}).get("review_status") == "requires_review") if entities else sum(1 for r in records if r.get("quality", {}).get("requires_manual_review"))
+
+    multi_prov = sum(1 for e in entities if e.get("regional_scope", {}).get("scope_type") in ["multi_province", "national"]) if entities else 0
+
+    print("\n" + "=" * 60)
+    print("  RAGAMARA CULTURAL KNOWLEDGE DATABASE (SCHEMA v2.0.0)")
+    print("=" * 60)
+    print(f"  Database File              : {db_path.name}")
+    print(f"  Schema Version             : {meta.get('schema_version')}")
+    print(f"  Generated At               : {meta.get('generated_at')}")
+    print(f"  Canonical Cultural Entities: {total_canon}")
+    print(f"  Preserved Source Records   : {total_sources}")
+    print(f"  Multi-Prov / National Scope: {multi_prov}")
+    print(f"  Wikipedia Enriched         : {matched_count} ({round(matched_count/total_canon*100, 1) if total_canon else 0}%)")
+    print(f"  Entities with Media Assets : {with_media}")
+    print(f"  Flagged for Manual Review  : {reviews}")
+    print("=" * 60 + "\n")
 
 
 def main() -> None:
     """CLI Parser and dispatcher."""
     parser = argparse.ArgumentParser(
-        description="RAGAMARA Cultural Data Enrichment Engine (DAPOBUD × Wikipedia Indonesia)"
+        description="RAGAMARA Cultural Data Enrichment Engine v2.0.0 (DAPOBUD × Wikipedia Indonesia)"
     )
 
     parser.add_argument(
@@ -144,11 +144,8 @@ def main() -> None:
         report = discovery.run_discovery()
         print("\nDiscovery completed successfully!")
         print(f"Discovery report saved to: {settings.DISCOVERY_REPORT_FILE}")
-        print(f"Total WBTb records available: {report.get('verified_capabilities', {}).get('wbtb', {}).get('total_items')}")
-        print(f"Total OPK records available : {report.get('verified_capabilities', {}).get('opk', {}).get('total_items')}\n")
         return
 
-    # Execute full or limited pipeline
     entities = [e.upper() for e in args.entity_types] if args.entity_types else None
     pipeline = CulturalDataPipeline(output_file=output_path)
 
@@ -160,20 +157,22 @@ def main() -> None:
         dry_run=args.dry_run
     )
 
-    print("\n" + "=" * 55)
+    print("\n" + "=" * 60)
     print("  RAGAMARA PIPELINE EXECUTION SUMMARY")
-    print("=" * 55)
-    print(f"  Status          : {result['status'].upper()}")
-    print(f"  Records Processed: {result['total_records']}")
+    print("=" * 60)
+    print(f"  Status                  : {result['status'].upper()}")
+    print(f"  Canonical Entities      : {result['total_canonical_entities']}")
+    print(f"  Preserved Source Records: {result['total_source_records']}")
     summary = result.get("quality_summary", {})
-    print(f"  Enrichment Rate : {summary.get('enrichment_success_rate_percent', 0)}%")
-    print(f"  Records w/ Image: {summary.get('records_with_images', 0)}")
-    print(f"  Manual Review   : {summary.get('records_requiring_manual_review', 0)}")
+    print(f"  Enrichment Matches      : {summary.get('matched_wikipedia_entities', 0)}")
+    print(f"  Entities with Media     : {summary.get('entities_with_media', 0)}")
+    print(f"  Manual Review Required  : {summary.get('entities_requiring_manual_review', 0)}")
     if result.get("output_path"):
-        print(f"  Output Database : {result['output_path']}")
-        print(f"  Quality Report  : {settings.QUALITY_REPORT_FILE}")
-        print(f"  Execution Log   : {settings.LOG_FILE}")
-    print("=" * 55 + "\n")
+        print(f"  Output Database (Engine): {result['output_path']}")
+        print(f"  Output Database (Root)  : {settings.ROOT_OUTPUT_FILE}")
+        print(f"  Frontend Envelope (JS)  : {settings.FRONTEND_JS_FILE}")
+        print(f"  Quality Audit Report    : {settings.QUALITY_REPORT_FILE}")
+    print("=" * 60 + "\n")
 
 
 if __name__ == "__main__":

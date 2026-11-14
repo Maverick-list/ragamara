@@ -1,6 +1,8 @@
 """
-Storage Module.
-Handles atomic file writes, deterministic ID generation, checkpoint persistence, and JSON serialization.
+Storage Module for RAGAMARA Cultural Knowledge Database.
+Handles atomic file writes, deterministic ID generation, checkpoint persistence,
+and automated synchronization across JSON and frontend JS artifacts.
+Schema Version: 2.0.0
 """
 
 import hashlib
@@ -24,7 +26,7 @@ logger = logging.getLogger("ragamara.storage")
 
 
 class StorageManager:
-    """Manages database storage, atomic writes, and pipeline checkpoints."""
+    """Manages database storage, atomic writes, checkpoints, and frontend synchronization."""
 
     def __init__(self, output_path: Path = settings.OUTPUT_FILE):
         self.output_path = output_path
@@ -40,7 +42,6 @@ class StorageManager:
             clean_id = official_id.strip().replace(" ", "_")
             return f"id_dapobud_{clean_id}"
 
-        # Fallback hash
         payload = f"{entity_type.lower()}:{clean_matching_key(normalized_name)}:{(province or '').lower().strip()}"
         hash_digest = hashlib.sha256(payload.encode("utf-8")).hexdigest()[:16]
         return f"id_hash_{hash_digest}"
@@ -67,6 +68,43 @@ class StorageManager:
                 except Exception:
                     pass
             logger.error(f"Failed atomic write to {dest}: {e}")
+            raise
+
+    def sync_all_targets(self, database_dict: Dict[str, Any]) -> None:
+        """
+        Synchronizes canonical database across all 3 project artifacts:
+        1. ragamara-data-engine/ragamara_culture_db.json
+        2. Root ragamara_culture_db.json
+        3. js/culture_db_data.js (window.RAGAMARA_CULTURE_DB = { ... };)
+        """
+        # 1. Primary engine output
+        self.atomic_write_json(database_dict, settings.OUTPUT_FILE)
+
+        # 2. Root mirror output
+        self.atomic_write_json(database_dict, settings.ROOT_OUTPUT_FILE)
+
+        # 3. Frontend JS envelope
+        js_dest = settings.FRONTEND_JS_FILE
+        js_dest.parent.mkdir(parents=True, exist_ok=True)
+        js_temp = js_dest.with_suffix(".tmp")
+
+        json_payload = json.dumps(database_dict, ensure_ascii=False, indent=2)
+        js_content = f"// RAGAMARA Cultural Knowledge Database v{settings.SCHEMA_VERSION}\n// Auto-generated from DAPOBUD & Wikipedia Indonesia\nwindow.RAGAMARA_CULTURE_DB = {json_payload};\n"
+
+        try:
+            with open(js_temp, "w", encoding="utf-8") as f:
+                f.write(js_content)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(js_temp, js_dest)
+            logger.info(f"Successfully synchronized frontend JS envelope to {js_dest}")
+        except Exception as e:
+            if js_temp.exists():
+                try:
+                    js_temp.unlink()
+                except Exception:
+                    pass
+            logger.error(f"Failed to synchronize frontend JS {js_dest}: {e}")
             raise
 
     def load_database(self, source_path: Optional[Path] = None) -> Optional[Dict[str, Any]]:

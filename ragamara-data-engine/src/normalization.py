@@ -1,20 +1,18 @@
 """
 Normalization Module.
-Standardizes cultural entity names, regions, and textual content with strict Unicode handling.
+Standardizes cultural entity names, regions, textual content, qualifiers, and domain mappings.
 """
 
 import re
 import unicodedata
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Tuple, List
 
 
 def normalize_unicode(text: Optional[str]) -> str:
     """Normalizes string using Unicode NFKC form and cleans invisible whitespace."""
     if not text:
         return ""
-    # NFKC normalizes compatibility characters
     normalized = unicodedata.normalize("NFKC", str(text))
-    # Replace multiple spaces, newlines, and tabs with a single space
     cleaned = re.sub(r"\s+", " ", normalized).strip()
     return cleaned
 
@@ -26,6 +24,54 @@ def normalize_cultural_name(name: Optional[str]) -> str:
         return ""
     # Strip leading/trailing quotation marks, dashes, or brackets
     text = re.sub(r"^[\"\'`\(\[\{]+|[\"\'`\)\]\}]+$", "", text).strip()
+    return text
+
+
+def slugify(text: Optional[str]) -> str:
+    """Generates a clean URL and identifier slug."""
+    text = normalize_unicode(text).lower()
+    text = re.sub(r"[^\w\s-]", "", text)
+    text = re.sub(r"[\s_]+", "_", text).strip("_")
+    return text or "unnamed"
+
+
+def parse_parenthetical_qualifier(title: str) -> Tuple[str, Optional[str]]:
+    """
+    Splits a MediaWiki or cultural title with parentheses into core title and qualifier.
+    Example: 'Debus (seni)' -> ('Debus', 'seni')
+    """
+    clean_title = normalize_unicode(title)
+    match = re.match(r"^(.*?)\s*\(([^)]+)\)\s*$", clean_title)
+    if match:
+        core = match.group(1).strip()
+        qualifier = match.group(2).strip().lower()
+        return core, qualifier
+    return clean_title, None
+
+
+def extract_headword(name: str) -> str:
+    """
+    Extracts the core cultural headword by stripping trailing regional or national qualifiers.
+    Example:
+        'Debus Banten' -> 'Debus'
+        'Batik Indonesia' -> 'Batik'
+        'Songket Palembang' -> 'Songket'
+    """
+    text = normalize_cultural_name(name)
+    # Strip national qualifier
+    text = re.sub(r"\s+Indonesia$", "", text, flags=re.IGNORECASE)
+    # Strip province / region qualifiers if following cultural term
+    regions = [
+        "Banten", "Aceh", "Palembang", "Minangkabau", "Karo", "Batak",
+        "Jawa", "Sunda", "Betawi", "Bali", "Dayak", "Banjar", "Bugis", "Makassar",
+        "Mempawah", "Yalimo", "Papua"
+    ]
+    words = text.split()
+    if len(words) >= 2 and words[-1] in regions:
+        # Check if remaining part is a valid non-empty term
+        remainder = " ".join(words[:-1])
+        if len(remainder) >= 3:
+            return remainder
     return text
 
 
@@ -57,7 +103,6 @@ def normalize_province(province: Optional[str]) -> Optional[str]:
     text = normalize_unicode(province)
     if not text:
         return None
-    # Special standard mappings
     upper = text.upper()
     if "DKI" in upper or "JAKARTA" in upper:
         return "DKI Jakarta"
@@ -66,7 +111,6 @@ def normalize_province(province: Optional[str]) -> Optional[str]:
     if "ACEH" in upper:
         return "Aceh"
 
-    # Title-case standard conversion
     words = [w.capitalize() for w in text.split()]
     return " ".join(words)
 
@@ -76,7 +120,6 @@ def normalize_regency(regency: Optional[str]) -> Optional[str]:
     text = normalize_unicode(regency)
     if not text:
         return None
-    # Standardize abbreviations
     text = re.sub(r"^KAB\.?\s*", "Kabupaten ", text, flags=re.IGNORECASE)
     text = re.sub(r"^KOTA\s*", "Kota ", text, flags=re.IGNORECASE)
     words = [w.capitalize() for w in text.split()]
@@ -88,8 +131,41 @@ def clean_article_extract(extract: Optional[str]) -> Optional[str]:
     if not extract:
         return None
     text = normalize_unicode(extract)
-    # Remove citations like [1], [2], [rujukan?]
     text = re.sub(r"\[\d+\]", "", text)
     text = re.sub(r"\[rujukan\?\]", "", text, flags=re.IGNORECASE)
     text = re.sub(r"\s+", " ", text).strip()
     return text if len(text) > 10 else None
+
+
+def map_dapobud_to_canonical_domain(raw_domain: Optional[str]) -> str:
+    """
+    Maps DAPOBUD domains / OPK categories to standard UU 5/2017 Objects of Cultural Advancement.
+    """
+    if not raw_domain:
+        return "Lainnya"
+    low = raw_domain.lower()
+
+    if "lisan" in low or "pantun" in low or "sastra" in low:
+        return "Tradisi Lisan"
+    if "manuskrip" in low or "aksara" in low or "naskah" in low:
+        return "Manuskrip"
+    if "adat" in low or "istiadat" in low:
+        return "Adat Istiadat"
+    if "ritus" in low or "upacara" in low:
+        return "Ritus"
+    if "pengetahuan" in low or "semesta" in low or "obat" in low:
+        return "Pengetahuan Tradisional"
+    if "teknologi" in low or "kemahiran" in low or "kerajinan" in low:
+        return "Teknologi Tradisional"
+    if "seni" in low or "pertunjukan" in low or "musik" in low or "tari" in low:
+        return "Seni"
+    if "bahasa" in low:
+        return "Bahasa"
+    if "permainan" in low:
+        return "Permainan Rakyat"
+    if "olahraga" in low or "beladiri" in low or "silat" in low:
+        return "Olahraga Tradisional"
+    if "cagar" in low or "bangunan" in low or "arsitektur" in low:
+        return "Cagar Budaya"
+
+    return "Lainnya"
