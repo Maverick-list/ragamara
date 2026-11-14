@@ -26,11 +26,18 @@ window.RagamaraEcosystem = (function() {
       title: 'Ahli Warisan Minang',
       frame: 'frame_gold_minang',
       activeCompanion: 'raga_badak',
+      avatar: 'assets/images/mascot_raga_avatar.png',
+      bio: 'Menjelajahi 38 provinsi Nusantara untuk menjaga keluhuran adat dan kearifan nenek moyang.',
       level: 8,
       xp: 2450,
       xpToNext: 3000,
       gems: 480,
-      streakDays: 7
+      streakDays: 7,
+      unlockedFrames: ['frame_gold_minang'],
+      unlockedTitles: ['Ahli Warisan Minang'],
+      unlockedOutfits: ['deta_minang'],
+      equippedOutfit: 'deta_minang',
+      lastStreakDate: new Date().toISOString().slice(0, 10)
     },
     savedCultureIds: [
       'ragamara_cult_rencong',
@@ -41,7 +48,7 @@ window.RagamaraEcosystem = (function() {
       'ragamara_cult_rencong',
       'ragamara_cult_rumah_gadang'
     ],
-    claimedRewardLedger: [], // Idempotent ledger of sessionIds, missionIds, chestIds
+    claimedRewardLedger: [], // Idempotent ledger of sessionIds, missionIds, chestIds, shopItems
     claimedMissionsDate: new Date().toISOString().slice(0, 10),
     claimedMissionIds: ['mission_4'],
     missionCounters: {
@@ -87,6 +94,13 @@ window.RagamaraEcosystem = (function() {
         console.warn('RagamaraStore: Corrupted localStorage detected, recovering gracefully.', err);
         this.state = JSON.parse(JSON.stringify(DEFAULT_STATE_V2));
       }
+
+      // Safe guards for array fields
+      if (!Array.isArray(this.state.player.unlockedFrames)) this.state.player.unlockedFrames = ['frame_gold_minang'];
+      if (!Array.isArray(this.state.player.unlockedTitles)) this.state.player.unlockedTitles = ['Ahli Warisan Minang'];
+      if (!Array.isArray(this.state.player.unlockedOutfits)) this.state.player.unlockedOutfits = ['deta_minang'];
+      if (!this.state.player.avatar) this.state.player.avatar = 'assets/images/mascot_raga_avatar.png';
+      if (!this.state.player.bio) this.state.player.bio = 'Menjelajahi 38 provinsi Nusantara untuk menjaga keluhuran adat dan kearifan nenek moyang.';
 
       // Check daily mission date boundary
       const todayStr = new Date().toISOString().slice(0, 10);
@@ -144,6 +158,36 @@ window.RagamaraEcosystem = (function() {
       if (typeof window.updateHud === 'function') {
         window.updateHud();
       }
+      try {
+        const p = this.state.player;
+        const xpEl = document.getElementById('stat-xp');
+        const gemEl = document.getElementById('stat-gems');
+        const profileXp = document.getElementById('profile-xp-val');
+        const profileGem = document.getElementById('profile-gem-val');
+        const lvlBadge = document.getElementById('hud-level-badge');
+        const profName = document.getElementById('profile-player-name');
+        const profTitle = document.getElementById('profile-player-title');
+        const profBio = document.getElementById('profile-player-bio');
+        const profAvatar = document.getElementById('profile-main-avatar');
+        const shopGems = document.getElementById('shop-gems-balance');
+
+        if (xpEl) xpEl.innerText = (p.xp || 0).toLocaleString('id-ID') + ' XP';
+        if (gemEl) gemEl.innerText = (p.gems || 0).toString();
+        if (shopGems) shopGems.innerText = (p.gems || 0).toLocaleString('id-ID');
+        if (profileXp) profileXp.innerText = (p.xp || 0).toLocaleString('id-ID');
+        if (profileGem) profileGem.innerText = (p.gems || 0).toString();
+        if (lvlBadge) lvlBadge.innerText = `Lv.${p.level || 8}`;
+        if (profName && p.name) profName.innerText = p.name;
+        if (profTitle && p.title) profTitle.innerText = `Gelar: ${p.title} • Penjelajah Aktif`;
+        if (profBio && p.bio) profBio.innerText = p.bio;
+        if (profAvatar && p.avatar) {
+          const img = profAvatar.querySelector('img');
+          if (img) img.src = p.avatar;
+          if (p.frame && Profile.frames && Profile.frames[p.frame]) {
+            profAvatar.className = `w-28 h-28 rounded-3xl bg-[#173F32] p-1.5 border-4 overflow-hidden transition-all ${Profile.frames[p.frame].class}`;
+          }
+        }
+      } catch (e) {}
     },
 
     save() {
@@ -1528,14 +1572,16 @@ window.RagamaraEcosystem = (function() {
   };
 
   // =========================================================================
-  // 8. PLAYER PROFILE CONTROLLER
+  // 8. PLAYER PROFILE & CUSTOMIZATION CONTROLLER
   // =========================================================================
   const Profile = {
     frames: {
       frame_gold_minang: { name: 'Bingkai Emas Minangkabau', class: 'border-[#F2C45A] shadow-[0_0_18px_rgba(242,196,90,0.55)]' },
       frame_majapahit: { name: 'Bingkai Terakota Majapahit', class: 'border-[#B65F45] shadow-[0_0_18px_rgba(182,95,69,0.55)]' },
-      frame_asmat: { name: 'Bingkai Zamrud Asmat Papua', class: 'border-[#34A59F] shadow-[0_0_18px_rgba(52,165,159,0.55)]' }
+      frame_asmat: { name: 'Bingkai Zamrud Asmat Papua', class: 'border-[#34A59F] shadow-[0_0_18px_rgba(52,165,159,0.55)]' },
+      frame_baduy: { name: 'Bingkai Tenun Kanekes Baduy', class: 'border-[#4A5568] shadow-[0_0_18px_rgba(148,163,184,0.55)]' }
     },
+    selectedAvatar: null,
 
     equipFrame(frameKey) {
       if (!this.frames[frameKey]) return;
@@ -1546,7 +1592,7 @@ window.RagamaraEcosystem = (function() {
         avatarContainer.className = `w-28 h-28 rounded-3xl bg-[#173F32] p-1.5 border-4 overflow-hidden transition-all ${this.frames[frameKey].class}`;
       }
       window.showToast?.(`✨ Bingkai profil diperbarui: ${this.frames[frameKey].name}`);
-      window.playGamelanChime?.();
+      RagamaraAudio.playGamelanChime();
     },
 
     setTitle(title) {
@@ -1556,11 +1602,523 @@ window.RagamaraEcosystem = (function() {
       if (titleEl) titleEl.innerText = `Gelar: ${title} • Penjelajah Aktif`;
       Leaderboard.render();
       window.showToast?.(`🎖️ Gelar kehormatan diubah menjadi "${title}"`);
+    },
+
+    openEditModal() {
+      const modal = document.getElementById('profile-edit-modal');
+      if (!modal) return;
+      const p = Store.state.player;
+      const nameInput = document.getElementById('edit-profile-name');
+      const bioInput = document.getElementById('edit-profile-bio');
+      if (nameInput) nameInput.value = p.name || 'Firza Penjelajah';
+      if (bioInput) bioInput.value = p.bio || 'Menjelajahi 38 provinsi Nusantara untuk menjaga keluhuran adat dan kearifan nenek moyang.';
+      this.selectedAvatar = p.avatar || 'assets/images/mascot_raga_avatar.png';
+      this.renderAvatarGrid();
+      modal.classList.add('is-open');
+    },
+
+    closeEditModal() {
+      const modal = document.getElementById('profile-edit-modal');
+      if (modal) modal.classList.remove('is-open');
+    },
+
+    selectAvatar(src) {
+      this.selectedAvatar = src;
+      this.renderAvatarGrid();
+      RagamaraAudio.playTap();
+    },
+
+    renderAvatarGrid() {
+      const grid = document.getElementById('profile-avatar-picker-grid');
+      if (!grid) return;
+      const mascots = [
+        { name: 'Raga Si Kancil', src: 'assets/images/mascot_raga_avatar.png' },
+        { name: 'Bekti Bekantan', src: 'assets/images/mascot_bekti_avatar.svg' },
+        { name: 'Cendro Cenderawasih', src: 'assets/images/mascot_cendro_avatar.svg' },
+        { name: 'Jalak Bali', src: 'assets/images/mascot_jalak_avatar.svg' },
+        { name: 'Komo Komodo', src: 'assets/images/mascot_komo_avatar.svg' },
+        { name: 'Maleo Sulawesi', src: 'assets/images/mascot_maleo_avatar.svg' }
+      ];
+      grid.innerHTML = mascots.map(m => `
+        <div onclick="RagamaraEcosystem.Profile.selectAvatar('${m.src}')" class="cursor-pointer p-1.5 rounded-2xl border-2 transition-all flex flex-col items-center gap-1 ${
+          this.selectedAvatar === m.src ? 'border-[#F2C45A] bg-[#F2C45A]/20 scale-105 shadow-md' : 'border-white/10 hover:border-white/30 bg-[#102B25]'
+        }">
+          <div class="w-12 h-12 rounded-xl overflow-hidden bg-[#173F32]">
+            <img src="${m.src}" alt="${m.name}" class="w-full h-full object-cover">
+          </div>
+          <span class="text-[9px] font-bold text-white truncate max-w-[65px]">${m.name}</span>
+        </div>
+      `).join('');
+    },
+
+    saveEdit() {
+      const nameInput = document.getElementById('edit-profile-name');
+      const bioInput = document.getElementById('edit-profile-bio');
+      const newName = (nameInput?.value || '').trim();
+      const newBio = (bioInput?.value || '').trim();
+
+      if (newName) Store.state.player.name = newName;
+      if (newBio) Store.state.player.bio = newBio;
+      if (this.selectedAvatar) Store.state.player.avatar = this.selectedAvatar;
+
+      Store.save();
+      this.closeEditModal();
+      RagamaraAudio.playSuccessFanfare();
+      window.showToast?.('🎉 Profil Penjelajah Nusantara berhasil diperbarui!');
     }
   };
 
   // =========================================================================
-  // 9. SETTINGS & ACCESSIBILITY CONTROLLER
+  // 9. TOKO ADAT NUSANTARA (COSMETIC CULTURAL SHOP & VIRTUAL ECONOMY)
+  // =========================================================================
+  const TokoAdat = {
+    activeTab: 'all',
+    catalog: [
+      // BINGKAI AVATAR
+      {
+        id: 'frame_gold_minang',
+        category: 'frame',
+        name: 'Bingkai Emas Minangkabau',
+        price: 0,
+        tag: 'Sumatra Barat',
+        class: 'border-[#F2C45A] shadow-[0_0_18px_rgba(242,196,90,0.55)]',
+        desc: 'Ukiran emas khas Luhak Nan Tigo nan megah dan berwibawa.',
+        icon: 'stars'
+      },
+      {
+        id: 'frame_majapahit',
+        category: 'frame',
+        name: 'Bingkai Terakota Majapahit',
+        price: 120,
+        tag: 'Jawa Timur',
+        class: 'border-[#B65F45] shadow-[0_0_18px_rgba(182,95,69,0.55)]',
+        desc: 'Bata merah terakota bercorak Surya Majapahit nan abadi.',
+        icon: 'brightness_7'
+      },
+      {
+        id: 'frame_asmat',
+        category: 'frame',
+        name: 'Bingkai Zamrud Asmat Papua',
+        price: 150,
+        tag: 'Papua',
+        class: 'border-[#34A59F] shadow-[0_0_18px_rgba(52,165,159,0.55)]',
+        desc: 'Ukiran kayu bakau dan spiral pusaka rimba pesisir Papua.',
+        icon: 'forest'
+      },
+      {
+        id: 'frame_baduy',
+        category: 'frame',
+        name: 'Bingkai Tenun Kanekes Baduy',
+        price: 180,
+        tag: 'Banten',
+        class: 'border-[#4A5568] shadow-[0_0_18px_rgba(148,163,184,0.55)]',
+        desc: 'Tenunan kapas alami cermin kesederhanaan Urang Kanekes.',
+        icon: 'texture'
+      },
+
+      // GELAR KEHORMATAN
+      {
+        id: 'Ahli Warisan Minang',
+        category: 'title',
+        name: 'Ahli Warisan Minang',
+        price: 0,
+        tag: 'Minangkabau',
+        desc: 'Memahami filosofi luhur Alam Takambang Jadi Guru.',
+        icon: 'history_edu'
+      },
+      {
+        id: 'Penjaga Adat Nusantara',
+        category: 'title',
+        name: 'Penjaga Adat Nusantara',
+        price: 100,
+        tag: 'Nasional',
+        desc: 'Penjaga kemurnian adat istiadat dari Sabang hingga Merauke.',
+        icon: 'shield_person'
+      },
+      {
+        id: 'Kurator Pusaka Bahari',
+        category: 'title',
+        name: 'Kurator Pusaka Bahari',
+        price: 140,
+        tag: 'Jalur Rempah',
+        desc: 'Menjelajahi jalur rempah dan keagungan maritim Nusantara.',
+        icon: 'sailing'
+      },
+      {
+        id: 'Cendekiawan Budaya Luhur',
+        category: 'title',
+        name: 'Cendekiawan Budaya Luhur',
+        price: 200,
+        tag: 'Paripurna',
+        desc: 'Gelar kehormatan tertinggi bagi penuntas seluruh pustaka dan ekspedisi.',
+        icon: 'military_tech'
+      },
+
+      // BUSANA & AKSESORI PENJELAJAH
+      {
+        id: 'deta_minang',
+        category: 'outfit',
+        name: 'Deta Saluak Minangkabau',
+        price: 0,
+        tag: 'Aksesori Adat',
+        desc: 'Penutup kepala adat lambang kebijaksanaan dan ketajaman budi penghulu.',
+        icon: 'crown'
+      },
+      {
+        id: 'selempang_batik',
+        category: 'outfit',
+        name: 'Selempang Batik Parang Barong',
+        price: 160,
+        tag: 'Busana Keraton',
+        desc: 'Motif lereng keraton pusaka Jawa lambang ksatria pantang menyerah.',
+        icon: 'checkroom'
+      },
+      {
+        id: 'mahkota_cenderawasih',
+        category: 'outfit',
+        name: 'Hiasan Mahkota Kasuari Papua',
+        price: 220,
+        tag: 'Pusaka Rimba',
+        desc: 'Anyaman bulu alami simbol ketangkasan dan kehormatan kepala suku.',
+        icon: 'cruelty_free'
+      }
+    ],
+
+    isOwned(item) {
+      if (item.price === 0) return true;
+      const p = Store.state.player;
+      if (item.category === 'frame') return (p.unlockedFrames || []).includes(item.id);
+      if (item.category === 'title') return (p.unlockedTitles || []).includes(item.id);
+      if (item.category === 'outfit') return (p.unlockedOutfits || []).includes(item.id);
+      return false;
+    },
+
+    isEquipped(item) {
+      const p = Store.state.player;
+      if (item.category === 'frame') return p.frame === item.id;
+      if (item.category === 'title') return p.title === item.id;
+      if (item.category === 'outfit') return p.equippedOutfit === item.id;
+      return false;
+    },
+
+    purchase(itemId) {
+      const item = this.catalog.find(c => c.id === itemId);
+      if (!item) return;
+      if (this.isOwned(item)) {
+        window.showToast?.(`ℹ️ Anda sudah memiliki ${item.name}`);
+        return;
+      }
+      const p = Store.state.player;
+      if ((p.gems || 0) < item.price) {
+        window.showToast?.(`⚠️ Permata tidak mencukupi! Butuh ${item.price} 💎, Anda memiliki ${p.gems || 0} 💎.`);
+        return;
+      }
+
+      // Deduct gems & add to unlocked items
+      p.gems -= item.price;
+      if (item.category === 'frame') {
+        p.unlockedFrames = p.unlockedFrames || ['frame_gold_minang'];
+        if (!p.unlockedFrames.includes(item.id)) p.unlockedFrames.push(item.id);
+      } else if (item.category === 'title') {
+        p.unlockedTitles = p.unlockedTitles || ['Ahli Warisan Minang'];
+        if (!p.unlockedTitles.includes(item.id)) p.unlockedTitles.push(item.id);
+      } else if (item.category === 'outfit') {
+        p.unlockedOutfits = p.unlockedOutfits || ['deta_minang'];
+        if (!p.unlockedOutfits.includes(item.id)) p.unlockedOutfits.push(item.id);
+      }
+
+      Store.state.claimedRewardLedger.push(`shop_purchased_${item.id}`);
+      Store.save();
+      RagamaraAudio.playPurchaseChime();
+      window.showToast?.(`🎉 Berhasil membeli ${item.name}!`);
+      this.render();
+    },
+
+    equip(itemId) {
+      const item = this.catalog.find(c => c.id === itemId);
+      if (!item) return;
+      if (!this.isOwned(item)) return;
+
+      const p = Store.state.player;
+      if (item.category === 'frame') {
+        p.frame = item.id;
+        Profile.equipFrame(item.id);
+      } else if (item.category === 'title') {
+        p.title = item.id;
+        Profile.setTitle(item.id);
+      } else if (item.category === 'outfit') {
+        p.equippedOutfit = item.id;
+        Store.save();
+        window.showToast?.(`👔 Aksesori dipasang: ${item.name}`);
+        RagamaraAudio.playGamelanChime();
+      }
+
+      this.render();
+    },
+
+    switchTab(tab) {
+      this.activeTab = tab;
+      this.render();
+    },
+
+    openModal() {
+      const modal = document.getElementById('shop-modal');
+      if (modal) {
+        this.render();
+        modal.classList.add('is-open');
+      }
+    },
+
+    closeModal() {
+      const modal = document.getElementById('shop-modal');
+      if (modal) modal.classList.remove('is-open');
+    },
+
+    render() {
+      const catalogEl = document.getElementById('shop-catalog-grid');
+      const balanceEl = document.getElementById('shop-gems-balance');
+      if (balanceEl) {
+        balanceEl.innerText = (Store.state.player.gems || 0).toLocaleString('id-ID');
+      }
+      if (!catalogEl) return;
+
+      const filtered = this.catalog.filter(item => {
+        if (this.activeTab === 'all') return true;
+        return item.category === this.activeTab;
+      });
+
+      catalogEl.innerHTML = filtered.map(item => {
+        const owned = this.isOwned(item);
+        const equipped = this.isEquipped(item);
+        const canAfford = (Store.state.player.gems || 0) >= item.price;
+
+        let actionBtn = '';
+        if (equipped) {
+          actionBtn = `<button class="w-full py-2 px-3 rounded-xl bg-[#24CBA2]/20 border border-[#24CBA2] text-[#24CBA2] font-black text-xs flex items-center justify-center gap-1.5 cursor-default"><span class="material-symbols-outlined text-[16px]">check_circle</span> Terpasang</button>`;
+        } else if (owned) {
+          actionBtn = `<button onclick="RagamaraEcosystem.TokoAdat.equip('${item.id}')" class="w-full py-2 px-3 rounded-xl bg-[#173F32] hover:bg-[#1F5242] border border-[#F2C45A] text-[#F2C45A] font-extrabold text-xs transition-all flex items-center justify-center gap-1.5"><span class="material-symbols-outlined text-[16px]">touch_app</span> Pasang</button>`;
+        } else if (canAfford) {
+          actionBtn = `<button onclick="RagamaraEcosystem.TokoAdat.purchase('${item.id}')" class="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-[#B65F45] to-[#D4A447] text-white font-black text-xs shadow-md hover:scale-[1.02] transition-all flex items-center justify-center gap-1.5">Beli • ${item.price} 💎</button>`;
+        } else {
+          actionBtn = `<button disabled class="w-full py-2 px-3 rounded-xl bg-[#151626] border border-white/10 text-white/40 font-bold text-xs cursor-not-allowed flex items-center justify-center gap-1.5">Kurang Permata (${item.price} 💎)</button>`;
+        }
+
+        return `
+          <div class="shop-item-card bg-[#14352B] p-4 rounded-2xl border ${equipped ? 'border-[#24CBA2] shadow-[0_0_15px_rgba(36,203,162,0.3)]' : 'border-[#D4A447]/30'} flex flex-col justify-between transition-all hover:-translate-y-1">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-[#102B25] text-[10px] font-black uppercase text-[#F2C45A] border border-[#D4A447]/30">${item.tag}</span>
+                <span class="text-xs font-mono font-black ${owned ? 'text-[#24CBA2]' : 'text-[#F2C45A]'}">${item.price === 0 ? 'Gratis' : item.price + ' 💎'}</span>
+              </div>
+              <div class="flex items-center gap-3 my-2">
+                <div class="w-12 h-12 rounded-xl bg-[#102B25] border border-[#D4A447]/40 flex items-center justify-center text-[#F2C45A] text-2xl shrink-0">
+                  <span class="material-symbols-outlined">${item.icon || 'diamond'}</span>
+                </div>
+                <div>
+                  <h4 class="text-sm font-black text-white leading-tight">${item.name}</h4>
+                  <span class="text-[10px] text-[#C8D8CE] uppercase font-bold tracking-wider">${item.category === 'frame' ? 'Bingkai Avatar' : item.category === 'title' ? 'Gelar Kehormatan' : 'Busana Adat'}</span>
+                </div>
+              </div>
+              <p class="text-xs text-[#FAF6EF]/80 line-clamp-2 my-2">${item.desc}</p>
+            </div>
+            <div class="pt-3 mt-auto border-t border-white/10">
+              ${actionBtn}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  };
+
+  // =========================================================================
+  // 10. 7-DAY STREAK JOURNEY ENGINE
+  // =========================================================================
+  const Streak = {
+    getWeeklyData() {
+      const days = [
+        { code: 'Sen', name: 'Senin', num: 1 },
+        { code: 'Sel', name: 'Selasa', num: 2 },
+        { code: 'Rab', name: 'Rabu', num: 3 },
+        { code: 'Kam', name: 'Kamis', num: 4 },
+        { code: 'Jum', name: 'Jumat', num: 5 },
+        { code: 'Sab', name: 'Sabtu', num: 6 },
+        { code: 'Min', name: 'Minggu', num: 7 }
+      ];
+      const streakCount = Store.state.player.streakDays || 7;
+      return days.map(d => ({
+        ...d,
+        completed: d.num <= streakCount,
+        isToday: d.num === 7
+      }));
+    },
+
+    claimMilestone() {
+      const ledgerKey = 'streak_milestone_7days';
+      if (Store.state.claimedRewardLedger.includes(ledgerKey)) {
+        window.showToast?.('ℹ️ Bonus rentetan 7 hari sudah diklaim!');
+        return;
+      }
+      const awarded = Store.awardIdempotent(ledgerKey, 50, 20);
+      if (awarded) {
+        RagamaraAudio.playSuccessFanfare();
+        window.showToast?.('🔥 Luar biasa! Bonus 7 Hari Nyala: +50 XP & +20 Permata!');
+        this.renderWidget();
+      }
+    },
+
+    renderWidget() {
+      const container = document.getElementById('streak-widget-container');
+      if (!container) return;
+      const data = this.getWeeklyData();
+      const claimed = Store.state.claimedRewardLedger.includes('streak_milestone_7days');
+
+      container.innerHTML = `
+        <div class="bg-gradient-to-r from-[#173F32] via-[#1F5242] to-[#102B25] p-5 rounded-3xl border border-[#F2C45A]/35 shadow-xl relative overflow-hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#B65F45] to-[#F2C45A] flex items-center justify-center text-white shadow-lg animate-pulse">
+                <span class="material-symbols-outlined text-2xl">local_fire_department</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="text-base font-black text-white">Rentetan Nyala 7 Hari</h4>
+                  <span class="px-2 py-0.5 rounded-full bg-[#F2C45A] text-[#382400] text-[10px] font-black">🔥 Aktif</span>
+                </div>
+                <p class="text-xs text-[#FAF6EF]/85">Pertahankan konsistensi belajar budaya Nusantara setiap hari!</p>
+              </div>
+            </div>
+            <div>
+              ${claimed 
+                ? `<span class="px-3 py-1.5 rounded-xl bg-[#24CBA2]/20 border border-[#24CBA2] text-[#24CBA2] text-xs font-black flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">verified</span> Bonus Diklaim</span>`
+                : `<button onclick="RagamaraEcosystem.Streak.claimMilestone()" class="btn btn-gold text-xs py-2 px-4 shadow-lg animate-bounce flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]">card_giftcard</span> Klaim Hadiah Pekan (+50 XP, +20 💎)</button>`
+              }
+            </div>
+          </div>
+          <div class="grid grid-cols-7 gap-2 pt-4 text-center">
+            ${data.map(d => `
+              <div class="flex flex-col items-center gap-1.5">
+                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center text-xs font-black transition-all ${
+                  d.completed 
+                    ? 'bg-gradient-to-tr from-[#F2C45A] to-[#B65F45] text-white shadow-[0_0_12px_rgba(242,196,90,0.5)] border border-white/40' 
+                    : 'bg-[#102B25] text-white/40 border border-white/10'
+                }">
+                  ${d.completed ? '✓' : d.code}
+                </div>
+                <span class="text-[10px] font-bold ${d.isToday ? 'text-[#F2C45A]' : 'text-[#FAF6EF]/70'}">${d.code}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+  };
+
+  // =========================================================================
+  // 11. WEB AUDIO SYNTHESIZER (RagamaraAudio)
+  // =========================================================================
+  let audioCtxInstance = null;
+  function getAudioCtx() {
+    try {
+      if (!audioCtxInstance) {
+        audioCtxInstance = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtxInstance.state === 'suspended') {
+        audioCtxInstance.resume();
+      }
+      return audioCtxInstance;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  const RagamaraAudio = {
+    playGamelanChime() {
+      if (!Store.state.settings.sfxEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25];
+        const freq = notes[Math.floor(Math.random() * notes.length)];
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.2);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 1.2);
+      } catch (e) {}
+    },
+
+    playSuccessFanfare() {
+      if (!Store.state.settings.sfxEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const chords = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+        chords.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime + idx * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.08 + 0.6);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + idx * 0.08);
+          osc.stop(ctx.currentTime + idx * 0.08 + 0.6);
+        });
+      } catch (e) {}
+    },
+
+    playPurchaseChime() {
+      if (!Store.state.settings.sfxEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const notes = [659.25, 830.61, 987.77, 1318.51]; // E5, G#5, B5, E6
+        notes.forEach((freq, idx) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.07);
+          gain.gain.setValueAtTime(0.14, ctx.currentTime + idx * 0.07);
+          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + idx * 0.07 + 0.5);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(ctx.currentTime + idx * 0.07);
+          osc.stop(ctx.currentTime + idx * 0.07 + 0.5);
+        });
+      } catch (e) {}
+    },
+
+    playTap() {
+      if (!Store.state.settings.sfxEnabled) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, ctx.currentTime);
+        gain.gain.setValueAtTime(0.05, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.08);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.08);
+      } catch (e) {}
+    }
+  };
+
+  // Expose sound helpers globally
+  window.playGamelanChime = () => RagamaraAudio.playGamelanChime();
+  window.RagamaraAudio = RagamaraAudio;
+
+  // =========================================================================
+  // 12. SETTINGS & ACCESSIBILITY CONTROLLER
   // =========================================================================
   const Settings = {
     sfxEnabled: true,
@@ -1622,7 +2180,7 @@ window.RagamaraEcosystem = (function() {
   };
 
   // =========================================================================
-  // 10. MINI-GAME SESSION REWARD BRIDGE
+  // 13. MINI-GAME SESSION REWARD BRIDGE
   // =========================================================================
   function recordMiniGameSession(session) {
     if (!session || !session.sessionId) return;
@@ -1665,6 +2223,9 @@ window.RagamaraEcosystem = (function() {
     DailyMissions,
     Achievements,
     Profile,
+    TokoAdat,
+    Streak,
+    Audio: RagamaraAudio,
     Settings,
     recordMiniGameSession,
     getCanonicalEntities,
@@ -1675,6 +2236,8 @@ window.RagamaraEcosystem = (function() {
       Achievements.render();
       Leaderboard.render();
       Settings.init();
+      Streak.renderWidget();
+      TokoAdat.render();
     }
   };
 })();
