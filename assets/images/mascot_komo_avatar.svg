@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="bg-komo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFAB91"/>
+      <stop offset="70%" stop-color="#BF360C"/>
+      <stop offset="100%" stop-color="#4E342E"/>
+    </radialGradient>
+    <linearGradient id="scales-komo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8D6E63"/>
+      <stop offset="100%" stop-color="#4E342E"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Badge Circle -->
+  <circle cx="100" cy="100" r="94" fill="url(#bg-komo)" stroke="#FFCCBC" stroke-width="6"/>
+  <!-- Dragon Neck & Shoulders -->
+  <path d="M 50,160 Q 100,120 150,160 L 150,190 L 50,190 Z" fill="url(#scales-komo)"/>
+  <!-- Head (Komodo Dragon Snout) -->
+  <path d="M 60,110 C 50,70 85,55 100,55 C 115,55 150,70 140,110 C 135,135 115,145 100,145 C 85,145 65,135 60,110 Z" fill="url(#scales-komo)" stroke="#3E2723" stroke-width="2"/>
+  <!-- Dragon Ridge Scales on head -->
+  <polygon points="96,48 100,42 104,48" fill="#D7CCC8"/>
+  <polygon points="92,56 96,50 100,56" fill="#D7CCC8"/>
+  <polygon points="100,56 104,50 108,56" fill="#D7CCC8"/>
+  <!-- Large Yellow Fierce but Friendly Eyes -->
+  <circle cx="80" cy="80" r="11" fill="#FFD54F" stroke="#FF6F00" stroke-width="2"/>
+  <ellipse cx="80" cy="80" rx="3" ry="9" fill="#212121"/>
+  <circle cx="78" cy="76" r="2" fill="#FFFFFF"/>
+  <circle cx="120" cy="80" r="11" fill="#FFD54F" stroke="#FF6F00" stroke-width="2"/>
+  <ellipse cx="120" cy="80" rx="3" ry="9" fill="#212121"/>
+  <circle cx="118" cy="76" r="2" fill="#FFFFFF"/>
+  <!-- Nostrils -->
+  <ellipse cx="90" cy="118" rx="3.5" ry="2.5" fill="#212121"/>
+  <ellipse cx="110" cy="118" rx="3.5" ry="2.5" fill="#212121"/>
+  <!-- Smile & Forked Tongue (Lidah Bercabang Khas Komodo) -->
+  <path d="M 82,126 Q 100,135 118,126" fill="none" stroke="#212121" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 100,132 L 100,146 L 93,154 M 100,146 L 107,154" fill="none" stroke="#FF5252" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Tenun Ikat Sumba Bandana -->
+  <rect x="65" y="150" width="70" height="12" rx="4" fill="#FF7043" stroke="#FFCA28" stroke-width="2"/>
+  <line x1="75" y1="150" x2="80" y2="162" stroke="#FFE082" stroke-width="2"/>
+  <line x1="95" y1="150" x2="100" y2="162" stroke="#FFE082" stroke-width="2"/>
+  <line x1="115" y1="150" x2="120" y2="162" stroke="#FFE082" stroke-width="2"/>
+</svg>

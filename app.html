@@ -556,9 +556,9 @@
         </div>
 
         <!-- REALM 2: JAWA (UNLOCKED / AVAILABLE) -->
-        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Jawa', 'Pusat Peradaban Keraton, Candi & Wayang Purwa', 'Tersedia', '10%', 'assets/references/ref_d_dark_character_cards.jpg', ['Bab 1: Mahakarya Batik Keraton', 'Bab 2: Kidung Gamelan Slendro-Pelog', 'Bab 3: Arsitektur Borobudur & Prambanan'])">
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Jawa', 'Pusat Peradaban Keraton, Candi & Wayang Purwa', 'Tersedia', '10%', 'assets/images/alam_jawa.jpg', ['Bab 1: Mahakarya Batik Keraton', 'Bab 2: Kidung Gamelan Slendro-Pelog', 'Bab 3: Arsitektur Borobudur & Prambanan'])">
           <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
-            <img src="assets/references/ref_d_dark_character_cards.jpg" alt="Alam Jawa" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <img src="assets/images/alam_jawa.jpg" alt="Alam Jawa" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
             <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
               Tersedia Untuk Dijelajahi 🔓
@@ -579,7 +579,7 @@
             </p>
             <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
               <span class="text-[11px] text-[#CCC3DF]">Sahabat: Raga Blangkon</span>
-              <button onclick="event.stopPropagation(); showToast('🗺️ Membuka ringkasan wilayah Jawa...')" class="btn btn-secondary text-xs py-1.5 px-4">
+              <button onclick="event.stopPropagation(); openRegionDrawer('Jawa', 'Pusat Peradaban Keraton, Candi & Wayang Purwa', 'Tersedia', '10%', 'assets/images/alam_jawa.jpg', ['Bab 1: Mahakarya Batik Keraton', 'Bab 2: Kidung Gamelan Slendro-Pelog', 'Bab 3: Arsitektur Borobudur & Prambanan'])" class="btn btn-secondary text-xs py-1.5 px-4">
                 Lihat Bab ➔
               </button>
             </div>
@@ -587,9 +587,9 @@
         </div>
 
         <!-- REALM 3: BALI & NUSA TENGGARA (UNLOCKED / AVAILABLE) -->
-        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Bali & Nusa Tenggara', 'Pulau Dewata, Kidung Suci & Senar Sasando', 'Tersedia', '0%', 'assets/references/ref_b_purple_game_world.jpg', ['Bab 1: Sakralitas Tari Kecak & Barong', 'Bab 2: Alunan Ajaib Sasando Pulau Rote', 'Bab 3: Tenun Ikat Tradisional Sumba'])">
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Bali & Nusa Tenggara', 'Pulau Dewata, Kidung Suci & Senar Sasando', 'Tersedia', '0%', 'assets/images/alam_bali_nt.jpg', ['Bab 1: Sakralitas Tari Kecak & Barong', 'Bab 2: Alunan Ajaib Sasando Pulau Rote', 'Bab 3: Tenun Ikat Tradisional Sumba'])">
           <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
-            <img src="assets/references/ref_b_purple_game_world.jpg" alt="Alam Bali & Nusa Tenggara" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <img src="assets/images/alam_bali_nt.jpg" alt="Alam Bali & Nusa Tenggara" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
             <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
               Tersedia Untuk Dijelajahi 🔓
@@ -609,98 +609,130 @@
               Gemuruh vokal Kecak sakral, ukiran Candi Bentar, getaran dawai Sasando Rote, dan kain tenun ikat legendaris Sumba.
             </p>
             <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
-              <span class="text-[11px] text-[#CCC3DF]">Sahabat: Raga Udeng</span>
-              <button onclick="event.stopPropagation(); showToast('🗺️ Membuka ringkasan wilayah Bali & NT...')" class="btn btn-secondary text-xs py-1.5 px-4">
+              <span class="text-[11px] text-[#CCC3DF]">Sahabat: Raga Udeng & Komo</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Bali & Nusa Tenggara', 'Pulau Dewata, Kidung Suci & Senar Sasando', 'Tersedia', '0%', 'assets/images/alam_bali_nt.jpg', ['Bab 1: Sakralitas Tari Kecak & Barong', 'Bab 2: Alunan Ajaib Sasando Pulau Rote', 'Bab 3: Tenun Ikat Tradisional Sumba'])" class="btn btn-secondary text-xs py-1.5 px-4">
                 Lihat Bab ➔
               </button>
             </div>
           </div>
         </div>
 
-        <!-- REALM 4: KALIMANTAN (LOCKED) -->
-        <div class="realm-card is-locked" onclick="showToast('🔒 Wilayah Kalimantan terbuka setelah mencapai Level 10!')">
-          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 bg-[#1A1228] border border-[#8B5CF6]/20">
-            <div class="w-full h-full flex items-center justify-center bg-[#211B35]/80">
-              <span class="material-symbols-outlined text-5xl text-[#8E83A8]">forest</span>
+        <!-- REALM 4: KALIMANTAN (AVAILABLE & ENRICHED) -->
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Kalimantan', 'Bumi Borneo, Rumah Betang & Rimba Mahakam', 'Tersedia', '50%', 'assets/images/alam_kalimantan.jpg', ['Bab 1: Kedamaian Bersama di Rumah Betang Dayak', 'Bab 2: Anatomi & Makna Filosofis Mandau Dayak', 'Bab 3: Kriya Anyaman Rotan Anjat Kutai', 'Bab 4: Musik Sape Sentuhan Jiwa Hutan Kalimantan'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
+            <img src="assets/images/alam_kalimantan.jpg" alt="Alam Kalimantan" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
+              Tersedia Untuk Dijelajahi 🔓
             </div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1228]/90 text-[#FFCA55] text-[10px] font-black uppercase border border-[#FFCA55]/30">
-              Terkunci • Butuh Level 10 🔒
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#FFCA55]">50% Selesai</span>
             </div>
           </div>
           <div class="space-y-2">
-            <h3 class="text-xl font-black text-[#8E83A8]">Kalimantan</h3>
-            <p class="text-xs text-[#6F6684] leading-relaxed">
-              Arsitektur megah Rumah Betang Panjang Dayak, seni bela diri Mandau, tarian Burung Enggang, dan pasar terapung.
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Kalimantan
+              <span class="text-xs font-bold text-[#CCC3DF] bg-[#2D2445] px-2 py-0.5 rounded-full">4 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Arsitektur megah Rumah Betang Panjang Dayak, pusaka bilah Mandau, anyaman rotan Anjat, dan alunan damai alat musik Sape.
             </p>
-            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/10">
-              <span class="text-[11px] text-[#8E83A8]">Syarat: Selesaikan Bab 2 Minang</span>
-              <span class="text-xs text-[#FF786B] font-bold">Level 10</span>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#24CBA2] font-bold">Sahabat: Bekti si Bekantan</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Kalimantan', 'Bumi Borneo, Rumah Betang & Rimba Mahakam', 'Tersedia', '50%', 'assets/images/alam_kalimantan.jpg', ['Bab 1: Kedamaian Bersama di Rumah Betang Dayak', 'Bab 2: Anatomi & Makna Filosofis Mandau Dayak', 'Bab 3: Kriya Anyaman Rotan Anjat Kutai', 'Bab 4: Musik Sape Sentuhan Jiwa Hutan Kalimantan'])" class="btn btn-secondary text-xs py-1.5 px-4">
+                Lihat Bab ➔
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- REALM 5: SULAWESI (LOCKED) -->
-        <div class="realm-card is-locked" onclick="showToast('🔒 Wilayah Sulawesi terbuka setelah mencapai Level 12!')">
-          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 bg-[#1A1228] border border-[#8B5CF6]/20">
-            <div class="w-full h-full flex items-center justify-center bg-[#211B35]/80">
-              <span class="material-symbols-outlined text-5xl text-[#8E83A8]">sailing</span>
+        <!-- REALM 5: SULAWESI (AVAILABLE & ENRICHED) -->
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Sulawesi', 'Celebes & Negeri Bahari Phinisi', 'Tersedia', '35%', 'assets/images/alam_sulawesi.jpg', ['Bab 1: Kemahiran Galangan Kapal Layar Phinisi Bulukumba', 'Bab 2: Filosofi Ukiran Toraja Pa’tedong & Tongkonan', 'Bab 3: Senjata Pusaka Badik Gecong Bugis', 'Bab 4: Kuliner Tradisional Coto & Konro Rempah Melimpah'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
+            <img src="assets/images/alam_sulawesi.jpg" alt="Alam Sulawesi" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
+              Tersedia Untuk Dijelajahi 🔓
             </div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1228]/90 text-[#FFCA55] text-[10px] font-black uppercase border border-[#FFCA55]/30">
-              Terkunci • Butuh Level 12 🔒
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#FFCA55]">35% Selesai</span>
             </div>
           </div>
           <div class="space-y-2">
-            <h3 class="text-xl font-black text-[#8E83A8]">Sulawesi</h3>
-            <p class="text-xs text-[#6F6684] leading-relaxed">
-              Puncak atap melengkung Rumah Adat Tongkonan Toraja, ketangguhan perahu Phinisi penjelajah samudra, dan sutra Mandar.
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Sulawesi
+              <span class="text-xs font-bold text-[#CCC3DF] bg-[#2D2445] px-2 py-0.5 rounded-full">4 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Puncak melengkung Rumah Adat Tongkonan Toraja, perahu Phinisi mahakarya UNESCO pengarung samudra, dan pusaka Badik Bugis.
             </p>
-            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/10">
-              <span class="text-[11px] text-[#8E83A8]">Syarat: Selesaikan Wilayah Jawa</span>
-              <span class="text-xs text-[#FF786B] font-bold">Level 12</span>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#24CBA2] font-bold">Sahabat: Maleo si Burung Pasir</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Sulawesi', 'Celebes & Negeri Bahari Phinisi', 'Tersedia', '35%', 'assets/images/alam_sulawesi.jpg', ['Bab 1: Kemahiran Galangan Kapal Layar Phinisi Bulukumba', 'Bab 2: Filosofi Ukiran Toraja Pa’tedong & Tongkonan', 'Bab 3: Senjata Pusaka Badik Gecong Bugis', 'Bab 4: Kuliner Tradisional Coto & Konro Rempah Melimpah'])" class="btn btn-secondary text-xs py-1.5 px-4">
+                Lihat Bab ➔
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- REALM 6: MALUKU (LOCKED) -->
-        <div class="realm-card is-locked" onclick="showToast('🔒 Wilayah Maluku terbuka setelah mencapai Level 15!')">
-          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 bg-[#1A1228] border border-[#8B5CF6]/20">
-            <div class="w-full h-full flex items-center justify-center bg-[#211B35]/80">
-              <span class="material-symbols-outlined text-5xl text-[#8E83A8]">music_cast</span>
+        <!-- REALM 6: MALUKU (AVAILABLE & ENRICHED) -->
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Maluku', 'Kepulauan Rempah Bersejarah', 'Tersedia', '25%', 'assets/images/alam_maluku.jpg', ['Bab 1: Sasi Adat: Kearifan Konservasi Laut Tradisional', 'Bab 2: Irama Tifa Maluku & Lagu Daerah Hela Rotan', 'Bab 3: Tari Perang Cakalele & Busana Merah Menyala', 'Bab 4: Benteng Kerajaan Banda Neira & Jalur Rempah'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
+            <img src="assets/images/alam_maluku.jpg" alt="Alam Maluku" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
+              Tersedia Untuk Dijelajahi 🔓
             </div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1228]/90 text-[#FFCA55] text-[10px] font-black uppercase border border-[#FFCA55]/30">
-              Terkunci • Butuh Level 15 🔒
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#FFCA55]">25% Selesai</span>
             </div>
           </div>
           <div class="space-y-2">
-            <h3 class="text-xl font-black text-[#8E83A8]">Maluku</h3>
-            <p class="text-xs text-[#6F6684] leading-relaxed">
-              Dentuman perkusi Tifa, kobaran tari perang Cakalele, jejak jalur rempah pala-cengkeh, dan falsafah hidup Siwalima.
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Maluku
+              <span class="text-xs font-bold text-[#CCC3DF] bg-[#2D2445] px-2 py-0.5 rounded-full">4 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Dentuman perkusi Tifa, kobaran tari perang Cakalele, kejayaan jalur rempah pala Banda Neira, dan kearifan konservasi Sasi Adat.
             </p>
-            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/10">
-              <span class="text-[11px] text-[#8E83A8]">Syarat: Kuasai 3 Wilayah</span>
-              <span class="text-xs text-[#FF786B] font-bold">Level 15</span>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#24CBA2] font-bold">Sahabat: Kakatua Seram</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Maluku', 'Kepulauan Rempah Bersejarah', 'Tersedia', '25%', 'assets/images/alam_maluku.jpg', ['Bab 1: Sasi Adat: Kearifan Konservasi Laut Tradisional', 'Bab 2: Irama Tifa Maluku & Lagu Daerah Hela Rotan', 'Bab 3: Tari Perang Cakalele & Busana Merah Menyala', 'Bab 4: Benteng Kerajaan Banda Neira & Jalur Rempah'])" class="btn btn-secondary text-xs py-1.5 px-4">
+                Lihat Bab ➔
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- REALM 7: PAPUA (LOCKED) -->
-        <div class="realm-card is-locked" onclick="showToast('🔒 Wilayah Papua terbuka setelah mencapai Level 18!')">
-          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 bg-[#1A1228] border border-[#8B5CF6]/20">
-            <div class="w-full h-full flex items-center justify-center bg-[#211B35]/80">
-              <span class="material-symbols-outlined text-5xl text-[#8E83A8]">military_tech</span>
+        <!-- REALM 7: PAPUA (AVAILABLE & ENRICHED) -->
+        <div class="realm-card cursor-pointer" onclick="openRegionDrawer('Papua', 'Tanah Cenderawasih & Puncak Salju', 'Tersedia', '45%', 'assets/images/alam_papua.jpg', ['Bab 1: Filosofi Tas Noken: Rahim Kehidupan Alam Papua', 'Bab 2: Struktur Hangat Rumah Honai Lembah Baliem', 'Bab 3: Ukiran Spiritual Patung Asmat Mbis Pole', 'Bab 4: Tifa Totobuang & Pesta Bakar Batu Perdamaian'])">
+          <div class="relative h-44 rounded-2xl overflow-hidden mb-4 border border-[#8B5CF6]/30 shadow">
+            <img src="assets/images/alam_papua.jpg" alt="Alam Papua" class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0F0818] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#24CBA2] text-[#06382B] text-[10px] font-black uppercase tracking-wider shadow">
+              Tersedia Untuk Dijelajahi 🔓
             </div>
-            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#1A1228]/90 text-[#FFCA55] text-[10px] font-black uppercase border border-[#FFCA55]/30">
-              Terkunci • Butuh Level 18 🔒
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-black text-white">
+              <span>Progres Wilayah</span>
+              <span class="text-[#FFCA55]">45% Selesai</span>
             </div>
           </div>
           <div class="space-y-2">
-            <h3 class="text-xl font-black text-[#8E83A8]">Papua</h3>
-            <p class="text-xs text-[#6F6684] leading-relaxed">
-              Kehangatan arsitektur Rumah Honai, anyaman serat kayu Noken warisan dunia UNESCO, dan mahakarya seni ukir Asmat.
+            <h3 class="text-xl font-black text-[#FFF8EB] flex items-center gap-2">
+              Papua
+              <span class="text-xs font-bold text-[#CCC3DF] bg-[#2D2445] px-2 py-0.5 rounded-full">4 Bab</span>
+            </h3>
+            <p class="text-xs text-[#CCC3DF] leading-relaxed">
+              Arsitektur melingkar Rumah Honai Lembah Baliem, rajutan serat kayu Noken warisan dunia UNESCO, dan patung ukir sakral Asmat.
             </p>
-            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/10">
-              <span class="text-[11px] text-[#8E83A8]">Syarat: Kuasai 5 Wilayah</span>
-              <span class="text-xs text-[#FF786B] font-bold">Level 18</span>
+            <div class="pt-2 flex items-center justify-between border-t border-[#8B5CF6]/20">
+              <span class="text-[11px] text-[#24CBA2] font-bold">Sahabat: Cendro si Cenderawasih</span>
+              <button onclick="event.stopPropagation(); openRegionDrawer('Papua', 'Tanah Cenderawasih & Puncak Salju', 'Tersedia', '45%', 'assets/images/alam_papua.jpg', ['Bab 1: Filosofi Tas Noken: Rahim Kehidupan Alam Papua', 'Bab 2: Struktur Hangat Rumah Honai Lembah Baliem', 'Bab 3: Ukiran Spiritual Patung Asmat Mbis Pole', 'Bab 4: Tifa Totobuang & Pesta Bakar Batu Perdamaian'])" class="btn btn-secondary text-xs py-1.5 px-4">
+                Lihat Bab ➔
+              </button>
             </div>
           </div>
         </div>
@@ -915,7 +947,7 @@
 
             <!-- Node 1: Completed -->
             <div class="relative z-10 flex flex-col items-center mb-14">
-              <button onclick="showToast('🏆 Level 1: Alam Takambang telah tuntas dengan 3 Bintang!')" class="level-node-btn level-node-completed" title="Level 1 Selesai">
+              <button onclick="MiniGameEngine.openArena('A')" class="level-node-btn level-node-completed hover:scale-105 transition-transform cursor-pointer" title="Level 1: Main Ulang Kuis Alam Takambang">
                 <span class="material-symbols-outlined text-[34px] font-bold" style="font-variation-settings: 'FILL' 1;">check_circle</span>
               </button>
               <div class="mt-2 flex items-center gap-1 bg-[#2D2445] px-3 py-1 rounded-full shadow">
@@ -925,13 +957,13 @@
               </div>
               <div class="text-center mt-1">
                 <span class="font-bold text-sm text-[#FFF8EB]">Level 1: Alam Takambang</span>
-                <p class="text-xs text-[#FFCA55]">Selesai • 100 XP</p>
+                <p class="text-xs text-[#FFCA55]">Selesai (3 Bintang) • Main Ulang ➔</p>
               </div>
             </div>
 
             <!-- Node 2: Completed -->
             <div class="relative z-10 flex flex-col items-center mb-14 translate-x-16 sm:translate-x-24">
-              <button onclick="openArtifactModal('Rumah Gadang Minangkabau', 'Arsitektur vernakular suku Minangkabau dengan atap gonjong melengkung seperti tanduk kerbau. Menggunakan sistem pasak kayu elastis tahan gempa tanpa paku besi.', 'assets/images/rumah_gadang.png')" class="level-node-btn level-node-completed" title="Level 2 Selesai">
+              <button onclick="openArtifactModal('Rumah Gadang Minangkabau', 'Arsitektur vernakular suku Minangkabau dengan atap gonjong melengkung seperti tanduk kerbau. Menggunakan sistem pasak kayu elastis tahan gempa tanpa paku besi.', 'assets/images/rumah_gadang.png', 'C')" class="level-node-btn level-node-completed hover:scale-105 transition-transform cursor-pointer" title="Level 2: Tantangan Arsitektur Gadang">
                 <span class="material-symbols-outlined text-[34px] font-bold" style="font-variation-settings: 'FILL' 1;">roofing</span>
               </button>
               <div class="mt-2 flex items-center gap-1 bg-[#2D2445] px-3 py-1 rounded-full shadow">
@@ -941,13 +973,13 @@
               </div>
               <div class="text-center mt-1">
                 <span class="font-bold text-sm text-[#FFF8EB]">Level 2: Arsitektur Gadang</span>
-                <p class="text-xs text-[#FFCA55]">Selesai • 120 XP</p>
+                <p class="text-xs text-[#FFCA55]">Selesai • Tantang Struktur ➔</p>
               </div>
             </div>
 
             <!-- Node 3: Completed -->
             <div class="relative z-10 flex flex-col items-center mb-14 -translate-x-16 sm:-translate-x-24">
-              <button onclick="openArtifactModal('Saluang & Talempong Pacik', 'Ansambel musik tradisional Minangkabau. Saluang ditiup dengan teknik pernapasan tanpa putus (manyisiahan angok), dipadu denting logam talempong pacik poliritmik.', 'assets/images/saluang_talempong.png')" class="level-node-btn level-node-completed" title="Level 3 Selesai">
+              <button onclick="openArtifactModal('Saluang & Talempong Pacik', 'Ansambel musik tradisional Minangkabau. Saluang ditiup dengan teknik pernapasan tanpa putus (manyisiahan angok), dipadu denting logam talempong pacik poliritmik.', 'assets/images/saluang_talempong.png', 'D')" class="level-node-btn level-node-completed hover:scale-105 transition-transform cursor-pointer" title="Level 3: Alunan Saluang & Talempong">
                 <span class="material-symbols-outlined text-[34px] font-bold" style="font-variation-settings: 'FILL' 1;">music_note</span>
               </button>
               <div class="mt-2 flex items-center gap-1 bg-[#2D2445] px-3 py-1 rounded-full shadow">
@@ -957,7 +989,7 @@
               </div>
               <div class="text-center mt-1">
                 <span class="font-bold text-sm text-[#FFF8EB]">Level 3: Saluang & Talempong</span>
-                <p class="text-xs text-[#FFCA55]">Selesai • 140 XP</p>
+                <p class="text-xs text-[#FFCA55]">Selesai • Uji Nada Saluang ➔</p>
               </div>
             </div>
 
@@ -1013,35 +1045,35 @@
 
             <!-- Node 5: Milestone Treasure Chest -->
             <div class="relative z-10 flex flex-col items-center mb-14 translate-x-12">
-              <button class="level-node-chest" onclick="showToast('🎁 Peti Petualang Minang berisi 50 Permata terbuka setelah Level 4 rampung!')" title="Peti Hadiah Bab">
+              <button id="treasure-chest-btn" class="level-node-chest cursor-pointer hover:scale-110 transition-transform" onclick="claimTreasureChest()" title="Buka Peti Pusaka Minang">
                 <span class="material-symbols-outlined text-[32px] text-[#FFCA55]" style="font-variation-settings: 'FILL' 1;">lock_open</span>
                 <span class="absolute -top-2 -right-2 px-1.5 py-0.5 rounded-full bg-[#24CBA2] text-[#06382B] text-[9px] font-extrabold">50 💎</span>
               </button>
               <div class="text-center mt-2">
                 <span class="font-bold text-xs text-[#FFF8EB]">Peti Pusaka Minang</span>
-                <p class="text-[11px] text-[#8E83A8]">Buka setelah Level 4</p>
+                <p class="text-[11px] text-[#24CBA2] font-semibold">Klik untuk Klaim 50 💎 & 100 XP!</p>
               </div>
             </div>
 
-            <!-- Node 6: Locked Level 5 -->
-            <div class="relative z-10 flex flex-col items-center mb-14 -translate-x-14 opacity-70">
-              <button class="level-node-btn level-node-locked" onclick="showToast('🔒 Selesaikan Level 4 terlebih dahulu untuk membuka seni Randai!')">
-                <span class="material-symbols-outlined text-[28px]">lock</span>
+            <!-- Node 6: Level 5 (Randai & Silek) -->
+            <div class="relative z-10 flex flex-col items-center mb-14 -translate-x-14">
+              <button class="level-node-btn level-node-completed hover:scale-105 transition-transform cursor-pointer" onclick="MiniGameEngine.openArena('E')" title="Buka Level 5: Randai & Seni Silek">
+                <span class="material-symbols-outlined text-[28px] text-[#FFCA55]">theater_comedy</span>
               </button>
               <div class="text-center mt-2">
                 <span class="font-bold text-xs text-[#CCC3DF]">Level 5: Randai & Seni Silek</span>
-                <p class="text-[11px] text-[#8E83A8]">Seni Bela Diri & Teater Tradisi</p>
+                <p class="text-[11px] text-[#FFCA55] font-semibold">Kisah Adat Dilema ➔</p>
               </div>
             </div>
 
             <!-- Node 7: Boss Stage (Maestro Minangkabau) -->
             <div class="relative z-10 flex flex-col items-center mb-8">
-              <button class="level-node-boss" onclick="showToast('🏆 Ujian Maestro terbuka setelah menuntaskan seluruh 5 level Bab Minang!')" title="Ujian Maestro">
+              <button class="level-node-boss hover:scale-105 transition-transform cursor-pointer" onclick="MiniGameEngine.openArena('F')" title="Buka Ujian Akhir Maestro">
                 <span class="material-symbols-outlined text-[44px]" style="font-variation-settings: 'FILL' 1;">trophy</span>
               </button>
               <div class="text-center mt-3 max-w-xs">
                 <span class="font-extrabold text-sm text-[#FFF8EB]">Ujian Akhir: Maestro Minangkabau</span>
-                <p class="text-xs text-[#FFCA55]">Gelar Kebudayaan & Avatar Deta</p>
+                <p class="text-xs text-[#FFCA55]">Teka-Teki Pusaka Saik Kalamai ➔</p>
               </div>
             </div>
 
@@ -2102,24 +2134,58 @@
       achievementModal.classList.remove('is-open');
     }
 
-    // Artifact Modal
+    // Artifact Modal with Direct Mini-Game Action Bridge
     const artifactModal = document.getElementById('artifact-modal');
-    function openArtifactModal(title, description, imgUrl) {
+    function openArtifactModal(title, description, imgUrl, challengeArena) {
       const content = document.getElementById('artifact-content');
+      const arena = challengeArena || (title.includes('Saluang') ? 'D' : title.includes('Gadang') ? 'C' : 'A');
       content.innerHTML = `
-        <div class="h-44 w-full rounded-2xl bg-cover bg-center mb-4 border border-[#8B5CF6]/30 shadow" style="background-image: url('${imgUrl}');"></div>
-        <span class="text-xs uppercase font-extrabold text-[#FFCA55]">Ensiklopedia Budaya</span>
+        <div class="h-48 w-full rounded-2xl bg-cover bg-center mb-4 border border-[#8B5CF6]/30 shadow" style="background-image: url('${imgUrl}');"></div>
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase font-extrabold text-[#FFCA55]">Ensiklopedia Pusaka Nusantara</span>
+          <span class="text-[11px] text-[#24CBA2] font-mono font-bold">DAPOBUD RI</span>
+        </div>
         <h3 class="text-xl font-extrabold text-[#FFF8EB] mt-1">${title}</h3>
-        <p class="text-xs text-[#CCC3DF] mt-2 leading-relaxed">${description}</p>
-        <div class="mt-4 pt-4 border-t border-[#8B5CF6]/20 flex justify-between items-center">
-          <span class="text-[11px] text-[#24CBA2] font-bold">Sumber Terverifikasi: DAPOBUD RI</span>
-          <button class="btn btn-primary text-xs py-2 px-5" onclick="closeArtifactModal()">Mengerti</button>
+        <p class="text-xs text-[#CCC3DF] mt-2 leading-relaxed text-justify">${description}</p>
+        <div class="mt-4 pt-4 border-t border-[#8B5CF6]/20 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <button class="btn btn-primary text-xs py-2 px-5 w-full sm:w-auto flex items-center justify-center gap-1.5" onclick="closeArtifactModal(); MiniGameEngine.openArena('${arena}')">
+            <span class="material-symbols-outlined text-[16px]">sports_esports</span>
+            <span>Tantangan Terkait di Arena (Mode ${arena}) ➔</span>
+          </button>
+          <button class="btn btn-secondary text-xs py-2 px-5 w-full sm:w-auto" onclick="closeArtifactModal()">Tutup</button>
         </div>
       `;
       artifactModal.classList.add('is-open');
     }
     function closeArtifactModal() {
       artifactModal.classList.remove('is-open');
+    }
+
+    // Milestone Treasure Chest Claim
+    function claimTreasureChest() {
+      const isClaimed = localStorage.getItem('ragamara_chest_claimed') === 'true';
+      if (isClaimed || GameState.chestClaimed) {
+        showToast('🎁 Peti Pusaka Minang sudah diklaim sebelumnya (+50 💎)!');
+        return;
+      }
+      GameState.chestClaimed = true;
+      GameState.player.gems = (GameState.player.gems || 0) + 50;
+      GameState.player.xp = (GameState.player.xp || 0) + 100;
+      try {
+        localStorage.setItem('ragamara_player_state', JSON.stringify(GameState.player));
+        localStorage.setItem('ragamara_chest_claimed', 'true');
+      } catch(e) {}
+      updateHud();
+      playGamelanChime();
+      if (window.RagamaraMotion) {
+        window.RagamaraMotion.spawnXpBurst(window.innerWidth / 2, window.innerHeight / 2, 100);
+        window.RagamaraMotion.triggerMascotReaction('celebrate');
+      }
+      showToast('🎉 Selamat! Peti Pusaka Minang Terbuka: +50 💎 Berlian & +100 XP!');
+      const chestBtn = document.getElementById('treasure-chest-btn');
+      if (chestBtn) {
+        chestBtn.innerHTML = '<span class="material-symbols-outlined text-[32px] text-[#24CBA2]" style="font-variation-settings: \'FILL\' 1;">lock_open</span><span class="absolute -top-2 -right-2 px-1.5 py-0.5 rounded-full bg-[#24CBA2] text-[#06382B] text-[9px] font-extrabold">Klaim ✅</span>';
+      }
     }
 
     // Render Koleksi Grid
@@ -2162,6 +2228,33 @@
       document.getElementById('toast-msg').innerText = msg;
       toast.classList.add('is-visible');
       setTimeout(() => toast.classList.remove('is-visible'), 3200);
+    }
+
+    // Expose Global State & Helper Functions on Window
+    window.GameState = GameState;
+    window.updateHud = updateHud;
+    window.showToast = showToast;
+    window.playGamelanChime = playGamelanChime;
+    window.openRegionDrawer = openRegionDrawer;
+    window.claimTreasureChest = claimTreasureChest;
+    window.openArtifactModal = openArtifactModal;
+
+    // Load persisted player state from localStorage if available
+    try {
+      const savedPlayer = JSON.parse(localStorage.getItem('ragamara_player_state'));
+      if (savedPlayer && typeof savedPlayer === 'object') {
+        Object.assign(GameState.player, savedPlayer);
+        updateHud();
+      }
+      if (localStorage.getItem('ragamara_chest_claimed') === 'true') {
+        GameState.chestClaimed = true;
+        const chestBtn = document.getElementById('treasure-chest-btn');
+        if (chestBtn) {
+          chestBtn.innerHTML = '<span class="material-symbols-outlined text-[32px] text-[#24CBA2]" style="font-variation-settings: \'FILL\' 1;">lock_open</span><span class="absolute -top-2 -right-2 px-1.5 py-0.5 rounded-full bg-[#24CBA2] text-[#06382B] text-[9px] font-extrabold">Klaim ✅</span>';
+        }
+      }
+    } catch(e) {
+      console.warn('Could not restore player state', e);
     }
   </script>
   <!-- ==========================================================================

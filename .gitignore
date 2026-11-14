@@ -5,3 +5,4 @@ __pycache__/
 ragamara-data-engine/data/cache/
 *.log
 
+.vercel

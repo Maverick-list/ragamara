@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="bg-cendro" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFD54F"/>
+      <stop offset="70%" stop-color="#FF9800"/>
+      <stop offset="100%" stop-color="#E65100"/>
+    </radialGradient>
+    <linearGradient id="feather-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="100%" stop-color="#F57F17"/>
+    </linearGradient>
+    <linearGradient id="emerald-chest" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00E676"/>
+      <stop offset="100%" stop-color="#004D40"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Badge Circle -->
+  <circle cx="100" cy="100" r="94" fill="url(#bg-cendro)" stroke="#FFE082" stroke-width="6"/>
+  <!-- Cenderawasih Plumes (Feathers of Paradise) -->
+  <path d="M 100,50 Q 140,20 180,45 Q 160,80 125,75 Z" fill="url(#feather-gold)" opacity="0.95"/>
+  <path d="M 90,55 Q 50,15 15,40 Q 35,75 75,75 Z" fill="url(#feather-gold)" opacity="0.95"/>
+  <path d="M 100,60 Q 165,30 175,90 Q 145,100 115,80 Z" fill="#FFB300" opacity="0.85"/>
+  <!-- Body & Chest -->
+  <ellipse cx="100" cy="125" rx="45" ry="50" fill="url(#emerald-chest)"/>
+  <!-- Head -->
+  <circle cx="100" cy="85" r="32" fill="#FFF9C4"/>
+  <!-- Crown / Forehead Feather -->
+  <path d="M 90,65 Q 100,45 110,65 Z" fill="#00BFA5"/>
+  <!-- Beak -->
+  <polygon points="100,82 125,92 100,98" fill="#546E7A"/>
+  <!-- Friendly Large Eyes -->
+  <circle cx="92" cy="80" r="8" fill="#212121"/>
+  <circle cx="90" cy="78" r="3" fill="#FFFFFF"/>
+  <!-- Cheeks blush -->
+  <circle cx="84" cy="90" r="6" fill="#FF8A80" opacity="0.7"/>
+  <!-- Papua Traditional Noken Cord Ornament -->
+  <path d="M 65,130 Q 100,165 135,130" fill="none" stroke="#FFCA28" stroke-width="5" stroke-dasharray="6 3"/>
+  <!-- Sparkling Star Motif -->
+  <polygon points="160,35 163,45 173,48 163,51 160,61 157,51 147,48 157,45" fill="#FFF9C4"/>
+</svg>

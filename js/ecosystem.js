@@ -363,7 +363,7 @@ window.RagamaraEcosystem = (function() {
                   <h5 class="text-xs font-black text-white">Tantangan Budaya RAGAMARA</h5>
                   <p class="text-[11px] text-[#CCC3DF]">Uji pengetahuanmu tentang artefak ini di Arena Mini-Game!</p>
                 </div>
-                <button onclick="RagamaraEcosystem.Culturepedia.launchGameChallenge();" class="btn btn-primary text-xs py-1.5 px-3.5 shrink-0">
+                <button onclick="RagamaraEcosystem.Culturepedia.launchGameChallenge('${r.record_id}');" class="btn btn-primary text-xs py-1.5 px-3.5 shrink-0">
                   Mainkan ➔
                 </button>
               </div>
@@ -390,12 +390,30 @@ window.RagamaraEcosystem = (function() {
       if (modal) modal.classList.remove('is-open');
     },
 
-    launchGameChallenge() {
+    launchGameChallenge(recordId) {
       this.closeDetail();
-      if (window.MiniGameEngine) {
-        window.MiniGameEngine.openArena('A');
+      const all = getDbRecords();
+      const r = all.find(item => item.record_id === recordId);
+      const cat = ((r?.dapobud?.category || '') + ' ' + (r?.opk_category || '')).toLowerCase();
+      const name = (r?.name || '').toLowerCase();
+      
+      // Smart contextual mini-game selector:
+      let targetArena = 'A';
+      if (cat.includes('teknologi') || name.includes('rumah') || name.includes('kapal') || name.includes('mandau') || name.includes('keris') || name.includes('rencong') || name.includes('gadang')) {
+        targetArena = 'C'; // Susun Struktur & Anatomi Fisik Pusaka
+      } else if (cat.includes('seni') || name.includes('gamelan') || name.includes('saluang') || name.includes('gordang') || name.includes('dambus') || name.includes('tari')) {
+        targetArena = 'D'; // Tebak Nada & Irama Tradisional
+      } else if (cat.includes('kriya') || cat.includes('motif') || name.includes('batik') || name.includes('songket') || name.includes('tapis') || name.includes('ukir') || name.includes('saik')) {
+        targetArena = 'F'; // Teka-Teki Ukir & Pola Visual
+      } else if (cat.includes('adat') || cat.includes('lisan') || name.includes('pantun') || name.includes('gurindam') || name.includes('makyong') || name.includes('randai')) {
+        targetArena = 'E'; // Kisah Adat Dilema
       } else {
-        window.switchView('belajar');
+        targetArena = 'B'; // Pasangkan Kartu & Daerah
+      }
+
+      window.switchView?.('belajar');
+      if (window.MiniGameEngine) {
+        window.MiniGameEngine.openArena(targetArena);
       }
     }
   };
@@ -409,7 +427,7 @@ window.RagamaraEcosystem = (function() {
         title: 'Alam Andalas & Ranah Minang',
         subtitle: 'Pulau Emas, Tradisi Bahari, & Falsafah Luhur',
         desc: 'Sumatra merupakan peradaban agung jalur sutra maritim Nusantara. Dari ketangguhan Rencong Serambi Mekkah di Aceh, kekayaan ulos tanah Batak, hingga falsafah musyawarah Rumah Gadang Minangkabau ("Adat basandi syarak, syarak basandi Kitabullah").',
-        bannerImg: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1000&q=80',
+        bannerImg: 'assets/images/rumah_gadang.png',
         mascot: {
           name: 'Raga & Harimau Loreng',
           role: 'Sahabat Rimba Sumatera',
@@ -428,7 +446,7 @@ window.RagamaraEcosystem = (function() {
         title: 'Wilwatikta & Bumi Pasundan',
         subtitle: 'Pusat Keagungan Keraton, Candi Luhur, & Badak Ujung Kulon',
         desc: 'Jawa mempertemukan harmoni spiritual dan kemahiran kriya adi luhung. Tempat lahirnya Keris Majapahit berpamor suci, Candi Borobudur dan Prambanan, Wayang Kulit purwa, serta habitat asli Badak Jawa bercula satu di Ujung Kulon.',
-        bannerImg: 'https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=1000&q=80',
+        bannerImg: 'assets/images/alam_jawa.jpg',
         mascot: {
           name: 'Raga si Badak Jawa',
           role: 'Maskot Utama RAGAMARA',
@@ -447,11 +465,11 @@ window.RagamaraEcosystem = (function() {
         title: 'Kepulauan Sunda Kecil & Dewata',
         subtitle: 'Lembah Subak Suci, Tenun Ikat Sumba, & Naga Komodo',
         desc: 'Kawasan kepulauan eksotis tempat berpadunya tradisi Tri Hita Karana di Bali, megahnya habitat Komodo di Flores, tenun ikat sakral Sumba, hingga pacuan kuda tradisional di Sumbawa.',
-        bannerImg: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1000&q=80',
+        bannerImg: 'assets/images/alam_bali_nt.jpg',
         mascot: {
-          name: 'Jalak & Komo',
+          name: 'Jalak Curik & Komo',
           role: 'Penjaga Savana & Pura',
-          avatar: 'assets/images/mascot_raga_avatar.png'
+          avatar: 'assets/images/mascot_jalak_avatar.svg'
         },
         progress: '40% Selesai (8/20 Bab)',
         totalArtifacts: 9,
@@ -466,11 +484,11 @@ window.RagamaraEcosystem = (function() {
         title: 'Bumi Borneo & Rimba Mahakam',
         subtitle: 'Rumah Panjang Betang, Pusaka Mandau, & Mutiara Khatulistiwa',
         desc: 'Jantung zamrud khatulistiwa dengan tradisi komunal Rumah Betang suku Dayak, kriya manik-manik rumit, senjata pusaka Mandau bertatahkan emas, dan festival perahu naga sungai Mahakam.',
-        bannerImg: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1000&q=80',
+        bannerImg: 'assets/images/alam_kalimantan.jpg',
         mascot: {
           name: 'Bekti si Bekantan',
           role: 'Penjelajah Rimba Bakau',
-          avatar: 'assets/images/mascot_raga_avatar.png'
+          avatar: 'assets/images/mascot_bekti_avatar.svg'
         },
         progress: '50% Selesai (10/20 Bab)',
         totalArtifacts: 8,
@@ -485,11 +503,11 @@ window.RagamaraEcosystem = (function() {
         title: 'Celebes & Negeri Bahari Phinisi',
         subtitle: 'Megahnya Tongkonan Toraja, Layar Phinisi, & Danau Purba',
         desc: 'Tanah pelaut tangguh suku Bugis-Makassar yang mengarungi samudra dengan perahu layar Phinisi, serta keagungan ritus Rambu Solo dan arsitektur ukir Tongkonan di Tana Toraja.',
-        bannerImg: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1000&q=80',
+        bannerImg: 'assets/images/alam_sulawesi.jpg',
         mascot: {
           name: 'Maleo si Burung Pasir',
           role: 'Penjaga Geotermal Tompotika',
-          avatar: 'assets/images/mascot_raga_avatar.png'
+          avatar: 'assets/images/mascot_maleo_avatar.svg'
         },
         progress: '35% Selesai (7/20 Bab)',
         totalArtifacts: 6,
@@ -504,7 +522,7 @@ window.RagamaraEcosystem = (function() {
         title: 'Kepulauan Rempah Bersejarah',
         subtitle: 'Pala & Cengkeh Banda, Tifa Gendang, & Benteng Samudra',
         desc: 'Gugusan pulau legendaris yang mengubah peta perdagangan maritim dunia dengan rempah pala dan cengkeh. Diramaikan oleh tabuhan tifa, tari Cakalele yang berani, dan sistem konservasi laut Sasi Adat.',
-        bannerImg: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?w=1000&q=80',
+        bannerImg: 'assets/images/alam_maluku.jpg',
         mascot: {
           name: 'Kakatua Seram',
           role: 'Duta Harmoni Kepulauan',
@@ -523,16 +541,22 @@ window.RagamaraEcosystem = (function() {
         title: 'Tanah Cenderawasih & Puncak Salju',
         subtitle: 'Lembah Baliem, Rumah Honai, Noken UNESCO, & Ukir Asmat',
         desc: 'Ujung timur Nusantara yang memesona dengan pegunungan gletser abadi Puncak Jaya, rajutan tas noken serat kayu yang diakui UNESCO, arsitektur hangat Rumah Honai, dan patung ukir sakral suku Asmat.',
-        bannerImg: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=1000&q=80',
+        bannerImg: 'assets/images/alam_papua.jpg',
         mascot: {
           name: 'Cendro si Cenderawasih',
           role: 'Penyanyi Surga Papua',
-          avatar: 'assets/images/mascot_raga_avatar.png'
+          avatar: 'assets/images/mascot_cendro_avatar.svg'
         },
         progress: '45% Selesai (9/20 Bab)',
         totalArtifacts: 7,
         chapters: [
           'Bab 1: Filosofi Tas Noken: Rahim Kehidupan Alam Papua',
+          'Bab 2: Struktur Hangat Rumah Honai Lembah Baliem',
+          'Bab 3: Ukiran Spiritual Patung Asmat Mbis Pole',
+          'Bab 4: Tifa Totobuang & Pesta Bakar Batu Perdamaian'
+        ]
+      }
+    },
           'Bab 2: Struktur Hangat Rumah Honai Lembah Baliem',
           'Bab 3: Ukiran Spiritual Patung Asmat Mbis Pole',
           'Bab 4: Tifa Totobuang & Pesta Bakar Batu Perdamaian'
@@ -708,8 +732,8 @@ window.RagamaraEcosystem = (function() {
         lore: 'Burung Cenderawasih jantan berbulu kuning keemasan yang mahir menirukan melodi suling bambu dan memandu para penenun serat kulit kayu Noken.',
         audioGreeting: 'Syalom sahabat! Dengarkan simfoni alam Papua yang menyejukkan jiwa.',
         unlockedRequirement: 'Selesaikan Ekspedisi Lembah Baliem (Level 5)',
-        badge: 'assets/images/mascot_raga_avatar.png',
-        fullImg: 'assets/images/mascot_raga_avatar.png'
+        badge: 'assets/images/mascot_cendro_avatar.svg',
+        fullImg: 'assets/images/mascot_cendro_avatar.svg'
       },
       {
         id: 'bekti_bekantan',
@@ -720,8 +744,8 @@ window.RagamaraEcosystem = (function() {
         lore: 'Bekantan berhidung mancung yang gemar melompat di pucuk pohon bakau sambil membawa tas anyaman rotan Anjat berisi pusaka kriya Dayak.',
         audioGreeting: 'Tabe! Jangan ragu menyeberangi riak sungai Mahakam bersamaku!',
         unlockedRequirement: 'Buka Bab Kriya Anyaman Dayak (Level 8)',
-        badge: 'assets/images/mascot_raga_avatar.png',
-        fullImg: 'assets/images/mascot_raga_avatar.png'
+        badge: 'assets/images/mascot_bekti_avatar.svg',
+        fullImg: 'assets/images/mascot_bekti_avatar.svg'
       },
       {
         id: 'jalak_curik',
@@ -732,8 +756,8 @@ window.RagamaraEcosystem = (function() {
         lore: 'Burung putih anggun bertopeng biru laut yang melambangkan keharmonisan Tri Hita Karana dan kelestarian aliran irigasi Subak.',
         audioGreeting: 'Om Swastyastu! Mari jaga kesucian tanah dan batin kita.',
         unlockedRequirement: 'Progres Misi Subak Bali: 70% (Butuh 30 XP lagi)',
-        badge: 'assets/images/mascot_raga_avatar.png',
-        fullImg: 'assets/images/mascot_raga_avatar.png'
+        badge: 'assets/images/mascot_jalak_avatar.svg',
+        fullImg: 'assets/images/mascot_jalak_avatar.svg'
       },
       {
         id: 'komo_komodo',
@@ -744,8 +768,8 @@ window.RagamaraEcosystem = (function() {
         lore: 'Kadal raksasa purba yang ramah dan perkasa, saksi sejarah kepulauan Sunda Kecil sejak ribuan tahun silam.',
         audioGreeting: 'Kuk kuk... Keberanian adalah pusaka terhebat yang kau miliki.',
         unlockedRequirement: 'Capai Level 12 & Taklukkan Ekspedisi Savana NTT',
-        badge: 'assets/images/mascot_raga_avatar.png',
-        fullImg: 'assets/images/mascot_raga_avatar.png'
+        badge: 'assets/images/mascot_komo_avatar.svg',
+        fullImg: 'assets/images/mascot_komo_avatar.svg'
       },
       {
         id: 'maleo_sulawesi',
@@ -756,8 +780,8 @@ window.RagamaraEcosystem = (function() {
         lore: 'Burung berkepala jambul hitam mengkilap yang memanfaatkan panas bumi pasir pantai untuk menetaskan telur persaudaraan.',
         audioGreeting: 'Kurr... Mari belajar dari kehangatan bumi Nusantara.',
         unlockedRequirement: 'Capai Level 15 & Buka Misi Celebes',
-        badge: 'assets/images/mascot_raga_avatar.png',
-        fullImg: 'assets/images/mascot_raga_avatar.png'
+        badge: 'assets/images/mascot_maleo_avatar.svg',
+        fullImg: 'assets/images/mascot_maleo_avatar.svg'
       }
     ],
 
@@ -930,6 +954,17 @@ window.RagamaraEcosystem = (function() {
     ],
 
     init() {
+      // Restore claimed state from localStorage if available
+      try {
+        const saved = JSON.parse(localStorage.getItem('ragamara_claimed_missions') || '[]');
+        if (Array.isArray(saved)) {
+          this.missions.forEach(m => {
+            if (saved.includes(m.id)) m.claimed = true;
+          });
+        }
+      } catch (e) {
+        console.warn('Could not read claimed missions from localStorage', e);
+      }
       this.startCountdown();
       this.render();
     },
@@ -939,10 +974,28 @@ window.RagamaraEcosystem = (function() {
       if (!m || m.claimed || m.current < m.total) return;
 
       m.claimed = true;
+      try {
+        const saved = JSON.parse(localStorage.getItem('ragamara_claimed_missions') || '[]');
+        if (!saved.includes(m.id)) {
+          saved.push(m.id);
+          localStorage.setItem('ragamara_claimed_missions', JSON.stringify(saved));
+        }
+      } catch (e) {
+        console.warn('Could not save claimed mission to localStorage', e);
+      }
+
       if (window.GameState && window.GameState.player) {
-        window.GameState.player.xp += m.rewardXp;
-        window.GameState.player.gems += m.rewardGems;
+        window.GameState.player.xp = (window.GameState.player.xp || 0) + m.rewardXp;
+        window.GameState.player.gems = (window.GameState.player.gems || 0) + m.rewardGems;
+        try {
+          localStorage.setItem('ragamara_player_state', JSON.stringify(window.GameState.player));
+        } catch (e) {}
         window.updateHud?.();
+      }
+
+      if (window.RagamaraMotion) {
+        window.RagamaraMotion.spawnXpBurst(window.innerWidth / 2, window.innerHeight / 2, m.rewardXp);
+        window.RagamaraMotion.triggerMascotReaction('celebrate');
       }
 
       window.playGamelanChime?.();
