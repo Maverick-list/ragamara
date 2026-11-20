@@ -1,0 +1,97 @@
+/**
+ * NULAR Living Archipelago — GameScene (js/world/GameScene.js)
+ * Manages Three.js WebGLRenderer, PBR lighting, shadows, and clean resource disposal.
+ */
+import * as THREE from 'three';
+
+export class GameScene {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color(0xdbe7de);
+    this.scene.fog = new THREE.FogExp2(0xdbe7de, 0.0115);
+
+    this.renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      powerPreference: 'high-performance'
+    });
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 1.08;
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+    const w = canvas.clientWidth || window.innerWidth;
+    const h = canvas.clientHeight || window.innerHeight;
+    this.renderer.setSize(w, h, false);
+
+    this.camera = new THREE.PerspectiveCamera(50, w / Math.max(h, 1), 0.15, 220);
+
+    // Warm tropical museum sunlight rig
+    this.hemiLight = new THREE.HemisphereLight(0xfff7e8, 0x3b5244, 1.15);
+    this.hemiLight.position.set(0, 35, 0);
+    this.scene.add(this.hemiLight);
+
+    this.sunLight = new THREE.DirectionalLight(0xfff1d6, 2.05);
+    this.sunLight.position.set(18, 28, 16);
+    this.sunLight.castShadow = true;
+    this.sunLight.shadow.mapSize.set(1024, 1024);
+    this.sunLight.shadow.camera.near = 2;
+    this.sunLight.shadow.camera.far = 75;
+    const d = 24;
+    this.sunLight.shadow.camera.left = -d;
+    this.sunLight.shadow.camera.right = d;
+    this.sunLight.shadow.camera.top = d;
+    this.sunLight.shadow.camera.bottom = -d;
+    this.sunLight.shadow.bias = -0.0006;
+    this.scene.add(this.sunLight);
+
+    this.fillLight = new THREE.DirectionalLight(0xa3c4b5, 0.65);
+    this.fillLight.position.set(-14, 12, -16);
+    this.scene.add(this.fillLight);
+
+    this._onResize = () => this.resize();
+    window.addEventListener('resize', this._onResize);
+  }
+
+  resize() {
+    const w = this.canvas.parentElement?.clientWidth || window.innerWidth;
+    const h = this.canvas.parentElement?.clientHeight || window.innerHeight;
+    this.camera.aspect = w / Math.max(h, 1);
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(w, h, false);
+  }
+
+  setAtmosphere({ skyHex = 0xdbe7de, fogDensity = 0.0115, sunIntensity = 2.05 }) {
+    this.scene.background.setHex(skyHex);
+    this.scene.fog.color.setHex(skyHex);
+    this.scene.fog.density = fogDensity;
+    this.sunLight.intensity = sunIntensity;
+  }
+
+  render() {
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  disposeObject(obj) {
+    if (!obj) return;
+    obj.traverse((child) => {
+      if (child.geometry) child.geometry.dispose();
+      if (child.material) {
+        const mats = Array.isArray(child.material) ? child.material : [child.material];
+        mats.forEach((m) => {
+          if (m.map) m.map.dispose();
+          m.dispose();
+        });
+      }
+    });
+  }
+
+  dispose() {
+    window.removeEventListener('resize', this._onResize);
+    this.disposeObject(this.scene);
+    this.renderer.dispose();
+  }
+}

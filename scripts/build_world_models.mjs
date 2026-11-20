@@ -67,7 +67,7 @@ function createMats() {
     earthFloor: new THREE.MeshStandardMaterial({ color: 0x735e4a, roughness: 0.96, metalness: 0.0 }),
     ember: new THREE.MeshStandardMaterial({ color: 0xd95b26, emissive: 0x802a0a, roughness: 0.65, metalness: 0.0 }),
     matWoven: new THREE.MeshStandardMaterial({ color: 0xcfb482, roughness: 0.9, metalness: 0.0 }),
-    colliderMat: new THREE.MeshStandardMaterial({ color: 0x00ff88, wireframe: true, transparent: true, opacity: 0.0 })
+    colliderMat: new THREE.MeshStandardMaterial({ color: 0x00ff88, transparent: true, opacity: 0.0 })
   };
 }
 

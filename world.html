@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>NULAR — The Living Archipelago | Playable 3D Nusantara World</title>
+  <meta name="description" content="Masuki dunia 3D interaktif Nusantara: jelajahi eksterior dan interior 42 rumah adat dari 38 provinsi dengan karakter wastra Nusantara serta Pemandu Tur AI." />
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet" />
+  <link rel="stylesheet" href="css/world.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./js/vendor/three/build/three.module.js",
+      "three/addons/": "./js/vendor/three/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="world-stage">
+    <canvas id="world-canvas" tabindex="0" aria-label="Dunia 3D Interaktif NULAR — Gunakan WASD untuk berjalan, seret mouse untuk mengarahkan kamera, Shift berlari, Space melompat, dan E berinteraksi"></canvas>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="world-loading" class="world-loading" role="status" aria-live="polite">
+    <span class="hud-eyebrow">NULAR · THE LIVING ARCHIPELAGO</span>
+    <h1 id="loading-title" style="font-family:'Fraunces',serif;font-size:1.7rem;margin:4px 0;">Menyiapkan Dunia Budaya 3D...</h1>
+    <p id="loading-sub" style="font-size:0.86rem;color:#C7D1CA;margin:0;max-width:44ch;">Memuat karakter wastra Nusantara, geometri arsitektur, dan sistem fisika ruang interior.</p>
+  </div>
+
+  <!-- Top Museum-World HUD -->
+  <header class="world-hud-top">
+    <div class="hud-location-card" aria-live="polite">
+      <div id="hud-province" class="hud-eyebrow">Nusantara · Alun-Alun Utama</div>
+      <div id="hud-house-name" class="hud-title">The Living Archipelago Hub</div>
+      <div class="hud-sub">
+        <span id="hud-room-name">Alun-Alun Utama Nusantara</span>
+        <span>·</span>
+        <span id="hud-biome-name">Pelataran Nusantara</span>
+      </div>
+      <div id="hud-mission-pill" class="hud-mission-pill" hidden></div>
+    </div>
+
+    <nav class="hud-actions-bar" aria-label="Kontrol Dunia 3D">
+      <button type="button" id="btn-open-wardrobe" class="hud-btn" title="Pilih Karakter & Busana Wastra Nusantara">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">checkroom</span>
+        <span class="btn-lbl">Karakter</span>
+      </button>
+      <button type="button" id="btn-open-teleport" class="hud-btn" title="Peta Teleportasi 38 Provinsi">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">public</span>
+        <span class="btn-lbl">38 Provinsi</span>
+      </button>
+      <button type="button" id="btn-toggle-roof" class="hud-btn" title="Buka / Tutup Potongan Atap (R)">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">roofing</span>
+        <span class="btn-lbl">Potong Atap</span>
+      </button>
+      <button type="button" id="btn-ai-guide" class="hud-btn" title="Pemandu Tur AI Berbasis Suara & Pengetahuan Budaya">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">record_voice_over</span>
+        <span class="btn-lbl">Pemandu AI</span>
+      </button>
+      <button type="button" id="btn-toggle-audio" class="hud-btn" title="Suara Lingkungan Nusantara">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">volume_off</span>
+      </button>
+      <button type="button" id="btn-go-hub" class="hud-btn" title="Kembali ke Alun-Alun Utama">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">home</span>
+        <span class="btn-lbl">Hub</span>
+      </button>
+      <a href="map.html" class="hud-btn" title="Kembali ke Mode Museum Atlas">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">museum</span>
+        <span class="btn-lbl">Museum</span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- Contextual Proximity Interaction Prompt -->
+  <button type="button" id="hud-interact-prompt" class="hud-interact-prompt" hidden>
+    <span class="hud-keycap">E</span>
+    <span id="hud-interact-label">Inspeksi Komponen</span>
+  </button>
+
+  <!-- Desktop Controls Bar -->
+  <div class="hud-controls-hint" aria-hidden="true">
+    WASD: Jalan · Shift: Lari · Space: Lompat · Seret Mouse: Kamera · E: Interaksi · R: Potong Atap · Esc: Menu
+  </div>
+
+  <!-- Mobile Virtual Touch Controls -->
+  <div class="mobile-controls" aria-label="Kontrol Sentuh Mobile">
+    <div id="mobile-joystick-base" class="joystick-base">
+      <div id="mobile-joystick-knob" class="joystick-knob"></div>
+    </div>
+    <div class="mobile-action-cluster">
+      <button type="button" id="mobile-btn-sprint" class="mobile-pad-btn" aria-label="Lari">LARI</button>
+      <button type="button" id="mobile-btn-jump" class="mobile-pad-btn" aria-label="Lompat">LOMPAT</button>
+      <button type="button" id="mobile-btn-interact" class="mobile-pad-btn" aria-label="Interaksi">E</button>
+    </div>
+  </div>
+
+  <!-- Component / Article Slide-In Drawer -->
+  <aside id="world-drawer" class="world-drawer" hidden aria-live="polite">
+    <div class="modal-header">
+      <div>
+        <div id="drawer-eyebrow" style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:#9C7A4C;text-transform:uppercase;letter-spacing:0.1em;">Komponen Arsitektur</div>
+        <h2 id="drawer-title" style="font-family:'Fraunces',serif;font-size:1.35rem;margin:4px 0 0;">Detail</h2>
+      </div>
+      <button type="button" id="drawer-close" style="background:none;border:1px solid #C8BEB0;width:36px;height:36px;cursor:pointer;font-size:1.1rem;" aria-label="Tutup panel">×</button>
+    </div>
+    <div id="drawer-body" style="font-size:0.88rem;line-height:1.65;color:#39463F;"></div>
+  </aside>
+
+  <!-- Avatar Wardrobe Modal -->
+  <div id="wardrobe-modal" class="world-modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="wardrobe-title">
+    <div class="world-modal">
+      <div class="modal-header">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:#9C7A4C;text-transform:uppercase;letter-spacing:0.1em;">NULAR Avatar Collection · Provenansi Wastra</div>
+          <h2 id="wardrobe-title" style="font-family:'Fraunces',serif;font-size:1.5rem;margin:4px 0 0;">Pilih Karakter &amp; Busana Wastra Nusantara</h2>
+          <p style="margin:6px 0 0;font-size:0.84rem;color:#55625A;">Setiap busana diklasifikasikan akurat berdasarkan teknik tekstil aslinya — membedakan Batik dari Tenun Ikat, Songket, Ulos, dan Sasirangan.</p>
+        </div>
+        <button type="button" data-close-modal="wardrobe-modal" style="background:none;border:1px solid #C8BEB0;width:40px;height:40px;cursor:pointer;font-size:1.2rem;" aria-label="Tutup">×</button>
+      </div>
+      <div id="outfit-grid" class="outfit-grid"></div>
+    </div>
+  </div>
+
+  <!-- 38-Province Teleport Atlas Modal -->
+  <div id="teleport-modal" class="world-modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="teleport-title">
+    <div class="world-modal">
+      <div class="modal-header">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:#9C7A4C;text-transform:uppercase;letter-spacing:0.1em;">Navigasi Dunia · 38 Provinsi Indonesia</div>
+          <h2 id="teleport-title" style="font-family:'Fraunces',serif;font-size:1.5rem;margin:4px 0 0;">Pilih Rumah Adat untuk Dijelajahi</h2>
+        </div>
+        <button type="button" data-close-modal="teleport-modal" style="background:none;border:1px solid #C8BEB0;width:40px;height:40px;cursor:pointer;font-size:1.2rem;" aria-label="Tutup">×</button>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+        <input id="teleport-search" type="search" placeholder="Cari provinsi atau rumah adat..." style="flex:1 1 220px;padding:10px 12px;border:1px solid #C8BEB0;font-family:inherit;font-size:0.88rem;" />
+        <select id="teleport-island" style="padding:10px 12px;border:1px solid #C8BEB0;font-family:inherit;font-size:0.85rem;">
+          <option value="all">Semua Kepulauan</option>
+          <option value="Sumatra">Sumatra</option>
+          <option value="Java">Jawa</option>
+          <option value="Kalimantan">Kalimantan</option>
+          <option value="Sulawesi">Sulawesi</option>
+          <option value="Bali & Nusa Tenggara">Bali &amp; Nusa Tenggara</option>
+          <option value="Maluku">Maluku</option>
+          <option value="Papua">Papua</option>
+        </select>
+      </div>
+      <div id="teleport-grid" class="teleport-grid"></div>
+    </div>
+  </div>
+
+  <!-- AI Tour Guide Panel Mount (Populated in Phase 5) -->
+  <div id="ai-guide-mount"></div>
+
+  <script type="module">
+    import { loadHouses } from './js/museum-data.js';
+    import { escapeHtml } from './js/museum-shell.js';
+    import { WorldManager } from './js/world/WorldManager.js';
+
+    const loadingEl = document.getElementById('world-loading');
+    const loadingTitle = document.getElementById('loading-title');
+    const hudProvince = document.getElementById('hud-province');
+    const hudHouseName = document.getElementById('hud-house-name');
+    const hudRoomName = document.getElementById('hud-room-name');
+    const hudBiomeName = document.getElementById('hud-biome-name');
+    const hudMissionPill = document.getElementById('hud-mission-pill');
+    const interactPrompt = document.getElementById('hud-interact-prompt');
+    const interactLabel = document.getElementById('hud-interact-label');
+    const drawer = document.getElementById('world-drawer');
+    const drawerEyebrow = document.getElementById('drawer-eyebrow');
+    const drawerTitle = document.getElementById('drawer-title');
+    const drawerBody = document.getElementById('drawer-body');
+    const wardrobeModal = document.getElementById('wardrobe-modal');
+    const teleportModal = document.getElementById('teleport-modal');
+    const btnRoof = document.getElementById('btn-toggle-roof');
+    const btnAudio = document.getElementById('btn-toggle-audio');
+
+    let world = null;
+    let houses = [];
+    let textiles = { outfits: [] };
+
+    function renderMission(m) {
+      if (!m) { hudMissionPill.hidden = true; return; }
+      hudMissionPill.hidden = false;
+      hudMissionPill.innerHTML = `
+        <span class="${m.enteredInterior ? 'is-done' : ''}">${m.enteredInterior ? '✓' : '○'} Masuk Interior</span>
+        <span class="${m.inspectedCount >= m.targetComponents ? 'is-done' : ''}">${m.inspectedCount >= m.targetComponents ? '✓' : '○'} Komponen (${m.inspectedCount}/${m.targetComponents})</span>
+      `;
+    }
+
+    function openDrawer(eyebrow, title, html) {
+      drawerEyebrow.textContent = eyebrow;
+      drawerTitle.textContent = title;
+      drawerBody.innerHTML = html;
+      drawer.hidden = false;
+    }
+
+    function renderWardrobe() {
+      const current = world?.character?.currentOutfitId;
+      const grid = document.getElementById('outfit-grid');
+      grid.innerHTML = textiles.outfits.map((o) => `
+        <button type="button" class="outfit-card ${current === o.id ? 'is-selected' : ''}" data-select-outfit="${escapeHtml(o.id)}">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:${o.isBatik ? '#2f6b4b' : '#8b4513'};text-transform:uppercase;">
+            ${escapeHtml(o.textileClassification)}
+          </div>
+          <div style="font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;">${escapeHtml(o.name)}</div>
+          <div style="font-size:0.76rem;color:#5c6860;">${escapeHtml(o.originRegion)} · ${escapeHtml(o.province)}</div>
+          <div class="swatch-row">
+            <span class="swatch-dot" style="background:${o.palette.primary}"></span>
+            <span class="swatch-dot" style="background:${o.palette.secondary}"></span>
+            <span class="swatch-dot" style="background:${o.palette.accent}"></span>
+            <span class="swatch-dot" style="background:${o.palette.trim}"></span>
+          </div>
+          <p style="margin:4px 0 0;font-size:0.77rem;color:#414d46;line-height:1.5;">${escapeHtml(o.culturalMeaning)}</p>
+        </button>
+      `).join('');
+    }
+
+    function renderTeleportList() {
+      const q = (document.getElementById('teleport-search').value || '').toLowerCase();
+      const isl = document.getElementById('teleport-island').value;
+      const filtered = houses.filter((h) => {
+        if (isl !== 'all' && h.island !== isl) return false;
+        if (q && !`${h.houseName} ${h.province} ${h.culturalCommunity} ${h.localName}`.toLowerCase().includes(q)) return false;
+        return true;
+      });
+      document.getElementById('teleport-grid').innerHTML = filtered.map((h) => `
+        <button type="button" class="teleport-item" data-teleport-house="${escapeHtml(h.id)}">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:#9C7A4C;">${escapeHtml(h.province)}</div>
+          <div style="font-weight:600;font-size:0.9rem;margin:2px 0;">${escapeHtml(h.houseName)}</div>
+          <div style="font-size:0.74rem;color:#5c6860;">${escapeHtml(h.culturalCommunity)}</div>
+        </button>
+      `).join('');
+    }
+
+    async function boot() {
+      const [hList, tData] = await Promise.all([
+        loadHouses(),
+        fetch('./data/textiles.json').then((r) => r.json())
+      ]);
+      houses = hList;
+      textiles = tData;
+
+      world = new WorldManager({
+        canvas: document.getElementById('world-canvas'),
+        joystickBase: document.getElementById('mobile-joystick-base'),
+        joystickKnob: document.getElementById('mobile-joystick-knob'),
+        houses,
+        textiles,
+        callbacks: {
+          onLoading: (isLoading, name) => {
+            loadingTitle.textContent = isLoading ? `Memasuki ${name}...` : '';
+            loadingEl.hidden = !isLoading;
+          },
+          onLocationChange: ({ mode, house, room, biome, mission }) => {
+            hudProvince.textContent = mode === 'hub' ? 'Nusantara · 38 Provinsi' : `${house.island} · ${house.province}`;
+            hudHouseName.textContent = mode === 'hub' ? 'The Living Archipelago Hub' : house.houseName;
+            hudRoomName.textContent = room;
+            hudBiomeName.textContent = biome;
+            renderMission(mission);
+            btnRoof.classList.remove('is-active');
+            drawer.hidden = true;
+            window.dispatchEvent(new CustomEvent('nular:world-context', { detail: world.getContextSnapshot() }));
+          },
+          onRoomChange: ({ room, isInside, mission }) => {
+            hudRoomName.textContent = room;
+            btnRoof.classList.toggle('is-active', isInside || world.manualRoofCutaway);
+            renderMission(mission);
+            window.dispatchEvent(new CustomEvent('nular:world-context', { detail: world.getContextSnapshot() }));
+          },
+          onRoofToggle: (active) => {
+            btnRoof.classList.toggle('is-active', active);
+          },
+          onNearestInteractable: (item) => {
+            if (!item) { interactPrompt.hidden = true; return; }
+            interactLabel.textContent = item.label;
+            interactPrompt.hidden = false;
+          },
+          onInteract: (item, mission) => {
+            if (mission) renderMission(mission);
+            if (item.kind === 'open-atlas') {
+              renderTeleportList();
+              teleportModal.hidden = false;
+            } else if (item.kind === 'island-portal') {
+              document.getElementById('teleport-island').value = item.payload.id;
+              renderTeleportList();
+              teleportModal.hidden = false;
+            } else if (item.kind === 'component') {
+              const hs = item.payload;
+              openDrawer(
+                `Anatomi Arsitektur · ${world.activeHouse?.houseName || ''}`,
+                hs.title,
+                `
+                  <p style="margin:0 0 12px;"><strong>Nama Lokal:</strong> ${escapeHtml(hs.localName)}</p>
+                  <p style="margin:0 0 12px;"><strong>Konstruksi &amp; Material:</strong><br/>${escapeHtml(hs.constructionAndMaterial)}</p>
+                  <p style="margin:0 0 12px;"><strong>Fungsi Struktural:</strong><br/>${escapeHtml(hs.practicalFunction)}</p>
+                  <p style="margin:0 0 14px;"><strong>Makna Budaya:</strong><br/>${escapeHtml(hs.culturalMeaning)}</p>
+                  <button type="button" id="ask-guide-about-comp" style="background:#9C7A4C;color:#fff;border:none;padding:9px 14px;cursor:pointer;font-weight:600;border-radius:3px;">Tanyakan pada Pemandu AI</button>
+                `
+              );
+              window.dispatchEvent(new CustomEvent('nular:component-inspected', { detail: { house: world.activeHouse, component: hs } }));
+              document.getElementById('ask-guide-about-comp')?.addEventListener('click', () => {
+                window.dispatchEvent(new CustomEvent('nular:ask-ai-guide', { detail: `Jelaskan tentang ${hs.title} pada ${world.activeHouse?.houseName}.` }));
+              });
+            } else if (item.kind === 'article') {
+              const h = item.payload;
+              openDrawer(
+                `Monografi Budaya · ${h.province}`,
+                h.houseName,
+                `
+                  <p style="margin:0 0 12px;">${escapeHtml(h.introduction)}</p>
+                  <p style="margin:0 0 12px;"><strong>Komunitas:</strong> ${escapeHtml(h.culturalCommunity)}</p>
+                  <p style="margin:0 0 12px;"><strong>Sistem Struktur:</strong> ${escapeHtml(h.structuralSystem)}</p>
+                  <p style="margin:0 0 14px;"><strong>Tata Ruang Interior:</strong> ${escapeHtml(h.interiorArrangement || h.spatialFunctions)}</p>
+                  <a href="house.html?id=${encodeURIComponent(h.id)}" style="display:inline-block;background:#1A3329;color:#FAF7F2;padding:9px 14px;text-decoration:none;font-weight:600;border-radius:3px;">Buka Artikel Lengkap 10 Bagian</a>
+                `
+              );
+            }
+          },
+          onToggleMenu: () => {
+            if (!wardrobeModal.hidden) wardrobeModal.hidden = true;
+            else if (!teleportModal.hidden) teleportModal.hidden = true;
+            else if (!drawer.hidden) drawer.hidden = true;
+            else { renderTeleportList(); teleportModal.hidden = false; }
+          }
+        }
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const initialHouse = params.get('house') || null;
+      await world.init(initialHouse);
+      loadingEl.hidden = true;
+      window.__NULAR_WORLD__ = world;
+
+      // Dynamically load Phase 5 AI Tour Guide if present
+      import('./js/ai-guide/TourGuideUI.js')
+        .then(({ mountTourGuide }) => mountTourGuide({ mountEl: document.getElementById('ai-guide-mount'), world, houses }))
+        .catch(() => {
+          document.getElementById('btn-ai-guide')?.addEventListener('click', () => {
+            openDrawer('Pemandu Tur AI', 'Modul Pemandu Tur AI', '<p>Modul Pemandu Tur AI sedang dimuat pada Fase 5.</p>');
+          });
+        });
+    }
+
+    // Wire UI Events
+    document.getElementById('btn-open-wardrobe').addEventListener('click', () => { renderWardrobe(); wardrobeModal.hidden = false; });
+    document.getElementById('btn-open-teleport').addEventListener('click', () => { renderTeleportList(); teleportModal.hidden = false; });
+    document.getElementById('btn-toggle-roof').addEventListener('click', () => {
+      const active = world?.toggleRoofCutaway();
+      btnRoof.classList.toggle('is-active', Boolean(active));
+    });
+    btnAudio.addEventListener('click', () => {
+      const on = world?.environment?.toggleAudio();
+      btnAudio.querySelector('span').textContent = on ? 'volume_up' : 'volume_off';
+      btnAudio.classList.toggle('is-active', Boolean(on));
+    });
+    document.getElementById('btn-go-hub').addEventListener('click', () => world?.enterHub());
+    document.getElementById('drawer-close').addEventListener('click', () => { drawer.hidden = true; });
+    interactPrompt.addEventListener('click', () => world?.input?.triggerAction('interact'));
+
+    document.getElementById('mobile-btn-interact').addEventListener('click', () => world?.input?.triggerAction('interact'));
+    document.getElementById('mobile-btn-jump').addEventListener('click', () => world?.input?.triggerAction('jump'));
+    document.getElementById('mobile-btn-sprint').addEventListener('click', (e) => {
+      if (!world) return;
+      world.input.sprintToggle = !world.input.sprintToggle;
+      e.currentTarget.classList.toggle('is-active', world.input.sprintToggle);
+    });
+
+    document.querySelectorAll('[data-close-modal]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.getElementById(btn.getAttribute('data-close-modal')).hidden = true;
+      });
+    });
+
+    document.getElementById('outfit-grid').addEventListener('click', async (e) => {
+      const card = e.target.closest('[data-select-outfit]');
+      if (!card || !world) return;
+      await world.switchAvatar(card.getAttribute('data-select-outfit'));
+      renderWardrobe();
+      wardrobeModal.hidden = true;
+    });
+
+    document.getElementById('teleport-search').addEventListener('input', renderTeleportList);
+    document.getElementById('teleport-island').addEventListener('change', renderTeleportList);
+    document.getElementById('teleport-grid').addEventListener('click', async (e) => {
+      const item = e.target.closest('[data-teleport-house]');
+      if (!item || !world) return;
+      teleportModal.hidden = true;
+      await world.enterHouse(item.getAttribute('data-teleport-house'));
+    });
+
+    boot().catch((err) => {
+      loadingTitle.textContent = 'Gagal Memuat Dunia 3D';
+      document.getElementById('loading-sub').textContent = err.message;
+    });
+  </script>
+</body>
+</html>
