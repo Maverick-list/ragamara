@@ -355,12 +355,20 @@ textarea:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-xs);
   background: var(--bg-paper);
   color: var(--ink-primary);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.mobile-menu-btn:focus-visible {
+  outline: 2px solid var(--bronze);
+  outline-offset: 2px;
 }
 
 @media (min-width: 960px) {
@@ -1114,12 +1122,34 @@ textarea:focus-visible {
   transition: transform 0.18s ease, background-color 0.18s ease, opacity 0.2s ease;
 }
 
+/* Invisible ergonomic touch hit expander ensuring >= 44x44px touch bounding box */
+.hotspot-pin::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 44px;
+  min-height: 44px;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  pointer-events: auto;
+}
+
 .hotspot-pin:hover,
 .hotspot-pin.is-selected {
   background: var(--bronze);
   border-color: #FAF7F2;
   transform: translate(-50%, -50%) scale(1.06);
   z-index: 14;
+}
+
+.hotspot-pin:focus-visible {
+  outline: 2px solid #FAF7F2;
+  outline-offset: 3px;
+  background: var(--bronze);
+  z-index: 15;
 }
 
 .hotspot-pin__dot {
@@ -1150,6 +1180,10 @@ textarea:focus-visible {
   }
   .hotspot-pin > span:not(.hotspot-pin__dot) {
     display: none;
+  }
+  .viewer-btn {
+    min-height: 36px;
+    padding: 6px 9px;
   }
 }
 
