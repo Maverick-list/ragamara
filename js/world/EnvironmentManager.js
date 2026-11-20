@@ -26,9 +26,14 @@ export class EnvironmentManager {
     this.audioCtx = null;
     this.ambientGain = null;
     this.audioMuted = true;
+    this.windTrees = [];
+    this.waterMesh = null;
+    this._envTime = 0;
   }
 
   buildRegionEnvironment(islandKey = 'Hub') {
+    this.windTrees = [];
+    this.waterMesh = null;
     // Clear previous environment cleanly
     while (this.envGroup.children.length > 0) {
       const child = this.envGroup.children[0];
@@ -87,8 +92,22 @@ export class EnvironmentManager {
       canopy.position.y = h + 0.9;
       canopy.castShadow = true;
       tree.add(canopy);
+      tree.userData.phase = i * 0.65;
+      this.windTrees.push(tree);
 
       this.envGroup.add(tree);
+    }
+
+    // Regional coastal/river water band for riverine & maritime regions
+    if (['Kalimantan', 'Maluku', 'Sulawesi', 'Hub'].includes(islandKey)) {
+      const water = new THREE.Mesh(
+        new THREE.RingGeometry(36, 46, 48),
+        new THREE.MeshStandardMaterial({ color: 0x3b7a82, roughness: 0.22, metalness: 0.35, transparent: true, opacity: 0.88 })
+      );
+      water.rotation.x = -Math.PI / 2;
+      water.position.y = 0.02;
+      this.envGroup.add(water);
+      this.waterMesh = water;
     }
 
     // Subtle stepping stones along +Z entrance axis
@@ -100,6 +119,16 @@ export class EnvironmentManager {
     }
 
     return biome;
+  }
+
+  update(dt) {
+    this._envTime += dt;
+    for (const tree of this.windTrees) {
+      tree.rotation.z = Math.sin(this._envTime * 1.15 + (tree.userData.phase || 0)) * 0.022;
+    }
+    if (this.waterMesh) {
+      this.waterMesh.position.y = 0.015 + Math.sin(this._envTime * 1.4) * 0.015;
+    }
   }
 
   toggleAudio() {

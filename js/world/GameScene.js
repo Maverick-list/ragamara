@@ -71,6 +71,34 @@ export class GameScene {
     this.sunLight.intensity = sunIntensity;
   }
 
+  setQualityProfile(profile = 'auto') {
+    let resolved = profile;
+    if (profile === 'auto') {
+      const cores = navigator.hardwareConcurrency || 4;
+      const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent || '');
+      resolved = isMobile || cores <= 2 ? 'low' : (cores >= 8 ? 'high' : 'medium');
+    }
+    const cfg = {
+      low: { dpr: 1, shadows: false, shadowSize: 512, exposure: 1.05 },
+      medium: { dpr: Math.min(window.devicePixelRatio || 1, 1.5), shadows: true, shadowSize: 1024, exposure: 1.08 },
+      high: { dpr: Math.min(window.devicePixelRatio || 1, 2), shadows: true, shadowSize: 1024, exposure: 1.1 },
+      ultra: { dpr: Math.min(window.devicePixelRatio || 1, 2), shadows: true, shadowSize: 2048, exposure: 1.12 }
+    }[resolved] || { dpr: 1.5, shadows: true, shadowSize: 1024, exposure: 1.08 };
+
+    this.renderer.setPixelRatio(cfg.dpr);
+    this.renderer.shadowMap.enabled = cfg.shadows;
+    this.sunLight.castShadow = cfg.shadows;
+    this.renderer.toneMappingExposure = cfg.exposure;
+    if (this.sunLight.shadow.mapSize.width !== cfg.shadowSize) {
+      this.sunLight.shadow.mapSize.set(cfg.shadowSize, cfg.shadowSize);
+      if (this.sunLight.shadow.map) {
+        this.sunLight.shadow.map.dispose();
+        this.sunLight.shadow.map = null;
+      }
+    }
+    return resolved;
+  }
+
   render() {
     this.renderer.render(this.scene, this.camera);
   }

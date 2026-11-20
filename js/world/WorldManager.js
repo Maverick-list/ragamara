@@ -44,8 +44,13 @@ export class WorldManager {
   }
 
   async init(initialHouseId = null) {
+    this.applySavedSettings();
     const savedAvatar = this.exploration.getSelectedAvatar();
     await this.character.loadAvatar(savedAvatar);
+    try {
+      const custom = JSON.parse(localStorage.getItem('nular_avatar_custom_v1') || 'null');
+      if (custom) this.character.setCustomization(custom);
+    } catch {}
 
     if (initialHouseId) {
       const target = this.houses.find((h) => h.id === initialHouseId);
@@ -121,6 +126,33 @@ export class WorldManager {
     return res;
   }
 
+  applySavedSettings() {
+    try {
+      const s = JSON.parse(localStorage.getItem('nular_world_settings_v1') || '{}');
+      this.cameraCtrl.applySettings(s);
+      if (s.qualityProfile) this.gameScene.setQualityProfile(s.qualityProfile);
+      else this.gameScene.setQualityProfile('auto');
+      this.character.setVisible(this.cameraCtrl.mode !== 'first-person' || this.cameraCtrl.showBodyFirstPerson);
+    } catch {}
+  }
+
+  setCameraMode(mode) {
+    this.cameraCtrl.setMode(mode, this.player.position);
+    this.character.setVisible(mode !== 'first-person' || this.cameraCtrl.showBodyFirstPerson);
+    try {
+      const s = JSON.parse(localStorage.getItem('nular_world_settings_v1') || '{}');
+      localStorage.setItem('nular_world_settings_v1', JSON.stringify({ ...s, cameraMode: mode }));
+    } catch {}
+    this.callbacks.onCameraModeChange?.(mode);
+    return mode;
+  }
+
+  cycleCameraMode() {
+    const order = ['third-person', 'first-person', 'free-explore'];
+    const idx = order.indexOf(this.cameraCtrl.mode);
+    return this.setCameraMode(order[(idx + 1) % order.length]);
+  }
+
   toggleRoofCutaway() {
     this.manualRoofCutaway = !this.manualRoofCutaway;
     return this.manualRoofCutaway;
@@ -151,13 +183,18 @@ export class WorldManager {
       this.callbacks.onRoofToggle?.(this.manualRoofCutaway);
     }
 
+    if (this.input.consumeAction('cameraCycle')) {
+      this.cycleCameraMode();
+    }
+
     if (this.input.consumeAction('menu')) {
       this.callbacks.onToggleMenu?.();
     }
 
     const { currentZone } = this.player.update(dt, this.input, this.cameraCtrl.yaw);
     const isInside = Boolean(currentZone);
-    this.cameraCtrl.update(dt, this.player.position, this.input, isInside);
+    this.cameraCtrl.update(dt, this.player.position, this.input, isInside, this.collision.walls);
+    this.environment.update(dt);
 
     // Automatically lift roof cutaway smoothly when inside interior OR manually toggled!
     this.streaming.updateRoofCutaway(dt, this.manualRoofCutaway || isInside);

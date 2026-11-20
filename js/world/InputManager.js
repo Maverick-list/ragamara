@@ -11,7 +11,7 @@ export class InputManager {
     this.sprintToggle = false;
     this.lookDelta = { x: 0, y: 0 };
     this.zoomDelta = 0;
-    this.actions = { jump: false, interact: false, roofToggle: false, menu: false };
+    this.actions = { jump: false, interact: false, roofToggle: false, cameraCycle: false, menu: false };
     this.dragging = false;
     this.lastPointer = { x: 0, y: 0 };
     this.enabled = true;
@@ -32,6 +32,7 @@ export class InputManager {
       if (code === 'Space') { this.actions.jump = true; e.preventDefault(); }
       if (code === 'KeyE') this.actions.interact = true;
       if (code === 'KeyR') this.actions.roofToggle = true;
+      if (code === 'KeyC') this.actions.cameraCycle = true;
       if (code === 'Escape') this.actions.menu = true;
     };
     this._onKeyUp = (e) => {
