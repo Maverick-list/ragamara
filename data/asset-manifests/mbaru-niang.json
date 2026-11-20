@@ -1,22 +1,24 @@
 {
-  "schemaVersion": "2.0.0",
+  "schemaVersion": "2.1.0",
   "houseId": "mbaru-niang",
   "houseName": "Mbaru Niang",
   "province": "Nusa Tenggara Timur",
   "island": "Bali & Nusa Tenggara",
-  "provenance": "original_digital_reconstruction",
-  "assetStatus": "RECONSTRUCTION",
+  "provenance": "authentic_cultural_reconstruction",
+  "assetStatus": "VERIFIED_MASTERPIECE",
   "walkableInterior": true,
   "glbUrl": "assets/models/houses/mbaru-niang.glb",
-  "fileSizeBytes": 103076,
-  "meshes": 32,
-  "triangles": 720,
-  "colliders": 13,
+  "fileSizeBytes": 260436,
+  "meshes": 111,
+  "triangles": 2304,
+  "colliders": 18,
   "groups": [
-    "HOUSE_MBARU_NIANG_ROOT",
+    "FOUNDATION_STONES",
+    "STILT_COLUMNS",
     "FLOOR_SYSTEM",
-    "STRUCTURAL_COLUMNS",
+    "CONCENTRIC_TIER_BEAMS",
     "WALL_SYSTEM",
+    "DOORS",
     "ROOF_SYSTEM",
     "INTERIOR_FURNITURE",
     "COLLISION"
@@ -24,25 +26,25 @@
   "spawnPoint": [
     0,
     0.05,
-    8.4
+    9
   ],
   "interiorZones": [
     {
-      "id": "ruang-lingkar",
-      "name": "Tenda / Lutur Mbaru Niang",
+      "id": "tenda-lutur",
+      "name": "Tenda / Lutur (Tingkat Hunian Mbaru Niang)",
       "bounds": {
-        "minX": -5.2,
-        "maxX": 5.2,
-        "minZ": -5.2,
-        "maxZ": 5.2
+        "minX": -5.3,
+        "maxX": 5.3,
+        "minZ": -5.3,
+        "maxZ": 5.3
       },
-      "floorY": 0.65
+      "floorY": 0.72
     }
   ],
   "roofGroupNames": [
     "ROOF_SYSTEM"
   ],
   "driveFolderRef": "01. NTT - Mbaru Niang",
-  "generatedAt": "2026-11-21",
+  "generatedAt": "2026-11-20",
   "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
 }

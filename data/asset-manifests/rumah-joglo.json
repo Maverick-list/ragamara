@@ -1,21 +1,20 @@
 {
-  "schemaVersion": "2.0.0",
+  "schemaVersion": "2.1.0",
   "houseId": "rumah-joglo",
   "houseName": "Rumah Joglo",
   "province": "Jawa Tengah",
   "island": "Java",
-  "provenance": "original_digital_reconstruction",
-  "assetStatus": "RECONSTRUCTION",
+  "provenance": "authentic_cultural_reconstruction",
+  "assetStatus": "VERIFIED_MASTERPIECE",
   "walkableInterior": true,
   "glbUrl": "assets/models/houses/rumah-joglo.glb",
-  "fileSizeBytes": 178444,
-  "meshes": 75,
-  "triangles": 1212,
-  "colliders": 13,
+  "fileSizeBytes": 223188,
+  "meshes": 112,
+  "triangles": 1656,
+  "colliders": 25,
   "groups": [
-    "HOUSE_RUMAH_JOGLO_ROOT",
     "FLOOR_SYSTEM",
-    "UMPAK",
+    "UMPAK_STONES",
     "SOKO_GURU",
     "TUMPANG_SARI",
     "WALL_SYSTEM",
@@ -28,30 +27,30 @@
   "spawnPoint": [
     0,
     0.05,
-    7.2
+    8.2
   ],
   "interiorZones": [
     {
       "id": "pendopo",
-      "name": "Pendopo (Zona Publik)",
+      "name": "Pendopo Joglo (Zona Publik)",
       "bounds": {
-        "minX": -4.8,
-        "maxX": 4.8,
+        "minX": -5,
+        "maxX": 5,
         "minZ": -1.1,
-        "maxZ": 5.2
+        "maxZ": 5.6
       },
-      "floorY": 0.48
+      "floorY": 0.52
     },
     {
       "id": "ndalem",
-      "name": "Ndalem Ageng & Senthong (Zona Privat)",
+      "name": "Ndalem Ageng & Krobongan (Zona Privat)",
       "bounds": {
-        "minX": -4.6,
-        "maxX": 4.6,
-        "minZ": -4.9,
+        "minX": -4.8,
+        "maxX": 4.8,
+        "minZ": -5.2,
         "maxZ": -1.2
       },
-      "floorY": 0.48
+      "floorY": 0.52
     }
   ],
   "roofGroupNames": [
@@ -59,6 +58,6 @@
     "ROOF_PENANGGAP"
   ],
   "driveFolderRef": "03. Jateng - Rumah Joglo",
-  "generatedAt": "2026-11-21",
+  "generatedAt": "2026-11-20",
   "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
 }

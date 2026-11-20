@@ -1,51 +1,51 @@
 {
-  "schemaVersion": "2.0.0",
+  "schemaVersion": "2.1.0",
   "houseId": "tongkonan-toraja",
   "houseName": "Tongkonan",
   "province": "Sulawesi Selatan",
   "island": "Sulawesi",
-  "provenance": "original_digital_reconstruction",
-  "assetStatus": "RECONSTRUCTION",
+  "provenance": "authentic_cultural_reconstruction",
+  "assetStatus": "VERIFIED_MASTERPIECE",
   "walkableInterior": true,
   "glbUrl": "assets/models/houses/tongkonan-toraja.glb",
-  "fileSizeBytes": 187616,
-  "meshes": 54,
-  "triangles": 2776,
-  "colliders": 15,
+  "fileSizeBytes": 220432,
+  "meshes": 81,
+  "triangles": 4148,
+  "colliders": 16,
   "groups": [
-    "HOUSE_TONGKONAN_TORAJA_ROOT",
     "FOUNDATION_STONES",
     "STILT_COLUMNS",
     "FLOOR_SYSTEM",
     "ENTRANCE_STAIRS",
     "WALL_SYSTEM",
     "DOORS",
+    "BUFFALO_HORNS_RACK",
     "ROOF_SYSTEM",
     "INTERIOR_FURNITURE",
     "COLLISION"
   ],
   "spawnPoint": [
-    0,
+    6.8,
     0.05,
-    9.399999999999999
+    0.4
   ],
   "interiorZones": [
     {
-      "id": "ruang-utama",
-      "name": "Kale Banua (Tangdo–Sali–Sumbung)",
+      "id": "kale-banua",
+      "name": "Kale Banua (Tangdo, Sali, Sumbung)",
       "bounds": {
-        "minX": -3,
-        "maxX": 3,
-        "minZ": -4.3999999999999995,
-        "maxZ": 4.3999999999999995
+        "minX": -3.1999999999999997,
+        "maxX": 3.1999999999999997,
+        "minZ": -5,
+        "maxZ": 5
       },
-      "floorY": 1.65
+      "floorY": 1.85
     }
   ],
   "roofGroupNames": [
     "ROOF_SYSTEM"
   ],
   "driveFolderRef": "26. Sulsel - Tongkonan Toraja",
-  "generatedAt": "2026-11-21",
+  "generatedAt": "2026-11-20",
   "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
 }
