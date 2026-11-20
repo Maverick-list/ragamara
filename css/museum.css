@@ -1486,6 +1486,308 @@ textarea:focus-visible {
 }
 
 /* ============================================================================
+   PHASE 1 — 38-PROVINCE GEOJSON LIVING ATLAS & 10-SECTION RESEARCH ARTICLES
+   ============================================================================ */
+.atlas-kpi-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.atlas-kpi {
+  background: var(--bg-paper);
+  border: 1px solid var(--border-hairline);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.atlas-kpi__val {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--bg-forest);
+  line-height: 1.1;
+}
+
+.atlas-kpi__lbl {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+
+.atlas-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.atlas-search-wrap {
+  flex: 1 1 280px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-paper);
+  border: 1px solid var(--border-strong);
+  padding: 0 12px;
+  min-height: 44px;
+}
+
+.atlas-search-wrap input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: var(--ink-primary);
+  padding: 10px 0;
+}
+
+.atlas-search-wrap input:focus {
+  outline: none;
+}
+
+.atlas-select {
+  background: var(--bg-paper);
+  border: 1px solid var(--border-strong);
+  color: var(--ink-primary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 10px 14px;
+  min-height: 44px;
+}
+
+.atlas-island-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.atlas-island-btn {
+  background: rgba(246, 242, 234, 0.08);
+  color: var(--ink-on-dark-muted);
+  border: 1px solid rgba(246, 242, 234, 0.16);
+  padding: 6px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  border-radius: var(--radius-xs);
+  min-height: 32px;
+  transition: background-color 0.16s, color 0.16s, border-color 0.16s;
+}
+
+.atlas-island-btn:hover,
+.atlas-island-btn.is-active {
+  background: var(--bronze);
+  color: #FFFDF9;
+  border-color: var(--bronze-light);
+}
+
+.atlas-svg-stage {
+  width: 100%;
+  border: 1px solid rgba(246, 242, 234, 0.12);
+  background: radial-gradient(ellipse at 50% 42%, #182b23 0%, #0d1813 100%);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+}
+
+.atlas-geojson-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  min-height: 260px;
+}
+
+.atlas-prov {
+  stroke: rgba(246, 242, 234, 0.32);
+  stroke-width: 0.65;
+  cursor: pointer;
+  transition: fill 0.18s ease, stroke 0.18s ease, opacity 0.2s ease;
+}
+
+.atlas-prov--3d {
+  fill: #9c7a4c;
+}
+
+.atlas-prov--documented {
+  fill: #3e6b58;
+}
+
+.atlas-prov--empty {
+  fill: #24362e;
+}
+
+.atlas-prov:hover,
+.atlas-prov:focus-visible {
+  fill: #c6a274;
+  stroke: #FAF7F2;
+  stroke-width: 1.25;
+  outline: none;
+}
+
+.atlas-prov.is-selected {
+  fill: #d4ae7a;
+  stroke: #FFFDF9;
+  stroke-width: 1.5;
+}
+
+.atlas-prov.is-dimmed {
+  opacity: 0.25;
+}
+
+.atlas-marker__dot {
+  fill: #FAF7F2;
+  stroke: #13211b;
+  stroke-width: 1;
+}
+
+.atlas-marker.is-3d .atlas-marker__dot {
+  fill: #F5C77A;
+}
+
+.atlas-marker__pulse {
+  fill: none;
+  stroke: #F5C77A;
+  stroke-width: 1.2;
+  opacity: 0.75;
+}
+
+.atlas-prov-label {
+  fill: #FAF7F2;
+  font-family: var(--font-mono);
+  font-size: 6px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: #0d1813;
+  stroke-width: 2px;
+}
+
+.atlas-region-watermark {
+  fill: rgba(246, 242, 234, 0.28);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  pointer-events: none;
+}
+
+.atlas-dossier-card {
+  background: var(--bg-paper);
+  border: 1px solid var(--border-hairline);
+  overflow: hidden;
+}
+
+.atlas-dossier-card__img {
+  width: 100%;
+  height: 165px;
+  object-fit: cover;
+  display: block;
+}
+
+.atlas-dossier-card__body {
+  padding: 16px;
+}
+
+.atlas-house-mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.atlas-house-mini-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-ivory);
+  border: 1px solid var(--border-hairline);
+  transition: border-color 0.16s, background-color 0.16s;
+}
+
+.atlas-house-mini-item:hover {
+  border-color: var(--bronze);
+  background: var(--bg-paper);
+}
+
+.atlas-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.atlas-dir-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 8px;
+}
+
+.atlas-dir-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 11px;
+  min-height: 40px;
+  background: var(--bg-paper);
+  border: 1px solid var(--border-hairline);
+  color: var(--ink-primary);
+  font-size: 0.8rem;
+  text-align: left;
+  transition: border-color 0.16s, background-color 0.16s;
+}
+
+.atlas-dir-chip:hover,
+.atlas-dir-chip.is-selected {
+  border-color: var(--bronze);
+  background: var(--bg-sandstone);
+}
+
+.article-10-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 900px) {
+  .article-10-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.article-chapter {
+  background: var(--bg-paper);
+  border: 1px solid var(--border-hairline);
+  padding: 22px 24px;
+}
+
+.article-chapter__num {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 6px;
+}
+
+.article-chapter__title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  margin: 0 0 10px;
+  color: var(--ink-primary);
+}
+
+.article-chapter__body {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ink-secondary);
+  margin: 0;
+}
+
+/* ============================================================================
    REDUCED MOTION SUPPORT
    ============================================================================ */
 @media (prefers-reduced-motion: reduce) {

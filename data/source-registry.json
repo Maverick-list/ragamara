@@ -1,0 +1,1103 @@
+{
+  "schemaVersion": "3.0.0",
+  "generatedAt": "2026-11-21",
+  "totalHouses": 42,
+  "provincesCovered": 38,
+  "totalProvinces": 38,
+  "cartographySource": {
+    "file": "data/indonesia-38-provinces.geojson",
+    "license": "MIT License",
+    "repository": "denyherianto/indonesia-geojson-topojson-maps-with-38-provinces",
+    "note": "Simplified administrative boundaries for all 38 Indonesian provinces including 2022 Papua divisions."
+  },
+  "textileRegistry": "data/textiles.json",
+  "entries": [
+    {
+      "id": "rumah-gadang",
+      "houseName": "Rumah Gadang",
+      "province": "Sumatera Barat",
+      "assetProvenance": "original_digital_reconstruction",
+      "driveFolderRef": "13. Sumbar - Rumah Gadang",
+      "sources": [
+        {
+          "title": "DAPOBUD — Data Pokok Kebudayaan: Rumah Gadang (REK/WBTB/2013/01/00006)",
+          "publisher": "Kementerian Kebudayaan Republik Indonesia",
+          "url": "https://dapobud.kemenbud.go.id/detail/?id=aea96289-9a71-468d-bebb-324f25a556b3",
+          "note": "Rujukan data resmi pemerintah untuk konteks tradisional dan pengetahuan pembangunan Rumah Gadang."
+        },
+        {
+          "title": "The Living House: An Anthropology of Architecture in South-East Asia",
+          "publisher": "Roxana Waterson, Oxford University Press (1990)",
+          "url": "https://id.wikipedia.org/wiki/Rumah_Gadang",
+          "note": "Kajian akademik antropologi arsitektur vernakular Minangkabau dan sistem struktural panggung Asia Tenggara."
+        },
+        {
+          "title": "Katalog Referensi Arsitektur Nusantara — 13. Sumbar - Rumah Gadang",
+          "author": "Rujukan sekunder: Indonesia Travel — Rumah Gadang; Kementerian Pariwisata — Desa Saribu Gonjong.",
+          "type": "Arsip Referensi Visual & Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-gadang.jpg",
+        "fileSizeBytes": 265422,
+        "wikimediaTitle": "File:Rumah Gadang Ranah Pantai Cermin 02.jpg",
+        "artist": "Zhilal Darma",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Gadang_Ranah_Pantai_Cermin_02.jpg",
+        "originalWidth": 6000,
+        "originalHeight": 4000
+      }
+    },
+    {
+      "id": "tongkonan-toraja",
+      "houseName": "Tongkonan",
+      "province": "Sulawesi Selatan",
+      "assetProvenance": "original_digital_reconstruction",
+      "driveFolderRef": "26. Sulsel - Tongkonan Toraja",
+      "sources": [
+        {
+          "title": "Indonesian Houses: Tradition and Transformation in Vernacular Architecture",
+          "publisher": "Reimar Schefold, Gaudenz Domenig & Peter Nas, KITLV Press (2003)",
+          "url": "https://id.wikipedia.org/wiki/Tongkonan",
+          "note": "Dokumentasi tipologi struktural Tongkonan dan orientasi kosmologis pemukiman Toraja."
+        },
+        {
+          "title": "Kete' Kesu' — Tentative List UNESCO World Heritage (Tana Toraja Traditional Settlement)",
+          "publisher": "UNESCO World Heritage Centre / Pemerintah Republik Indonesia",
+          "url": "https://whc.unesco.org/en/tentativelists/5462/",
+          "note": "Rujukan pelestarian kompleks Tongkonan dan Alang Sura' sebagai warisan arsitektur benda."
+        },
+        {
+          "title": "Katalog Referensi Arsitektur Nusantara — 26. Sulsel - Tongkonan Toraja",
+          "author": "Rujukan sekunder: Weni Rahayu / Badan Bahasa — Tongkonan (2017); Museum Nasional Indonesia — Koleksi Rumah Adat Tongkonan No. 16742.",
+          "type": "Arsip Referensi Visual & Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/tongkonan-toraja.jpg",
+        "fileSizeBytes": 364230,
+        "wikimediaTitle": "File:Kete' Kesu' Toraja.jpg",
+        "artist": "Ansensius",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Kete%27_Kesu%27_Toraja.jpg",
+        "originalWidth": 5184,
+        "originalHeight": 3361
+      }
+    },
+    {
+      "id": "rumah-joglo",
+      "houseName": "Rumah Joglo",
+      "province": "Jawa Tengah",
+      "assetProvenance": "original_digital_reconstruction",
+      "driveFolderRef": "03. Jateng - Rumah Joglo",
+      "sources": [
+        {
+          "title": "Ideas and Forms of Javanese Architecture (Kawruh Kalang)",
+          "publisher": "Josef Prijotomo, Gadjah Mada University Press (1988)",
+          "url": "https://id.wikipedia.org/wiki/Joglo",
+          "note": "Rujukan utama struktur kayu Joglo, Soko Guru, Tumpang Sari, dan sistem proporsi Kawruh Kalang."
+        },
+        {
+          "title": "Indonesian Heritage: Architecture",
+          "publisher": "Gunawan Tjahjono (Ed.), Archipelago Press / Buku Antar Bangsa (1998)",
+          "url": "https://id.wikipedia.org/wiki/Arsitektur_Jawa",
+          "note": "Klasifikasi lima bentuk atap tradisional Jawa dan organisasi spasial Pendopo–Dalem."
+        },
+        {
+          "title": "Katalog Referensi Arsitektur Nusantara — 03. Jateng - Rumah Joglo",
+          "author": "Rujukan sekunder: BPBD Jawa Tengah (2014) — Kearifan lokal bangunan tradisional.",
+          "type": "Arsip Referensi Visual & Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-joglo.jpg",
+        "fileSizeBytes": 412914,
+        "wikimediaTitle": "File:Rumah Joglo Masa Kecil Pak SBY.jpg",
+        "artist": "erdemaju",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Joglo_Masa_Kecil_Pak_SBY.jpg",
+        "originalWidth": 8000,
+        "originalHeight": 6000
+      }
+    },
+    {
+      "id": "honai-papua",
+      "houseName": "Honai",
+      "province": "Papua Pegunungan",
+      "assetProvenance": "original_digital_reconstruction",
+      "driveFolderRef": "34. Papua Pegunungan - Honai Pilamo Hubula",
+      "sources": [
+        {
+          "title": "Indonesian Heritage: Architecture — Highland Dwellings of Papua",
+          "publisher": "Gunawan Tjahjono (Ed.), Archipelago Press (1998)",
+          "url": "https://id.wikipedia.org/wiki/Honai",
+          "note": "Kajian adaptasi termal, bentuk bundar dua tingkat, dan pembagian silimo masyarakat Lembah Baliem."
+        },
+        {
+          "title": "Arsitektur Tradisional Papua (Honai, Ebei, dan Silimo)",
+          "publisher": "Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI",
+          "url": "https://kebudayaan.kemdikbud.go.id/",
+          "note": "Dokumentasi fungsi sosial Pilamo/Honai dan bahan bangunan organik pegunungan tengah Papua."
+        },
+        {
+          "title": "Katalog Referensi Arsitektur Nusantara — 34. Papua Pegunungan - Honai Pilamo Hubula",
+          "author": "Rujukan sekunder: Hasrul & Ikaputra (2023) — Identitas Arsitektur Tradisional Papua, hlm. 221; TMII — Honai dan bangunan Papua.",
+          "type": "Arsip Referensi Visual & Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/honai-papua.jpg",
+        "fileSizeBytes": 332110,
+        "wikimediaTitle": "File:Papua Village on hill.jpg",
+        "artist": "Irfantraveller",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Papua_Village_on_hill.jpg",
+        "originalWidth": 4288,
+        "originalHeight": 2848
+      }
+    },
+    {
+      "id": "rumah-bolon-toba",
+      "houseName": "Rumah Bolon",
+      "province": "Sumatera Utara",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "12. Sumut - Rumah Bolon Batak Toba",
+      "sources": [
+        {
+          "title": "The Living House: An Anthropology of Architecture in South-East Asia",
+          "publisher": "Roxana Waterson, Oxford University Press (1990)",
+          "url": "https://id.wikipedia.org/wiki/Rumah_Bolon",
+          "note": "Kajian kosmologi tiga lapis dan tata ruang Dalihan Na Tolu pada Ruma Batak Toba."
+        },
+        {
+          "title": "Katalog Referensi Arsitektur Nusantara — 12. Sumut - Rumah Bolon Batak Toba",
+          "author": "Rujukan sekunder: Kajian lapangan — Gorga Rumah Bolon Siallagan Samosir; Indonesia Travel — Rumah Bolon.",
+          "type": "Arsip Referensi Visual & Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-bolon-toba.jpg",
+        "fileSizeBytes": 325505,
+        "wikimediaTitle": "File:Rumah Bolon (Batak Traditional House).jpg",
+        "artist": "Roberto Marpaung",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Bolon_(Batak_Traditional_House).jpg",
+        "originalWidth": 6000,
+        "originalHeight": 3368
+      }
+    },
+    {
+      "id": "siwaluh-jabu-karo",
+      "houseName": "Siwaluh Jabu",
+      "province": "Sumatera Utara",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": null,
+      "sources": [
+        {
+          "title": "DAPOBUD — Data Pokok Kebudayaan: Rumah Adat Karo (REK/WBTB/2013/01/00004)",
+          "publisher": "Kementerian Kebudayaan Republik Indonesia",
+          "url": "https://dapobud.kemenbud.go.id/detail/?id=2c8817e3-7755-40c8-93ff-c517f9fb4bdb",
+          "note": "Rujukan arsip nasional mengenai Rumah Adat Karo di Sumatera Utara."
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/siwaluh-jabu-karo.jpg",
+        "fileSizeBytes": 430941,
+        "wikimediaTitle": "File:Batak Karo House at Dokan Village (01).jpg",
+        "artist": "Christian Advs Sltg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Batak_Karo_House_at_Dokan_Village_(01).jpg",
+        "originalWidth": 3753,
+        "originalHeight": 2548
+      }
+    },
+    {
+      "id": "uma-mentawai",
+      "houseName": "Uma Mentawai",
+      "province": "Sumatera Barat",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": null,
+      "sources": [
+        {
+          "title": "Indonesian Houses Vol. 2: Survey of Vernacular Architecture in Western Indonesia",
+          "publisher": "Reimar Schefold, Peter Nas, Gaudenz Domenig & Robert Wessing (Ed.), KITLV Press (2008)",
+          "url": "https://id.wikipedia.org/wiki/Uma_(rumah_adat)",
+          "note": "Dokumentasi arsitektur Uma Siberut dan organisasi sosial klan Mentawai."
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/uma-mentawai.jpg",
+        "fileSizeBytes": 252315,
+        "wikimediaTitle": "File:Traditional Mentawai Uma longhouse.jpg",
+        "artist": "Andrian salis",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Traditional_Mentawai_Uma_longhouse.jpg",
+        "originalWidth": 2560,
+        "originalHeight": 1152
+      }
+    },
+    {
+      "id": "rumah-limasan",
+      "houseName": "Rumah Limasan",
+      "province": "Jawa Tengah",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": null,
+      "sources": [
+        {
+          "title": "Indonesian Heritage: Architecture — Javanese House Typologies",
+          "publisher": "Gunawan Tjahjono (Ed.), Archipelago Press (1998)",
+          "url": "https://id.wikipedia.org/wiki/Rumah_Limasan",
+          "note": "Klasifikasi tipologi atap Limasan dalam tradisi konstruksi kayu Jawa."
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-limasan.jpg",
+        "fileSizeBytes": 223386,
+        "wikimediaTitle": "File:Rumah Limasan Mijosastran (1).jpg",
+        "artist": "Altair Netraphim",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Limasan_Mijosastran_(1).jpg",
+        "originalWidth": 4080,
+        "originalHeight": 2296
+      }
+    },
+    {
+      "id": "rumah-betang",
+      "houseName": "Rumah Betang",
+      "province": "Kalimantan Tengah",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "18. Kalteng - Huma Betang Tumbang Gagu",
+      "sources": [
+        {
+          "title": "DAPOBUD — Data Pokok Kebudayaan: Rumah Panjang Dayak (REK/WBTB/2013/01/00022)",
+          "publisher": "Kementerian Kebudayaan Republik Indonesia",
+          "url": "https://dapobud.kemenbud.go.id/detail/?id=aab38607-c672-41a6-bff8-ddc1e98bca08",
+          "note": "Rujukan arsip nasional mengenai tradisi rumah panjang masyarakat Dayak di Kalimantan."
+        },
+        {
+          "title": "Katalog Referensi Arsitektur Nusantara — 18. Kalteng - Huma Betang Tumbang Gagu",
+          "author": "Rujukan sekunder: Etha Sriputri / BPCB — Arsitektur Betang Tumbang Gagu (2016); Etha Sriputri / Indonesiana — Konstruksi Besi Si Kayu Ulin.",
+          "type": "Arsip Referensi Visual & Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-betang.jpg",
+        "fileSizeBytes": 322980,
+        "wikimediaTitle": "File:Rumah Betang Sei Pasah 180505002.JPG",
+        "artist": "Ezagren (bicara / talk)",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Betang_Sei_Pasah_180505002.JPG",
+        "originalWidth": 6000,
+        "originalHeight": 4000
+      }
+    },
+    {
+      "id": "rumah-lamin",
+      "houseName": "Rumah Lamin",
+      "province": "Kalimantan Timur",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "20. Kaltim - Lamin Adat Pampang",
+      "sources": [
+        {
+          "title": "Arsitektur Tradisional Daerah Kalimantan Timur (Rumah Lamin)",
+          "publisher": "Proyek Inventarisasi dan Dokumentasi Kebudayaan Daerah, Depdikbud / Kemendikbud RI",
+          "url": "https://id.wikipedia.org/wiki/Rumah_Lamin",
+          "note": "Dokumentasi struktur dan ragam hias Lamin Adat Kalimantan Timur."
+        },
+        {
+          "title": "Katalog Referensi Arsitektur Nusantara — 20. Kaltim - Lamin Adat Pampang",
+          "author": "Rujukan sekunder: Tri Agustin Kusumaningrum / Badan Bahasa — Jelajah Arsitektur Lamin Suku Dayak Kenyah (2018); ISI Yogyakarta — Kajian lapangan Lamin Adat Pemung Tawai.",
+          "type": "Arsip Referensi Visual & Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-lamin.jpg",
+        "fileSizeBytes": 502722,
+        "wikimediaTitle": "File:Gambar Dinding Lamin Adat Dayak Kenyah Pampang.JPG",
+        "artist": "Ezagren (bicara / talk)",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Gambar_Dinding_Lamin_Adat_Dayak_Kenyah_Pampang.JPG",
+        "originalWidth": 6000,
+        "originalHeight": 4000
+      }
+    },
+    {
+      "id": "bola-soba-bugis",
+      "houseName": "Saoraja / Bola Soba",
+      "province": "Sulawesi Selatan",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": null,
+      "sources": [
+        {
+          "title": "The Bugis (Architecture & Cosmology of the Bugis House)",
+          "publisher": "Christian Pelras, Blackwell Publishers (1996)",
+          "url": "https://id.wikipedia.org/wiki/Rumah_adat_Bugis",
+          "note": "Kajian mendalam struktur tiga tingkat Rakkeang–Ale Bola–Awa Bola dan tradisi Timpa Laja Bugis."
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/bola-soba-bugis.jpg",
+        "fileSizeBytes": 385017,
+        "wikimediaTitle": "File:Saoraja La Tenri Bali.jpg",
+        "artist": "Iripseudocorus",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Saoraja_La_Tenri_Bali.jpg",
+        "originalWidth": 4160,
+        "originalHeight": 3120
+      }
+    },
+    {
+      "id": "bale-bali",
+      "houseName": "Kompleks Hunian Bali (Bale & Angkul-Angkul)",
+      "province": "Bali",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "Pekarangan Tradisional Bali",
+      "sources": [
+        {
+          "title": "Balinese Traditional Architecture (Asta Kosala Kosali & Tri Angga)",
+          "publisher": "I Made Gelebet et al., Proyek Inventarisasi dan Dokumentasi Kebudayaan Daerah (1986)",
+          "url": "https://id.wikipedia.org/wiki/Arsitektur_Bali",
+          "note": "Rujukan akademik tata ruang pekarangan tradisional Bali dan sistem ukuran sikut undagi."
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/bale-bali.jpg",
+        "fileSizeBytes": 347009,
+        "wikimediaTitle": "File:House and resident in Penglipuran, Bali.jpg",
+        "artist": "Nadiralys",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:House_and_resident_in_Penglipuran,_Bali.jpg",
+        "originalWidth": 5184,
+        "originalHeight": 3456
+      }
+    },
+    {
+      "id": "mbaru-niang",
+      "houseName": "Mbaru Niang",
+      "province": "Nusa Tenggara Timur",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "01. NTT - Mbaru Niang",
+      "sources": [
+        {
+          "title": "UNESCO Asia-Pacific Heritage Awards 2012 — Award of Excellence: Mbaru Niang, Wae Rebo",
+          "publisher": "UNESCO Bangkok",
+          "url": "https://id.wikipedia.org/wiki/Wae_Rebo",
+          "note": "Pengakuan konservasi internasional atas arsitektur lima tingkat Mbaru Niang."
+        },
+        {
+          "title": "Katalog Referensi Arsitektur Nusantara — 01. NTT - Mbaru Niang",
+          "author": "Rujukan sekunder: Pradipto & Tristanto (2021); Umbung dkk. / UM (2021); Dwiputri / Aksen (2023); Kementerian Pariwisata — Rumah Mbaru Niang.",
+          "type": "Arsip Referensi Visual & Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/mbaru-niang.jpg",
+        "fileSizeBytes": 527948,
+        "wikimediaTitle": "File:Rumah Adat Mbaru Niang.jpg",
+        "artist": "AsdarMunandar",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Adat_Mbaru_Niang.jpg",
+        "originalWidth": 5472,
+        "originalHeight": 3648
+      }
+    },
+    {
+      "id": "baileo-maluku",
+      "houseName": "Baileo",
+      "province": "Maluku",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "29. Maluku - Baileo Haria",
+      "sources": [
+        {
+          "title": "Arsitektur Tradisional Daerah Maluku (Rumah Baileo)",
+          "publisher": "Departemen Pendidikan dan Kebudayaan RI / Balai Pelestarian Nilai Budaya Maluku",
+          "url": "https://id.wikipedia.org/wiki/Baileo",
+          "note": "Dokumentasi fungsi balai adat Baileo, Batu Pamali, dan struktur terbuka di Kepulauan Maluku."
+        },
+        {
+          "title": "Katalog Referensi Arsitektur Nusantara — 29. Maluku - Baileo Haria",
+          "author": "Rujukan sekunder: Salhuteru (2015) — Rumah Adat Baileo di Kecamatan Saparua; Data Cagar Budaya — Baileo Haria.",
+          "type": "Arsip Referensi Visual & Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/baileo-maluku.jpg",
+        "fileSizeBytes": 366895,
+        "wikimediaTitle": "File:Baileo Nolloth 02.jpg",
+        "artist": "Zhilal Darma",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Baileo_Nolloth_02.jpg",
+        "originalWidth": 6000,
+        "originalHeight": 4000
+      }
+    },
+    {
+      "id": "bale-tani-sasak",
+      "houseName": "Bale Tani Sasak",
+      "province": "Nusa Tenggara Barat",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "02. NTB - Bale Tani Sasak",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 02. NTB - Bale Tani Sasak",
+          "author": "Saputra dkk. / Undiksha (2024); Lukita dkk. / UK Petra; Nawir dkk. / ZONASI; Kementerian Pariwisata — Desa Wisata Rembitan.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/bale-tani-sasak.jpg",
+        "fileSizeBytes": 79921,
+        "wikimediaTitle": "Drive Reference: 02. NTB - Bale Tani Sasak/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "julang-ngapak",
+      "houseName": "Julang Ngapak",
+      "province": "Jawa Barat",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "04. Jabar - Julang Ngapak",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 04. Jabar - Julang Ngapak",
+          "author": "Permana (2022), UNIKOM — Julang Ngapak Cagak Gunting Papandak; Studi lapangan Rumah Adat Lengkong, UNJ.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/julang-ngapak.jpg",
+        "fileSizeBytes": 76211,
+        "wikimediaTitle": "Drive Reference: 04. Jabar - Julang Ngapak/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "kebaya-betawi",
+      "houseName": "Kebaya Betawi",
+      "province": "DKI Jakarta",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "05. Jakarta - Kebaya Betawi",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 05. Jakarta - Kebaya Betawi",
+          "author": "Kementerian Pariwisata — Rumah Kebaya Betawi.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/kebaya-betawi.jpg",
+        "fileSizeBytes": 86844,
+        "wikimediaTitle": "Drive Reference: 05. Jakarta - Kebaya Betawi/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "sulah-nyanda",
+      "houseName": "Sulah Nyanda",
+      "province": "Banten",
+      "assetProvenance": "illustrative_scheme",
+      "driveFolderRef": "06. Banten - Sulah Nyanda",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 06. Banten - Sulah Nyanda",
+          "author": "Delyuzir (2024) — studi rumah Cibeo dan Keduketug; Kementerian Pariwisata — Sulah Nyanda.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/sulah-nyanda.jpg",
+        "fileSizeBytes": 72634,
+        "wikimediaTitle": "Drive Reference: 06. Banten - Sulah Nyanda/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "nuwo-sesat",
+      "houseName": "Nuwo Sesat",
+      "province": "Lampung",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "07. Lampung - Nuwo Sesat",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 07. Lampung - Nuwo Sesat",
+          "author": "Indonesia Travel — Nuwo Sesat; Badan Bahasa — Mengenal Rancang Bangun Rumah Adat, hlm. 15–16.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/nuwo-sesat.jpg",
+        "fileSizeBytes": 89755,
+        "wikimediaTitle": "Drive Reference: 07. Lampung - Nuwo Sesat/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "rumah-melayu-bangka",
+      "houseName": "Rumah Panggung Melayu Bangka",
+      "province": "Kepulauan Bangka Belitung",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "08. Babel - Rumah Panggung Melayu Bangka",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 08. Babel - Rumah Panggung Melayu Bangka",
+          "author": "Jadesta Kemenparekraf — Rumah Panggung Terentang III; Badan Bahasa — Mengenal Rancang Bangun Rumah Adat, hlm. 11–12.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-melayu-bangka.jpg",
+        "fileSizeBytes": 89883,
+        "wikimediaTitle": "Drive Reference: 08. Babel - Rumah Panggung Melayu Bangka/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "rumah-limas",
+      "houseName": "Rumah Limas",
+      "province": "Sumatera Selatan",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "09. Sumsel - Rumah Limas",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 09. Sumsel - Rumah Limas",
+          "author": "Indonesia Travel — Rumah Limas Palembang; Badan Penghubung Sumsel — Anjungan Sumsel.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-limas.jpg",
+        "fileSizeBytes": 93927,
+        "wikimediaTitle": "Drive Reference: 09. Sumsel - Rumah Limas/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "bubungan-lima",
+      "houseName": "Bubungan Lima",
+      "province": "Bengkulu",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "10. Bengkulu - Bubungan Lima",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 10. Bengkulu - Bubungan Lima",
+          "author": "Badan Bahasa — Mengenal Rancang Bangun Rumah Adat, hlm. 13–14; Badan Bahasa — Yuk Mengenal Rumah Adat Sumatra, hlm. 41–43.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/bubungan-lima.jpg",
+        "fileSizeBytes": 81740,
+        "wikimediaTitle": "Drive Reference: 10. Bengkulu - Bubungan Lima/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "rumoh-aceh",
+      "houseName": "Rumoh Aceh",
+      "province": "Aceh",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "11. Aceh - Rumoh Aceh",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 11. Aceh - Rumoh Aceh",
+          "author": "Indonesia Travel — Rumoh Aceh; Badan Bahasa — Arsitektur Rumah Tradisional Aceh (2018).",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumoh-aceh.jpg",
+        "fileSizeBytes": 79270,
+        "wikimediaTitle": "Drive Reference: 11. Aceh - Rumoh Aceh/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "selaso-jatuh-kembar",
+      "houseName": "Selaso Jatuh Kembar",
+      "province": "Riau",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "14. Riau - Selaso Jatuh Kembar",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 14. Riau - Selaso Jatuh Kembar",
+          "author": "Indonesia Travel — Selaso Jatuh Kembar; Badan Bahasa — Mengenal Rancang Bangun Rumah Adat, hlm. 8.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/selaso-jatuh-kembar.jpg",
+        "fileSizeBytes": 88764,
+        "wikimediaTitle": "Drive Reference: 14. Riau - Selaso Jatuh Kembar/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "belah-bubung",
+      "houseName": "Belah Bubung",
+      "province": "Kepulauan Riau",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "15. Kepri - Belah Bubung",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 15. Kepri - Belah Bubung",
+          "author": "Badan Bahasa — Yuk Mengenal Rumah Adat Sumatra, hlm. 29–31; Badan Bahasa — Mengenal Rumah Melayu Riau.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/belah-bubung.jpg",
+        "fileSizeBytes": 81510,
+        "wikimediaTitle": "Drive Reference: 15. Kepri - Belah Bubung/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "kajang-leko",
+      "houseName": "Kajang Leko",
+      "province": "Jambi",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "16. Jambi - Kajang Leko",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 16. Jambi - Kajang Leko",
+          "author": "Badan Bahasa — Yuk Mengenal Rumah Adat Sumatra, hlm. 49–51; Badan Bahasa — Mengenal Rancang Bangun Rumah Adat, hlm. 9–10.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/kajang-leko.jpg",
+        "fileSizeBytes": 84775,
+        "wikimediaTitle": "Drive Reference: 16. Jambi - Kajang Leko/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "rumah-panjang-uluk-palin",
+      "houseName": "Rumah Panjang Uluk Palin",
+      "province": "Kalimantan Barat",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "17. Kalbar - Rumah Panjang Uluk Palin",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 17. Kalbar - Rumah Panjang Uluk Palin",
+          "author": "BPK XII — Arsitektur Rumah Betang Uluk Palin (Ikhsan, 2009); Pemerintah Kapuas Hulu — Masyarakat Adat Tamambaloh Apalin.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-panjang-uluk-palin.jpg",
+        "fileSizeBytes": 89772,
+        "wikimediaTitle": "Drive Reference: 17. Kalbar - Rumah Panjang Uluk Palin/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "rumah-bubungan-tinggi",
+      "houseName": "Rumah Bubungan Tinggi",
+      "province": "Kalimantan Selatan",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "19. Kalsel - Rumah Bubungan Tinggi",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 19. Kalsel - Rumah Bubungan Tinggi",
+          "author": "Dinas Kebudayaan dan Pariwisata Kabupaten Banjar — Bubungan Tinggi Teluk Selong; Badan Bahasa — Mengenal Rumah Tradisional di Kalimantan (2017).",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-bubungan-tinggi.jpg",
+        "fileSizeBytes": 87031,
+        "wikimediaTitle": "Drive Reference: 19. Kalsel - Rumah Bubungan Tinggi/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "baloy-tidung",
+      "houseName": "Baloy Tidung",
+      "province": "Kalimantan Utara",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "21. Kaltara - Baloy Tidung",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 21. Kaltara - Baloy Tidung",
+          "author": "Mahmud Jauhari Ali / Badan Bahasa — Mengenal Rumah Tradisional di Kalimantan (2017), hlm. 45; Kementerian Pariwisata — Baloy.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/baloy-tidung.jpg",
+        "fileSizeBytes": 88755,
+        "wikimediaTitle": "Drive Reference: 21. Kaltara - Baloy Tidung/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "walewangko",
+      "houseName": "Walewangko / Wale Minahasa",
+      "province": "Sulawesi Utara",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "22. Sulut - Walewangko",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 22. Sulut - Walewangko",
+          "author": "Depdikbud / Syamsidar (ed.) — Arsitektur Tradisional Daerah Sulawesi Utara (1991); Kasdar / Badan Bahasa (2018).",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/walewangko.jpg",
+        "fileSizeBytes": 86054,
+        "wikimediaTitle": "Drive Reference: 22. Sulut - Walewangko/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "dulohupa",
+      "houseName": "Dulohupa",
+      "province": "Gorontalo",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "23. Gorontalo - Dulohupa",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 23. Gorontalo - Dulohupa",
+          "author": "Kasdar / Badan Bahasa (2018), hlm. 19–20; Badan Bahasa (2017), hlm. 42.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/dulohupa.jpg",
+        "fileSizeBytes": 85168,
+        "wikimediaTitle": "Drive Reference: 23. Gorontalo - Dulohupa/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "tambi-lore",
+      "houseName": "Tambi Lore",
+      "province": "Sulawesi Tengah",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "24. Sulteng - Tambi Lore",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 24. Sulteng - Tambi Lore",
+          "author": "Depdikbud — Pola Pemukiman Pedesaan Sulawesi Tengah (1980/1981), Lore Selatan, hlm. 20; TMII — Anjungan Sulawesi Tengah.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/tambi-lore.jpg",
+        "fileSizeBytes": 69118,
+        "wikimediaTitle": "Drive Reference: 24. Sulteng - Tambi Lore/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "boyang-beasa-mandar",
+      "houseName": "Boyang Beasa Mandar",
+      "province": "Sulawesi Barat",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "25. Sulbar - Boyang Beasa Mandar",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 25. Sulbar - Boyang Beasa Mandar",
+          "author": "Faisal / Depbudpar — Arsitektur Mandar Sulawesi Barat (2008); Nuralam & Indrojarwo / ITS — Jurnal Sains dan Seni ITS 11(3).",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/boyang-beasa-mandar.jpg",
+        "fileSizeBytes": 87263,
+        "wikimediaTitle": "Drive Reference: 25. Sulbar - Boyang Beasa Mandar/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "malige-istana-buton",
+      "houseName": "Malige Istana Buton",
+      "province": "Sulawesi Tenggara",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "27. Sultra - Malige Istana Buton",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 27. Sultra - Malige Istana Buton",
+          "author": "Zakridatul Agusmaniar Rane / Badan Bahasa (2017), hlm. 7–9; Tomy Almijun Kibu / BRIN (2023); Marsah, Faisal & Roslyn (2024).",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/malige-istana-buton.jpg",
+        "fileSizeBytes": 83521,
+        "wikimediaTitle": "Drive Reference: 27. Sultra - Malige Istana Buton/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "sasadu-sahu",
+      "houseName": "Sasadu Sahu",
+      "province": "Maluku Utara",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "28. Malut - Sasadu Sahu",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 28. Malut - Sasadu Sahu",
+          "author": "Poedjowibowo, Harisun & Paputungan (2011); Kementerian Pariwisata — Rumah Adat Sasadu.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/sasadu-sahu.jpg",
+        "fileSizeBytes": 73478,
+        "wikimediaTitle": "Drive Reference: 28. Malut - Sasadu Sahu/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "mod-aki-aksa-arfak",
+      "houseName": "Mod Aki Aksa Arfak",
+      "province": "Papua Barat",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "30. Papua Barat - Mod Aki Aksa Arfak",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 30. Papua Barat - Mod Aki Aksa Arfak",
+          "author": "Kementerian Pariwisata — Rumah Mod Aki Aksa; BPNB Jayapura (2012) — Arsitektur Tradisional Suku Arfak di Manokwari.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/mod-aki-aksa-arfak.jpg",
+        "fileSizeBytes": 76969,
+        "wikimediaTitle": "Drive Reference: 30. Papua Barat - Mod Aki Aksa Arfak/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "kambik-moi",
+      "houseName": "Kambik pendidikan Moi",
+      "province": "Papua Barat Daya",
+      "assetProvenance": "illustrative_scheme",
+      "driveFolderRef": "31. Papua Barat Daya - Kambik Moi",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 31. Papua Barat Daya - Kambik Moi",
+          "author": "Suntoko (2012) — Pendidikan Adat Kambik, tesis UPI; Achel & Sem Vani Ulimpa (2019) — Rumah belajar adat di Siwis.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/kambik-moi.jpg",
+        "fileSizeBytes": 79717,
+        "wikimediaTitle": "Drive Reference: 31. Papua Barat Daya - Kambik Moi/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "kariwari-enggros",
+      "houseName": "Kariwari Enggros",
+      "province": "Papua",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "32. Papua - Kariwari Enggros",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 32. Papua - Kariwari Enggros",
+          "author": "Salipu dkk. (2025) — Rekonstruksi Kariwari, hlm. 54–55; TMII — Anjungan Papua.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/kariwari-enggros.jpg",
+        "fileSizeBytes": 78283,
+        "wikimediaTitle": "Drive Reference: 32. Papua - Kariwari Enggros/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "karapauw-kame-kamoro",
+      "houseName": "Karapauw Kame Kamoro",
+      "province": "Papua Tengah",
+      "assetProvenance": "illustrative_scheme",
+      "driveFolderRef": "33. Papua Tengah - Karapauw Kame Kamoro",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 33. Papua Tengah - Karapauw Kame Kamoro",
+          "author": "Maryone (2018) — Rumah Tradisional Suku Kamoro, hlm. 160–166.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/karapauw-kame-kamoro.jpg",
+        "fileSizeBytes": 86309,
+        "wikimediaTitle": "Drive Reference: 33. Papua Tengah - Karapauw Kame Kamoro/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "jew-asmat",
+      "houseName": "Jew / Jeu Asmat",
+      "province": "Papua Selatan",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "35. Papua Selatan - Jew Asmat",
+      "sources": [
+        {
+          "title": "Katalog Deskripsi Arsitektur Nusantara — 35. Papua Selatan - Jew Asmat",
+          "author": "Mansbawar, Yusuf & Abidin (2025) — Rumah Jew di Distrik Atsj; Kementerian Pariwisata — Rumah Adat Jew.",
+          "type": "Dokumen Riset Tipologi"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/jew-asmat.jpg",
+        "fileSizeBytes": 85251,
+        "wikimediaTitle": "Drive Reference: 35. Papua Selatan - Jew Asmat/00-full",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+        "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+      }
+    },
+    {
+      "id": "rumah-ndalem",
+      "houseName": "Rumah Ndalem Yogyakarta",
+      "province": "DI Yogyakarta",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "Rumah ndalem",
+      "sources": [
+        {
+          "title": "Kawruh Kalang & Arsitektur Tradisional Yogyakarta",
+          "author": "Josef Prijotomo / Dinas Kebudayaan DIY",
+          "type": "Literatur Arsitektur"
+        },
+        {
+          "title": "Folder Referensi Rumah ndalem (13 visual)",
+          "author": "Arsip Google Drive NUSAARCH",
+          "type": "Arsip Visual"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-ndalem.jpg",
+        "fileSizeBytes": 72410,
+        "wikimediaTitle": "Drive Reference: Rumah ndalem/nusaarch-ndalem.png",
+        "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+        "license": "Referensi Edukasi Internal",
+        "licenseUrl": "https://drive.google.com/drive/folders/1UI8_61Vf5LL4uR00kV8a2m4tLUERSU7Z",
+        "sourcePageUrl": "https://drive.google.com/drive/folders/1UI8_61Vf5LL4uR00kV8a2m4tLUERSU7Z"
+      }
+    },
+    {
+      "id": "rumah-osing",
+      "houseName": "Rumah Adat Osing (Tikel Balung)",
+      "province": "Jawa Timur",
+      "assetProvenance": "archive_pending_3d",
+      "driveFolderRef": "/Ringkasan Sejarah & Bagian Rumah Adat Osing.docx",
+      "sources": [
+        {
+          "title": "Ringkasan Sejarah & Bagian Rumah Adat Osing (Tikel Balung)",
+          "author": "Dokumen Arsip Google Drive NULAR",
+          "type": "Dokumen Riset"
+        },
+        {
+          "title": "Wikimedia Commons — File:Rumah Tradisional Osing.JPG",
+          "author": "Bachtiar Djanan (CC BY-SA 4.0)",
+          "type": "Dokumentasi Foto"
+        }
+      ],
+      "photoCredit": {
+        "localPath": "assets/photos/rumah-osing.jpg",
+        "fileSizeBytes": 129180,
+        "wikimediaTitle": "File:Rumah Tradisional Osing.JPG",
+        "artist": "Bachtiar Djanan",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Tradisional_Osing.JPG"
+      }
+    }
+  ]
+}

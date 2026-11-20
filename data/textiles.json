@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.0.0",
+  "curatorNote": "Registri wastra tradisional Nusantara untuk koleksi karakter NULAR. Setiap kain diklasifikasikan secara akurat menurut teknik tekstil aslinya (Batik tulis/cap, Tenun Ikat, Songket, Ulos, Tapis, Sasirangan). Kain non-batik tidak pernah dilabeli sebagai batik.",
+  "outfits": [
+    {
+      "id": "batik-parang-solo",
+      "name": "Batik Parang Rusak Barong",
+      "textileClassification": "Batik (Wax-Resist Dyeing — Tulis/Cap)",
+      "isBatik": true,
+      "originRegion": "Surakarta & Yogyakarta",
+      "province": "Jawa Tengah & DI Yogyakarta",
+      "culturalCommunity": "Masyarakat Jawa (Keraton Surakarta & Kasultanan Yogyakarta)",
+      "unescoStatus": "Batik Indonesia — UNESCO Representative List of the Intangible Cultural Heritage of Humanity (2009)",
+      "palette": {
+        "primary": "#2C1E14",
+        "secondary": "#D9B98B",
+        "accent": "#8C5830",
+        "trim": "#F3EAD8"
+      },
+      "patternType": "diagonal-parang",
+      "culturalMeaning": "Motif lereng diagonal menyerupai ombak samudra yang tak putus melambangkan keteguhan budi, kesinambungan perjuangan hidup, dan pengendalian diri.",
+      "wearerContext": "Secara tradisional termasuk motif larangan di lingkungan keraton; kini dikenakan secara hormat dalam konteks budaya dan edukasi.",
+      "sourceAttribution": "Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI (DAPOBUD) & UNESCO ICH (2009)"
+    },
+    {
+      "id": "batik-megamendung-cirebon",
+      "name": "Batik Megamendung",
+      "textileClassification": "Batik Pesisir (Wax-Resist Dyeing)",
+      "isBatik": true,
+      "originRegion": "Cirebon",
+      "province": "Jawa Barat",
+      "culturalCommunity": "Masyarakat Pesisir Cirebon",
+      "unescoStatus": "Bagian dari Warisan Budaya Takbenda Batik Indonesia (UNESCO 2009)",
+      "palette": {
+        "primary": "#1C3F6E",
+        "secondary": "#4B86B4",
+        "accent": "#A3CBE3",
+        "trim": "#EBF4FA"
+      },
+      "patternType": "cloud-gradations",
+      "culturalMeaning": "Gradasi tujuh lapis awan biru melambangkan kesejukan batin, kesabaran pemimpin dalam mengayomi masyarakat, serta akulturasi maritim Nusantara–Tiongkok di pesisir utara Jawa.",
+      "wearerContext": "Busana harian dan resmi khas pesisir utara Jawa Barat.",
+      "sourceAttribution": "Museum Tekstil Jakarta & Arsip Keraton Kasepuhan Cirebon"
+    },
+    {
+      "id": "tenun-ikat-sumba",
+      "name": "Tenun Ikat Hinggi Sumba",
+      "textileClassification": "Tenun Ikat Lungsi (Warp Ikat Weaving — BUKAN Batik)",
+      "isBatik": false,
+      "originRegion": "Sumba Timur",
+      "province": "Nusa Tenggara Timur",
+      "culturalCommunity": "Masyarakat Adat Sumba",
+      "unescoStatus": "Warisan Budaya Takbenda Nasional Indonesia (WBTbI)",
+      "palette": {
+        "primary": "#1D2A38",
+        "secondary": "#8B2D25",
+        "accent": "#D8C39E",
+        "trim": "#B5783A"
+      },
+      "patternType": "geometric-ikat",
+      "culturalMeaning": "Ditenun dengan teknik ikat benang sebelum pencelupan pewarna alam (indigo dan akar mengkudu). Motif kuda, ayam, dan udang melambangkan keberanian, kehidupan, dan siklus pembaruan.",
+      "wearerContext": "Dikenakan dalam upacara adat, penyambutan tamu kehormatan, dan busana identitas masyarakat Sumba.",
+      "sourceAttribution": "Direktorat Warisan dan Diplomasi Budaya Kemendikbudristek RI"
+    },
+    {
+      "id": "songket-minangkabau",
+      "name": "Songket Pandai Sikek",
+      "textileClassification": "Tenun Songket (Supplementary Weft Brocade — BUKAN Batik)",
+      "isBatik": false,
+      "originRegion": "Nagari Pandai Sikek, Tanah Datar",
+      "province": "Sumatera Barat",
+      "culturalCommunity": "Suku Minangkabau",
+      "unescoStatus": "Warisan Budaya Takbenda Nasional Indonesia (WBTbI)",
+      "palette": {
+        "primary": "#721B1E",
+        "secondary": "#D4A843",
+        "accent": "#281D1A",
+        "trim": "#F0D27A"
+      },
+      "patternType": "songket-diamond",
+      "culturalMeaning": "Kain tenun benang pakan tambahan emas (bukan batik) dengan motif pucuk rebung dan saik galamai yang mencerminkan keselarasan adat basandi syarak serta keagungan Rumah Gadang.",
+      "wearerContext": "Busana adat resmi dan seremonial Minangkabau.",
+      "sourceAttribution": "Balai Pelestarian Kebudayaan Wilayah III Sumatera Barat"
+    },
+    {
+      "id": "ulos-ragidup-batak",
+      "name": "Tenun Ulos Batak",
+      "textileClassification": "Tenun Tradisional (Handwoven Ceremonial Cloth — BUKAN Batik)",
+      "isBatik": false,
+      "originRegion": "Kawasan Danau Toba & Samosir",
+      "province": "Sumatera Utara",
+      "culturalCommunity": "Suku Batak Toba",
+      "unescoStatus": "Warisan Budaya Takbenda Nasional Indonesia (2014)",
+      "palette": {
+        "primary": "#262223",
+        "secondary": "#8F2522",
+        "accent": "#E6DDD0",
+        "trim": "#C08C4D"
+      },
+      "patternType": "ulos-stripes",
+      "culturalMeaning": "Ulos berarti 'selimut penghangat' secara fisik di dataran tinggi Toba sekaligus lambang kehangatan kasih, doa, dan restu kekerabatan Dalihan Na Tolu.",
+      "wearerContext": "Dikenakan sebagai selempang (hande-hande) atau sarung adat dalam upacara kehidupan Batak.",
+      "sourceAttribution": "DAPOBUD Kemendikbudristek RI — Ulos Batak (WBTbI 2014)"
+    },
+    {
+      "id": "sasirangan-banjar",
+      "name": "Kain Sasirangan Banjar",
+      "textileClassification": "Kain Jelujur / Tie-Dye Tradisional (Stitch-Resist — BUKAN Batik)",
+      "isBatik": false,
+      "originRegion": "Banjarmasin & Martapura",
+      "province": "Kalimantan Selatan",
+      "culturalCommunity": "Suku Banjar",
+      "unescoStatus": "Warisan Budaya Takbenda Nasional Indonesia (2010)",
+      "palette": {
+        "primary": "#1F4B3E",
+        "secondary": "#D69E2E",
+        "accent": "#A8332B",
+        "trim": "#F2E6C9"
+      },
+      "patternType": "sasirangan-wave",
+      "culturalMeaning": "Berasal dari kata 'sirang' (menjelujur), dibuat dengan menjahit jelujur dan menarik benang sebelum dicelup warna. Motif gigi haruan dan ombak sinapur karang melambangkan ketajaman berpikir dan keteguhan di tepian sungai.",
+      "wearerContext": "Busana tradisi dan identitas budaya masyarakat Banjar.",
+      "sourceAttribution": "Museum Lambung Mangkurat & Kemendikbudristek RI (WBTbI 2010)"
+    }
+  ]
+}

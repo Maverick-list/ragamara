@@ -152,5 +152,257 @@
     "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Papua_Village_on_hill.jpg",
     "originalWidth": 4288,
     "originalHeight": 2848
+  },
+  "bale-tani-sasak": {
+    "localPath": "assets/photos/bale-tani-sasak.jpg",
+    "fileSizeBytes": 79921,
+    "wikimediaTitle": "Drive Reference: 02. NTB - Bale Tani Sasak/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "julang-ngapak": {
+    "localPath": "assets/photos/julang-ngapak.jpg",
+    "fileSizeBytes": 76211,
+    "wikimediaTitle": "Drive Reference: 04. Jabar - Julang Ngapak/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "kebaya-betawi": {
+    "localPath": "assets/photos/kebaya-betawi.jpg",
+    "fileSizeBytes": 86844,
+    "wikimediaTitle": "Drive Reference: 05. Jakarta - Kebaya Betawi/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "sulah-nyanda": {
+    "localPath": "assets/photos/sulah-nyanda.jpg",
+    "fileSizeBytes": 72634,
+    "wikimediaTitle": "Drive Reference: 06. Banten - Sulah Nyanda/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "nuwo-sesat": {
+    "localPath": "assets/photos/nuwo-sesat.jpg",
+    "fileSizeBytes": 89755,
+    "wikimediaTitle": "Drive Reference: 07. Lampung - Nuwo Sesat/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "rumah-melayu-bangka": {
+    "localPath": "assets/photos/rumah-melayu-bangka.jpg",
+    "fileSizeBytes": 89883,
+    "wikimediaTitle": "Drive Reference: 08. Babel - Rumah Panggung Melayu Bangka/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "rumah-limas": {
+    "localPath": "assets/photos/rumah-limas.jpg",
+    "fileSizeBytes": 93927,
+    "wikimediaTitle": "Drive Reference: 09. Sumsel - Rumah Limas/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "bubungan-lima": {
+    "localPath": "assets/photos/bubungan-lima.jpg",
+    "fileSizeBytes": 81740,
+    "wikimediaTitle": "Drive Reference: 10. Bengkulu - Bubungan Lima/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "rumoh-aceh": {
+    "localPath": "assets/photos/rumoh-aceh.jpg",
+    "fileSizeBytes": 79270,
+    "wikimediaTitle": "Drive Reference: 11. Aceh - Rumoh Aceh/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "selaso-jatuh-kembar": {
+    "localPath": "assets/photos/selaso-jatuh-kembar.jpg",
+    "fileSizeBytes": 88764,
+    "wikimediaTitle": "Drive Reference: 14. Riau - Selaso Jatuh Kembar/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "belah-bubung": {
+    "localPath": "assets/photos/belah-bubung.jpg",
+    "fileSizeBytes": 81510,
+    "wikimediaTitle": "Drive Reference: 15. Kepri - Belah Bubung/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "kajang-leko": {
+    "localPath": "assets/photos/kajang-leko.jpg",
+    "fileSizeBytes": 84775,
+    "wikimediaTitle": "Drive Reference: 16. Jambi - Kajang Leko/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "rumah-panjang-uluk-palin": {
+    "localPath": "assets/photos/rumah-panjang-uluk-palin.jpg",
+    "fileSizeBytes": 89772,
+    "wikimediaTitle": "Drive Reference: 17. Kalbar - Rumah Panjang Uluk Palin/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "rumah-bubungan-tinggi": {
+    "localPath": "assets/photos/rumah-bubungan-tinggi.jpg",
+    "fileSizeBytes": 87031,
+    "wikimediaTitle": "Drive Reference: 19. Kalsel - Rumah Bubungan Tinggi/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "baloy-tidung": {
+    "localPath": "assets/photos/baloy-tidung.jpg",
+    "fileSizeBytes": 88755,
+    "wikimediaTitle": "Drive Reference: 21. Kaltara - Baloy Tidung/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "walewangko": {
+    "localPath": "assets/photos/walewangko.jpg",
+    "fileSizeBytes": 86054,
+    "wikimediaTitle": "Drive Reference: 22. Sulut - Walewangko/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "dulohupa": {
+    "localPath": "assets/photos/dulohupa.jpg",
+    "fileSizeBytes": 85168,
+    "wikimediaTitle": "Drive Reference: 23. Gorontalo - Dulohupa/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "tambi-lore": {
+    "localPath": "assets/photos/tambi-lore.jpg",
+    "fileSizeBytes": 69118,
+    "wikimediaTitle": "Drive Reference: 24. Sulteng - Tambi Lore/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "boyang-beasa-mandar": {
+    "localPath": "assets/photos/boyang-beasa-mandar.jpg",
+    "fileSizeBytes": 87263,
+    "wikimediaTitle": "Drive Reference: 25. Sulbar - Boyang Beasa Mandar/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "malige-istana-buton": {
+    "localPath": "assets/photos/malige-istana-buton.jpg",
+    "fileSizeBytes": 83521,
+    "wikimediaTitle": "Drive Reference: 27. Sultra - Malige Istana Buton/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "sasadu-sahu": {
+    "localPath": "assets/photos/sasadu-sahu.jpg",
+    "fileSizeBytes": 73478,
+    "wikimediaTitle": "Drive Reference: 28. Malut - Sasadu Sahu/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "mod-aki-aksa-arfak": {
+    "localPath": "assets/photos/mod-aki-aksa-arfak.jpg",
+    "fileSizeBytes": 76969,
+    "wikimediaTitle": "Drive Reference: 30. Papua Barat - Mod Aki Aksa Arfak/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "kambik-moi": {
+    "localPath": "assets/photos/kambik-moi.jpg",
+    "fileSizeBytes": 79717,
+    "wikimediaTitle": "Drive Reference: 31. Papua Barat Daya - Kambik Moi/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "kariwari-enggros": {
+    "localPath": "assets/photos/kariwari-enggros.jpg",
+    "fileSizeBytes": 78283,
+    "wikimediaTitle": "Drive Reference: 32. Papua - Kariwari Enggros/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "karapauw-kame-kamoro": {
+    "localPath": "assets/photos/karapauw-kame-kamoro.jpg",
+    "fileSizeBytes": 86309,
+    "wikimediaTitle": "Drive Reference: 33. Papua Tengah - Karapauw Kame Kamoro/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "jew-asmat": {
+    "localPath": "assets/photos/jew-asmat.jpg",
+    "fileSizeBytes": 85251,
+    "wikimediaTitle": "Drive Reference: 35. Papua Selatan - Jew Asmat/00-full",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal (Verifikasi Hak Redistribusi)",
+    "licenseUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/13jHt1dsB63bAsS_ciSTqNc-9w2uiIIdA"
+  },
+  "rumah-ndalem": {
+    "localPath": "assets/photos/rumah-ndalem.jpg",
+    "fileSizeBytes": 72410,
+    "wikimediaTitle": "Drive Reference: Rumah ndalem/nusaarch-ndalem.png",
+    "artist": "Arsip Referensi Visual NUSAARCH 3D (Google Drive)",
+    "license": "Referensi Edukasi Internal",
+    "licenseUrl": "https://drive.google.com/drive/folders/1UI8_61Vf5LL4uR00kV8a2m4tLUERSU7Z",
+    "sourcePageUrl": "https://drive.google.com/drive/folders/1UI8_61Vf5LL4uR00kV8a2m4tLUERSU7Z"
+  },
+  "rumah-osing": {
+    "localPath": "assets/photos/rumah-osing.jpg",
+    "fileSizeBytes": 129180,
+    "wikimediaTitle": "File:Rumah Tradisional Osing.JPG",
+    "artist": "Bachtiar Djanan",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Tradisional_Osing.JPG"
   }
 }

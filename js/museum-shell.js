@@ -59,6 +59,15 @@ export function initMuseumShell(activePageId) {
 
           <div class="header-actions">
             <a
+              href="world.html"
+              class="btn-museum btn-museum--bronze btn-museum--sm"
+              ${activePageId === 'world' ? 'aria-current="page"' : ''}
+              aria-label="Masuk Dunia 3D Nusantara yang dapat dimainkan"
+            >
+              <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">directions_walk</span>
+              <span>Dunia 3D</span>
+            </a>
+            <a
               href="profile.html"
               class="journal-pill"
               ${activePageId === 'profile' ? 'aria-current="page"' : ''}

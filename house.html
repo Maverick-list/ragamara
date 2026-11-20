@@ -176,6 +176,13 @@
                   <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">compare</span>
                   <span>Bandingkan Struktur</span>
                 </a>
+                <a
+                  href="world.html?house=${encodeURIComponent(house.id)}"
+                  class="btn-museum btn-museum--bronze btn-museum--sm"
+                >
+                  <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">directions_walk</span>
+                  <span>Masuk Dunia 3D</span>
+                </a>
                 ${is3D ? `
                   <a href="#explorer-stage" class="btn-museum btn-museum--primary btn-museum--sm">
                     <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">view_in_ar</span>
@@ -343,6 +350,41 @@
             </div>
           </div>
         </section>
+
+        <!-- D2. STRUCTURED 10-SECTION ARCHITECTURAL RESEARCH ARTICLE -->
+        ${house.article ? `
+          <section id="research-article-section" class="museum-section" aria-labelledby="article-heading">
+            <div class="museum-container">
+              <div class="section-header">
+                <span class="eyebrow">Monografi Riset Arsitektur · 10 Bagian</span>
+                <h2 id="article-heading" class="section-title">Artikel Kajian Lengkap: ${escapeHtml(house.houseName)}</h2>
+                <p class="lead-copy" style="margin:8px 0 0;">
+                  Disusun secara terstruktur dari arsip referensi rumah adat, literatur arsitektur vernakular Nusantara, dan dokumentasi komponen bangunan.
+                </p>
+              </div>
+              <div class="article-10-grid">
+                ${[
+                  ['01', 'Asal-Usul Sejarah (Historical Origins)', house.article.historicalOrigins],
+                  ['02', 'Konteks Budaya & Komunitas (Cultural Context)', house.article.culturalAndCommunityContext],
+                  ['03', 'Identitas Arsitektur (Architectural Identity)', house.article.architecturalIdentity],
+                  ['04', 'Sistem Struktural (Structural System)', house.article.structuralSystem],
+                  ['05', 'Interior & Organisasi Ruang (Spatial Organization)', house.article.interiorAndSpatialOrganization],
+                  ['06', 'Material & Konstruksi (Material & Construction)', house.article.materialAndConstruction],
+                  ['07', 'Adaptasi Iklim (Climate Adaptation)', house.article.climateAdaptation],
+                  ['08', 'Makna Budaya (Cultural Meaning)', house.article.culturalMeaning],
+                  ['09', 'Pelestarian & Relevansi Kini (Preservation)', house.article.preservationAndContemporaryRelevance],
+                  ['10', 'Rujukan & Sumber (References)', house.article.referencesSummary]
+                ].map(([num, title, body]) => `
+                  <article class="article-chapter">
+                    <div class="article-chapter__num">Bagian ${num}</div>
+                    <h3 class="article-chapter__title">${escapeHtml(title)}</h3>
+                    <p class="article-chapter__body">${escapeHtml(body || 'Dalam verifikasi arsip lanjutan.')}</p>
+                  </article>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+        ` : ''}
 
         <!-- E. EXPLORE THE COMPONENTS (Interactive Grid + Personal Study Notes) -->
         ${is3D && house.hotspots.length ? `

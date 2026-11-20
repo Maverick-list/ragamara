@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Architecture Map of Indonesia — NULAR (Nusa Learn)</title>
-  <meta name="description" content="Peta interaktif arsitektur tradisional Indonesia menampilkan status dokumentasi 38 provinsi, ketersediaan model 3D, dan akses langsung ke koleksi rumah adat Nusantara." />
+  <title>Indonesia Living Architecture Atlas (38 Provinsi) — NULAR (Nusa Learn)</title>
+  <meta name="description" content="Peta GeoJSON interaktif 38 provinsi Indonesia menampilkan seluruh arsitektur rumah adat Nusantara, batas wilayah resmi, status model 3D, dan akses langsung ke Dunia 3D NULAR." />
   <link rel="icon" type="image/png" href="assets/images/logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,130 +17,94 @@
   <div id="museum-header-mount"></div>
 
   <main id="main-content">
-    <section class="museum-section" style="padding-top:48px;padding-bottom:36px;">
+    <section class="museum-section" style="padding-top:44px;padding-bottom:28px;">
       <div class="museum-container">
-        <span class="eyebrow">Atlas Arsitektur Indonesia</span>
-        <h1 class="display-title" style="margin-top:10px;">Interactive Indonesia Architecture Map</h1>
-        <p class="lead-copy" style="margin:12px 0 0;">
-          Pilih wilayah kepulauan atau provinsi di bawah ini untuk melihat koleksi rumah tradisional yang telah diverifikasi. NULAR menampilkan cakupan riset secara jujur—membedakan wilayah yang telah memiliki model 3D, terdokumentasi secara fotografis, dan provinsi yang sedang dalam tahap penelitian.
+        <span class="eyebrow">Atlas Arsitektur Nusantara · 38 Provinsi</span>
+        <h1 class="display-title" style="margin-top:10px;">Interactive Indonesia Living Atlas</h1>
+        <p class="lead-copy" style="margin:12px 0 0;max-width:74ch;">
+          Jelajahi seluruh 38 provinsi Indonesia dari Aceh hingga Papua Selatan menggunakan peta batas wilayah GeoJSON. Pilih gugus kepulauan, klik provinsi pada peta, saring berdasarkan tipologi arsitektur, lalu masuk langsung ke penampil 3D atau Dunia Eksplorasi NULAR.
         </p>
 
-        <!-- Transparent Nationwide Coverage Metrics -->
-        <div id="map-coverage-bar" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:22px;"></div>
+        <!-- Nationwide Coverage Metrics -->
+        <div id="map-coverage-bar" class="atlas-kpi-bar" style="margin-top:22px;"></div>
       </div>
     </section>
 
-    <section class="museum-section museum-section--sand" style="padding-top:36px;">
+    <section class="museum-section museum-section--sand" style="padding-top:32px;">
       <div class="museum-container">
+        <!-- Search & Typology Filter Toolbar -->
+        <div class="atlas-toolbar">
+          <div class="atlas-search-wrap">
+            <span class="material-symbols-outlined" style="font-size:18px;color:var(--ink-muted);" aria-hidden="true">search</span>
+            <input
+              type="search"
+              id="atlas-search-input"
+              placeholder="Cari provinsi, rumah adat, atau suku (mis. Mbaru Niang, Osing, Rumoh Aceh)..."
+              aria-label="Cari provinsi atau rumah adat"
+            />
+          </div>
+          <select id="atlas-typology-filter" class="atlas-select" aria-label="Saring tipologi arsitektur">
+            <option value="all">Semua Tipologi Arsitektur</option>
+            <option value="panggung">Rumah Panggung (Stilt House)</option>
+            <option value="pelana">Atap Pelana / Melengkung</option>
+            <option value="limas">Atap Limas / Limasan</option>
+            <option value="pendopo">Pendopo / Joglo / Ndalem</option>
+            <option value="kerucut">Kerucut / Kubah Termal</option>
+            <option value="balai">Balai Adat / Musyawarah</option>
+            <option value="panjang">Rumah Panjang Komunal</option>
+          </select>
+          <a href="world.html" class="btn-museum btn-museum--bronze btn-museum--sm">
+            <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">explore</span>
+            <span>Masuk Dunia 3D</span>
+          </a>
+        </div>
+
         <div class="map-layout">
-          <!-- Left: Interactive Archipelago SVG Map + 38-Province Selector -->
-          <div style="display:flex;flex-direction:column;gap:22px;">
+          <!-- Left: Interactive 38-Province GeoJSON Map -->
+          <div style="display:flex;flex-direction:column;gap:20px;">
             <div class="map-canvas-box">
-              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;">
-                <span class="mono-caption" style="color:var(--bronze-light);">Peta Skematik Kepulauan Nusantara · Pilih Pulau</span>
-                <div style="display:flex;flex-wrap:wrap;gap:14px;font-family:var(--font-mono);font-size:0.68rem;color:var(--ink-on-dark-muted);">
-                  <span style="display:inline-flex;align-items:center;gap:6px;"><span class="dot-indicator dot-indicator--3d"></span>Model 3D Tersedia</span>
-                  <span style="display:inline-flex;align-items:center;gap:6px;"><span class="dot-indicator dot-indicator--doc"></span>Terdokumentasi</span>
-                  <span style="display:inline-flex;align-items:center;gap:6px;"><span class="dot-indicator dot-indicator--research"></span>Dalam Penelitian</span>
+              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;">
+                <div id="atlas-island-controls" class="atlas-island-bar" role="group" aria-label="Zoom wilayah kepulauan"></div>
+                <div style="display:flex;flex-wrap:wrap;gap:12px;font-family:var(--font-mono);font-size:0.68rem;color:var(--ink-on-dark-muted);">
+                  <span style="display:inline-flex;align-items:center;gap:6px;"><span class="dot-indicator dot-indicator--3d"></span>3D Interaktif</span>
+                  <span style="display:inline-flex;align-items:center;gap:6px;"><span class="dot-indicator dot-indicator--doc"></span>Arsip Terdokumentasi</span>
                 </div>
               </div>
 
-              <!-- Schematic Architectural Archipelago Map (7 Major Regions — No Fabricated GPS Coordinates) -->
-              <svg
-                viewBox="0 0 1000 410"
-                class="indonesia-svg-map"
-                role="img"
-                aria-label="Peta interaktif tujuh wilayah kepulauan Indonesia: Sumatra, Jawa, Kalimantan, Sulawesi, Bali dan Nusa Tenggara, Maluku, dan Papua"
-              >
-                <!-- Subtle latitude/longitude museum gridlines -->
-                <g stroke="rgba(246,242,234,0.08)" stroke-width="1">
-                  <line x1="0" y1="100" x2="1000" y2="100" />
-                  <line x1="0" y1="205" x2="1000" y2="205" stroke-dasharray="4 4" />
-                  <line x1="0" y1="310" x2="1000" y2="310" />
-                  <line x1="200" y1="0" x2="200" y2="410" />
-                  <line x1="400" y1="0" x2="400" y2="410" />
-                  <line x1="600" y1="0" x2="600" y2="410" />
-                  <line x1="800" y1="0" x2="800" y2="410" />
-                </g>
-                <text x="14" y="198" fill="rgba(246,242,234,0.35)" font-family="IBM Plex Mono, monospace" font-size="10">0° KHATULISTIWA</text>
+              <div id="atlas-svg-mount" class="atlas-svg-stage">
+                <p style="padding:48px;text-align:center;color:var(--ink-on-dark-muted);font-family:var(--font-mono);font-size:0.82rem;">Memuat batas wilayah GeoJSON 38 provinsi Indonesia...</p>
+              </div>
 
-                <!-- 1. SUMATRA -->
-                <g class="map-region-group" data-island="Sumatra" tabindex="0" role="button" aria-label="Pilih wilayah Sumatra">
-                  <path class="map-region-shape" d="M52,58 L95,46 L142,88 L178,136 L216,184 L248,236 L252,272 L218,284 L176,244 L132,188 L88,128 L54,84 Z" />
-                  <path class="map-region-shape" d="M124,218 L138,226 L132,246 L118,238 Z" />
-                  <text x="146" y="176" fill="#FAF7F2" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" text-anchor="middle" pointer-events="none">SUMATRA</text>
-                </g>
-
-                <!-- 2. JAVA -->
-                <g class="map-region-group" data-island="Java" tabindex="0" role="button" aria-label="Pilih wilayah Jawa">
-                  <path class="map-region-shape" d="M254,296 L312,294 L378,308 L442,312 L476,322 L468,342 L404,342 L338,334 L276,324 L250,312 Z" />
-                  <text x="364" y="324" fill="#FAF7F2" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" text-anchor="middle" pointer-events="none">JAWA</text>
-                </g>
-
-                <!-- 3. KALIMANTAN -->
-                <g class="map-region-group" data-island="Kalimantan" tabindex="0" role="button" aria-label="Pilih wilayah Kalimantan">
-                  <path class="map-region-shape" d="M352,138 L412,92 L472,78 L514,108 L518,162 L494,218 L446,242 L386,236 L348,202 L344,166 Z" />
-                  <text x="432" y="168" fill="#FAF7F2" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" text-anchor="middle" pointer-events="none">KALIMANTAN</text>
-                </g>
-
-                <!-- 4. SULAWESI -->
-                <g class="map-region-group" data-island="Sulawesi" tabindex="0" role="button" aria-label="Pilih wilayah Sulawesi">
-                  <path class="map-region-shape" d="M558,154 L596,126 L652,118 L662,134 L612,148 L592,172 L646,184 L640,204 L592,196 L608,246 L628,274 L608,284 L584,242 L572,276 L552,274 L554,218 L548,182 Z" />
-                  <text x="582" y="216" fill="#FAF7F2" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" text-anchor="middle" pointer-events="none">SULAWESI</text>
-                </g>
-
-                <!-- 5. BALI & NUSA TENGGARA -->
-                <g class="map-region-group" data-island="Bali & Nusa Tenggara" tabindex="0" role="button" aria-label="Pilih wilayah Bali dan Nusa Tenggara">
-                  <path class="map-region-shape" d="M484,326 L512,324 L516,342 L486,342 Z" />
-                  <path class="map-region-shape" d="M522,328 L560,326 L562,344 L524,344 Z" />
-                  <path class="map-region-shape" d="M570,326 L632,328 L636,344 L572,342 Z" />
-                  <path class="map-region-shape" d="M644,332 L704,326 L708,348 L646,352 Z" />
-                  <text x="596" y="372" fill="#FAF7F2" font-family="IBM Plex Mono, monospace" font-size="10.5" font-weight="600" text-anchor="middle" pointer-events="none">BALI &amp; NUSA TENGGARA</text>
-                </g>
-
-                <!-- 6. MALUKU -->
-                <g class="map-region-group" data-island="Maluku" tabindex="0" role="button" aria-label="Pilih wilayah Maluku">
-                  <path class="map-region-shape" d="M694,126 L724,116 L734,158 L712,174 L696,154 Z" />
-                  <path class="map-region-shape" d="M684,216 L748,214 L754,238 L688,242 Z" />
-                  <path class="map-region-shape" d="M736,262 L768,266 L764,284 L734,278 Z" />
-                  <text x="724" y="200" fill="#FAF7F2" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" text-anchor="middle" pointer-events="none">MALUKU</text>
-                </g>
-
-                <!-- 7. PAPUA -->
-                <g class="map-region-group" data-island="Papua" tabindex="0" role="button" aria-label="Pilih wilayah Papua">
-                  <path class="map-region-shape" d="M782,176 L834,162 L858,194 L924,194 L972,216 L972,322 L918,312 L884,282 L842,262 L812,232 L776,204 Z" />
-                  <text x="886" y="246" fill="#FAF7F2" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" text-anchor="middle" pointer-events="none">PAPUA</text>
-                </g>
-              </svg>
-
-              <p style="margin:14px 0 0;font-size:0.78rem;color:var(--ink-on-dark-muted);">
-                Catatan kartografis: Peta ini adalah peta tematik wilayah kepulauan untuk navigasi katalog arsitektur, bukan peta batas administratif presisi tinggi. Koordinat geografis spesifik tidak dibuat-buat.
+              <p style="margin:14px 0 0;font-size:0.76rem;color:var(--ink-on-dark-muted);line-height:1.55;">
+                Sumber kartografi: Batas wilayah administratif 38 provinsi Indonesia (GeoJSON simplified, lisensi MIT — diadaptasi dari rujukan batas wilayah Indonesia pasca-pemekaran Papua 2022). Batas provinsi bersifat administratif dan tidak menyamakan batas wilayah budaya/etnis.
               </p>
-            </div>
-
-            <!-- 38-Province Research Coverage Directory -->
-            <div style="background:var(--bg-paper);border:1px solid var(--border-hairline);padding:22px;">
-              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;">
-                <div>
-                  <span class="mono-caption" style="color:var(--bronze);">Direktori 38 Provinsi Indonesia</span>
-                  <h2 id="province-list-title" style="font-family:var(--font-serif);font-size:1.3rem;margin:4px 0 0;">Semua Provinsi di Wilayah Terpilih</h2>
-                </div>
-                <button type="button" id="show-all-islands-btn" class="btn-museum btn-museum--secondary btn-museum--sm">Tampilkan Semua 7 Pulau</button>
-              </div>
-              <div id="province-pills-container" class="province-pill-grid"></div>
             </div>
           </div>
 
-          <!-- Right: Province / Island Catalog Inspector -->
-          <aside style="background:var(--bg-paper);border:1px solid var(--border-strong);border-radius:var(--radius-sm);overflow:hidden;" aria-live="polite">
-            <div style="padding:20px 22px;background:var(--bg-forest);color:var(--ink-on-dark);">
-              <div class="mono-caption" style="color:var(--bronze-light);" id="panel-region-kicker">Wilayah Terpilih</div>
-              <h2 id="panel-region-title" style="font-family:var(--font-serif);font-size:1.55rem;margin:6px 0 6px;color:#FAF7F2;">Sumatra</h2>
-              <p id="panel-region-status" style="margin:0;font-size:0.84rem;color:var(--ink-on-dark-muted);"></p>
+          <!-- Right: Cultural Province Dossier Panel -->
+          <aside class="map-side-panel" aria-live="polite">
+            <div style="border-bottom:1px solid var(--border-hairline);padding-bottom:14px;margin-bottom:16px;">
+              <span class="eyebrow">Dossier Wilayah</span>
+              <h2 id="panel-region-title" style="font-family:var(--font-serif);font-size:1.55rem;margin:6px 0 4px;">Seluruh Nusantara</h2>
+              <p id="panel-region-subtitle" class="mono-caption" style="margin:0;color:var(--ink-muted);">Memuat daftar 38 provinsi...</p>
             </div>
-            <div id="panel-region-body" style="padding:20px 22px;display:flex;flex-direction:column;gap:16px;"></div>
+            <div id="panel-region-body"></div>
           </aside>
         </div>
+      </div>
+    </section>
+
+    <!-- Full 38-Province Directory -->
+    <section class="museum-section">
+      <div class="museum-container">
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px;margin-bottom:26px;">
+          <div>
+            <span class="eyebrow">Direktori Lengkap 38 Provinsi</span>
+            <h2 class="section-title" style="margin-top:6px;">Cakupan Nasional Arsitektur Nusantara</h2>
+          </div>
+          <a href="explore.html" class="btn-museum btn-museum--secondary btn-museum--sm">Buka Katalog Lengkap</a>
+        </div>
+        <div id="province-directory-mount" class="atlas-directory-grid"></div>
       </div>
     </section>
   </main>
@@ -148,190 +112,33 @@
   <div id="museum-footer-mount"></div>
 
   <script type="module">
-    import { loadHouses, loadProvinces, getCatalogMetrics } from './js/museum-data.js';
-    import { initMuseumShell, escapeHtml } from './js/museum-shell.js';
+    import { loadHouses, loadProvinces } from './js/museum-data.js';
+    import { initMuseumShell } from './js/museum-shell.js';
+    import { mountLivingAtlas } from './js/atlas-map.js';
 
     initMuseumShell('map');
 
-    let houses = [];
-    let provincesData = null;
-    let selectedIsland = 'Sumatra';
-    let selectedProvince = null;
-
-    function getProvinceStatus(provinceName) {
-      const entries = houses.filter((h) => h.province === provinceName);
-      if (entries.length === 0) return { code: 'research', label: 'Dalam Penelitian', entries };
-      const has3D = entries.some((h) => h.modelStatus === 'available');
-      return {
-        code: has3D ? '3d' : 'documented',
-        label: has3D ? 'Terdokumentasi · Model 3D Tersedia' : 'Terdokumentasi · Model 3D Dalam Persiapan',
-        entries
-      };
+    async function bootAtlas() {
+      const [houses, provincesData] = await Promise.all([loadHouses(), loadProvinces()]);
+      await mountLivingAtlas({
+        svgContainer: document.getElementById('atlas-svg-mount'),
+        islandControlsEl: document.getElementById('atlas-island-controls'),
+        panelTitleEl: document.getElementById('panel-region-title'),
+        panelSubtitleEl: document.getElementById('panel-region-subtitle'),
+        panelBodyEl: document.getElementById('panel-region-body'),
+        provinceDirectoryEl: document.getElementById('province-directory-mount'),
+        coverageBarEl: document.getElementById('map-coverage-bar'),
+        searchInputEl: document.getElementById('atlas-search-input'),
+        typologySelectEl: document.getElementById('atlas-typology-filter'),
+        houses,
+        provincesData
+      });
     }
 
-    function renderSelection() {
-      // Update SVG active highlights
-      document.querySelectorAll('.map-region-group').forEach((g) => {
-        const isCurrent = g.getAttribute('data-island') === selectedIsland;
-        g.querySelectorAll('.map-region-shape').forEach((path) => {
-          path.classList.toggle('is-active', isCurrent);
-        });
-      });
-
-      // Render province pills for selected island (or all islands if null)
-      const islandsToShow = selectedIsland
-        ? provincesData.islands.filter((i) => i.id === selectedIsland)
-        : provincesData.islands;
-
-      const listTitle = document.getElementById('province-list-title');
-      listTitle.textContent = selectedIsland
-        ? `Provinsi di Wilayah ${islandsToShow[0]?.name || selectedIsland}`
-        : 'Seluruh 38 Provinsi Indonesia';
-
-      const pillsHtml = [];
-      for (const isl of islandsToShow) {
-        for (const prov of isl.provinces) {
-          const st = getProvinceStatus(prov);
-          const dotClass = st.code === '3d'
-            ? 'dot-indicator--3d'
-            : st.code === 'documented' ? 'dot-indicator--doc' : 'dot-indicator--research';
-          const isActive = selectedProvince === prov;
-          pillsHtml.push(`
-            <button
-              type="button"
-              class="province-pill ${st.entries.length ? 'province-pill--documented' : ''} ${isActive ? 'is-active' : ''}"
-              data-select-province="${escapeHtml(prov)}"
-              data-parent-island="${escapeHtml(isl.id)}"
-            >
-              <span class="dot-indicator ${dotClass}" aria-hidden="true"></span>
-              <span>${escapeHtml(prov)}</span>
-              ${st.entries.length ? `<span class="mono-caption" style="color:inherit;opacity:0.8;">(${st.entries.length})</span>` : ''}
-            </button>
-          `);
-        }
-      }
-      document.getElementById('province-pills-container').innerHTML = pillsHtml.join('');
-
-      // Update Right Inspector Panel
-      const kicker = document.getElementById('panel-region-kicker');
-      const title = document.getElementById('panel-region-title');
-      const statusEl = document.getElementById('panel-region-status');
-      const bodyEl = document.getElementById('panel-region-body');
-
-      if (selectedProvince) {
-        const st = getProvinceStatus(selectedProvince);
-        kicker.textContent = `Provinsi · ${selectedIsland || 'Indonesia'}`;
-        title.textContent = selectedProvince;
-        statusEl.textContent = `${st.label} · ${st.entries.length} entri katalog terverifikasi`;
-
-        if (st.entries.length === 0) {
-          bodyEl.innerHTML = `
-            <div style="padding:18px;background:var(--bg-ivory);border:1px dashed var(--border-strong);">
-              <span class="status-badge status-badge--research">Dalam Penelitian</span>
-              <h3 style="font-family:var(--font-serif);font-size:1.18rem;margin:10px 0 6px;">Koleksi Provinsi ${escapeHtml(selectedProvince)} Belum Lengkap</h3>
-              <p style="font-size:0.87rem;color:var(--ink-secondary);margin:0;line-height:1.65;">
-                Tim riset NULAR belum memublikasikan entri rumah tradisional terverifikasi untuk ${escapeHtml(selectedProvince)}. Kami tidak menampilkan informasi yang belum terverifikasi sumbernya. Pelajari standar dokumentasi kami pada halaman <a href="about.html#sources" style="text-decoration:underline;">About NULAR</a>.
-              </p>
-            </div>
-          `;
-        } else {
-          bodyEl.innerHTML = renderHouseEntryList(st.entries, `explore.html?province=${encodeURIComponent(selectedProvince)}`);
-        }
-      } else {
-        const islObj = provincesData.islands.find((i) => i.id === selectedIsland);
-        const entries = selectedIsland ? houses.filter((h) => h.island === selectedIsland) : houses;
-        const count3D = entries.filter((h) => h.modelStatus === 'available').length;
-        const documentedProvs = new Set(entries.map((h) => h.province)).size;
-        const totalProvsInScope = islObj ? islObj.provinces.length : 38;
-
-        kicker.textContent = selectedIsland ? 'Wilayah Kepulauan' : 'Seluruh Nusantara';
-        title.textContent = islObj ? islObj.name : 'Indonesia (7 Wilayah Kepulauan)';
-        statusEl.textContent = `${entries.length} entri terverifikasi · ${count3D} model 3D · ${documentedProvs} dari ${totalProvsInScope} provinsi terdokumentasi`;
-        bodyEl.innerHTML = renderHouseEntryList(
-          entries,
-          selectedIsland ? `explore.html?island=${encodeURIComponent(selectedIsland)}` : 'explore.html'
-        );
-      }
-    }
-
-    function renderHouseEntryList(entries, exploreLink) {
-      return `
-        ${entries.map((h) => {
-          const is3D = h.modelStatus === 'available';
-          const photo = h.referenceImages?.[0];
-          return `
-            <article style="display:grid;grid-template-columns:92px 1fr;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--border-hairline);align-items:start;">
-              <a href="house.html?id=${encodeURIComponent(h.id)}">
-                <img src="${escapeHtml(photo?.url || '')}" alt="${escapeHtml(h.houseName)}" style="width:92px;height:74px;object-fit:cover;border:1px solid var(--border-hairline);" loading="lazy" />
-              </a>
-              <div>
-                <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:4px;">
-                  <span class="status-badge ${is3D ? 'status-badge--3d' : 'status-badge--prep'}" style="font-size:0.62rem;padding:2px 7px;">
-                    ${is3D ? '3D Tersedia' : '3D Disiapkan'}
-                  </span>
-                  <span class="mono-caption">${escapeHtml(h.province)}</span>
-                </div>
-                <h3 style="font-family:var(--font-serif);font-size:1.1rem;margin:0 0 3px;">
-                  <a href="house.html?id=${encodeURIComponent(h.id)}">${escapeHtml(h.houseName)}</a>
-                </h3>
-                <p style="font-size:0.8rem;color:var(--ink-secondary);margin:0 0 8px;">${escapeHtml(h.localName)} · ${escapeHtml(h.culturalCommunity)}</p>
-                <a href="house.html?id=${encodeURIComponent(h.id)}" class="mono-caption" style="color:var(--bg-forest);font-weight:600;text-decoration:underline;text-underline-offset:3px;">
-                  ${is3D ? 'Buka Penampil 3D →' : 'Buka Dossier Arsitektur →'}
-                </a>
-              </div>
-            </article>
-          `;
-        }).join('')}
-        <a href="${exploreLink}" class="btn-museum btn-museum--primary btn-museum--sm" style="width:100%;">
-          Lihat di Katalog Explore
-        </a>
-      `;
-    }
-
-    async function initMap() {
-      [houses, provincesData] = await Promise.all([loadHouses(), loadProvinces()]);
-      const metrics = getCatalogMetrics(houses, provincesData);
-
-      document.getElementById('map-coverage-bar').innerHTML = `
-        <span class="status-badge status-badge--3d">${metrics.modelsAvailable} Model 3D Tersedia</span>
-        <span class="status-badge status-badge--prep">${metrics.modelsInProgress} Model 3D Dalam Persiapan</span>
-        <span class="status-badge status-badge--research">${metrics.documentedProvincesCount} / ${metrics.totalProvinces} Provinsi Terdokumentasi (${metrics.totalProvinces - metrics.documentedProvincesCount} Dalam Penelitian)</span>
-      `;
-
-      // Bind SVG region click + keyboard
-      document.querySelectorAll('.map-region-group').forEach((g) => {
-        const activate = () => {
-          selectedIsland = g.getAttribute('data-island');
-          selectedProvince = null;
-          renderSelection();
-        };
-        g.addEventListener('click', activate);
-        g.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            activate();
-          }
-        });
-      });
-
-      document.getElementById('province-pills-container').addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-select-province]');
-        if (!btn) return;
-        selectedProvince = btn.getAttribute('data-select-province');
-        selectedIsland = btn.getAttribute('data-parent-island');
-        renderSelection();
-      });
-
-      document.getElementById('show-all-islands-btn').addEventListener('click', () => {
-        selectedIsland = null;
-        selectedProvince = null;
-        renderSelection();
-      });
-
-      renderSelection();
-    }
-
-    initMap().catch(console.error);
+    bootAtlas().catch((err) => {
+      const mount = document.getElementById('atlas-svg-mount');
+      if (mount) mount.innerHTML = `<p style="padding:32px;color:#f2b8a2;">Gagal memuat peta: ${err.message}</p>`;
+    });
   </script>
 </body>
 </html>
