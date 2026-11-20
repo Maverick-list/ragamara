@@ -1,0 +1,61 @@
+{
+  "islands": [
+    {
+      "id": "Sumatra",
+      "name": "Sumatra",
+      "subtitle": "Panggung tinggi, atap gonjong & pelana melengkung dataran tinggi Bukit Barisan hingga kepulauan Mentawai",
+      "provinces": [
+        "Aceh", "Sumatera Utara", "Sumatera Barat", "Riau", "Kepulauan Riau",
+        "Jambi", "Sumatera Selatan", "Kepulauan Bangka Belitung", "Bengkulu", "Lampung"
+      ]
+    },
+    {
+      "id": "Java",
+      "name": "Jawa",
+      "subtitle": "Rekayasa kayu jati Kawruh Kalang, pendopo terbuka, atap tajug-brunjung, limasan, dan permukiman pedesaan",
+      "provinces": [
+        "Banten", "DKI Jakarta", "Jawa Barat", "Jawa Tengah", "DI Yogyakarta", "Jawa Timur"
+      ]
+    },
+    {
+      "id": "Kalimantan",
+      "name": "Kalimantan",
+      "subtitle": "Rumah panjang panggung kayu ulin komunal di sepanjang aliran sungai besar pedalaman Borneo",
+      "provinces": [
+        "Kalimantan Barat", "Kalimantan Tengah", "Kalimantan Selatan", "Kalimantan Timur", "Kalimantan Utara"
+      ]
+    },
+    {
+      "id": "Sulawesi",
+      "name": "Sulawesi",
+      "subtitle": "Atap perahu menjulang pegunungan Toraja hingga rumah panggung portabel tiga tingkat maritim Bugis–Makassar",
+      "provinces": [
+        "Sulawesi Utara", "Gorontalo", "Sulawesi Tengah", "Sulawesi Barat", "Sulawesi Selatan", "Sulawesi Tenggara"
+      ]
+    },
+    {
+      "id": "Bali & Nusa Tenggara",
+      "name": "Bali & Nusa Tenggara",
+      "subtitle": "Kompleks pekarangan Sanga Mandala Bali hingga hunian kerucut lima tingkat pegunungan Flores dan kepulauan",
+      "provinces": [
+        "Bali", "Nusa Tenggara Barat", "Nusa Tenggara Timur"
+      ]
+    },
+    {
+      "id": "Maluku",
+      "name": "Maluku",
+      "subtitle": "Balai adat terbuka tanpa dinding di kepulauan rempah sebagai jantung musyawarah negeri adat",
+      "provinces": [
+        "Maluku", "Maluku Utara"
+      ]
+    },
+    {
+      "id": "Papua",
+      "name": "Papua",
+      "subtitle": "Kubah termal dataran tinggi Lembah Baliem hingga arsitektur pesisir dan rumah pohon pedalaman Papua",
+      "provinces": [
+        "Papua", "Papua Barat", "Papua Barat Daya", "Papua Tengah", "Papua Pegunungan", "Papua Selatan"
+      ]
+    }
+  ]
+}

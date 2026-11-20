@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About NULAR — Mission, Sources &amp; Cultural Preservation</title>
+  <meta name="description" content="Misi pelestarian arsitektur tradisional Nusantara, tata kelola riset budaya, registri lisensi aset 3D & foto referensi, serta skema data terstruktur NULAR." />
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet" />
+  <link rel="stylesheet" href="css/museum.css" />
+</head>
+<body>
+  <div id="museum-header-mount"></div>
+
+  <main id="main-content">
+    <section id="mission" class="museum-section" style="padding-top:52px;padding-bottom:44px;">
+      <div class="museum-container">
+        <span class="eyebrow">Tentang NULAR · Nusa Learn</span>
+        <h1 class="display-title" style="margin-top:10px;">Explore the Living Architecture of Nusantara.</h1>
+        <p class="lead-copy" style="margin:16px 0 0;">
+          NULAR (Nusa Learn) adalah museum digital yang didedikasikan untuk memperkenalkan, mendokumentasikan, dan melestarikan arsitektur tradisional Indonesia melalui eksplorasi model 3D interaktif, dokumentasi fotografis terverifikasi, serta kajian tektonik dan budaya yang dapat ditelusuri sumbernya.
+        </p>
+      </div>
+    </section>
+
+    <!-- RESEARCH GOVERNANCE & HERITAGE CLASSIFICATION -->
+    <section id="sources" class="museum-section museum-section--sand">
+      <div class="museum-container">
+        <div class="section-header">
+          <span class="eyebrow">01 · Tata Kelola Riset & Klasifikasi Warisan</span>
+          <h2 class="section-title">Prinsip Akurasi Budaya &amp; Transparansi</h2>
+        </div>
+
+        <div class="spec-grid">
+          <div class="spec-cell">
+            <div class="spec-cell__label">Klasifikasi Warisan Benda (Tangible Heritage)</div>
+            <p class="spec-cell__value">
+              Rumah tradisional merupakan objek arsitektur fisik (<em>tangible architectural heritage</em>). NULAR tidak serta-merta mengklasifikasikan bangunan fisik sebagai Warisan Budaya Takbenda (WBTB); rujukan DAPOBUD/WBTB dicantumkan secara presisi untuk pengetahuan, keterampilan pertukangan, dan adat pembangunan yang menyertainya.
+            </p>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-cell__label">Sumber Rujukan Utama</div>
+            <p class="spec-cell__value">
+              DAPOBUD / Kementerian Kebudayaan RI, publikasi Kemendikbud, catatan konservasi UNESCO, monograf akademik arsitektur Nusantara (Waterson 1990; Prijotomo 1988; Tjahjono 1998; Schefold et al. 2003–2008; Pelras 1996), serta dokumentasi terbuka berlisensi Creative Commons.
+            </p>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-cell__label">Keragaman Multi-Tradisi Per Provinsi</div>
+            <p class="spec-cell__value">
+              Satu provinsi di Indonesia sering menaungi beberapa komunitas dan tradisi arsitektur yang sangat berbeda. Katalog NULAR dirancang mendukung banyak entri dalam provinsi yang sama (seperti <em>Rumah Gadang</em> &amp; <em>Uma Mentawai</em> di Sumatera Barat, atau <em>Tongkonan</em> &amp; <em>Saoraja</em> di Sulawesi Selatan).
+            </p>
+          </div>
+          <div class="spec-cell">
+            <div class="spec-cell__label">Kejujuran Kesenjangan Data &amp; Aset 3D</div>
+            <p class="spec-cell__value">
+              Informasi yang belum terverifikasi ditandai secara eksplisit sebagai <em>"Belum terverifikasi"</em> atau <em>"Dalam penelitian"</em>. Bangunan yang belum memiliki model 3D akurat ditandai <em>"Model 3D sedang disiapkan"</em> dan tidak pernah digantikan oleh model rumah generik.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPLETE 3D ASSET & PHOTOGRAPHIC ATTRIBUTION REGISTRY -->
+    <section id="attribution" class="museum-section">
+      <div class="museum-container">
+        <div class="section-header">
+          <span class="eyebrow">02 · Registri Aset 3D &amp; Fotografi</span>
+          <h2 class="section-title">Attribution &amp; License Registry</h2>
+          <p class="lead-copy" style="margin:8px 0 0;">
+            Tabel berikut dihasilkan langsung dari registri data resmi NULAR (<code>data/houses.json</code>) untuk menjamin keterbukaan lisensi seluruh model 3D GLB dan foto referensi.
+          </p>
+        </div>
+
+        <div id="attribution-registry-table" style="border:1px solid var(--border-strong);background:var(--bg-paper);overflow-x:auto;"></div>
+      </div>
+    </section>
+
+    <!-- STRUCTURED DATA WORKFLOW & FUTURE CMS ARCHITECTURE -->
+    <section id="cms-workflow" class="museum-section museum-section--sand">
+      <div class="museum-container">
+        <div class="section-header">
+          <span class="eyebrow">03 · Arsitektur Data &amp; Alur Kurasi Konten</span>
+          <h2 class="section-title">Menambahkan Rumah &amp; Model 3D Baru Tanpa Mengubah Penampil</h2>
+          <p class="lead-copy" style="margin:8px 0 0;">
+            Penampil 3D NULAR (<code>js/viewer-3d.js</code>) sepenuhnya digerakkan oleh konfigurasi data pada <code>data/houses.json</code>. Menambahkan model GLB baru, titik hotspot komponen, preset kamera, maupun atribusi lisensi cukup dilakukan melalui satu entri JSON terverifikasi—tanpa menulis ulang kode penampil 3D.
+          </p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:24px;">
+          <div style="background:var(--bg-paper);border:1px solid var(--border-hairline);padding:24px;">
+            <div class="spec-cell__label">Pipeline Aset 3D (GLB / glTF 2.0)</div>
+            <ol style="margin:0;padding-left:18px;font-size:0.9rem;color:var(--ink-secondary);line-height:1.75;">
+              <li>Riset proporsi &amp; anatomi arsitektur berdasarkan dokumentasi resmi.</li>
+              <li>Verifikasi lisensi pembuat (CC0 / CC BY / karya orisinal studio).</li>
+              <li>Pemisahan grup mesh komponen (atap, tiang, dinding, pondasi) untuk mendukung raycasting dan Exploded View.</li>
+              <li>Optimasi ukuran berkas GLB (&lt; 1 MB / kompresi Draco opsional) untuk pemuatan mulus di perangkat mobile.</li>
+              <li>Pencatatan penuh pada <code>data/houses.json</code> dan pengujian visual pada penampil 3D.</li>
+            </ol>
+          </div>
+
+          <div style="background:var(--bg-paper);border:1px solid var(--border-hairline);padding:24px;">
+            <div class="spec-cell__label">Rencana Integrasi CMS Kuratorial</div>
+            <p style="font-size:0.9rem;color:var(--ink-secondary);line-height:1.72;margin:0 0 12px;">
+              Sesuai prinsip kejujuran produk, NULAR tidak menyertakan panel admin tiruan tanpa backend. Lapisan data JSON saat ini sudah dipersiapkan untuk integrasi <em>headless CMS</em> (seperti Sanity, Strapi, atau Directus + object storage CDN) dengan dukungan:
+            </p>
+            <ul style="margin:0;padding-left:18px;font-size:0.88rem;color:var(--ink-secondary);line-height:1.7;">
+              <li>Formulir tervalidasi 25 bidang data arsitektur &amp; sumber ilmiah.</li>
+              <li>Unggahan berkas <code>.glb</code> + editor koordinat hotspot interaktif.</li>
+              <li>Alur persetujuan kurator (<em>Draft → Under Research → Verified → Published</em>).</li>
+              <li>Audit riwayat tinjauan (<code>lastReviewedAt</code> &amp; <code>verificationStatus</code>).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="museum-footer-mount"></div>
+
+  <script type="module">
+    import { loadHouses } from './js/museum-data.js';
+    import { initMuseumShell, escapeHtml } from './js/museum-shell.js';
+
+    initMuseumShell('about');
+
+    async function initAbout() {
+      const houses = await loadHouses();
+      document.getElementById('attribution-registry-table').innerHTML = `
+        <table style="width:100%;border-collapse:collapse;min-width:780px;font-size:0.84rem;">
+          <thead>
+            <tr style="background:var(--bg-forest);color:var(--ink-on-dark);font-family:var(--font-mono);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.09em;">
+              <th style="text-align:left;padding:14px 16px;">Rumah &amp; Provinsi</th>
+              <th style="text-align:left;padding:14px 16px;">Status &amp; Berkas 3D</th>
+              <th style="text-align:left;padding:14px 16px;">Pembuat &amp; Lisensi 3D</th>
+              <th style="text-align:left;padding:14px 16px;">Foto Referensi (Wikimedia Commons)</th>
+              <th style="text-align:left;padding:14px 16px;">Verifikasi</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${houses.map((h) => {
+              const photo = h.referenceImages?.[0];
+              const is3D = h.modelStatus === 'available';
+              return `
+                <tr style="border-top:1px solid var(--border-hairline);">
+                  <td style="padding:14px 16px;vertical-align:top;">
+                    <a href="house.html?id=${encodeURIComponent(h.id)}" style="font-weight:600;color:var(--ink-primary);text-decoration:underline;">${escapeHtml(h.houseName)}</a>
+                    <div class="mono-caption" style="margin-top:2px;">${escapeHtml(h.province)} · ${escapeHtml(h.island)}</div>
+                  </td>
+                  <td style="padding:14px 16px;vertical-align:top;">
+                    <span class="status-badge ${is3D ? 'status-badge--3d' : 'status-badge--prep'}" style="font-size:0.62rem;">
+                      ${is3D ? 'GLB Tersedia' : 'Sedang Disiapkan'}
+                    </span>
+                    ${h.model3DUrl ? `<div class="mono-caption" style="margin-top:4px;">${escapeHtml(h.model3DUrl)}</div>` : ''}
+                  </td>
+                  <td style="padding:14px 16px;vertical-align:top;color:var(--ink-secondary);">
+                    ${escapeHtml(h.assetCreator)}<br/>
+                    <span class="mono-caption">${escapeHtml(h.assetLicense)}</span>
+                  </td>
+                  <td style="padding:14px 16px;vertical-align:top;color:var(--ink-secondary);">
+                    ${photo ? `
+                      Fotografer: <strong>${escapeHtml(photo.photographer)}</strong><br/>
+                      <a href="${escapeHtml(photo.licenseUrl)}" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">${escapeHtml(photo.license)}</a> ·
+                      <a href="${escapeHtml(photo.sourceUrl)}" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">Halaman Sumber</a>
+                    ` : '—'}
+                  </td>
+                  <td style="padding:14px 16px;vertical-align:top;color:var(--ink-secondary);">
+                    ${escapeHtml(h.verificationStatus)}<br/>
+                    <span class="mono-caption">${escapeHtml(h.lastReviewedAt)}</span>
+                  </td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    initAbout().catch(console.error);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1466 @@
+/**
+ * NULAR — Nusa Learn Architectural Museum Design System (css/museum.css)
+ * Aesthetic Direction: Editorial Architectural Museum & Living Nusantara Atlas
+ * Palette: Warm Ivory, Sandstone, Deep Forest Green, Charcoal, Patinated Bronze
+ */
+
+:root {
+  /* Core Museum Surfaces */
+  --bg-ivory: #FAF7F2;
+  --bg-sandstone: #F2EBE0;
+  --bg-sandstone-deep: #E5DACB;
+  --bg-paper: #FFFDF9;
+  --bg-forest: #153027;
+  --bg-forest-deep: #0E221B;
+  --bg-forest-soft: #1E4236;
+  --bg-stage: #171B19;
+  --bg-stage-light: #EAE3D7;
+
+  /* Ink & Typography */
+  --ink-primary: #1B1A17;
+  --ink-secondary: #48453E;
+  --ink-muted: #706B60;
+  --ink-on-dark: #F6F2EA;
+  --ink-on-dark-muted: #BFC9C2;
+
+  /* Architectural Accents */
+  --bronze: #9C7546;
+  --bronze-hover: #815E34;
+  --bronze-light: #C6A274;
+  --bronze-tint: rgba(156, 117, 70, 0.12);
+  --terracotta: #A14F38;
+
+  /* Semantic Status (Muted Museum Tones) */
+  --status-3d-bg: #153027;
+  --status-3d-text: #F6F2EA;
+  --status-prep-bg: #EBE3D5;
+  --status-prep-text: #594A38;
+  --status-research-bg: #F3EFE8;
+  --status-research-text: #6E6A60;
+
+  /* Hairlines & Elevation */
+  --border-hairline: rgba(27, 26, 23, 0.12);
+  --border-strong: rgba(27, 26, 23, 0.24);
+  --border-dark: rgba(246, 242, 234, 0.16);
+  --shadow-subtle: 0 2px 12px rgba(27, 26, 23, 0.05);
+  --shadow-panel: 0 12px 36px rgba(14, 34, 27, 0.14);
+
+  /* Fonts */
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Layout */
+  --container-max: 1320px;
+  --header-h: 72px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-ivory);
+  color: var(--ink-primary);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--bg-ivory);
+  color: var(--ink-primary);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--bronze);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 200;
+  background: var(--bg-forest);
+  color: var(--ink-on-dark);
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ============================================================================
+   LAYOUT & EDITORIAL TYPOGRAPHY
+   ============================================================================ */
+.museum-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 1024px) {
+  .museum-container {
+    padding: 0 40px;
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--bronze);
+  display: inline-block;
+}
+
+.eyebrow--light {
+  color: var(--bronze-light);
+}
+.eyebrow--light::before {
+  background: var(--bronze-light);
+}
+
+.display-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+  margin: 0;
+  font-size: clamp(2.4rem, 5.2vw, 4.35rem);
+  color: var(--ink-primary);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0;
+  font-size: clamp(1.75rem, 3.1vw, 2.6rem);
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.22;
+  margin: 0;
+  font-size: 1.32rem;
+}
+
+.mono-caption {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.lead-copy {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  color: var(--ink-secondary);
+  line-height: 1.72;
+  max-width: 62ch;
+}
+
+/* ============================================================================
+   TOP NAVIGATION BAR (Architectural Museum Masthead)
+   ============================================================================ */
+.museum-header {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  height: var(--header-h);
+  background: rgba(250, 247, 242, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.museum-header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark__emblem {
+  width: 34px;
+  height: 34px;
+  background: var(--bg-forest);
+  color: var(--bg-ivory);
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.03em;
+  border: 1px solid rgba(156, 117, 70, 0.5);
+}
+
+.brand-mark__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.08;
+}
+
+.brand-mark__name {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-primary);
+}
+
+.brand-mark__sub {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.museum-nav {
+  display: none;
+  align-items: center;
+  gap: 28px;
+}
+
+@media (min-width: 960px) {
+  .museum-nav {
+    display: flex;
+  }
+}
+
+.museum-nav__link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-secondary);
+  padding: 6px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.museum-nav__link:hover,
+.museum-nav__link[aria-current="page"] {
+  color: var(--ink-primary);
+}
+
+.museum-nav__link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1.5px;
+  background: var(--bronze);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.journal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xs);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink-primary);
+  background: var(--bg-paper);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.journal-pill:hover {
+  border-color: var(--bronze);
+  background: var(--bg-sandstone);
+}
+
+.journal-pill__count {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  background: var(--bg-forest);
+  color: var(--ink-on-dark);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.mobile-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xs);
+  background: var(--bg-paper);
+  color: var(--ink-primary);
+}
+
+@media (min-width: 960px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+.mobile-drawer {
+  display: none;
+  background: var(--bg-ivory);
+  border-bottom: 1px solid var(--border-strong);
+  padding: 16px 24px 24px;
+}
+
+.mobile-drawer.is-open {
+  display: block;
+}
+
+.mobile-drawer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-drawer__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--border-hairline);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.mobile-drawer__link[aria-current="page"] {
+  color: var(--bronze);
+  font-weight: 600;
+}
+
+/* ============================================================================
+   BUTTONS & BADGES
+   ============================================================================ */
+.btn-museum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 22px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-xs);
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-museum--primary {
+  background: var(--bg-forest);
+  color: var(--ink-on-dark);
+  border-color: var(--bg-forest);
+}
+.btn-museum--primary:hover {
+  background: var(--bg-forest-soft);
+  border-color: var(--bg-forest-soft);
+}
+
+.btn-museum--secondary {
+  background: transparent;
+  color: var(--ink-primary);
+  border-color: var(--border-strong);
+}
+.btn-museum--secondary:hover {
+  border-color: var(--ink-primary);
+  background: var(--bg-sandstone);
+}
+
+.btn-museum--bronze {
+  background: var(--bronze);
+  color: #FFFDF9;
+  border-color: var(--bronze);
+}
+.btn-museum--bronze:hover {
+  background: var(--bronze-hover);
+  border-color: var(--bronze-hover);
+}
+
+.btn-museum--ghost-dark {
+  background: rgba(246, 242, 234, 0.08);
+  color: var(--ink-on-dark);
+  border-color: rgba(246, 242, 234, 0.28);
+}
+.btn-museum--ghost-dark:hover {
+  background: rgba(246, 242, 234, 0.16);
+  border-color: var(--bronze-light);
+}
+
+.btn-museum--sm {
+  padding: 8px 14px;
+  font-size: 0.8rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-xs);
+  font-weight: 500;
+}
+
+.status-badge--3d {
+  background: var(--status-3d-bg);
+  color: var(--status-3d-text);
+}
+
+.status-badge--3d::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bronze-light);
+}
+
+.status-badge--prep {
+  background: var(--status-prep-bg);
+  color: var(--status-prep-text);
+  border: 1px solid rgba(89, 74, 56, 0.18);
+}
+
+.status-badge--research {
+  background: var(--status-research-bg);
+  color: var(--status-research-text);
+  border: 1px dashed rgba(110, 106, 96, 0.35);
+}
+
+/* ============================================================================
+   SECTIONS & EDITORIAL DIVIDERS
+   ============================================================================ */
+.museum-section {
+  padding: 72px 0;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+@media (min-width: 1024px) {
+  .museum-section {
+    padding: 96px 0;
+  }
+}
+
+.museum-section--sand {
+  background: var(--bg-sandstone);
+}
+
+.museum-section--forest {
+  background: var(--bg-forest);
+  color: var(--ink-on-dark);
+  border-bottom-color: var(--border-dark);
+}
+
+.museum-section--forest .lead-copy,
+.museum-section--forest .mono-caption {
+  color: var(--ink-on-dark-muted);
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 44px;
+}
+
+@media (min-width: 768px) {
+  .section-header--split {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+/* ============================================================================
+   HOME HERO — EDITORIAL ARCHITECTURAL STAGE + INTERACTIVE 3D PREVIEW
+   ============================================================================ */
+.hero-atlas {
+  background: var(--bg-forest-deep);
+  color: var(--ink-on-dark);
+  border-bottom: 1px solid var(--border-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-atlas__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  padding: 48px 0 56px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-atlas__grid {
+    grid-template-columns: 1.05fr 1.15fr;
+    gap: 48px;
+    padding: 64px 0 76px;
+    min-height: calc(100vh - var(--header-h) - 24px);
+    max-height: 820px;
+  }
+}
+
+.hero-atlas__title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.55rem, 5vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: #FAF7F2;
+  margin: 16px 0 22px;
+}
+
+.hero-atlas__subtitle {
+  font-size: 1.06rem;
+  line-height: 1.72;
+  color: #D0D9D2;
+  max-width: 52ch;
+  margin: 0 0 32px;
+}
+
+.hero-atlas__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-dark);
+}
+
+.hero-stat__value {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--bronze-light);
+  line-height: 1.1;
+}
+
+.hero-stat__label {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-on-dark-muted);
+  margin-top: 4px;
+}
+
+.hero-viewer-frame {
+  position: relative;
+  border: 1px solid rgba(198, 162, 116, 0.32);
+  background: radial-gradient(circle at 50% 42%, #243830 0%, #121C18 78%);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  min-height: 390px;
+  height: 460px;
+}
+
+@media (min-width: 1024px) {
+  .hero-viewer-frame {
+    height: 560px;
+  }
+}
+
+.hero-viewer-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 12;
+  background: rgba(14, 34, 27, 0.84);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(198, 162, 116, 0.35);
+  color: var(--ink-on-dark);
+  padding: 7px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-viewer-switcher {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 12;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: rgba(14, 34, 27, 0.86);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(246, 242, 234, 0.14);
+  padding: 10px 14px;
+}
+
+.hero-model-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.hero-model-tab {
+  background: transparent;
+  color: var(--ink-on-dark-muted);
+  border: 1px solid rgba(246, 242, 234, 0.18);
+  padding: 5px 10px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  border-radius: var(--radius-xs);
+  transition: all 0.2s;
+}
+
+.hero-model-tab.is-active,
+.hero-model-tab:hover {
+  background: var(--bronze);
+  border-color: var(--bronze);
+  color: #FFFDF9;
+}
+
+/* ============================================================================
+   HOUSE SPECIMEN CARDS (Editorial Plates — NOT Cartoon Cards)
+   ============================================================================ */
+.houses-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 680px) {
+  .houses-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1080px) {
+  .houses-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.house-card {
+  background: var(--bg-paper);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.house-card:hover {
+  border-color: var(--bronze);
+  box-shadow: var(--shadow-panel);
+  transform: translateY(-2px);
+}
+
+.house-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-sandstone-deep);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.house-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+
+.house-card:hover .house-card__img {
+  transform: scale(1.03);
+}
+
+.house-card__badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.house-card__save-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(255, 253, 249, 0.35);
+  background: rgba(21, 48, 39, 0.78);
+  color: #FAF7F2;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(6px);
+  transition: background-color 0.2s;
+}
+
+.house-card__save-btn:hover,
+.house-card__save-btn.is-saved {
+  background: var(--bronze);
+  border-color: var(--bronze);
+}
+
+.house-card__body {
+  padding: 22px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.house-card__region {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  margin-bottom: 6px;
+}
+
+.house-card__local {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  font-style: italic;
+  margin: 4px 0 12px;
+}
+
+.house-card__intro {
+  font-size: 0.9rem;
+  color: var(--ink-secondary);
+  line-height: 1.62;
+  margin: 0 0 18px;
+  flex: 1;
+}
+
+.house-card__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.meta-chip {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  padding: 3px 8px;
+  background: var(--bg-sandstone);
+  color: var(--ink-secondary);
+  border-radius: var(--radius-xs);
+}
+
+.house-card__footer {
+  padding-top: 14px;
+  border-top: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* ============================================================================
+   ISLAND EXPLORER GRID
+   ============================================================================ */
+.island-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--border-hairline);
+  border: 1px solid var(--border-hairline);
+}
+
+@media (min-width: 640px) {
+  .island-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .island-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.island-tile {
+  background: var(--bg-paper);
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 196px;
+  transition: background-color 0.2s ease;
+}
+
+.island-tile:hover {
+  background: var(--bg-sandstone);
+}
+
+.island-tile__name {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 8px 0 8px;
+}
+
+.island-tile__desc {
+  font-size: 0.85rem;
+  color: var(--ink-secondary);
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+
+.island-tile__counts {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--bg-forest);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-hairline);
+}
+
+/* ============================================================================
+   INTERACTIVE 3D HOUSE VIEWER (Core Product Experience)
+   ============================================================================ */
+.viewer-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-stage);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .viewer-shell--with-inspector {
+    grid-template-columns: minmax(0, 1fr) 370px;
+  }
+}
+
+.viewer-stage {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  background: radial-gradient(circle at 50% 40%, #26312C 0%, #121715 80%);
+  overflow: hidden;
+  user-select: none;
+  touch-action: none; /* Prevent accidental mobile page scrolling while orbiting */
+}
+
+@media (min-width: 768px) {
+  .viewer-stage {
+    height: 540px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .viewer-stage {
+    height: 620px;
+  }
+}
+
+.viewer-stage:fullscreen {
+  height: 100vh !important;
+  width: 100vw !important;
+}
+
+.viewer-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: grab;
+}
+
+.viewer-canvas:active {
+  cursor: grabbing;
+}
+
+/* Loading & Error & WebGL Fallback Overlays */
+.viewer-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  text-align: center;
+  background: rgba(18, 23, 21, 0.92);
+  color: var(--ink-on-dark);
+}
+
+.viewer-overlay[hidden] {
+  display: none;
+}
+
+.viewer-progress-track {
+  width: min(280px, 80%);
+  height: 3px;
+  background: rgba(246, 242, 234, 0.16);
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.viewer-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--bronze-light);
+  transition: width 0.2s ease;
+}
+
+/* Top HUD inside 3D Viewer */
+.viewer-hud-top {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 15;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.viewer-hud-top > * {
+  pointer-events: auto;
+}
+
+.viewer-mode-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  background: rgba(15, 22, 19, 0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(246, 242, 234, 0.16);
+  border-radius: var(--radius-xs);
+  padding: 3px;
+  gap: 2px;
+}
+
+.viewer-btn {
+  background: transparent;
+  color: #E3E7E3;
+  border: none;
+  padding: 7px 11px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.18s, color 0.18s;
+}
+
+.viewer-btn:hover:not(:disabled) {
+  background: rgba(246, 242, 234, 0.12);
+  color: #FFFDF9;
+}
+
+.viewer-btn.is-active {
+  background: var(--bronze);
+  color: #FFFDF9;
+}
+
+.viewer-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.viewer-hud-bottom {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 15;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.viewer-hud-bottom > * {
+  pointer-events: auto;
+}
+
+.viewer-hint {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  color: rgba(246, 242, 234, 0.74);
+  background: rgba(15, 22, 19, 0.74);
+  padding: 5px 10px;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(246, 242, 234, 0.12);
+}
+
+/* 3D Projected Hotspot Pins */
+.hotspot-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hotspot-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px 4px 5px;
+  background: rgba(15, 24, 20, 0.88);
+  color: #FAF7F2;
+  border: 1px solid rgba(198, 162, 116, 0.65);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, background-color 0.18s ease, opacity 0.2s ease;
+}
+
+.hotspot-pin:hover,
+.hotspot-pin.is-selected {
+  background: var(--bronze);
+  border-color: #FAF7F2;
+  transform: translate(-50%, -50%) scale(1.06);
+  z-index: 14;
+}
+
+.hotspot-pin__dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bronze-light);
+  color: #141B18;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.hotspot-pin.is-selected .hotspot-pin__dot {
+  background: #FAF7F2;
+  color: var(--bg-forest);
+}
+
+.hotspot-pin.is-occluded {
+  opacity: 0.35;
+}
+
+@media (max-width: 640px) {
+  .hotspot-pin {
+    padding: 3px;
+  }
+  .hotspot-pin > span:not(.hotspot-pin__dot) {
+    display: none;
+  }
+}
+
+/* Contextual Component Inspector Panel beside 3D Viewer */
+.inspector-panel {
+  background: var(--bg-paper);
+  color: var(--ink-primary);
+  border-top: 1px solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+  max-height: 620px;
+}
+
+@media (min-width: 1024px) {
+  .inspector-panel {
+    border-top: none;
+    border-left: 1px solid var(--border-hairline);
+  }
+}
+
+.inspector-panel__head {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-hairline);
+  background: var(--bg-sandstone);
+}
+
+.inspector-panel__body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.inspector-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inspector-item {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--bg-ivory);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.inspector-item:hover,
+.inspector-item.is-selected {
+  border-color: var(--bronze);
+  background: var(--bronze-tint);
+}
+
+/* ============================================================================
+   FILTER BAR & SEARCH (EXPLORE CATALOG)
+   ============================================================================ */
+.filter-panel {
+  background: var(--bg-paper);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 22px;
+  margin-bottom: 32px;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 768px) {
+  .filter-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .filter-grid {
+    grid-template-columns: 2fr repeat(5, minmax(0, 1fr));
+  }
+}
+
+.field-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+
+.museum-input,
+.museum-select,
+.museum-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--ink-primary);
+  background: var(--bg-ivory);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xs);
+}
+
+/* ============================================================================
+   ARCHITECTURAL SPECIFICATIONS TABLE & EDITORIAL DETAIL BLOCKS
+   ============================================================================ */
+.spec-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--border-hairline);
+  border: 1px solid var(--border-hairline);
+}
+
+@media (min-width: 768px) {
+  .spec-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.spec-cell {
+  background: var(--bg-paper);
+  padding: 22px 24px;
+}
+
+.spec-cell__label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--bronze);
+  margin-bottom: 8px;
+}
+
+.spec-cell__value {
+  margin: 0;
+  font-size: 0.94rem;
+  color: var(--ink-secondary);
+  line-height: 1.65;
+}
+
+/* ============================================================================
+   INTERACTIVE INDONESIA MAP PAGE
+   ============================================================================ */
+.map-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 1024px) {
+  .map-layout {
+    grid-template-columns: 1.35fr 0.85fr;
+    align-items: start;
+  }
+}
+
+.map-canvas-box {
+  background: var(--bg-forest-deep);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 22px;
+  color: var(--ink-on-dark);
+}
+
+.indonesia-svg-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.map-region-shape {
+  fill: #24483B;
+  stroke: rgba(246, 242, 234, 0.35);
+  stroke-width: 1.4;
+  cursor: pointer;
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.map-region-shape:hover {
+  fill: #326351;
+  stroke: var(--bronze-light);
+}
+
+.map-region-shape.is-active {
+  fill: var(--bronze);
+  stroke: #FAF7F2;
+  stroke-width: 2;
+}
+
+.map-pin-dot {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.province-pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.province-pill {
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-paper);
+  color: var(--ink-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all 0.18s ease;
+}
+
+.province-pill:hover,
+.province-pill.is-active {
+  border-color: var(--bronze);
+  background: var(--bg-forest);
+  color: var(--ink-on-dark);
+}
+
+.province-pill--documented {
+  border-color: rgba(21, 48, 39, 0.38);
+  color: var(--ink-primary);
+  font-weight: 600;
+}
+
+.dot-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-indicator--3d { background: var(--bronze-light); }
+.dot-indicator--doc { background: #3D7A63; }
+.dot-indicator--research { background: #B0AA9E; }
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+.museum-footer {
+  background: var(--bg-forest-deep);
+  color: var(--ink-on-dark);
+  padding: 64px 0 36px;
+}
+
+.museum-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+@media (min-width: 768px) {
+  .museum-footer__grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  }
+}
+
+.footer-heading {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bronze-light);
+  margin: 0 0 14px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 0.875rem;
+  color: var(--ink-on-dark-muted);
+}
+
+.footer-links a:hover {
+  color: #FAF7F2;
+}
+
+.museum-footer__bottom {
+  padding-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: var(--ink-on-dark-muted);
+}
+
+/* ============================================================================
+   REDUCED MOTION SUPPORT
+   ============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

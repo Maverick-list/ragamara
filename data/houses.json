@@ -1,0 +1,1304 @@
+[
+  {
+    "id": "rumah-gadang",
+    "houseName": "Rumah Gadang",
+    "localName": "Rumah Bagonjong",
+    "alternativeNames": ["Rumah Baanjuang", "Rumah Godang", "Rumah Adat Minangkabau"],
+    "province": "Sumatera Barat",
+    "island": "Sumatra",
+    "districtOrRegion": "Kawasan Darek & Nagari-Nagari Minangkabau (Tanah Datar, Agam, Lima Puluh Kota, Solok Selatan)",
+    "culturalCommunity": "Suku Minangkabau",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Rumah Panggung Atap Pelana Melengkung (Bagonjong)",
+    "introduction": "Rumah Gadang adalah hunian komunal sekaligus pusat adat kaum matrilineal Minangkabau. Bangunan kayu bertiang miring ini dikenali melalui atapnya yang melengkung tajam menyerupai tanduk kerbau (gonjong) serta badan dinding miring keluar menyerupai lambung perahu.",
+    "historicalContext": "Dalam tradisi spasial Alam Minangkabau, pendirian Rumah Gadang hanya diperkenankan di wilayah berstatus nagari dan bukan di kawasan jorong atau daerah rantau tertentu. Arsitekturnya berkembang seiring sistem kekerabatan matrilineal serta pembagian dua keselarasan adat, yakni Koto Piliang (beranjung di kedua ujung) dan Bodi Caniago (lantai datar tanpa anjung). Catatan rujukan resmi juga terarsip pada DAPOBUD Kemendikbudristek/Kemenbud (REK/WBTB/2013/01/00006 untuk pengetahuan dan keterampilan pembangunannya, sementara bangunan fisiknya merupakan warisan arsitektur benda).",
+    "architecturalFeatures": {
+      "roofForm": "Atap pelana melengkung ekstrem dengan ujung meruncing menjulang (gonjong), umumnya berjumlah ganjil atau berpasangan simetris (empat, enam, atau lebih), dilapisi ijuk enau tradisional atau seng pada adaptasi modern.",
+      "foundation": "Batu kali datar (batu sandi) yang diletakkan di atas permukaan tanah padat tanpa menanam tiang ke dalam tanah, berfungsi sebagai isolator kelembapan sekaligus peredam gaya lateral gempa.",
+      "walls": "Dinding papan kayu dipasang miring keluar (dinding miring) dengan rangka kayu pasak tanpa paku besi, dihiasi panil ukiran tradisional (seperti kaluak paku dan aka cino) berwarna merah tanah, hitam, dan kuning keemasan.",
+      "spatialLayout": "Denah persegi panjang memanjang terbagi secara longitudinal menjadi ruang depan terbuka (labuah gajah) untuk musyawarah serta deretan bilik tidur (biliak) di sisi belakang yang jumlahnya ganjil sesuai jumlah perempuan berkeluarga dalam kaum.",
+      "constructionTechniques": "Sistem sambungan kayu pasak (tanggam/pasak) dan ikatan ijuk/rotan yang memungkinkan struktur bergoyang lentur saat gempa bumi. Tiang utama (tonggak tuo) dipilih dari kayu keras seperti surian atau juha yang direndam terlebih dahulu untuk keawetan.",
+      "climateAdaptation": "Kolong tinggi melancarkan sirkulasi udara bawah lantai dan melindungi dari banjir serta kelembapan tropis; atap curam mempercepat aliran air hujan deras dataran tinggi Bukit Barisan."
+    },
+    "constructionMaterials": ["Kayu Surian / Kayu Keras Lokal", "Ijuk Enau (Arenga pinnata)", "Batu Kali (Batu Sandi)", "Bambu (Pelupuh)", "Pasak Kayu"],
+    "structuralSystem": "Rangka Tiang-Balok Kayu Panggung dengan Sendi Batu (Flexible Post-and-Beam Timber Frame)",
+    "spatialFunctions": "Pusat kehidupan keluarga besar matrilineal, tempat musyawarah adat kaum, penyelenggaraan upacara batagak pangulu, pernikahan adat, serta ruang penghormatan leluhur kaum.",
+    "culturalSignificance": {
+      "symbolism": "Atap gonjong kerap ditafsirkan dalam tradisi lisan Tambo Minangkabau sebagai simbol tanduk kerbau dalam kisah adu kerbau (Manangkabau) serta aspirasi spiritual yang menjulang. Bentuk badan melengkung menyerupai kapal merujuk pada keterkaitan historis budaya maritim Nusantara.",
+      "traditionalFunctions": "Rumah dimiliki dan diwariskan melalui garis ibu (matrilineal) kepada anak perempuan kaum, sementara mamak (saudara laki-laki ibu) bertindak sebagai penjaga dan pengelola adat.",
+      "socialOrganization": "Perbedaan elevasi lantai ujung (anjung) mencerminkan variasi tatanan sosial keselarasan Koto Piliang yang berjenjang dibanding keselarasan Bodi Caniago yang egaliter.",
+      "ceremonialRelevance": "Menjadi lokasi utama pengangkatan penghulu (batagak gala), pernikahan adat (baralek), dan penyambutan tamu kehormatan nagari."
+    },
+    "model3DUrl": "assets/models/rumah-gadang.glb",
+    "modelStatus": "available",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": true,
+      "separatedComponents": 8,
+      "limitationsNote": "Model 3D ini merupakan studi arsitektur parametrik berskala museum dengan 8 kelompok komponen struktural terpisah (eksterior & rangka kolong). Tata ruang bilik interior belum dimodelkan secara terpisah; tampilan interior dinonaktifkan secara transparan."
+    },
+    "cameraPresets": {
+      "exterior": { "position": [10.4, 5.8, 11.6], "target": [0, 3.2, 0] },
+      "detail": { "position": [4.2, 3.3, 6.2], "target": [0, 2.6, 1.5] }
+    },
+    "hotspots": [
+      {
+        "id": "rg-atap",
+        "meshName": "atap_gonjong",
+        "localName": "Atok Gonjong",
+        "title": "Atap Gonjong Melengkung",
+        "anchor": [0, 6.2, 0.2],
+        "cameraPos": [6.8, 7.6, 7.2],
+        "explodeOffset": [0, 2.2, 0],
+        "constructionAndMaterial": "Rangka kasau bambu dan kayu lentur yang dibentuk melengkung dengan penutup tradisional serat ijuk pohon enau (Arenga pinnata) berlapis tebal.",
+        "practicalFunction": "Kemiringan ekstrem memecah curah hujan tropis tinggi di dataran Sumatera Barat agar air mengalir cepat tanpa membebani struktur.",
+        "culturalMeaning": "Melambangkan tanduk kerbau dalam kisah tradisional Tambo Minangkabau serta menjadi penanda identitas nagari dan status adat kaum."
+      },
+      {
+        "id": "rg-singok",
+        "meshName": "perabung_singok",
+        "localName": "Singok",
+        "title": "Gable Segitiga (Singok)",
+        "anchor": [-4.15, 4.3, 0],
+        "cameraPos": [-8.2, 4.9, 4.2],
+        "explodeOffset": [0, 1.45, 0],
+        "constructionAndMaterial": "Panil kayu atau anyaman bambu berhias yang menutup bidang segitiga di bawah puncak atap gonjong pada kedua ujung bangunan.",
+        "practicalFunction": "Melindungi rongga atap dari hempasan angin dan hujan samping sembari memberi celah ventilasi loteng (paran).",
+        "culturalMeaning": "Sering dihiasi motif ukiran dan tata warna merah-hitam-kuning yang merujuk pada simbolisme warna tradisional Luhak Nan Tigo."
+      },
+      {
+        "id": "rg-dinding",
+        "meshName": "dinding_ukir",
+        "localName": "Dindiang Miriang & Ukiran",
+        "title": "Dinding Miring Berukir",
+        "anchor": [-2.2, 2.65, 1.78],
+        "cameraPos": [-4.8, 3.1, 5.6],
+        "explodeOffset": [0, 0.55, 0],
+        "constructionAndMaterial": "Papan kayu surian yang dipasang miring keluar membentuk penampang trapesium terbalik, diperkaya panil ukiran bermotif flora seperti kaluak paku dan itiak pulang patang.",
+        "practicalFunction": "Kemiringan dinding membantu memantulkan radiasi panas matahari langsung serta menjauhkan tetesan air dari sambungan lantai bawah.",
+        "culturalMeaning": "Ukiran dinding merekam falsafah 'Alam Takambang Jadi Guru', di mana pola alam diterjemahkan menjadi pedoman etika sosial."
+      },
+      {
+        "id": "rg-pintu",
+        "meshName": "pintu_jendela",
+        "localName": "Pintu & Tingkok",
+        "title": "Pintu Utama & Jendela Berdaun",
+        "anchor": [1.8, 2.68, 1.85],
+        "cameraPos": [3.2, 2.9, 5.4],
+        "explodeOffset": [0, 0.55, 0.7],
+        "constructionAndMaterial": "Daun jendela kayu ganda (tingkok) dengan kusen berukir dan kisi kayu, terpusat simetris di sisi fasad depan.",
+        "practicalFunction": "Mengoptimalkan ventilasi silang dan pencahayaan alami ruang musyawarah (labuah gajah) tanpa mengurangi privasi bilik belakang.",
+        "culturalMeaning": "Penempatan pintu masuk tunggal di tengah fasad menegaskan keterbukaan sosial kaum sekaligus tata krama penerimaan tamu."
+      },
+      {
+        "id": "rg-tangga",
+        "meshName": "tangga_janjang",
+        "localName": "Janjang & Serambi",
+        "title": "Tangga Masuk & Serambi Depan",
+        "anchor": [0, 1.65, 2.95],
+        "cameraPos": [2.8, 2.6, 6.4],
+        "explodeOffset": [0, 0.1, 1.3],
+        "constructionAndMaterial": "Tangga kayu beranak tangga ganjil dengan pegangan kayu berukir yang terhubung pada beranda kecil beratap gonjong depan.",
+        "practicalFunction": "Menjadi ruang transisi berteduh untuk melepas alas kaki dan membersihkan diri sebelum memasuki lantai panggung utama.",
+        "culturalMeaning": "Batas simbolis antara ruang publik nagari dan ruang sakral kekerabatan kaum."
+      },
+      {
+        "id": "rg-lantai",
+        "meshName": "lantai_panggung",
+        "localName": "Lantai Panggung & Anjuang",
+        "title": "Lantai Panggung & Anjung",
+        "anchor": [3.3, 1.82, 0.6],
+        "cameraPos": [6.8, 3.2, 4.8],
+        "explodeOffset": [0, 0, 0],
+        "constructionAndMaterial": "Susunan papan kayu tebal di atas balok rasuak dan jariau; pada tipe Koto Piliang, kedua ujung lantai ditinggikan menjadi anjuang.",
+        "practicalFunction": "Menciptakan platform datar kering jauh di atas kelembapan tanah serta memisahkan zona duduk adat.",
+        "culturalMeaning": "Anjuang pada ujung bangunan melambangkan kedudukan terhormat para penghulu dan pemangku adat dalam musyawarah."
+      },
+      {
+        "id": "rg-tiang",
+        "meshName": "tiang_tonggak",
+        "localName": "Tonggak Tuo & Kolong",
+        "title": "Tiang Penyangga Miring & Kolong",
+        "anchor": [-1.2, 0.92, 1.45],
+        "cameraPos": [-3.6, 1.4, 5.2],
+        "explodeOffset": [0, -0.5, 0],
+        "constructionAndMaterial": "Deretan tiang kayu keras berpenampang bulat atau segi delapan yang dipasang sedikit miring ke luar dan diikat balok melintang pasak.",
+        "practicalFunction": "Menaikkan bangunan di atas permukaan tanah (kolong) dan menyerap getaran gempa melalui fleksibilitas sambungan pasak kayu.",
+        "culturalMeaning": "Tonggak Tuo (tiang utama tertua) ditegakkan pertama kali dengan upacara adat sebagai poros kekuatan seluruh rumah kaum."
+      },
+      {
+        "id": "rg-sandi",
+        "meshName": "batu_sandi",
+        "localName": "Batu Sandi",
+        "title": "Pondasi Batu Sandi",
+        "anchor": [1.2, 0.14, 1.45],
+        "cameraPos": [3.2, 0.9, 4.4],
+        "explodeOffset": [0, -1.0, 0],
+        "constructionAndMaterial": "Batu sungai keras berpermukaan rata yang diletakkan bebas di bawah tiap pangkal tiang tonggak tanpa adukan semen.",
+        "practicalFunction": "Mencegah pelapukan kayu akibat air tanah serta memungkinkan pangkal tiang bergeser terbatas (base isolation) saat gempa bumi.",
+        "culturalMeaning": "Mencerminkan prinsip keteguhan adat yang bertumpu pada keseimbangan alam, bukan kekakuan buatan."
+      }
+    ],
+    "referenceImages": [
+      {
+        "url": "assets/photos/rumah-gadang.jpg",
+        "caption": "Rumah Gadang di Kawasan Ranah Pantai Cermin, Sumatera Barat — memperlihatkan atap gonjong bertingkat, fasad berukir, dan tangga masuk.",
+        "photographer": "Zhilal Darma",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Gadang_Ranah_Pantai_Cermin_02.jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "DAPOBUD — Data Pokok Kebudayaan: Rumah Gadang (REK/WBTB/2013/01/00006)",
+        "publisher": "Kementerian Kebudayaan Republik Indonesia",
+        "url": "https://dapobud.kemenbud.go.id/detail/?id=aea96289-9a71-468d-bebb-324f25a556b3",
+        "note": "Rujukan data resmi pemerintah untuk konteks tradisional dan pengetahuan pembangunan Rumah Gadang."
+      },
+      {
+        "title": "The Living House: An Anthropology of Architecture in South-East Asia",
+        "publisher": "Roxana Waterson, Oxford University Press (1990)",
+        "url": "https://id.wikipedia.org/wiki/Rumah_Gadang",
+        "note": "Kajian akademik antropologi arsitektur vernakular Minangkabau dan sistem struktural panggung Asia Tenggara."
+      }
+    ],
+    "assetCreator": "NULAR Architectural Preservation Studio (Original Parametric Architectural Study)",
+    "assetLicense": "CC BY 4.0",
+    "attribution": "Model 3D: NULAR Architectural Preservation Studio (CC BY 4.0). Foto referensi: Zhilal Darma via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Model 3D & Foto Referensi)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": true,
+    "addedOrder": 1
+  },
+  {
+    "id": "tongkonan-toraja",
+    "houseName": "Tongkonan",
+    "localName": "Banua Tongkonan",
+    "alternativeNames": ["Rumah Adat Toraja", "Tongkonan Layuk"],
+    "province": "Sulawesi Selatan",
+    "island": "Sulawesi",
+    "districtOrRegion": "Kabupaten Tana Toraja & Kabupaten Toraja Utara (Kete' Kesu', Pallawa, Sillanan)",
+    "culturalCommunity": "Suku Toraja",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Rumah Panggung Atap Perahu Melengkung (Saddle Roof)",
+    "introduction": "Tongkonan adalah rumah adat leluhur masyarakat Toraja yang berdiri di atas hutan tiang kayu dan dinaungi atap bambu melengkung menjulang menyerupai haluan perahu. Namanya berasal dari kata 'tongkon' yang berarti duduk bersama untuk bermusyawarah.",
+    "historicalContext": "Tongkonan berfungsi sebagai pusat garis keturunan (rapu) dalam masyarakat Toraja yang dapat ditelusuri hingga pendiri awal (to manurun). Di kompleks permukiman adat seperti Kete' Kesu', barisan Tongkonan selalu menghadap utara (ulunna langi' / kepala langit) berhadapan dengan barisan lumbung padi (Alang Sura') yang menghadap selatan.",
+    "architecturalFeatures": {
+      "roofForm": "Atap pelana melengkung ekstrem menyerupai perahu yang menjorok jauh di sisi utara dan selatan, tersusun dari bilah bambu yang ditumpuk berlapis-lapis hingga ketebalan tinggi.",
+      "foundation": "Batu umpak datar di permukaan tanah tempat bertumpunya deretan tiang kayu (lentong) serta tiang penyangga tritisan depan-belakang (tulak sombong).",
+      "walls": "Dinding papan kayu dipasang dengan sistem lidah-alur tanpa paku besi, dipenuhi ukiran geometris Pa'ssura' dengan empat warna utama tradisional: hitam (jelaga), merah (tanah liat), kuning (tanah oker), dan putih (kapur).",
+      "spatialLayout": "Terbagi secara vertikal menjadi tiga kosmos (sulluk banua di bawah, kale banua di tengah, rattiang banua di atas) dan secara horizontal menjadi tiga ruang: tangdo' (utara), sali (tengah), dan sumbung (selatan).",
+      "constructionTechniques": "Konstruksi kayu uru/kayu keras dengan sambungan pasak dan ikatan rotan, menggunakan tiang bebas tulak sombong di muka dan belakang untuk menahan berat atap bambu yang menjorok jauh.",
+      "climateAdaptation": "Teras atap menjorok jauh melindungi dinding ukir dari hujan tropis pegunungan Toraja, sedangkan bukaan jendela kecil membantu menjaga kehangatan ruang tidur pada suhu dataran tinggi."
+    },
+    "constructionMaterials": ["Kayu Uru (Elmerillia ovalis)", "Bambu Belah (Atap)", "Batu Umpak", "Rotan & Ijuk", "Pigmen Mineral Alami (Pa'ssura')"],
+    "structuralSystem": "Rangka Tiang Padat Tiga Tingkat dengan Tiang Bebas Penyangga Atap (Tulak Sombong)",
+    "spatialFunctions": "Pusat kehidupan adat klan, penyimpanan pusaka keluarga, ruang musyawarah, serta titik fokus upacara rambu tuka' (sukacita) dan rambu solo' (kedukaan).",
+    "culturalSignificance": {
+      "symbolism": "Orientasi utara-selatan dan tiga tingkat vertikal bangunan memetakan tatanan kosmologi Aluk Todolo: dunia bawah (sulluk banua), dunia manusia (kale banua), dan dunia atas (rattiang banua).",
+      "traditionalFunctions": "Berpasangan dengan lumbung Alang Sura' sebagai satu kesatuan simbolis antara ruang kehidupan dan kesejahteraan pangan klan.",
+      "socialOrganization": "Strata historis Tongkonan dibedakan menurut perannya dalam masyarakat adat (seperti Tongkonan Layuk sebagai pusat pemerintahan adat dan Tongkonan Pekamberan).",
+      "ceremonialRelevance": "Deretan tanduk kerbau (tanduk tedong) dan kepala kerbau kayu (kabongo') pada tiang tulak sombong merekam sejarah upacara rambu solo' yang pernah digelar keluarga besar tersebut."
+    },
+    "model3DUrl": "assets/models/tongkonan-toraja.glb",
+    "modelStatus": "available",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": true,
+      "separatedComponents": 7,
+      "limitationsNote": "Model 3D ini menampilkan 7 komponen struktural utama eksterior, rangka bawah sulluk banua, dan tiang tulak sombong. Ruang dalam tangdo'-sali-sumbung belum dimodelkan secara terpisah sehingga mode interior dinonaktifkan."
+    },
+    "cameraPresets": {
+      "exterior": { "position": [10.4, 5.8, 11.0], "target": [0, 3.3, 0] },
+      "detail": { "position": [4.2, 3.6, 7.2], "target": [0, 3.4, 3.6] }
+    },
+    "hotspots": [
+      {
+        "id": "tk-atap",
+        "meshName": "atap_perahu",
+        "localName": "Ate' (Rattiang Banua)",
+        "title": "Atap Bambu Melengkung Perahu",
+        "anchor": [0, 6.1, 2.4],
+        "cameraPos": [6.8, 7.2, 6.8],
+        "explodeOffset": [0, 2.0, 0],
+        "constructionAndMaterial": "Lapisan tebal bilah bambu utuh dan belah yang disusun saling mengunci dan diikat rotan pada bubungan melengkung.",
+        "practicalFunction": "Menahan hujan lebat dan angin pegunungan Tana Toraja sekaligus menaungi dinding ukir Pa'ssura' dengan tritisan sangat dalam.",
+        "culturalMeaning": "Merepresentasikan dunia atas (rattiang banua) serta dikaitkan dalam tradisi lisan dengan bentuk perahu leluhur yang berlayar menuju dataran tinggi Toraja."
+      },
+      {
+        "id": "tk-tulak",
+        "meshName": "tiang_tulak_sombong",
+        "localName": "Tulak Sombong",
+        "title": "Tiang Penyangga Atap Depan",
+        "anchor": [0, 3.3, 4.15],
+        "cameraPos": [4.2, 3.8, 7.6],
+        "explodeOffset": [0, 0.3, 0.9],
+        "constructionAndMaterial": "Tiang kayu utuh tunggal berukuran tinggi yang berdiri bebas di muka utara dan belakang selatan bangunan.",
+        "practicalFunction": "Menyalurkan beban gravitasi ujung atap bambu yang menjorok jauh secara langsung menuju pondasi batu di tanah.",
+        "culturalMeaning": "Menjadi tiang kehormatan tempat dipasangnya kabongo' dan deretan tanduk kerbau upacara keluarga."
+      },
+      {
+        "id": "tk-tanduk",
+        "meshName": "tanduk_kabongo",
+        "localName": "Kabongo' & Tanduk Tedong",
+        "title": "Ukiran Kabongo' & Deretan Tanduk",
+        "anchor": [0, 4.45, 4.45],
+        "cameraPos": [3.1, 4.4, 7.2],
+        "explodeOffset": [0, 0.5, 1.45],
+        "constructionAndMaterial": "Patung kepala kerbau ukiran kayu (kabongo') dan susunan vertikal tanduk kerbau asli yang diikat pada sisi depan tulak sombong.",
+        "practicalFunction": "Penanda visual identitas rumah adat utama di lingkungan kampung.",
+        "culturalMeaning": "Merekam jejak upacara penghormatan leluhur (rambu solo') dan kedudukan sosial historis keluarga besar pemilik Tongkonan."
+      },
+      {
+        "id": "tk-dinding",
+        "meshName": "dinding_passura",
+        "localName": "Dinding Pa'ssura'",
+        "title": "Dinding Papan Berukir Pa'ssura'",
+        "anchor": [1.3, 2.75, 0.5],
+        "cameraPos": [5.4, 3.1, 3.6],
+        "explodeOffset": [0, 0.55, 0],
+        "constructionAndMaterial": "Papan kayu uru berukir motif geometris (seperti Pa'barre Allo dan Pa'tedong) menggunakan empat pigmen alami: hitam, merah, kuning, putih.",
+        "practicalFunction": "Membentuk ruang tertutup berinsulasi baik terhadap udara sejuk pegunungan Toraja.",
+        "culturalMeaning": "Empat warna utama melambangkan unsur kehidupan dalam kosmologi Toraja: kematian/kegelapan (hitam), darah kehidupan (merah), berkah ketuhanan (kuning), dan kesucian (putih)."
+      },
+      {
+        "id": "tk-lantai",
+        "meshName": "lantai_kale_banua",
+        "localName": "Kale Banua",
+        "title": "Lantai Utama (Kale Banua)",
+        "anchor": [1.35, 1.9, 1.6],
+        "cameraPos": [5.2, 2.5, 4.5],
+        "explodeOffset": [0, 0, 0],
+        "constructionAndMaterial": "Geladak papan kayu keras tebal yang ditopang balok induk di atas rangka tiang lentong.",
+        "practicalFunction": "Menopang tiga zona ruang dalam: tangdo' (utara), sali (tengah dengan perapian), dan sumbung (selatan untuk kepala keluarga).",
+        "culturalMeaning": "Dunia tengah tempat berlangsungnya kehidupan manusia dan harmoni antaranggota keluarga besar."
+      },
+      {
+        "id": "tk-lentong",
+        "meshName": "tiang_lentong",
+        "localName": "Sulluk Banua & Lentong",
+        "title": "Rangka Tiang Bawah (Sulluk Banua)",
+        "anchor": [1.15, 0.95, 1.6],
+        "cameraPos": [4.6, 1.4, 4.6],
+        "explodeOffset": [0, -0.45, 0],
+        "constructionAndMaterial": "Jaringan rapat tiang kayu persegi (lentong) yang saling dikunci balok melintang (roroan) menggunakan sambungan purus-lubang.",
+        "practicalFunction": "Memberikan kekakuan struktural tinggi terhadap beban atap berat serta menciptakan ruang bawah kolong.",
+        "culturalMeaning": "Mewakili dunia bawah (sulluk banua) dalam struktur kosmis tiga lapis arsitektur Toraja."
+      },
+      {
+        "id": "tk-umpak",
+        "meshName": "batu_umpak",
+        "localName": "Batu Pondasi",
+        "title": "Batu Umpak Penyangga",
+        "anchor": [1.15, 0.1, 2.5],
+        "cameraPos": [3.6, 0.9, 5.0],
+        "explodeOffset": [0, -0.9, 0],
+        "constructionAndMaterial": "Batu alam pipih yang disusun di bawah setiap pangkal tiang lentong.",
+        "practicalFunction": "Memisahkan serat kayu dari kelembapan tanah serta meratakan distribusi beban tiang.",
+        "culturalMeaning": "Menunjukkan kearifan teknis pemeliharaan material organik agar bertahan lintas generasi."
+      }
+    ],
+    "referenceImages": [
+      {
+        "url": "assets/photos/tongkonan-toraja.jpg",
+        "caption": "Deretan Tongkonan di kawasan cagar budaya Kete' Kesu', Toraja Utara, Sulawesi Selatan.",
+        "photographer": "Ansensius",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kete%27_Kesu%27_Toraja.jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Indonesian Houses: Tradition and Transformation in Vernacular Architecture",
+        "publisher": "Reimar Schefold, Gaudenz Domenig & Peter Nas, KITLV Press (2003)",
+        "url": "https://id.wikipedia.org/wiki/Tongkonan",
+        "note": "Dokumentasi tipologi struktural Tongkonan dan orientasi kosmologis pemukiman Toraja."
+      },
+      {
+        "title": "Kete' Kesu' — Tentative List UNESCO World Heritage (Tana Toraja Traditional Settlement)",
+        "publisher": "UNESCO World Heritage Centre / Pemerintah Republik Indonesia",
+        "url": "https://whc.unesco.org/en/tentativelists/5462/",
+        "note": "Rujukan pelestarian kompleks Tongkonan dan Alang Sura' sebagai warisan arsitektur benda."
+      }
+    ],
+    "assetCreator": "NULAR Architectural Preservation Studio (Original Parametric Architectural Study)",
+    "assetLicense": "CC BY 4.0",
+    "attribution": "Model 3D: NULAR Architectural Preservation Studio (CC BY 4.0). Foto referensi: Ansensius via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Model 3D & Foto Referensi)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": true,
+    "addedOrder": 2
+  },
+  {
+    "id": "rumah-joglo",
+    "houseName": "Rumah Joglo",
+    "localName": "Omah Joglo",
+    "alternativeNames": ["Pendopo Joglo", "Joglo Lawakan", "Joglo Sinom"],
+    "province": "Jawa Tengah",
+    "island": "Java",
+    "districtOrRegion": "Jawa Tengah & Daerah Istimewa Yogyakarta (Surakarta, Yogyakarta, Kudus, Kotagede)",
+    "culturalCommunity": "Suku Jawa",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Pendopo & Rumah Atap Piramida Bertingkat (Tajug / Brunjung)",
+    "introduction": "Rumah Joglo merupakan puncak tata arsitektur kayu tradisional Jawa yang dikenali melalui mahkota atap curam di bagian tengah (brunjung) yang ditopang empat pilar jati utama (soko guru) dan struktur balok bertingkat (tumpang sari).",
+    "historicalContext": "Dalam risalah arsitektur Jawa tradisional (Kawruh Kalang), Joglo merupakan tipologi atap tertinggi dalam hierarki lima bentuk atap Jawa (Panggang Pe, Kampung, Limasan, Joglo, dan Tajug). Tata ruang utuhnya tersusun berurutan dari ruang publik terbuka (Pendopo), ruang transisi (Pringgitan), hingga ruang keluarga inti yang privat (Dalem Ageng dan Senthong).",
+    "architecturalFeatures": {
+      "roofForm": "Atap tiga kemiringan: puncak piramida curam di pusat (brunjung) yang melandai keluar menjadi atap penanggap dan penitih berlapis genteng tanah liat.",
+      "foundation": "Batur (lantai berundak batu/bata) dengan umpak batu andesit berukir sebagai tumpuan sendi setiap tiang kayu jati tanpa ditanam ke tanah.",
+      "walls": "Bagian pendopo terbuka di sekelilingnya tanpa dinding untuk ventilasi dan keterbukaan sosial, dibatasi partisi kayu jati berukir (gebyok) menuju ruang dalam (dalem).",
+      "spatialLayout": "Hierarki ruang dari depan ke belakang: Pendopo (publik/penerimaan tamu), Pringgitan (peralihan/pertunjukan), dan Dalem Ageng dengan tiga senthong (privat/keluarga).",
+      "constructionTechniques": "Rekayasa sambungan kayu jati (purus, cathokan, takikan) berdasarkan prinsip Kawruh Kalang; balok tumpang sari tersusun saling menumpu bertingkat (corbelled) tanpa baut logam.",
+      "climateAdaptation": "Teras lebar dan pendopo terbuka memaksimalkan aliran udara alami di iklim lembap dataran rendah Jawa; atap tinggi berfungsi sebagai penyangga panas (thermal buffer) yang menurunkan suhu ruang bawah."
+    },
+    "constructionMaterials": ["Kayu Jati (Tectona grandis)", "Batu Andesit (Umpak)", "Genteng Tanah Liat", "Bata Merah / Terakota", "Pasak Kayu"],
+    "structuralSystem": "Rangka Kolom Utama Empat Soko Guru dengan Mahkota Balok Bertingkat (Tumpang Sari)",
+    "spatialFunctions": "Ruang hunian keluarga besar, penerimaan tamu masyarakat di pendopo, ruang musyawarah, serta pementasan seni tradisional (wayang/karawitan) di pringgitan.",
+    "culturalSignificance": {
+      "symbolism": "Empat soko guru sering dimaknai sebagai simbol empat penjuru mata angin (papat kiblat) dengan pusat tumpang sari di tengah (lima pancer) yang melambangkan keselarasan kosmis manusia dan alam.",
+      "traditionalFunctions": "Pembagian pendopo terbuka dan dalem tertutup mencerminkan keseimbangan antara keterbukaan sosial (guyub) dan penghormatan privasi keluarga.",
+      "socialOrganization": "Secara historis banyak dimiliki keluarga bangsawan, pemuka masyarakat, maupun saudagar karena membutuhkan batang kayu jati berukuran besar dan pengerjaan ahli (undagi/kalang).",
+      "ceremonialRelevance": "Pendopo menjadi pusat penyelenggaraan upacara siklus hidup Jawa seperti pernikahan, selamatan, dan pertemuan komunitas."
+    },
+    "model3DUrl": "assets/models/rumah-joglo.glb",
+    "modelStatus": "available",
+    "modelCapabilities": {
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 7,
+      "limitationsNote": "Mendukung tampilan Eksterior, Interior Pendopo (memperlihatkan empat Soko Guru dan langit-langit bertingkat Tumpang Sari secara langsung), dan Exploded View 7 komponen."
+    },
+    "cameraPresets": {
+      "exterior": { "position": [11.2, 6.2, 11.4], "target": [0, 3.0, 0] },
+      "interior": { "position": [0.35, 1.75, 4.15], "target": [0, 3.15, -0.8] },
+      "detail": { "position": [3.8, 3.8, 4.8], "target": [0, 4.3, 0] }
+    },
+    "hotspots": [
+      {
+        "id": "jg-brunjung",
+        "meshName": "atap_brunjung",
+        "localName": "Atap Brunjung & Wuwungan",
+        "title": "Atap Piramida Brunjung",
+        "anchor": [0, 6.2, 0.8],
+        "cameraPos": [7.5, 7.4, 7.6],
+        "explodeOffset": [0, 2.3, 0],
+        "constructionAndMaterial": "Rangka usuk dan reng kayu jati berpenutup genteng tanah liat dengan bubungan berhias wuwungan/makutha.",
+        "practicalFunction": "Volume rongga atap yang tinggi menampung udara panas di bagian atas sehingga ruang pendopo di bawahnya tetap sejuk sepanjang hari.",
+        "culturalMeaning": "Siluet gunung (meru) yang menjulang di pusat bangunan melambangkan keterhubungan dunia manusia dengan nilai-nilai luhur."
+      },
+      {
+        "id": "jg-tumpang",
+        "meshName": "tumpang_sari",
+        "localName": "Tumpang Sari",
+        "title": "Struktur Bertingkat Tumpang Sari",
+        "anchor": [0, 4.55, 0],
+        "cameraPos": [0.4, 1.8, 2.5],
+        "explodeOffset": [0, 1.25, 0],
+        "constructionAndMaterial": "Susunan balok kayu jati berukir yang bertumpuk mundur-maju (corbelled) di atas empat soko guru tanpa paku besi.",
+        "practicalFunction": "Mengunci kekakuan puncak rangka tengah serta mendistribusikan beban atap brunjung yang berat secara merata ke keempat pilar utama.",
+        "culturalMeaning": "Merupakan mahakarya rekayasa kayu Jawa (Kawruh Kalang) yang memperlihatkan tahapan pemusatan menuju puncak keselarasan."
+      },
+      {
+        "id": "jg-sokoguru",
+        "meshName": "soko_guru",
+        "localName": "Soko Guru",
+        "title": "Empat Pilar Utama (Soko Guru)",
+        "anchor": [1.25, 2.4, 1.25],
+        "cameraPos": [4.2, 2.5, 4.4],
+        "explodeOffset": [0, 0.15, 0],
+        "constructionAndMaterial": "Empat kolom persegi kayu jati tua utuh yang dihubungkan balok blander dan pengeret di bagian atas.",
+        "practicalFunction": "Menjadi inti pemikul utama seluruh atap brunjung dan penstabil gaya lateral saat gempa bumi di Pulau Jawa.",
+        "culturalMeaning": "Kerap dihubungkan dengan konsep Jawa 'sedulur papat lima pancer' (empat penjuru yang mengitari satu titik pusat)."
+      },
+      {
+        "id": "jg-penanggap",
+        "meshName": "tiang_penanggap",
+        "localName": "Soko Penanggap",
+        "title": "Deretan Tiang Luar (Penanggap)",
+        "anchor": [3.25, 1.9, 1.1],
+        "cameraPos": [6.5, 2.5, 4.5],
+        "explodeOffset": [0, 0.15, 0],
+        "constructionAndMaterial": "Dua belas tiang kayu jati berdimensi lebih ramping yang membentuk perimeter terbuka pendopo.",
+        "practicalFunction": "Menopang tritisan atap penanggap yang lebar agar cahaya silau dan tampias hujan tidak masuk ke lantai pendopo.",
+        "culturalMeaning": "Menciptakan ruang berteduh yang terbuka terhadap tetangga dan lingkungan masyarakat sekitar."
+      },
+      {
+        "id": "jg-gebyok",
+        "meshName": "gebyok_dalem",
+        "localName": "Gebyok & Kori",
+        "title": "Partisi Ukiran Gebyok",
+        "anchor": [0, 1.75, -3.15],
+        "cameraPos": [2.2, 2.1, 1.8],
+        "explodeOffset": [0, 0.35, -0.95],
+        "constructionAndMaterial": "Dinding panil kayu jati penuh ukiran kerawang dan relung pintu tengah (kori) yang dapat dibongkar pasang.",
+        "practicalFunction": "Memisahkan ruang pendopo yang bersifat publik dari ruang keluarga inti (dalem ageng) sembari tetap mengalirkan sirkulasi udara.",
+        "culturalMeaning": "Menandai batas sopan santun spasial antara ranah sosial dan ranah kekeluargaan."
+      },
+      {
+        "id": "jg-umpak",
+        "meshName": "umpak_batu",
+        "localName": "Umpak Batu Andesit",
+        "title": "Pondasi Batu Umpak",
+        "anchor": [-1.25, 0.56, 1.25],
+        "cameraPos": [-3.4, 1.1, 3.6],
+        "explodeOffset": [0, -0.35, 0],
+        "constructionAndMaterial": "Balok batu andesit terpahat bentuk limas terpancung di bawah setiap pangkal tiang soko guru dan penanggap.",
+        "practicalFunction": "Mencegah kelembapan kapiler naik ke serat kayu jati serta berperan sebagai sendi geser tahan gempa.",
+        "culturalMeaning": "Pondasi yang kokoh namun lentur mengikuti gerakan bumi."
+      },
+      {
+        "id": "jg-lantai",
+        "meshName": "pendopo_lantai",
+        "localName": "Batur & Lantai Pendopo",
+        "title": "Lantai Berundak Pendopo",
+        "anchor": [0, 0.32, 3.6],
+        "cameraPos": [4.5, 1.8, 7.6],
+        "explodeOffset": [0, -0.8, 0],
+        "constructionAndMaterial": "Plinth batu andesit dan ubin terakota berundak yang meninggikan elevasi lantai dari permukaan halaman.",
+        "practicalFunction": "Menghindari genangan air hujan muson dan mendefinisikan area bersih tanpa alas kaki.",
+        "culturalMeaning": "Tingkatan ketinggian lantai turut menandai perbedaan tingkat kesakralan ruang dari halaman menuju dalem."
+      }
+    ],
+    "referenceImages": [
+      {
+        "url": "assets/photos/rumah-joglo.jpg",
+        "caption": "Arsitektur Rumah Joglo tradisional Jawa dengan atap brunjung bertingkat dan ruang pendopo terbuka.",
+        "photographer": "erdemaju",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Joglo_Masa_Kecil_Pak_SBY.jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Ideas and Forms of Javanese Architecture (Kawruh Kalang)",
+        "publisher": "Josef Prijotomo, Gadjah Mada University Press (1988)",
+        "url": "https://id.wikipedia.org/wiki/Joglo",
+        "note": "Rujukan utama struktur kayu Joglo, Soko Guru, Tumpang Sari, dan sistem proporsi Kawruh Kalang."
+      },
+      {
+        "title": "Indonesian Heritage: Architecture",
+        "publisher": "Gunawan Tjahjono (Ed.), Archipelago Press / Buku Antar Bangsa (1998)",
+        "url": "https://id.wikipedia.org/wiki/Arsitektur_Jawa",
+        "note": "Klasifikasi lima bentuk atap tradisional Jawa dan organisasi spasial Pendopo–Dalem."
+      }
+    ],
+    "assetCreator": "NULAR Architectural Preservation Studio (Original Parametric Architectural Study)",
+    "assetLicense": "CC BY 4.0",
+    "attribution": "Model 3D: NULAR Architectural Preservation Studio (CC BY 4.0). Foto referensi: erdemaju via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Model 3D Exterior + Interior Pendopo & Foto Referensi)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": true,
+    "addedOrder": 3
+  },
+  {
+    "id": "honai-papua",
+    "houseName": "Honai",
+    "localName": "Honai / Pilamo",
+    "alternativeNames": ["Ebei (Honai Perempuan)", "Wamai (Kandang Ternak)", "Honai Lembah Baliem"],
+    "province": "Papua Pegunungan",
+    "island": "Papua",
+    "districtOrRegion": "Lembah Baliem (Kabupaten Jayawijaya — Wamena dan sekitarnya)",
+    "culturalCommunity": "Suku Dani (Hubula) & Suku Lani",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Hunian Bundar Kubah Jerami Dua Tingkat (Highland Thermal Dome)",
+    "introduction": "Honai adalah hunian tradisional berbentuk silinder berkubah jerami milik masyarakat adat dataran tinggi Lembah Baliem. Setiap detail bentuknya dirancang secara presisi untuk memerangkap panas perapian menghadapi suhu dingin pegunungan tengah Papua.",
+    "historicalContext": "Dalam kompleks permukiman tradisional Suku Dani (silimo), bangunan dipisahkan menurut fungsi sosialnya: Honai atau Pilamo untuk laki-laki dewasa dan pertemuan adat, Ebei untuk perempuan dan anak-anak, serta Honai dapur (Hunila). Seluruh bangunan dibangun dari bahan organik hutan pegunungan tanpa logam.",
+    "architecturalFeatures": {
+      "roofForm": "Atap kubah setengah bola tebal dari tumpukan rumput alang-alang / jerami kering yang diikat melingkar hingga mengerucut di puncak, berfungsi sebagai isolator termal dan penolak hujan.",
+      "foundation": "Tanah dipadatkan melingkar (tanpa panggung tinggi) agar hawa dingin angin malam tidak menyusup dari bawah lantai.",
+      "walls": "Dinding papan kayu belah dipasang vertikal dalam dua lapis melingkar (dinding ganda) dan diikat sabuk rotan/akar hutan untuk menahan kebocoran udara dingin; tanpa jendela.",
+      "spatialLayout": "Berbentuk bundar berdiameter sekitar 4–6 meter dengan dua tingkat: lantai dasar untuk perapian (tungku api) dan berkumpul, serta lantai atas (loteng kayu) sebagai ruang tidur hangat.",
+      "constructionTechniques": "Empat tiang utama di tengah (heke) menopang balok lantai loteng dan rangka kerucut atap; seluruh sambungan diikat menggunakan tali rotan atau kulit kayu.",
+      "climateAdaptation": "Adaptasi brilian terhadap iklim pegunungan (~1.600 mdpl, suhu malam 10–15°C): rasio permukaan-ke-volume minimal (bentuk lingkaran), tanpa jendela, pintu sangat rendah, dan aliran panas konveksi dari tungku lantai dasar naik menghangatkan ruang tidur loteng."
+    },
+    "constructionMaterials": ["Kayu Keras Lokal (Papan Belah)", "Rumput Alang-Alang / Jerami", "Tali Rotan & Akar Hutan", "Batu Tungku", "Tanah Padat"],
+    "structuralSystem": "Dinding Papan Melingkar Ganda dengan Empat Tiang Pusat (Heke) dan Kubah Rangka Bambu/Kayu",
+    "spatialFunctions": "Hunian beristirahat (loteng atas), ruang musyawarah laki-laki dan pendidikan generasi muda (Pilamo), penyimpanan pusaka, serta pusat penghangatan komunal di sekitar perapian.",
+    "culturalSignificance": {
+      "symbolism": "Bentuk bundar tanpa sudut melambangkan kesatuan, kebersamaan, dan perlindungan klan dalam satu naungan utuh.",
+      "traditionalFunctions": "Pilamo berfungsi sebagai pusat transmisi pengetahuan adat, strategi pertahanan tradisi, dan penyelesaian persoalan komunitas.",
+      "socialOrganization": "Pembagian ruang Pilamo (laki-laki) dan Ebei (perempuan/anak) dalam satu pagar silimo mengatur ritme kerja serta pendidikan berbasis kekerabatan.",
+      "ceremonialRelevance": "Menjadi pusat penyimpanan benda pusaka klan serta titik awal musyawarah menjelang upacara bakar batu (barapen)."
+    },
+    "model3DUrl": "assets/models/honai-papua.glb",
+    "modelStatus": "available",
+    "modelCapabilities": {
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 6,
+      "limitationsNote": "Mendukung tampilan Eksterior, Exploded View, dan Interior Dua Tingkat (atap kubah terangkat secara terkontrol dalam mode Interior agar perapian tungku lantai dasar, tiang heke, tangga, dan loteng tidur terlihat jelas)."
+    },
+    "cameraPresets": {
+      "exterior": { "position": [6.8, 3.9, 7.4], "target": [0, 2.0, 0] },
+      "interior": { "position": [4.2, 3.5, 4.4], "target": [0, 1.35, 0] },
+      "detail": { "position": [3.1, 1.6, 4.8], "target": [0, 1.0, 1.6] }
+    },
+    "hotspots": [
+      {
+        "id": "hn-atap",
+        "meshName": "atap_kubah_jerami",
+        "localName": "Atap Kubah Alang-Alang",
+        "title": "Kubah Jerami Isolasi Termal",
+        "anchor": [0, 3.4, 0.8],
+        "cameraPos": [5.2, 4.8, 5.2],
+        "explodeOffset": [0, 1.95, 0],
+        "constructionAndMaterial": "Lapisan tebal rumput alang-alang/jerami kering yang disusun melingkar di atas rangka kasau kerucut dan diikat erat di puncak.",
+        "practicalFunction": "Menahan hujan pegunungan sekaligus bertindak sebagai selimut isolasi termal yang menjaga suhu hangat di dalam loteng tidur.",
+        "culturalMeaning": "Bentuk setengah bola memayungi seluruh penghuni secara setara tanpa sudut yang memisahkan."
+      },
+      {
+        "id": "hn-dinding",
+        "meshName": "dinding_papan",
+        "localName": "Dinding Papan Ganda",
+        "title": "Dinding Papan Melingkar Ganda",
+        "anchor": [2.05, 1.05, 0.3],
+        "cameraPos": [4.8, 1.5, 2.8],
+        "explodeOffset": [0, 0.15, 0],
+        "constructionAndMaterial": "Dua lapis papan kayu belah vertikal tanpa celah jendela, diikat melingkar oleh sabuk rotan dan akar hutan.",
+        "practicalFunction": "Mencegah angin malam Lembah Baliem menembus dinding dan mempertahankan udara hangat hasil perapian.",
+        "culturalMeaning": "Melambangkan pertahanan dan perlindungan bersama komunitas silimo."
+      },
+      {
+        "id": "hn-pintu",
+        "meshName": "pintu_rendah",
+        "localName": "Pintu Masuk Rendah",
+        "title": "Pintu Rendah Tanpa Jendela",
+        "anchor": [0, 0.85, 2.08],
+        "cameraPos": [1.9, 1.2, 4.6],
+        "explodeOffset": [0, 0.1, 0.9],
+        "constructionAndMaterial": "Bukaan pintu kayu tunggal berdimensi sempit dan rendah dengan ambang bawah terangkat.",
+        "practicalFunction": "Meminimalkan hilangnya panas (heat loss) saat penghuni keluar-masuk serta menghalangi masuknya angin langsung.",
+        "culturalMeaning": "Mengharuskan setiap orang menunduk saat memasuki rumah sebagai sikap rendah hati dan penghormatan."
+      },
+      {
+        "id": "hn-loteng",
+        "meshName": "lantai_loteng",
+        "localName": "Lantai Atas (Loteng Tidur)",
+        "title": "Loteng Tidur Tingkat Dua",
+        "anchor": [1.1, 1.76, 0.6],
+        "cameraPos": [3.6, 3.1, 3.4],
+        "explodeOffset": [0, 0.45, 0],
+        "constructionAndMaterial": "Geladak kayu melingkar di tingkat dua dengan bukaan tengah untuk tangga dan sirkulasi hangat dari tungku bawah.",
+        "practicalFunction": "Memanfaatkan prinsip fisika konveksi: udara hangat dari api di bawah naik ke loteng tidur yang beralaskan rumput kering.",
+        "culturalMeaning": "Ruang peristirahatan yang aman dan terlindungi dari hawa dingin pegunungan."
+      },
+      {
+        "id": "hn-heke",
+        "meshName": "tiang_heke",
+        "localName": "Tiang Heke & Tangga",
+        "title": "Empat Tiang Utama (Heke)",
+        "anchor": [0.58, 1.3, 0.58],
+        "cameraPos": [3.2, 2.4, 3.6],
+        "explodeOffset": [0, -0.1, 0],
+        "constructionAndMaterial": "Empat tiang kayu keras utama di pusat bangunan yang menopang rangka loteng dan kerucut atap, dilengkapi tangga kayu sederhana.",
+        "practicalFunction": "Menjadi tulang punggung vertikal struktur dua tingkat Honai.",
+        "culturalMeaning": "Melambangkan kekokohan pilar persatuan keluarga di dalam silimo."
+      },
+      {
+        "id": "hn-tungku",
+        "meshName": "lantai_dasar_tungku",
+        "localName": "Tungku Perapian",
+        "title": "Perapian Pusat Lantai Dasar",
+        "anchor": [0, 0.25, 0],
+        "cameraPos": [2.8, 2.2, 3.2],
+        "explodeOffset": [0, -0.8, 0],
+        "constructionAndMaterial": "Cekungan tanah padat berlingkar batu alam tepat di pusat lantai dasar.",
+        "practicalFunction": "Sumber panas utama sepanjang malam yang menghangatkan ruang bawah maupun loteng atas sekaligus mengawetkan serat atap jerami melalui asap.",
+        "culturalMeaning": "Titik pusat berkumpul, bercerita, dan pewarisan nilai adat antargenerasi."
+      }
+    ],
+    "referenceImages": [
+      {
+        "url": "assets/photos/honai-papua.jpg",
+        "caption": "Permukiman tradisional Honai berkubah jerami di kawasan perbukitan dataran tinggi Papua.",
+        "photographer": "Irfantraveller",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Papua_Village_on_hill.jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Indonesian Heritage: Architecture — Highland Dwellings of Papua",
+        "publisher": "Gunawan Tjahjono (Ed.), Archipelago Press (1998)",
+        "url": "https://id.wikipedia.org/wiki/Honai",
+        "note": "Kajian adaptasi termal, bentuk bundar dua tingkat, dan pembagian silimo masyarakat Lembah Baliem."
+      },
+      {
+        "title": "Arsitektur Tradisional Papua (Honai, Ebei, dan Silimo)",
+        "publisher": "Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI",
+        "url": "https://kebudayaan.kemdikbud.go.id/",
+        "note": "Dokumentasi fungsi sosial Pilamo/Honai dan bahan bangunan organik pegunungan tengah Papua."
+      }
+    ],
+    "assetCreator": "NULAR Architectural Preservation Studio (Original Parametric Architectural Study)",
+    "assetLicense": "CC BY 4.0",
+    "attribution": "Model 3D: NULAR Architectural Preservation Studio (CC BY 4.0). Foto referensi: Irfantraveller via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Model 3D Exterior + Interior Dua Tingkat & Foto Referensi)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": true,
+    "addedOrder": 4
+  },
+  {
+    "id": "rumah-bolon-toba",
+    "houseName": "Rumah Bolon",
+    "localName": "Jabu Bolon / Ruma Batak",
+    "alternativeNames": ["Ruma Gorga", "Rumah Adat Batak Toba"],
+    "province": "Sumatera Utara",
+    "island": "Sumatra",
+    "districtOrRegion": "Kawasan Danau Toba (Kabupaten Samosir, Toba, Tapanuli Utara)",
+    "culturalCommunity": "Suku Batak Toba",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Rumah Panggung Atap Pelana Melengkung Berukir Gorga",
+    "introduction": "Rumah Bolon (Ruma) adalah rumah adat tradisional masyarakat Batak Toba yang bertumpu di atas panggung tinggi dengan atap ijuk melengkung landai di tengah dan menjulang di kedua ujungnya, serta fasad kayu berukir Gorga.",
+    "historicalContext": "Di kawasan kampung adat Batak Toba (huta) di sekitar Danau Toba dan Pulau Samosir, deretan Ruma berdiri menghadap lumbung padi (Sopo) melintasi halaman terbuka (alaman). Bangunan tanpa sekat kamar permanen ini dahulunya dihuni bersama oleh beberapa keluarga inti dalam satu kerabat.",
+    "architecturalFeatures": {
+      "roofForm": "Atap pelana melengkung cekung dengan ujung depan condong menjorok lebih tinggi daripada ujung belakang, berlapis ijuk tebal.",
+      "foundation": "Batu alam besar (batu ojahan) sebagai alas tiang-tiang kayu besar (tiang partungkoan).",
+      "walls": "Dinding papan kayu dipasang miring keluar, dihiasi ukiran relief Gorga (motif singa-singa, boraspati, ulu paung) dalam tiga warna tradisional: merah, putih, dan hitam.",
+      "spatialLayout": "Terbagi tiga lapis vertikal: Tombara (kolong bawah untuk ternak), Tonga (ruang tinggal terbuka tanpa sekat permanen dengan zona jabu bona, jabu soding, jabu suhat, tampar piring), dan Ginjang (loteng penyimpanan pusaka).",
+      "constructionTechniques": "Konstruksi pasak dan ikatan rotan/ijuk tanpa paku besi, dengan pintu masuk berada di bawah lantai (kolong) melalui tangga yang mengharuskan pengunjung menunduk saat naik.",
+      "climateAdaptation": "Dinding tebal dan bukaan kecil melindungi penghuni dari angin kencang dataran tinggi Danau Toba; atap ijuk tebal meredam hujan dan dingin."
+    },
+    "constructionMaterials": ["Kayu Keras Lokal", "Ijuk Enau", "Batu Alam (Batu Ojahan)", "Rotan", "Pigmen Tradisional Gorga (Merah, Putih, Hitam)"],
+    "structuralSystem": "Rangka Tiang Kayu Berat (Post-and-Beam) dengan Sambungan Pasak Tanpa Paku",
+    "spatialFunctions": "Hunian keluarga besar Batak Toba dan pusat penyelenggaraan upacara adat kerabat.",
+    "culturalSignificance": {
+      "symbolism": "Tiga tingkat bangunan merepresentasikan kosmologi Batak: Banua Toru (dunia bawah), Banua Tonga (dunia manusia), dan Banua Ginjang (dunia atas). Tiga warna Gorga (merah, putih, hitam) disebut Tiga Bolit.",
+      "traditionalFunctions": "Setiap sudut ruang dalam memiliki peruntukan adat spesifik bagi tuan rumah, kerabat hula-hula, dan boru dalam sistem Dalihan Na Tolu.",
+      "socialOrganization": "Mencerminkan tatanan kekerabatan patrilineal marga dan prinsip sosial Dalihan Na Tolu.",
+      "ceremonialRelevance": "Pusat musyawarah marga dan rangkaian upacara adat kehidupan."
+    },
+    "model3DUrl": null,
+    "modelStatus": "in_progress",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": false,
+      "separatedComponents": 0,
+      "limitationsNote": "Model 3D sedang disiapkan. Saat ini ditampilkan dokumentasi fotografis terverifikasi dan kajian anatomi struktural."
+    },
+    "cameraPresets": null,
+    "hotspots": [],
+    "referenceImages": [
+      {
+        "url": "assets/photos/rumah-bolon-toba.jpg",
+        "caption": "Rumah Bolon Batak Toba memperlihatkan atap melengkung, fasad miring berukir Gorga, dan struktur panggung.",
+        "photographer": "Roberto Marpaung",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Bolon_(Batak_Traditional_House).jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "The Living House: An Anthropology of Architecture in South-East Asia",
+        "publisher": "Roxana Waterson, Oxford University Press (1990)",
+        "url": "https://id.wikipedia.org/wiki/Rumah_Bolon",
+        "note": "Kajian kosmologi tiga lapis dan tata ruang Dalihan Na Tolu pada Ruma Batak Toba."
+      }
+    ],
+    "assetCreator": "Belum tersedia (Model 3D sedang dalam tahap riset geometri dan pemodelan)",
+    "assetLicense": "Foto: CC BY-SA 4.0 (Model 3D: Dalam persiapan)",
+    "attribution": "Foto referensi: Roberto Marpaung via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Dokumentasi Foto & Arsitektur; Model 3D dalam persiapan)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": false,
+    "addedOrder": 5
+  },
+  {
+    "id": "siwaluh-jabu-karo",
+    "houseName": "Siwaluh Jabu",
+    "localName": "Rumah Adat Karo (Siwaluh Jabu)",
+    "alternativeNames": ["Rumah Adat Karo", "Jabu Delapan Keluarga"],
+    "province": "Sumatera Utara",
+    "island": "Sumatra",
+    "districtOrRegion": "Kabupaten Karo (Desa Dokan, Desa Lingga, Dataran Tinggi Karo)",
+    "culturalCommunity": "Suku Batak Karo",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Rumah Panggung Komunal Beratap Limas Bertingkat Tanduk (Ayo)",
+    "introduction": "Siwaluh Jabu adalah rumah adat komunal Suku Karo yang secara harfiah berarti 'rumah berdelapan ruang/keluarga'. Berbeda jauh dari Rumah Bolon Batak Toba di provinsi yang sama, Siwaluh Jabu memiliki atap ijuk raksasa bertingkat-tingkat dengan delapan sudut gable (ayo) berhias tanduk kerbau.",
+    "historicalContext": "Desa adat seperti Dokan dan Lingga di Dataran Tinggi Karo masih melestarikan contoh fisik Siwaluh Jabu. Bangunan ini dihuni secara kolektif oleh delapan keluarga (jabu) yang berbagi empat tungku api bersama (satu tungku untuk dua keluarga) di dalam ruang besar tanpa dinding pemisah. Catatan pengetahuan tradisinya tercatat pada DAPOBUD (REK/WBTB/2013/01/00004).",
+    "architecturalFeatures": {
+      "roofForm": "Atap ijuk menjulang sangat tinggi berbentuk piramida bertingkat dengan beberapa bidang segitiga gable (ayo) bersilang dan puncak berhias tanduk kerbau.",
+      "foundation": "Batu pondasi datar (batu palas) yang menopang tiang-tiang kayu besar.",
+      "walls": "Dinding kayu miring keluar dengan ikatan tali ijuk hitam membentuk motif geometris (ret-ret / pengeret-ret) yang juga melambangkan ikatan kekerabatan.",
+      "spatialLayout": "Ruang dalam terbuka seluas badan rumah terbagi secara adat menjadi 8 posisi keluarga (jabu) tanpa sekat fisik, dilengkapi dua serambi bambu terbuka (ture) di muka dan belakang.",
+      "constructionTechniques": "Dirakit sepenuhnya dengan sistem sambungan pasak kayu dan ikatan tali ijuk tanpa paku besi, disangga rangka atap bambu masif.",
+      "climateAdaptation": "Tinggi atap masif dan dinding miring tanpa banyak bukaan menjaga suhu hangat di Dataran Tinggi Karo yang dingin dan berangin."
+    },
+    "constructionMaterials": ["Kayu Keras Lokal", "Bambu", "Ijuk Enau", "Batu Palas", "Tali Ijuk (Pengeret-ret)"],
+    "structuralSystem": "Rangka Kayu Komunal Panggung dengan Struktur Atap Limas Bertingkat Masif",
+    "spatialFunctions": "Hunian kolektif delapan keluarga adat Karo serta pusat kehidupan sosial kampung (kuta).",
+    "culturalSignificance": {
+      "symbolism": "Motif ikatan tali ijuk pengeret-ret (menyerupai cicak berkepala dua) melambangkan kekuatan pelindung rumah dan solidaritas komunal.",
+      "traditionalFunctions": "Setiap dari delapan jabu (seperti Jabu Bena Kayu dan Jabu Ujung Kayu) memiliki peran adat tertentu dalam sistem kekerabatan Merga Silima dan Rakut Sitelu.",
+      "socialOrganization": "Menunjukkan pola hunian komunal multikeluarga yang harmonis tanpa sekat dinding fisik.",
+      "ceremonialRelevance": "Dalam penelitian lebih lanjut untuk rincian ritual pendirian lokal per desa adat (Dokan vs Lingga)."
+    },
+    "model3DUrl": null,
+    "modelStatus": "in_progress",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": false,
+      "separatedComponents": 0,
+      "limitationsNote": "Model 3D sedang disiapkan. Dokumentasi fotografis dari Desa Adat Dokan tersedia sebagai rujukan utama."
+    },
+    "cameraPresets": null,
+    "hotspots": [],
+    "referenceImages": [
+      {
+        "url": "assets/photos/siwaluh-jabu-karo.jpg",
+        "caption": "Rumah Adat Karo (Siwaluh Jabu) di Desa Adat Dokan, Kabupaten Karo, Sumatera Utara.",
+        "photographer": "Christian Advs Sltg",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Batak_Karo_House_at_Dokan_Village_(01).jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "DAPOBUD — Data Pokok Kebudayaan: Rumah Adat Karo (REK/WBTB/2013/01/00004)",
+        "publisher": "Kementerian Kebudayaan Republik Indonesia",
+        "url": "https://dapobud.kemenbud.go.id/detail/?id=2c8817e3-7755-40c8-93ff-c517f9fb4bdb",
+        "note": "Rujukan arsip nasional mengenai Rumah Adat Karo di Sumatera Utara."
+      }
+    ],
+    "assetCreator": "Belum tersedia (Model 3D sedang disiapkan)",
+    "assetLicense": "Foto: CC BY-SA 4.0",
+    "attribution": "Foto referensi: Christian Advs Sltg via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Dokumentasi Foto & DAPOBUD; Model 3D dalam persiapan)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": false,
+    "addedOrder": 6
+  },
+  {
+    "id": "uma-mentawai",
+    "houseName": "Uma Mentawai",
+    "localName": "Uma",
+    "alternativeNames": ["Rumah Panjang Mentawai", "Uma Siberut"],
+    "province": "Sumatera Barat",
+    "island": "Sumatra",
+    "districtOrRegion": "Kepulauan Mentawai (Pulau Siberut, Sipora, Pagai)",
+    "culturalCommunity": "Suku Mentawai",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Rumah Panggung Panjang Komunal Hutan Hujan Tropis",
+    "introduction": "Uma adalah rumah adat komunal berbentuk memanjang milik masyarakat adat Kepulauan Mentawai. Keberadaan Uma menegaskan keragaman arsitektur Sumatera Barat yang mencakup tradisi kepulauan Mentawai selain tradisi Minangkabau di daratan.",
+    "historicalContext": "Uma merupakan pusat unit kekerabatan patrilineal (juga disebut uma) di pedalaman Pulau Siberut dan pulau-pulau Mentawai lainnya. Didirikan tanpa paku besi di dekat aliran sungai, satu Uma dapat dihuni oleh beberapa keluarga inti dan berfungsi sebagai pusat ritual adat (punen) yang dipimpin Sikerei.",
+    "architecturalFeatures": {
+      "roofForm": "Atap pelana memanjang curam dari anyaman daun rumbia/sagu (Metroxylon sagu) dengan tritisan rendah yang menaungi beranda.",
+      "foundation": "Tiang kayu hutan ditancapkan atau disangga di atas tanah lembap dataran aluvial dekat sungai.",
+      "walls": "Papan kayu lokal dan bilah bambu dengan bukaan terbatas; bagian beranda depan terbuka sebagai area sosial.",
+      "spatialLayout": "Terbagi menjadi tiga zona berurutan dari depan ke belakang: serambi depan terbuka (tengat uma / beranda penerimaan), ruang tengah komunal dengan perapian dan ruang tari ritual, serta ruang tidur keluarga di sisi belakang.",
+      "constructionTechniques": "Konstruksi kayu keras hutan tropis dan bambu dengan ikatan rotan serta pasak kayu tanpa paku logam.",
+      "climateAdaptation": "Lantai panggung tinggi melindungi dari banjir musiman sungai Siberut dan satwa liar; atap daun sagu meredam panas dan curah hujan ekuatorial tinggi."
+    },
+    "constructionMaterials": ["Kayu Hutan Tropis Lokal", "Daun Sagu / Rumbia", "Bambu", "Rotan"],
+    "structuralSystem": "Rangka Tiang-Balok Kayu Memanjang dengan Ikatan Rotan",
+    "spatialFunctions": "Hunian komunal klan, ruang penerimaan tamu, pusat penyelenggaraan upacara adat (punen), dan ruang penyimpanan benda ritual.",
+    "culturalSignificance": {
+      "symbolism": "Mencerminkan prinsip keseimbangan hidup masyarakat Mentawai dengan hutan, sungai, dan roh leluhur (Arat Sabulungan).",
+      "traditionalFunctions": "Menjadi wadah solidaritas klan uma sekaligus ruang transmisi pengetahuan pengobatan tradisional dan perburuan berkelanjutan.",
+      "socialOrganization": "Identitas klan sosial Mentawai identik dengan nama Uma tempat mereka berasal.",
+      "ceremonialRelevance": "Pusat upacara adat punen dan ritual penyembuhan yang dipimpin oleh Sikerei."
+    },
+    "model3DUrl": null,
+    "modelStatus": "in_progress",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": false,
+      "separatedComponents": 0,
+      "limitationsNote": "Model 3D sedang disiapkan. Saat ini disajikan dokumentasi fotografis asli Uma Mentawai dan profil struktural."
+    },
+    "cameraPresets": null,
+    "hotspots": [],
+    "referenceImages": [
+      {
+        "url": "assets/photos/uma-mentawai.jpg",
+        "caption": "Rumah adat panjang tradisional Uma milik masyarakat Mentawai dengan atap daun rumbia dan lantai panggung.",
+        "photographer": "Andrian salis",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Traditional_Mentawai_Uma_longhouse.jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Indonesian Houses Vol. 2: Survey of Vernacular Architecture in Western Indonesia",
+        "publisher": "Reimar Schefold, Peter Nas, Gaudenz Domenig & Robert Wessing (Ed.), KITLV Press (2008)",
+        "url": "https://id.wikipedia.org/wiki/Uma_(rumah_adat)",
+        "note": "Dokumentasi arsitektur Uma Siberut dan organisasi sosial klan Mentawai."
+      }
+    ],
+    "assetCreator": "Belum tersedia (Model 3D sedang disiapkan)",
+    "assetLicense": "Foto: CC BY-SA 4.0",
+    "attribution": "Foto referensi: Andrian salis via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Dokumentasi Foto & Literatur; Model 3D dalam persiapan)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": false,
+    "addedOrder": 7
+  },
+  {
+    "id": "rumah-limasan",
+    "houseName": "Rumah Limasan",
+    "localName": "Omah Limasan",
+    "alternativeNames": ["Limasan Pacul Gowang", "Limasan Trajumas", "Limasan Sinom"],
+    "province": "Jawa Tengah",
+    "island": "Java",
+    "districtOrRegion": "Jawa Tengah, Daerah Istimewa Yogyakarta & Jawa Timur",
+    "culturalCommunity": "Suku Jawa",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Rumah Kayu Atap Perisai Empat Bidang (Limasan)",
+    "introduction": "Rumah Limasan adalah tipologi rumah tradisional Jawa yang paling luas digunakan oleh masyarakat umum. Memiliki empat bidang atap miring berbentuk trapesium dan segitiga (atap perisai), Limasan menawarkan keseimbangan antara efisiensi struktur kayu jati dan kelapangan ruang keluarga.",
+    "historicalContext": "Dalam khazanah Kawruh Kalang, Limasan merupakan pengembangan lanjut dari tipe Kampung dengan penambahan bidang miring di kedua sisi samping. Tipologi ini memiliki puluhan varian lokal (seperti Limasan Pacul Gowang, Cere Gancet, dan Trajumas) yang beradaptasi dengan kebutuhan keluarga petani, perajin, hingga priyayi di pedesaan maupun kota tua Jawa.",
+    "architecturalFeatures": {
+      "roofForm": "Atap perisai (hipped roof) dengan empat bidang miring: dua bidang trapesium memanjang dan dua bidang segitiga di kedua ujung, ditutup genteng tanah liat.",
+      "foundation": "Lantai batur datar dengan batu umpak sebagai tumpuan tiang-tiang utama kayu.",
+      "walls": "Kombinasi papan kayu jati, anyaman bambu (gedhek), atau pasangan bata pada perkembangan abad ke-19 dan ke-20.",
+      "spatialLayout": "Umumnya memiliki teras depan (emper), ruang tengah keluarga, dan bilik belakang (senthong) yang fleksibel diperluas ke samping.",
+      "constructionTechniques": "Rangka kayu dengan empat hingga delapan tiang inti (soko) dan balok pengikat blandar-pengeret bersambungan pasak kayu.",
+      "climateAdaptation": "Empat sisi tritisan atap melindungi seluruh keliling dinding dari tampias hujan dan terik matahari tropis."
+    },
+    "constructionMaterials": ["Kayu Jati / Kayu Nangka", "Genteng Tanah Liat", "Batu Umpak", "Anyaman Bambu (Gedhek) / Papan Kayu"],
+    "structuralSystem": "Rangka Tiang-Balok Kayu Empat-Delapan Tiang dengan Atap Perisai (Hipped Frame)",
+    "spatialFunctions": "Hunian keluarga inti masyarakat Jawa, tempat bekerja kerajinan rumah tangga, serta penerimaan kerabat.",
+    "culturalSignificance": {
+      "symbolism": "Proporsi atap seimbang di keempat sisinya kerap dikaitkan dengan kesederhanaan, keteduhan, dan kebersahajaan hidup masyarakat Jawa.",
+      "traditionalFunctions": "Struktur modularnya memudahkan penambahan ruang (emper) ketika jumlah anggota keluarga bertambah.",
+      "socialOrganization": "Mewakili arsitektur hunian warga secara luas yang mendampingi keberadaan pendopo Joglo dalam lanskap permukiman Jawa.",
+      "ceremonialRelevance": "Dalam penelitian (variasi upacara pendirian molo berbeda antardaerah di Jawa Tengah dan DIY)."
+    },
+    "model3DUrl": null,
+    "modelStatus": "in_progress",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": false,
+      "separatedComponents": 0,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto referensi bangunan Limasan asli tersedia untuk studi tipologi."
+    },
+    "cameraPresets": null,
+    "hotspots": [],
+    "referenceImages": [
+      {
+        "url": "assets/photos/rumah-limasan.jpg",
+        "caption": "Rumah Limasan tradisional Jawa dengan atap perisai empat bidang berpenutup genteng tanah liat.",
+        "photographer": "Altair Netraphim",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Limasan_Mijosastran_(1).jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Indonesian Heritage: Architecture — Javanese House Typologies",
+        "publisher": "Gunawan Tjahjono (Ed.), Archipelago Press (1998)",
+        "url": "https://id.wikipedia.org/wiki/Rumah_Limasan",
+        "note": "Klasifikasi tipologi atap Limasan dalam tradisi konstruksi kayu Jawa."
+      }
+    ],
+    "assetCreator": "Belum tersedia (Model 3D sedang disiapkan)",
+    "assetLicense": "Foto: CC BY-SA 4.0",
+    "attribution": "Foto referensi: Altair Netraphim via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Dokumentasi Foto & Tipologi; Model 3D dalam persiapan)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": false,
+    "addedOrder": 8
+  },
+  {
+    "id": "rumah-betang",
+    "houseName": "Rumah Betang",
+    "localName": "Huma Betang / Rumah Panjang",
+    "alternativeNames": ["Rumah Radakng (Kalimantan Barat)", "Rumah Panjai", "Rumah Panjang Dayak"],
+    "province": "Kalimantan Tengah",
+    "island": "Kalimantan",
+    "districtOrRegion": "Daerah Aliran Sungai Kalimantan Tengah (Kapuas, Kahayan, Barito) & tradisi sejajar di Kalimantan Barat",
+    "culturalCommunity": "Suku Dayak (Ngaju, Ot Danum, Iban, dan sub-suku terkait)",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Rumah Panjang Panggung Tinggi Komunal (Longhouse)",
+    "introduction": "Rumah Betang adalah rumah panjang panggung komunal milik masyarakat Dayak yang dapat membentang puluhan hingga lebih dari seratus meter di sepanjang tepian sungai Kalimantan, menampung puluhan keluarga inti di bawah satu atap bersama.",
+    "historicalContext": "Secara historis, rumah panjang Dayak (disebut Huma Betang di Kalimantan Tengah dan Rumah Panjang/Radakng di Kalimantan Barat) dibangun menghadap sungai utama sebagai jalur transportasi sekaligus pelindung komunitas dari banjir musiman dan ancaman masa lampau. Dokumentasi tradisi Rumah Panjang Dayak juga tercatat pada DAPOBUD (REK/WBTB/2013/01/00022).",
+    "architecturalFeatures": {
+      "roofForm": "Atap pelana memanjang sangat panjang berlapis sirap kayu ulin (Eusideroxylon zwageri) yang sangat tahan air dan cuaca tropis.",
+      "foundation": "Tiang-tiang kayu ulin utuh berdiameter besar yang ditancapkan kokoh di tanah aluvial tepi sungai.",
+      "walls": "Papan kayu ulin dan kulit kayu/kayu keras lokal dengan deretan jendela memanjang ke arah serambi.",
+      "spatialLayout": "Serambi depan memanjang (ruai/karung) untuk aktivitas sosial dan upacara, diikuti deretan bilik keluarga (bilek) di belakangnya serta tangga tunggal berukir (hejan) yang dapat ditarik pada masa historis.",
+      "constructionTechniques": "Pemanfaatan kayu ulin (kayu besi Kalimantan) yang semakin keras saat terkena air, dirangkai menggunakan pasak kayu dan ikatan rotan.",
+      "climateAdaptation": "Elevasi kolong 3 hingga 5 meter melindungi dari banjir tahunan sungai besar Kalimantan serta memanfaatkan hembusan angin sungai."
+    },
+    "constructionMaterials": ["Kayu Ulin / Kayu Besi (Eusideroxylon zwageri)", "Sirap Kayu Ulin", "Rotan", "Bambu"],
+    "structuralSystem": "Rangka Rumah Panjang Panggung Tinggi Modular Kayu Ulin",
+    "spatialFunctions": "Hunian komunal multikeluarga, balai musyawarah adat, ruang ritual kolektif, dan lumbung bersama.",
+    "culturalSignificance": {
+      "symbolism": "Mewujudkan falsafah 'Huma Betang' masyarakat Dayak: kesetaraan, kebersamaan, saling menghargai, dan ketaatan pada hukum adat di bawah satu atap.",
+      "traditionalFunctions": "Memperkuat gotong royong pertanian ladang, pertahanan komunal historis, serta pewarisan tradisi lisan dan anyaman.",
+      "socialOrganization": "Puluhan keluarga hidup berdampingan dalam bilik terpisah namun berbagi ruang publik serambi secara demokratis.",
+      "ceremonialRelevance": "Pusat upacara adat seperti Tiwah (Dayak Ngaju) dan musyawarah damang adat."
+    },
+    "model3DUrl": null,
+    "modelStatus": "in_progress",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": false,
+      "separatedComponents": 0,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto asli Rumah Betang Sei Pasah, Kalimantan Tengah ditampilkan sebagai dokumentasi rujukan."
+    },
+    "cameraPresets": null,
+    "hotspots": [],
+    "referenceImages": [
+      {
+        "url": "assets/photos/rumah-betang.jpg",
+        "caption": "Rumah Betang Sei Pasah di Kabupaten Kapuas, Kalimantan Tengah — memperlihatkan konstruksi kayu ulin dan panggung tinggi.",
+        "photographer": "Ezagren (bicara / talk)",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Betang_Sei_Pasah_180505002.JPG"
+      }
+    ],
+    "sources": [
+      {
+        "title": "DAPOBUD — Data Pokok Kebudayaan: Rumah Panjang Dayak (REK/WBTB/2013/01/00022)",
+        "publisher": "Kementerian Kebudayaan Republik Indonesia",
+        "url": "https://dapobud.kemenbud.go.id/detail/?id=aab38607-c672-41a6-bff8-ddc1e98bca08",
+        "note": "Rujukan arsip nasional mengenai tradisi rumah panjang masyarakat Dayak di Kalimantan."
+      }
+    ],
+    "assetCreator": "Belum tersedia (Model 3D sedang disiapkan)",
+    "assetLicense": "Foto: CC BY-SA 4.0",
+    "attribution": "Foto referensi: Ezagren via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Dokumentasi Foto & DAPOBUD; Model 3D dalam persiapan)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": false,
+    "addedOrder": 9
+  },
+  {
+    "id": "rumah-lamin",
+    "houseName": "Rumah Lamin",
+    "localName": "Lamin Adat",
+    "alternativeNames": ["Lamin Dayak Kenyah", "Lamin Pampang"],
+    "province": "Kalimantan Timur",
+    "island": "Kalimantan",
+    "districtOrRegion": "Kalimantan Timur (Desa Budaya Pampang Samarinda, Mahakam, Apo Kayan)",
+    "culturalCommunity": "Suku Dayak Kenyah & Dayak Bahau/Modang",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Rumah Panjang Panggung Berhias Lukisan & Ukiran Kalung",
+    "introduction": "Rumah Lamin adalah rumah adat panjang masyarakat Dayak Kenyah di Kalimantan Timur yang terkenal dengan kekayaan lukisan dinding dan ukiran motif sulur (kalung), burung enggang, serta naga dengan perpaduan warna hitam, putih, kuning, dan merah.",
+    "historicalContext": "Lamin berfungsi sebagai rumah adat komunal sekaligus balai pertemuan budaya, seperti Lamin Adat Pemung Tawai di Desa Budaya Pampang, Samarinda. Tiang-tiang besarnya terbuat dari kayu ulin berukir patung penjaga (belontang/patung hudoq).",
+    "architecturalFeatures": {
+      "roofForm": "Atap pelana panjang berlapis sirap kayu ulin dengan ornamen puncak bubungan bergaya burung enggang atau sulur melengkung.",
+      "foundation": "Tiang kayu ulin masif setinggi sekitar 2–3 meter menopang panggung bangunan.",
+      "walls": "Dinding papan kayu penuh lukisan dekoratif dan relief motif khas Dayak Kenyah (akar melingkar/kalung, enggang, perisai).",
+      "spatialLayout": "Halaman panggung depan luas untuk tari dan pertemuan adat, ruang aula panjang di tengah, serta ruang istirahat di sisi belakang.",
+      "constructionTechniques": "Konstruksi rangka kayu ulin berpasak dengan ukiran langsung pada tiang-tiang struktural.",
+      "climateAdaptation": "Panggung tinggi dan serambi terbuka memberikan sirkulasi udara sejuk di tengah iklim hutan hujan tropis Kalimantan Timur."
+    },
+    "constructionMaterials": ["Kayu Ulin", "Sirap Kayu Ulin", "Papan Kayu Keras", "Pigmen Warna Tradisional"],
+    "structuralSystem": "Rangka Tiang-Balok Panggung Memanjang Kayu Ulin",
+    "spatialFunctions": "Balai adat komunal, ruang pertunjukan tari tradisional, musyawarah masyarakat Dayak Kenyah, dan simbol pemersatu desa.",
+    "culturalSignificance": {
+      "symbolism": "Motif burung enggang melambangkan kemuliaan dan dunia atas, sementara warna kuning, merah, hitam, dan putih mewakili kewibawaan, keberanian, keteduhan, dan kesucian.",
+      "traditionalFunctions": "Menjadi ruang komunal tempat seluruh warga berkumpul tanpa membedakan lapisan sosial.",
+      "socialOrganization": "Mencerminkan kepemimpinan adat (Kepala Adat) yang mengayomi komunitas secara kolektif.",
+      "ceremonialRelevance": "Lokasi pelaksanaan upacara panen dan pertunjukan budaya adat Dayak Kenyah."
+    },
+    "model3DUrl": null,
+    "modelStatus": "in_progress",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": false,
+      "separatedComponents": 0,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto dokumentasi asli Lamin Adat Pampang, Samarinda tersedia untuk kajian visual."
+    },
+    "cameraPresets": null,
+    "hotspots": [],
+    "referenceImages": [
+      {
+        "url": "assets/photos/rumah-lamin.jpg",
+        "caption": "Ornamen dinding berukir dan dilukis khas Lamin Adat Dayak Kenyah di Desa Budaya Pampang, Samarinda, Kalimantan Timur.",
+        "photographer": "Ezagren (bicara / talk)",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gambar_Dinding_Lamin_Adat_Dayak_Kenyah_Pampang.JPG"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Arsitektur Tradisional Daerah Kalimantan Timur (Rumah Lamin)",
+        "publisher": "Proyek Inventarisasi dan Dokumentasi Kebudayaan Daerah, Depdikbud / Kemendikbud RI",
+        "url": "https://id.wikipedia.org/wiki/Rumah_Lamin",
+        "note": "Dokumentasi struktur dan ragam hias Lamin Adat Kalimantan Timur."
+      }
+    ],
+    "assetCreator": "Belum tersedia (Model 3D sedang disiapkan)",
+    "assetLicense": "Foto: CC BY-SA 4.0",
+    "attribution": "Foto referensi: Ezagren via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Dokumentasi Foto & Arsip; Model 3D dalam persiapan)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": false,
+    "addedOrder": 10
+  },
+  {
+    "id": "bola-soba-bugis",
+    "houseName": "Saoraja / Bola Soba",
+    "localName": "Saoraja / Bola Ugi",
+    "alternativeNames": ["Rumah Adat Bugis", "Saoraja La Tenri Bali", "Bola Soba Bone"],
+    "province": "Sulawesi Selatan",
+    "island": "Sulawesi",
+    "districtOrRegion": "Wilayah Adat Bugis (Kabupaten Bone, Soppeng, Wajo, Pinrang)",
+    "culturalCommunity": "Suku Bugis",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Rumah Panggung Kayu Tiga Lapis Berjenjang Timpa Laja",
+    "introduction": "Saoraja (rumah besar bangsawan) dan Bola (rumah warga) adalah arsitektur panggung kayu tradisional Suku Bugis di Sulawesi Selatan. Bersama Tongkonan Toraja, keduanya menunjukkan dua tradisi arsitektur besar yang sangat berbeda di dalam satu provinsi yang sama.",
+    "historicalContext": "Rumah adat Bugis tersusun atas tiga tingkatan kosmis yang berakar pada epos La Galigo: Rakkeang (loteng atas), Ale Bola (badan rumah), dan Awa Bola (kolong bawah). Salah satu bangunan bersejarah yang terdokumentasi ialah Saoraja La Tenri Bali di Kabupaten Soppeng serta tradisi Bola Soba di Bone.",
+    "architecturalFeatures": {
+      "roofForm": "Atap pelana lurus bersudut tegas dengan bidang segitiga depan bertingkat (Timpa Laja) yang jumlah lapisannya secara historis menandai strata kebangsawanan pemilik rumah.",
+      "foundation": "Tiang kayu bulat/persegi (alliri) berdiri di atas batu datar atau ditanam terbatas sesuai tradisi setempat.",
+      "walls": "Papan kayu berjajar horizontal dengan deretan jendela tinggi berjeruji kayu untuk pencahayaan dan sirkulasi udara pesisir.",
+      "spatialLayout": "Terbagi secara membujur menjadi tiga lontang (ruang): Lontang Risaliweng (ruang tamu/depan), Lontang Ritengnga (ruang tidur keluarga), dan Lontang Rilaleng (ruang privat/dapur), ditambah ruang tangga masuk (Lego-lego).",
+      "constructionTechniques": "Sistem rangka kayu dengan sambungan pasak yang memungkinkan rumah panggung diangkat dan dipindahkan bersama secara gotong royong (tradisi Mappalette Bola).",
+      "climateAdaptation": "Kolong terbuka dan jendela besar berjarak teratur menciptakan ventilasi silang yang sangat efektif di iklim pesisir hangat Sulawesi Selatan."
+    },
+    "constructionMaterials": ["Kayu Ulin / Kayu Bayam (Intsia bijuga)", "Papan Kayu Lokal", "Sirap / Seng Tradisional", "Pasak Kayu"],
+    "structuralSystem": "Rangka Panggung Kayu Modular Portabel (Alliri & Pattolo)",
+    "spatialFunctions": "Hunian keluarga, istana/pusat adat (Saoraja), ruang musyawarah, serta penyimpanan hasil panen di bagian loteng (Rakkeang).",
+    "culturalSignificance": {
+      "symbolism": "Tiga lapisan vertikal merepresentasikan kosmologi Bugis: Botting Langi (dunia atas / Rakkeang), Ale Kawa (dunia tengah / Ale Bola), dan Buri Liu (dunia bawah / Awa Bola).",
+      "traditionalFunctions": "Struktur rangka utuhnya memungkinkan tradisi Mappalette Bola (gotong royong memindahkan seluruh rumah), memperkuat solidaritas sosial warga.",
+      "socialOrganization": "Jumlah susunan atap segitiga depan (Timpa Laja — umumnya 3 hingga 5 tingkat pada Saoraja) secara tradisional menandai kedudukan bangsawan pemiliknya.",
+      "ceremonialRelevance": "Tiang pusat (Posi Bola / pusar rumah) ditegakkan dengan doa keselamatan sebelum seluruh rangka rumah dirakit."
+    },
+    "model3DUrl": null,
+    "modelStatus": "in_progress",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": false,
+      "separatedComponents": 0,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto asli Saoraja La Tenri Bali (Sulawesi Selatan) digunakan sebagai dokumentasi rujukan terverifikasi."
+    },
+    "cameraPresets": null,
+    "hotspots": [],
+    "referenceImages": [
+      {
+        "url": "assets/photos/bola-soba-bugis.jpg",
+        "caption": "Saoraja La Tenri Bali — contoh autentik arsitektur panggung tradisional Bugis dengan Timpa Laja bertingkat di Sulawesi Selatan.",
+        "photographer": "Iripseudocorus",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saoraja_La_Tenri_Bali.jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "The Bugis (Architecture & Cosmology of the Bugis House)",
+        "publisher": "Christian Pelras, Blackwell Publishers (1996)",
+        "url": "https://id.wikipedia.org/wiki/Rumah_adat_Bugis",
+        "note": "Kajian mendalam struktur tiga tingkat Rakkeang–Ale Bola–Awa Bola dan tradisi Timpa Laja Bugis."
+      }
+    ],
+    "assetCreator": "Belum tersedia (Model 3D sedang disiapkan)",
+    "assetLicense": "Foto: CC BY-SA 4.0",
+    "attribution": "Foto referensi: Iripseudocorus via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Dokumentasi Foto & Literatur; Model 3D dalam persiapan)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": false,
+    "addedOrder": 11
+  },
+  {
+    "id": "bale-bali",
+    "houseName": "Kompleks Hunian Bali (Bale & Angkul-Angkul)",
+    "localName": "Umah Bali (Asta Kosala Kosali)",
+    "alternativeNames": ["Bale Daja", "Bale Dangin", "Bale Dauh", "Pekarang Penglipuran"],
+    "province": "Bali",
+    "island": "Bali & Nusa Tenggara",
+    "districtOrRegion": "Seluruh Wilayah Adat Bali (contoh lestari: Desa Adat Penglipuran, Kabupaten Bangli)",
+    "culturalCommunity": "Masyarakat Adat Bali",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Kompleks Paviliun Terbuka dalam Tembok Pekarangan (Compound Architecture)",
+    "introduction": "Berbeda dari rumah tunggal beratap satu, arsitektur hunian tradisional Bali merupakan kompleks paviliun terbuka (bale) yang tersusun dalam satu pekarangan berpagar tembok penyengker dengan gerbang masuk khas (angkul-angkul), mengikuti kaidah tata ruang Asta Kosala Kosali.",
+    "historicalContext": "Tata letak pekarangan tradisional Bali mengacu pada filosofi Tri Hita Karana (keharmonisan manusia dengan Tuhan, sesama, dan alam) serta orientasi kosmis Kaja–Kelod (arah gunung–laut) dan Kangin–Kauh (timur–barat). Desa Adat Penglipuran di Bangli merupakan contoh kelestarian pola gerbang angkul-angkul dan atap bambu tradisional Bali.",
+    "architecturalFeatures": {
+      "roofForm": "Atap limas dan pelana curam dari susunan sirap bambu belah, alang-alang, atau genteng tanah liat dengan proporsi mengacu satuan tubuh pemilik rumah (sikut).",
+      "foundation": "Batur (bebaturan) tinggi dari pasangan bata merah atau batu paras (tuff vulkanik) berukir.",
+      "walls": "Tembok bata/tanah liat berpelindung atap (tembok penyengker) mengelilingi pekarangan, sedangkan paviliun bale umumnya terbuka di satu hingga empat sisinya.",
+      "spatialLayout": "Pola sembilan kotak (Sanga Mandala): Sanggah/Merajan di sudut Kaja-Kangin (suci), Bale Daja/Meten di utara, Bale Dangin di timur untuk upacara, Bale Dauh di barat, Natah (halaman tengah terbuka), serta Paon (dapur) dan Jineng (lumbung) di sisi Kelod.",
+      "constructionTechniques": "Rangka tiang kayu (saka) dengan sambungan pasak kayu (sunduk dan canggah wang) dirancang oleh undagi (arsitek tradisional Bali).",
+      "climateAdaptation": "Halaman tengah terbuka (natah) dan paviliun terpisah memaksimalkan angin laut-gunung serta cahaya matahari alami sepanjang tahun."
+    },
+    "constructionMaterials": ["Bambu Belah (Atap Sirap)", "Kayu Kelapa / Nangka / Cempaka", "Bata Merah", "Batu Paras (Tuff Vulkanik)", "Alang-Alang"],
+    "structuralSystem": "Sistem Paviliun Rangka Tiang Kayu (Bale) di Atas Batur Batu/Bata dalam Pekarangan Sanga Mandala",
+    "spatialFunctions": "Hunian keluarga besar Bali yang mengintegrasikan fungsi tempat tinggal, ibadah keluarga (merajan), upacara adat, dan lumbung pangan.",
+    "culturalSignificance": {
+      "symbolism": "Setiap bangunan dan pekarangan dipandang selaras dengan anatomi tubuh manusia (Tri Angga: kepala/atap, badan/tiang-dinding, kaki/batur) serta poros suci gunung–laut.",
+      "traditionalFunctions": "Dinding penyekat di balik gerbang angkul-angkul (aling-aling) membelokkan jalur masuk secara fisik dan simbolis untuk menjaga privasi dan ketenangan pekarangan.",
+      "socialOrganization": "Menjaga kesinambungan komunitas banjar dan keteraturan tata desa adat.",
+      "ceremonialRelevance": "Bale Dangin dan Merajan menjadi pusat pelaksanaan upacara manusa yadnya dan piodalan keluarga."
+    },
+    "model3DUrl": null,
+    "modelStatus": "in_progress",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": false,
+      "separatedComponents": 0,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto dokumentasi Desa Adat Penglipuran, Bali tersedia sebagai rujukan utama."
+    },
+    "cameraPresets": null,
+    "hotspots": [],
+    "referenceImages": [
+      {
+        "url": "assets/photos/bale-bali.jpg",
+        "caption": "Gerbang Angkul-Angkul dan kompleks hunian beratap bambu tradisional di Desa Adat Penglipuran, Bangli, Bali.",
+        "photographer": "Nadiralys",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:House_and_resident_in_Penglipuran,_Bali.jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Balinese Traditional Architecture (Asta Kosala Kosali & Tri Angga)",
+        "publisher": "I Made Gelebet et al., Proyek Inventarisasi dan Dokumentasi Kebudayaan Daerah (1986)",
+        "url": "https://id.wikipedia.org/wiki/Arsitektur_Bali",
+        "note": "Rujukan akademik tata ruang pekarangan tradisional Bali dan sistem ukuran sikut undagi."
+      }
+    ],
+    "assetCreator": "Belum tersedia (Model 3D sedang disiapkan)",
+    "assetLicense": "Foto: CC BY-SA 4.0",
+    "attribution": "Foto referensi: Nadiralys via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Dokumentasi Foto & Literatur; Model 3D dalam persiapan)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": false,
+    "addedOrder": 12
+  },
+  {
+    "id": "mbaru-niang",
+    "houseName": "Mbaru Niang",
+    "localName": "Mbaru Niang Wae Rebo",
+    "alternativeNames": ["Rumah Kerucut Manggarai", "Mbaru Gendang Wae Rebo"],
+    "province": "Nusa Tenggara Timur",
+    "island": "Bali & Nusa Tenggara",
+    "districtOrRegion": "Kampung Adat Wae Rebo, Kabupaten Manggarai, Pulau Flores",
+    "culturalCommunity": "Suku Manggarai (Wae Rebo)",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Rumah Kerucut Lima Tingkat Beratap Lontar & Ijuk (Conical Multi-Tier House)",
+    "introduction": "Mbaru Niang adalah rumah adat berbentuk kerucut menjulang setinggi sekitar 15 meter yang hanya tersisa dan dilestarikan secara utuh di Kampung Adat Wae Rebo, pegunungan Pulau Flores. Bangunan megah ini memiliki lima tingkat lantai di balik satu selubung atap tunggal.",
+    "historicalContext": "Di Desa Wae Rebo (ketinggian ~1.100 mdpl), berdiri tujuh Mbaru Niang melingkari halaman batu upacara (compang). Pada tahun 2012, program konservasi partisipatif masyarakat Wae Rebo bersama arsitek Indonesia (Rumah Asuh / Yori Antar) meraih penghargaan tertinggi UNESCO Asia-Pacific Awards for Cultural Heritage Conservation (Award of Excellence).",
+    "architecturalFeatures": {
+      "roofForm": "Atap kerucut melingkar raksasa yang menjuntai hampir menyentuh tanah, berlapis daun lontar dan ijuk hitam, berfungsi sekaligus sebagai dinding luar.",
+      "foundation": "Tiang kayu worok (kayu keras lokal) berdiri di atas batu alam melingkar dengan kolom pusat utama (bongkok).",
+      "walls": "Selubung atap kerucut berperan sebagai pelindung luar; dinding bagian bawah terbuat dari papan kayu melingkar dengan bukaan pintu dan jendela kecil.",
+      "spatialLayout": "Terdiri atas lima tingkat vertikal: Lutur (tingkat 1: hunian & ruang berkumpul keluarga), Lobo (tingkat 2: loteng penyimpanan bahan pangan dan barang), Lentar (tingkat 3: penyimpanan benih tanaman), Lempa Rae (tingkat 4: cadangan pangan saat paceklik), dan Hekang Kode (tingkat 5: ruang paling suci persembahan leluhur).",
+      "constructionTechniques": "Struktur rangka kayu worok dan bambu lentur yang dirakit melingkar dengan ikatan rotan tanpa paku besi, memungkinkan struktur merespons angin pegunungan Flores.",
+      "climateAdaptation": "Bentuk kerucut aerodinamis memecah angin kencang lembah pegunungan Flores, sementara lapisan tebal lontar-ijuk mengisolasi suhu dingin malam."
+    },
+    "constructionMaterials": ["Kayu Worok (Kayu Keras Lokal)", "Daun Lontar & Ijuk", "Bambu", "Rotan", "Batu Alam"],
+    "structuralSystem": "Rangka Kerucut Lima Tingkat dengan Tiang Pusat (Bongkok) dan Ikatan Rotan",
+    "spatialFunctions": "Hunian komunal beberapa keluarga, lumbung ketahanan pangan bertingkat, serta pusat ritual dan pelestarian identitas adat Wae Rebo.",
+    "culturalSignificance": {
+      "symbolism": "Bentuk kerucut melingkar dan tata tujuh rumah yang mengelilingi compang melambangkan persatuan, perlindungan kolektif, dan penghormatan kepada tujuh arah/leluhur pendiri.",
+      "traditionalFunctions": "Empat tingkat di atas ruang tinggal mewujudkan sistem ketahanan pangan jangka panjang masyarakat pegunungan Manggarai.",
+      "socialOrganization": "Mbaru Gendang (rumah utama) menjadi pusat penyimpanan gendang adat dan musyawarah kampung.",
+      "ceremonialRelevance": "Pusat upacara adat tahunan Penti (syukuran panen dan penyambutan tahun baru adat Manggarai)."
+    },
+    "model3DUrl": null,
+    "modelStatus": "in_progress",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": false,
+      "separatedComponents": 0,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto dokumentasi asli Mbaru Niang Wae Rebo tersedia bersama rincian struktur lima tingkatnya."
+    },
+    "cameraPresets": null,
+    "hotspots": [],
+    "referenceImages": [
+      {
+        "url": "assets/photos/mbaru-niang.jpg",
+        "caption": "Deretan rumah kerucut Mbaru Niang di Kampung Adat Wae Rebo, Manggarai, Nusa Tenggara Timur.",
+        "photographer": "AsdarMunandar",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rumah_Adat_Mbaru_Niang.jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "UNESCO Asia-Pacific Heritage Awards 2012 — Award of Excellence: Mbaru Niang, Wae Rebo",
+        "publisher": "UNESCO Bangkok",
+        "url": "https://id.wikipedia.org/wiki/Wae_Rebo",
+        "note": "Pengakuan konservasi internasional atas arsitektur lima tingkat Mbaru Niang."
+      }
+    ],
+    "assetCreator": "Belum tersedia (Model 3D sedang disiapkan)",
+    "assetLicense": "Foto: CC BY-SA 4.0",
+    "attribution": "Foto referensi: AsdarMunandar via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Dokumentasi Foto & UNESCO; Model 3D dalam persiapan)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": true,
+    "addedOrder": 13
+  },
+  {
+    "id": "baileo-maluku",
+    "houseName": "Baileo",
+    "localName": "Baileo (Balai Adat Negeri)",
+    "alternativeNames": ["Rumah Baileo", "Baileo Nolloth", "Baileo Saparua"],
+    "province": "Maluku",
+    "island": "Maluku",
+    "districtOrRegion": "Kepulauan Maluku Tengah (Pulau Saparua — Negeri Nolloth, Negeri Paperu, Pulau Ambon, Seram)",
+    "culturalCommunity": "Masyarakat Adat Maluku (Negeri-Negeri Adat)",
+    "heritageCategory": "Warisan Arsitektur Vernakular (Bangunan Fisik / Benda)",
+    "architecturalType": "Balai Adat Panggung Terbuka Tanpa Dinding (Ceremonial Pavilion)",
+    "introduction": "Baileo bukanlah rumah tinggal pribadi, melainkan balai adat terbuka yang menjadi jantung kehidupan sosial, pemerintahan negeri adat, dan pusat upacara masyarakat Maluku. Rancangan tanpa dindingnya menegaskan keterbukaan musyawarah serta kehadiran simbolis para leluhur.",
+    "historicalContext": "Setiap negeri adat di Maluku Tengah (seperti Negeri Nolloth di Pulau Saparua) memiliki Baileo sebagai simbol persatuan seluruh soa (klan) di negeri tersebut. Di pelataran depan atau dalam lingkungan Baileo biasanya terdapat batu keramat Batu Pamali yang menjadi pusat sakral upacara negeri.",
+    "architecturalFeatures": {
+      "roofForm": "Atap limas atau pelana berukuran besar dari daun rumbia/sagu tradisional atau atap tahan cuaca pada renovasi modern, dengan bubungan panjang menaungi seluruh lantai panggung.",
+      "foundation": "Batu pondasi atau struktur umpak yang menopang deretan tiang kayu keras (seperti kayu besi/merbau).",
+      "walls": "Dirancang terbuka tanpa dinding penutup (atau hanya berpagar rendah di sekeliling lantai) agar seluruh masyarakat negeri dapat melihat dan mengikuti prosesi adat.",
+      "spatialLayout": "Lantai panggung datar luas yang terbuka di keempat sisi, ditopang tiang-tiang yang jumlahnya pada beberapa negeri dikaitkan dengan jumlah soa/marga pembentuk negeri, disertai batu sakral Batu Pamali.",
+      "constructionTechniques": "Rangka balok dan kolom kayu keras Nusantara Timur (kayu besi/linggua) dengan balok lisplang berukir motif khas Maluku seperti ayam, bintang, bulan, dan matahari.",
+      "climateAdaptation": "Keterbukaan penuh keempat sisi memaksimalkan angin laut kepulauan Maluku agar ruang pertemuan berkapasitas besar tetap sejuk."
+    },
+    "constructionMaterials": ["Kayu Besi / Merbau (Intsia bijuga)", "Kayu Linggua", "Daun Sagu / Rumbia (Tradisional)", "Batu Alam (Batu Pamali)"],
+    "structuralSystem": "Paviliun Panggung Terbuka Rangka Kolom-Balok Kayu Keras",
+    "spatialFunctions": "Pusat musyawarah saniri negeri, pelantikan raja negeri adat, penyimpanan benda pusaka negeri, dan penyelenggaraan upacara adat panas pela.",
+    "culturalSignificance": {
+      "symbolism": "Ketiadaan dinding melambangkan keterbukaan, kejujuran dalam musyawarah, serta keyakinan bahwa roh leluhur bebas masuk melindungi masyarakat negeri.",
+      "traditionalFunctions": "Menjadi simbol kedaulatan dan persatuan seluruh warga negeri adat Maluku.",
+      "socialOrganization": "Digunakan oleh lembaga adat Saniri Negeri bersama Raja untuk mengambil keputusan bersama bagi masyarakat.",
+      "ceremonialRelevance": "Pusat upacara pelantikan Raja Negeri, upacara Panas Pela (pengukuhan persaudaraan antarnegeri), dan ritual adat di sekitar Batu Pamali."
+    },
+    "model3DUrl": null,
+    "modelStatus": "in_progress",
+    "modelCapabilities": {
+      "interiorSupported": false,
+      "explodedSupported": false,
+      "separatedComponents": 0,
+      "limitationsNote": "Model 3D sedang disiapkan. Dokumentasi fotografis asli Baileo Negeri Nolloth (Maluku Tengah) ditampilkan sebagai rujukan utama."
+    },
+    "cameraPresets": null,
+    "hotspots": [],
+    "referenceImages": [
+      {
+        "url": "assets/photos/baileo-maluku.jpg",
+        "caption": "Baileo Negeri Nolloth di Pulau Saparua, Maluku Tengah — balai adat terbuka sebagai pusat kehidupan adat negeri Maluku.",
+        "photographer": "Zhilal Darma",
+        "license": "CC BY-SA 4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Baileo_Nolloth_02.jpg"
+      }
+    ],
+    "sources": [
+      {
+        "title": "Arsitektur Tradisional Daerah Maluku (Rumah Baileo)",
+        "publisher": "Departemen Pendidikan dan Kebudayaan RI / Balai Pelestarian Nilai Budaya Maluku",
+        "url": "https://id.wikipedia.org/wiki/Baileo",
+        "note": "Dokumentasi fungsi balai adat Baileo, Batu Pamali, dan struktur terbuka di Kepulauan Maluku."
+      }
+    ],
+    "assetCreator": "Belum tersedia (Model 3D sedang disiapkan)",
+    "assetLicense": "Foto: CC BY-SA 4.0",
+    "attribution": "Foto referensi: Zhilal Darma via Wikimedia Commons (CC BY-SA 4.0).",
+    "verificationStatus": "Terverifikasi (Dokumentasi Foto & Arsip; Model 3D dalam persiapan)",
+    "lastReviewedAt": "2026-11-20",
+    "featured": false,
+    "addedOrder": 14
+  }
+]

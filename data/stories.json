@@ -1,0 +1,52 @@
+[
+  {
+    "id": "konstruksi-tahan-gempa",
+    "category": "Metode Konstruksi Tradisional",
+    "title": "Sendi Batu & Sambungan Pasak: Rekayasa Tahan Gempa Vernakular Nusantara",
+    "readTime": "4 menit baca",
+    "summary": "Dari Batu Sandi di Sumatera Barat hingga Umpak Andesit pada Joglo Jawa, arsitek tradisional Nusantara sejak berabad-abad lalu meletakkan tiang kayu di atas batu tanpa paku besi agar struktur mampu bergoyang lentur saat gempa.",
+    "body": "Berada di sepanjang Cincin Api Pasifik, masyarakat Nusantara mengembangkan sistem isolasi dasar (base isolation) alami jauh sebelum teknik rekayasa seismik modern dirumuskan. Pada Rumah Gadang, Tongkonan, dan Rumah Joglo, pangkal tiang kayu tidak ditanam kaku ke dalam tanah, melainkan ditumpukan di atas batu sungai atau umpak andesit. Ketika getaran lateral terjadi, seluruh rangka yang diikat pasak kayu (tanggam/purus) dan tali ijuk menyerap energi kinetik melalui friksi terbatas tanpa mematahkan kolom utama.",
+    "relatedHouseIds": ["rumah-gadang", "rumah-joglo", "tongkonan-toraja"],
+    "image": "assets/photos/rumah-gadang.jpg"
+  },
+  {
+    "id": "geometri-atap-nusantara",
+    "category": "Struktur Atap",
+    "title": "Dari Pelana Melengkung hingga Kubah Termal: Tipologi Atap Kepulauan",
+    "readTime": "5 menit baca",
+    "summary": "Atap adalah elemen paling dominan sekaligus paling ekspresif dalam arsitektur Indonesia—menanggapi curah hujan monsun, hembusan angin pegunungan, dan tata nilai kosmologis setempat.",
+    "body": "Jika diperhatikan lintas pulau, arsitektur Indonesia adalah 'arsitektur atap'. Di daerah tropis basah bercurah hujan tinggi seperti Sumatera Barat dan Tana Toraja, atap pelana melengkung menjulang dengan tritisan lebar mengalirkan air hujan secepat mungkin sembari menciptakan ruang penyangga panas. Sebaliknya, di Lembah Baliem pada ketinggian 1.600 meter di atas permukaan laut, Honai mengadopsi bentuk kubah jerami tertutup rapat untuk memerangkap udara hangat dari tungku perapian lantai dasar.",
+    "relatedHouseIds": ["tongkonan-toraja", "mbaru-niang", "honai-papua"],
+    "image": "assets/photos/tongkonan-toraja.jpg"
+  },
+  {
+    "id": "material-lokal-berkelanjutan",
+    "category": "Material Lokal",
+    "title": "Kayu Ulin, Jati, Ijuk & Bambu: Ekologi Bahan Bangunan Setempat",
+    "readTime": "4 menit baca",
+    "summary": "Setiap tradisi bangunan memanfaatkan ekosistem terdekatnya secara berkelanjutan—kayu ulin tahan air di sungai Kalimantan, jati tua di Jawa, dan sirap bambu di Bali serta Toraja.",
+    "body": "Rumah tradisional Nusantara lahir langsung dari lanskap ekologis di sekitarnya. Masyarakat Dayak memilih kayu ulin (Eusideroxylon zwageri) untuk tiang dan sirap Rumah Betang karena kepadatan seratnya justru mengeras saat terendam air sungai. Di Sumatera dan Nusa Tenggara, serat ijuk enau (Arenga pinnata) bertahan puluhan tahun melawan lumut dan hujan asam pegunungan, sedangkan di Jawa sistem pemanenan dan pengeringan kayu jati diatur dalam pedoman Kawruh Kalang.",
+    "relatedHouseIds": ["rumah-betang", "rumah-joglo", "bale-bali"],
+    "image": "assets/photos/rumah-betang.jpg"
+  },
+  {
+    "id": "organisasi-spasial",
+    "category": "Organisasi Spasial",
+    "title": "Kosmologi Tiga Tingkat & Gradasi Ruang Publik ke Privat",
+    "readTime": "5 menit baca",
+    "summary": "Baik secara vertikal (kolong, badan, atap) maupun horizontal (serambi terbuka menuju ruang sakral), tata ruang rumah adat memetakan relasi sosial dan penghormatan terhadap alam.",
+    "body": "Banyak rumah panggung Austronesia di Indonesia—seperti Tongkonan (sulluk–kale–rattiang banua), Rumah Bolon (banua toru–tonga–ginjang), dan Saoraja Bugis (awa bola–ale bola–rakkeang)—menerapkan pembagian vertikal tiga lapis. Di sisi lain, hunian Jawa (Pendopo–Pringgitan–Dalem) dan kompleks Bali (Sanga Mandala) menyusun gradasi ruang secara horizontal dari zona publik yang terbuka terhadap tetangga menuju ruang inti keluarga dan penghormatan leluhur.",
+    "relatedHouseIds": ["bale-bali", "bola-soba-bugis", "rumah-joglo"],
+    "image": "assets/photos/bale-bali.jpg"
+  },
+  {
+    "id": "simbolisme-dan-ukiran",
+    "category": "Simbolisme Budaya",
+    "title": "Bahasa Visual Ukiran: Dari Pa'ssura' Toraja hingga Gorga Batak & Kaluak Paku",
+    "readTime": "4 menit baca",
+    "summary": "Ragam hias arsitektur Nusantara bukan sekadar dekorasi permukaan, melainkan arsip visual silsilah, tata krama, dan falsafah hidup komunitas pendukungnya.",
+    "body": "Di dinding papan Rumah Gadang, ukiran kaluak paku dan itiak pulang patang menerjemahkan ajaran keselarasan alam dan kepemimpinan. Di Tana Toraja, puluhan motif Pa'ssura' dipahat dengan empat pigmen mineral alami untuk menuturkan berkah kesuburan dan penghormatan leluhur. Demikian pula relief Gorga Batak Toba dan lukisan kalung Lamin Dayak Kenyah yang menjadikan fasad bangunan sebagai kitab terbuka identitas kolektif masyarakat.",
+    "relatedHouseIds": ["rumah-lamin", "rumah-bolon-toba", "tongkonan-toraja"],
+    "image": "assets/photos/rumah-lamin.jpg"
+  }
+]

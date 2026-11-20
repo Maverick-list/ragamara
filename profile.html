@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jurnal Eksplorasi Arsitektur — NULAR (Nusa Learn)</title>
+  <meta name="description" content="Jurnal eksplorasi pribadi NULAR: rumah tradisional tersimpan, riwayat kunjungan, tonggak penjelajahan kepulauan, wilayah favorit, dan catatan studi arsitektur." />
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet" />
+  <link rel="stylesheet" href="css/museum.css" />
+</head>
+<body>
+  <div id="museum-header-mount"></div>
+
+  <main id="main-content">
+    <section class="museum-section" style="padding-top:48px;padding-bottom:44px;">
+      <div class="museum-container">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(290px, 1fr));gap:32px;align-items:start;">
+          <div>
+            <span class="eyebrow">Profil &amp; Jurnal Penjelajah</span>
+            <h1 id="profile-display-name" class="display-title" style="margin-top:10px;font-size:clamp(2rem, 3.8vw, 3.1rem);">Penjelajah Arsitektur</h1>
+            <p id="profile-display-bio" class="lead-copy" style="margin:12px 0 22px;"></p>
+
+            <div style="display:flex;flex-wrap:wrap;gap:14px;" id="profile-summary-badges"></div>
+          </div>
+
+          <!-- Edit Profile Form -->
+          <form id="profile-edit-form" style="background:var(--bg-sandstone);border:1px solid var(--border-hairline);padding:22px;">
+            <div class="spec-cell__label">Identitas Jurnal Pribadi</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div>
+                <label for="input-name" class="field-label">Nama Tampilan</label>
+                <input type="text" id="input-name" class="museum-input" maxlength="80" />
+              </div>
+              <div>
+                <label for="input-bio" class="field-label">Fokus Studi / Catatan Singkat</label>
+                <textarea id="input-bio" class="museum-textarea" rows="2" maxlength="280"></textarea>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <button type="submit" class="btn-museum btn-museum--primary btn-museum--sm">Perbarui Profil</button>
+                <span id="profile-save-feedback" class="mono-caption" aria-live="polite"></span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCOVERY MILESTONES (Non-Gamified Cultural Exploration Progress) -->
+    <section class="museum-section museum-section--sand" aria-labelledby="milestones-heading">
+      <div class="museum-container">
+        <div class="section-header">
+          <span class="eyebrow">Tonggak Penjelajahan Budaya</span>
+          <h2 id="milestones-heading" class="section-title">Discovery Milestones</h2>
+          <p class="lead-copy" style="margin:8px 0 0;">
+            Catatan pencapaian eksplorasi pribadi berdasarkan pemahaman lintas kepulauan dan pengamatan komponen arsitektur—tanpa papan peringkat kompetitif ataupun mata uang permainan.
+          </p>
+        </div>
+        <div id="milestones-grid" class="houses-grid houses-grid--3"></div>
+      </div>
+    </section>
+
+    <!-- SAVED HOUSES -->
+    <section class="museum-section" aria-labelledby="saved-heading">
+      <div class="museum-container">
+        <div class="section-header section-header--split">
+          <div>
+            <span class="eyebrow">Koleksi Kurasi Pribadi</span>
+            <h2 id="saved-heading" class="section-title" style="margin-top:8px;">Saved Houses</h2>
+          </div>
+          <a href="explore.html" class="btn-museum btn-museum--secondary btn-museum--sm">Jelajahi Koleksi Lain</a>
+        </div>
+        <div id="saved-houses-grid" class="houses-grid houses-grid--3"></div>
+      </div>
+    </section>
+
+    <!-- RECENTLY EXPLORED & PERSONAL NOTES -->
+    <section class="museum-section museum-section--sand" aria-labelledby="history-heading">
+      <div class="museum-container">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:32px;align-items:start;">
+          <div>
+            <span class="eyebrow">Riwayat Kunjungan</span>
+            <h2 id="history-heading" class="section-title" style="margin:8px 0 18px;">Recently Explored Buildings</h2>
+            <div id="history-list" style="display:flex;flex-direction:column;gap:12px;"></div>
+          </div>
+
+          <div>
+            <span class="eyebrow">Wilayah Favorit &amp; Catatan Studi</span>
+            <h2 class="section-title" style="margin:8px 0 14px;">Favorite Regions &amp; Notes</h2>
+            <p style="font-size:0.86rem;color:var(--ink-secondary);margin:0 0 12px;">Pilih wilayah kepulauan yang menjadi fokus minat studi arsitektur Anda:</p>
+            <div id="favorite-regions-list" class="province-pill-grid" style="margin-bottom:26px;"></div>
+
+            <div class="spec-cell__label">Catatan Pribadi Tersimpan</div>
+            <div id="notes-list" style="display:flex;flex-direction:column;gap:12px;margin-top:10px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="museum-footer-mount"></div>
+
+  <script type="module">
+    import { loadHouses, loadProvinces } from './js/museum-data.js';
+    import { MuseumStore } from './js/museum-store.js';
+    import { initMuseumShell, renderHouseCard, bindSaveButtons, escapeHtml } from './js/museum-shell.js';
+
+    initMuseumShell('profile');
+    bindSaveButtons(document);
+
+    let houses = [];
+    let provincesData = null;
+
+    function renderAll() {
+      const state = MuseumStore.getState();
+      const houseMap = new Map(houses.map((h) => [h.id, h]));
+
+      // Header profile info
+      document.getElementById('profile-display-name').textContent = state.profile.name;
+      document.getElementById('profile-display-bio').textContent = state.profile.bio;
+      document.getElementById('input-name').value = state.profile.name;
+      document.getElementById('input-bio').value = state.profile.bio;
+
+      const visitedIslands = new Set(
+        state.exploredHistory.map((e) => houseMap.get(e.houseId)?.island).filter(Boolean)
+      );
+      document.getElementById('profile-summary-badges').innerHTML = `
+        <span class="status-badge status-badge--3d">${state.savedHouseIds.length} Rumah Tersimpan</span>
+        <span class="status-badge status-badge--prep">${state.exploredHistory.length} Bangunan Dijelajahi</span>
+        <span class="status-badge status-badge--research">${visitedIslands.size} / 7 Wilayah Pulau</span>
+      `;
+
+      // Milestones
+      const milestones = MuseumStore.getDiscoveryMilestones(houses);
+      document.getElementById('milestones-grid').innerHTML = milestones.map((m) => `
+        <article style="background:var(--bg-paper);border:1px solid ${m.achieved ? 'var(--bronze)' : 'var(--border-hairline)'};padding:22px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;">
+            <span class="status-badge ${m.achieved ? 'status-badge--3d' : 'status-badge--research'}" style="font-size:0.64rem;">
+              ${m.achieved ? 'Tercapai' : 'Dalam Perjalanan'}
+            </span>
+            <span class="mono-caption">${escapeHtml(m.progressLabel)}</span>
+          </div>
+          <h3 class="card-title" style="font-size:1.15rem;margin-bottom:6px;">${escapeHtml(m.title)}</h3>
+          <p style="font-size:0.86rem;color:var(--ink-secondary);margin:0;line-height:1.6;">${escapeHtml(m.description)}</p>
+        </article>
+      `).join('');
+
+      // Saved Houses
+      const savedHouses = state.savedHouseIds.map((id) => houseMap.get(id)).filter(Boolean);
+      const savedGrid = document.getElementById('saved-houses-grid');
+      if (savedHouses.length === 0) {
+        savedGrid.innerHTML = `
+          <div style="grid-column:1 / -1;padding:36px 24px;background:var(--bg-sandstone);border:1px dashed var(--border-strong);text-align:center;">
+            <p style="margin:0 0 12px;color:var(--ink-secondary);">Belum ada rumah tradisional yang disimpan ke jurnal Anda.</p>
+            <a href="explore.html" class="btn-museum btn-museum--primary btn-museum--sm">Mulai Jelajahi Katalog</a>
+          </div>
+        `;
+      } else {
+        savedGrid.innerHTML = savedHouses.map((h) => renderHouseCard(h, { showCompare: true })).join('');
+      }
+
+      // History
+      const historyList = document.getElementById('history-list');
+      if (state.exploredHistory.length === 0) {
+        historyList.innerHTML = `<p style="font-size:0.88rem;color:var(--ink-muted);">Belum ada riwayat kunjungan bangunan. Buka detail rumah adat untuk mulai mencatat eksplorasi Anda.</p>`;
+      } else {
+        historyList.innerHTML = state.exploredHistory.map((entry) => {
+          const h = houseMap.get(entry.houseId);
+          if (!h) return '';
+          const inspectedCount = entry.inspectedComponents?.length || 0;
+          return `
+            <a href="house.html?id=${encodeURIComponent(h.id)}" style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;background:var(--bg-paper);border:1px solid var(--border-hairline);">
+              <div>
+                <div style="font-family:var(--font-serif);font-size:1.1rem;font-weight:600;">${escapeHtml(h.houseName)}</div>
+                <div class="mono-caption">${escapeHtml(h.province)} · ${escapeHtml(h.island)}</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="mono-caption" style="color:var(--bronze);">${inspectedCount > 0 ? `${inspectedCount} komponen 3D diinspeksi` : 'Dossier dibuka'}</div>
+              </div>
+            </a>
+          `;
+        }).join('');
+      }
+
+      // Favorite Regions
+      document.getElementById('favorite-regions-list').innerHTML = provincesData.islands.map((isl) => {
+        const isFav = state.profile.favoriteRegions.includes(isl.id);
+        return `
+          <button
+            type="button"
+            class="province-pill ${isFav ? 'is-active' : ''}"
+            data-fav-region="${escapeHtml(isl.id)}"
+            aria-pressed="${isFav}"
+          >${escapeHtml(isl.name)}</button>
+        `;
+      }).join('');
+
+      // Personal Notes
+      const noteEntries = Object.entries(state.personalNotes || {});
+      const notesList = document.getElementById('notes-list');
+      if (noteEntries.length === 0) {
+        notesList.innerHTML = `<p style="font-size:0.88rem;color:var(--ink-muted);">Belum ada catatan pribadi. Anda dapat menulis catatan studi pada setiap halaman detail rumah tradisional.</p>`;
+      } else {
+        notesList.innerHTML = noteEntries.map(([hid, noteObj]) => {
+          const h = houseMap.get(hid);
+          return `
+            <article style="background:var(--bg-paper);border:1px solid var(--border-hairline);padding:16px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <a href="house.html?id=${encodeURIComponent(hid)}" style="font-family:var(--font-serif);font-weight:600;text-decoration:underline;">${escapeHtml(h?.houseName || hid)}</a>
+                <span class="mono-caption">${new Date(noteObj.updatedAt).toLocaleDateString('id-ID')}</span>
+              </div>
+              <p style="margin:0;font-size:0.88rem;color:var(--ink-secondary);white-space:pre-line;">${escapeHtml(noteObj.text)}</p>
+            </article>
+          `;
+        }).join('');
+      }
+    }
+
+    async function init() {
+      [houses, provincesData] = await Promise.all([loadHouses(), loadProvinces()]);
+
+      document.getElementById('profile-edit-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        MuseumStore.updateProfile({
+          name: document.getElementById('input-name').value,
+          bio: document.getElementById('input-bio').value
+        });
+        document.getElementById('profile-save-feedback').textContent = 'Profil tersimpan.';
+        renderAll();
+        setTimeout(() => { document.getElementById('profile-save-feedback').textContent = ''; }, 2500);
+      });
+
+      document.getElementById('favorite-regions-list').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-fav-region]');
+        if (!btn) return;
+        MuseumStore.toggleFavoriteRegion(btn.getAttribute('data-fav-region'));
+        renderAll();
+      });
+
+      window.addEventListener('nular:store-updated', renderAll);
+      renderAll();
+    }
+
+    init().catch(console.error);
+  </script>
+</body>
+</html>
