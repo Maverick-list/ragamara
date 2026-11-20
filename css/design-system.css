@@ -1,0 +1,231 @@
+/**
+ * NULAR — Immersive Nusantara Cultural World Design System (css/design-system.css)
+ * Deep forest green, emerald, warm ivory, earthy brown, charcoal, and subtle gold accents.
+ * Includes RTL support, scroll-reveal motion, XP/achievement toasts, and reduced-motion rules.
+ */
+
+:root {
+  --nular-forest-deep: #0F1E17;
+  --nular-forest: #162E23;
+  --nular-emerald: #1F4A38;
+  --nular-ivory: #FAF7F2;
+  --nular-sand: #F1EAE0;
+  --nular-earth: #6E4B2E;
+  --nular-charcoal: #1A201D;
+  --nular-gold: #C89D54;
+  --nular-gold-soft: #E5CFA0;
+  --nular-ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Smooth Cinematic Page Entry & Scroll Reveals */
+.page-enter {
+  animation: nularFadeUp 0.45s var(--nular-ease-cinematic) both;
+}
+
+@keyframes nularFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s var(--nular-ease-cinematic), transform 0.6s var(--nular-ease-cinematic);
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter, .reveal-on-scroll {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.reduced-motion .page-enter,
+.reduced-motion .reveal-on-scroll {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Header Language Selector & Player Pill */
+.lang-select {
+  appearance: none;
+  background: var(--bg-paper, #FFFDF9);
+  border: 1px solid var(--border-strong, #CFC5B6);
+  color: var(--ink-primary, #1A201D);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 3px;
+  min-height: 36px;
+  cursor: pointer;
+}
+
+.lang-select:focus-visible {
+  outline: 2px solid var(--nular-gold);
+  outline-offset: 2px;
+}
+
+.player-mini-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  background: rgba(200, 157, 84, 0.14);
+  border: 1px solid rgba(200, 157, 84, 0.45);
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ink-primary, #1A201D);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.player-mini-pill:hover {
+  background: rgba(200, 157, 84, 0.24);
+}
+
+/* Portal, Collection & Gamification Cards */
+.nular-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.nular-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.nular-panel {
+  background: #FFFDF9;
+  border: 1px solid #DDD4C6;
+  border-radius: 4px;
+  padding: 24px;
+  transition: border-color 0.2s ease, transform 0.2s var(--nular-ease-cinematic), box-shadow 0.2s ease;
+}
+
+.nular-panel:hover {
+  border-color: var(--nular-gold);
+  box-shadow: 0 12px 28px rgba(15, 30, 23, 0.08);
+}
+
+.nular-panel--dark {
+  background: var(--nular-forest);
+  border-color: rgba(200, 157, 84, 0.28);
+  color: var(--nular-ivory);
+}
+
+.nular-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: rgba(31, 74, 56, 0.12);
+  color: var(--nular-emerald);
+}
+
+.nular-badge--gold {
+  background: rgba(200, 157, 84, 0.18);
+  color: #8A6222;
+}
+
+.xp-bar {
+  height: 8px;
+  background: rgba(26, 32, 29, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.xp-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--nular-emerald), var(--nular-gold));
+  border-radius: 999px;
+  transition: width 0.45s var(--nular-ease-cinematic);
+}
+
+/* XP & Achievement Toast Notifications */
+.nular-toast-stack {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: min(360px, calc(100vw - 32px));
+  pointer-events: none;
+}
+
+.nular-toast {
+  background: var(--nular-forest-deep);
+  color: var(--nular-ivory);
+  border: 1px solid var(--nular-gold);
+  border-left: 4px solid var(--nular-gold);
+  padding: 12px 16px;
+  border-radius: 4px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  animation: nularFadeUp 0.3s var(--nular-ease-cinematic) both;
+}
+
+/* WebGL Graceful Fallback Banner */
+.webgl-fallback-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 32px 24px;
+  height: 100%;
+  background: radial-gradient(circle at 50% 35%, #1F4A38 0%, #0F1E17 100%);
+  color: var(--nular-ivory);
+}
+
+/* RTL Layout Support (Arabic) */
+html[dir="rtl"] body {
+  text-align: right;
+}
+
+html[dir="rtl"] .house-card__footer,
+html[dir="rtl"] .section-header--split,
+html[dir="rtl"] .museum-header__inner {
+  direction: rtl;
+}
+
+html[dir="rtl"] .nular-toast-stack {
+  right: auto;
+  left: 20px;
+}
+
+html[dir="rtl"] .nular-toast {
+  border-left: 1px solid var(--nular-gold);
+  border-right: 4px solid var(--nular-gold);
+}
+
+@media (max-width: 760px) {
+  .player-mini-pill__text {
+    display: none;
+  }
+  .lang-select {
+    padding: 5px 6px;
+    font-size: 0.7rem;
+  }
+}

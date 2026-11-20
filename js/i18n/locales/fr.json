@@ -1,0 +1,88 @@
+{
+  "meta": { "code": "fr", "name": "Français", "dir": "ltr", "verified": true },
+  "nav": {
+    "home": "Accueil",
+    "explore": "Découvrir",
+    "portal": "Portail 3D",
+    "map": "Carte 38 Provinces",
+    "learn": "Centre d'Apprentissage",
+    "quests": "Quêtes & Classement",
+    "anatomy": "Anatomie",
+    "about": "À propos",
+    "world": "Entrer dans le Monde",
+    "journal": "Journal",
+    "auth": "Compte",
+    "skip": "Aller au contenu principal"
+  },
+  "hero": {
+    "eyebrow": "NULAR · Explorez le Patrimoine Vivant de l'Indonésie",
+    "title": "Explorez le Monde Culturel Vivant de Nusantara en 3D.",
+    "subtitle": "Visitez des maisons traditionnelles à travers 38 provinces, examinez des textiles et artefacts vérifiés, accomplissez des quêtes éducatives et échangez avec le guide IA.",
+    "ctaPrimary": "Entrer dans le Monde",
+    "ctaSecondary": "Découvrir les Cultures",
+    "ctaPortal": "Ouvrir le Portail",
+    "statHouses": "Maisons 3D",
+    "statProvinces": "Provinces Couvertes",
+    "statCollections": "Collections Vérifiées"
+  },
+  "sections": {
+    "featuredCollections": "Collections Culturelles Vedettes",
+    "housePreviews": "Aperçus 3D des Maisons",
+    "featuredRegions": "Régions Culturelles",
+    "missionsPreview": "Le Voyage du Patrimoine",
+    "leaderboardPreview": "Classement des Explorateurs",
+    "progressionPreview": "Votre Progression"
+  },
+  "portal": {
+    "title": "Portail d'Exploration NULAR",
+    "continue": "Continuer l'Exploration",
+    "startNew": "Nouvelle Exploration",
+    "chooseAvatar": "Choisir et Personnaliser l'Avatar",
+    "cameraMode": "Mode Caméra",
+    "worldMapPreview": "Aperçu de la Carte",
+    "activeMissions": "Quêtes Actives",
+    "collectedItems": "Objets Collectés"
+  },
+  "camera": {
+    "firstPerson": "Première Personne",
+    "thirdPerson": "Troisième Personne",
+    "freeExplore": "Exploration Libre",
+    "sensitivity": "Sensibilité Souris",
+    "distance": "Distance Caméra",
+    "height": "Hauteur Caméra",
+    "invertY": "Inverser Axe Y",
+    "fov": "Champ de Vision (FOV)",
+    "smoothing": "Lissage Caméra",
+    "hints": "Afficher les Contrôles"
+  },
+  "auth": {
+    "signIn": "Connexion",
+    "signUp": "Créer un Compte",
+    "signOut": "Déconnexion",
+    "guestMode": "Mode Invité (Local)",
+    "email": "Adresse E-mail",
+    "password": "Mot de Passe",
+    "username": "Nom Public",
+    "resetPassword": "Réinitialiser le Mot de Passe",
+    "deleteAccount": "Supprimer le Compte",
+    "verifyNotice": "La vérification par e-mail est activée lorsque Supabase est connecté."
+  },
+  "gamification": {
+    "level": "Niveau",
+    "xp": "XP",
+    "streak": "Série Quotidienne",
+    "missions": "Missions Terminées",
+    "achievements": "Succès",
+    "leaderboard": "Classement",
+    "global": "Mondial",
+    "weekly": "Hebdomadaire",
+    "monthly": "Mensuel",
+    "discoveries": "Plus de Découvertes",
+    "claimReward": "Réclamer"
+  },
+  "footer": {
+    "tagline": "Musée Numérique et Monde Culturel 3D d'Indonésie.",
+    "languageLabel": "Langue de l'Interface",
+    "rights": "Vérifié selon DAPOBUD Ministère de la Culture RI et UNESCO."
+  }
+}

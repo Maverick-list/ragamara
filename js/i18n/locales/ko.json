@@ -1,0 +1,88 @@
+{
+  "meta": { "code": "ko", "name": "한국어", "dir": "ltr", "verified": true },
+  "nav": {
+    "home": "홈",
+    "explore": "문화 탐색",
+    "portal": "탐험 포털",
+    "map": "38개 주 지도",
+    "learn": "학습 센터",
+    "quests": "퀘스트 & 순위",
+    "anatomy": "건축 구조",
+    "about": "소개",
+    "world": "3D 월드 입장",
+    "journal": "탐험 일지",
+    "auth": "계정",
+    "skip": "본문으로 건너뛰기"
+  },
+  "hero": {
+    "eyebrow": "NULAR · 인도네시아의 살아있는 유산 탐험",
+    "title": "3D로 만나는 누산타라의 살아있는 문화유산.",
+    "subtitle": "인도네시아 38개 주의 전통 가옥을 직접 걸어보고, 검증된 전통 복식과 유물을 감상하며 교육 미션을 완료하세요.",
+    "ctaPrimary": "3D 월드 입장",
+    "ctaSecondary": "문화 탐색하기",
+    "ctaPortal": "탐험 포털 열기",
+    "statHouses": "3D 전통 가옥",
+    "statProvinces": "포함된 주",
+    "statCollections": "검증된 문화 자료"
+  },
+  "sections": {
+    "featuredCollections": "주요 문화 컬렉션",
+    "housePreviews": "전통 가옥 3D 미리보기",
+    "featuredRegions": "군도 문화 권역",
+    "missionsPreview": "누산타라 유산 여정",
+    "leaderboardPreview": "탐험가 순위표",
+    "progressionPreview": "진행도 및 업적"
+  },
+  "portal": {
+    "title": "NULAR 월드 탐험 포털",
+    "continue": "탐험 계속하기",
+    "startNew": "새 탐험 시작",
+    "chooseAvatar": "아바타 선택 및 꾸미기",
+    "cameraMode": "카메라 모드",
+    "worldMapPreview": "38개 주 지도 미리보기",
+    "activeMissions": "진행 중인 미션",
+    "collectedItems": "수집한 항목"
+  },
+  "camera": {
+    "firstPerson": "1인칭 시점",
+    "thirdPerson": "3인칭 시점",
+    "freeExplore": "자유 탐색 카메라",
+    "sensitivity": "마우스 감도",
+    "distance": "카메라 거리",
+    "height": "카메라 높이",
+    "invertY": "Y축 반전",
+    "fov": "시야각 (FOV)",
+    "smoothing": "카메라 부드러움",
+    "hints": "조작 힌트 표시"
+  },
+  "auth": {
+    "signIn": "로그인",
+    "signUp": "회원가입",
+    "signOut": "로그아웃",
+    "guestMode": "게스트 모드 (로컬 저장)",
+    "email": "이메일 주소",
+    "password": "비밀번호",
+    "username": "공개 탐험가 이름",
+    "resetPassword": "비밀번호 재설정",
+    "deleteAccount": "계정 삭제",
+    "verifyNotice": "Supabase 백엔드 연결 시 이메일 인증이 활성화됩니다."
+  },
+  "gamification": {
+    "level": "레벨",
+    "xp": "XP",
+    "streak": "연속 학습 일수",
+    "missions": "완료한 미션",
+    "achievements": "업적",
+    "leaderboard": "순위표",
+    "global": "전체",
+    "weekly": "주간",
+    "monthly": "월간",
+    "discoveries": "최다 발견",
+    "claimReward": "보상 받기"
+  },
+  "footer": {
+    "tagline": "인도네시아의 건축·복식·문화유산을 체험하는 인터랙티브 3D 문화 박물관.",
+    "languageLabel": "인터페이스 언어",
+    "rights": "인도네시아 문화부 DAPOBUD 및 학술 자료 기반 검증."
+  }
+}

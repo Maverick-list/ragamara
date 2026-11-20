@@ -1,0 +1,88 @@
+{
+  "meta": { "code": "es", "name": "Español", "dir": "ltr", "verified": true },
+  "nav": {
+    "home": "Inicio",
+    "explore": "Descubrir",
+    "portal": "Portal 3D",
+    "map": "Mapa 38 Provincias",
+    "learn": "Centro de Aprendizaje",
+    "quests": "Misiones y Ranking",
+    "anatomy": "Anatomía",
+    "about": "Acerca de",
+    "world": "Entrar al Mundo",
+    "journal": "Diario",
+    "auth": "Cuenta",
+    "skip": "Ir al contenido principal"
+  },
+  "hero": {
+    "eyebrow": "NULAR · Explora el Patrimonio Vivo de Indonesia",
+    "title": "Explora el Mundo Cultural Vivo de Nusantara en 3D.",
+    "subtitle": "Recorre casas tradicionales de 38 provincias, examina textiles y artefactos verificados, completa misiones educativas y conversa con el guía arquitectónico IA.",
+    "ctaPrimary": "Entrar al Mundo",
+    "ctaSecondary": "Descubrir Culturas",
+    "ctaPortal": "Abrir Portal",
+    "statHouses": "Casas Tradicionales 3D",
+    "statProvinces": "Provincias Cubiertas",
+    "statCollections": "Colecciones Verificadas"
+  },
+  "sections": {
+    "featuredCollections": "Colecciones Culturales Destacadas",
+    "housePreviews": "Vistas Previas 3D",
+    "featuredRegions": "Regiones Culturales",
+    "missionsPreview": "El Viaje del Patrimonio",
+    "leaderboardPreview": "Clasificación de Exploradores",
+    "progressionPreview": "Tu Progreso y Logros"
+  },
+  "portal": {
+    "title": "Portal de Exploración NULAR",
+    "continue": "Continuar Exploración",
+    "startNew": "Nueva Exploración",
+    "chooseAvatar": "Elegir y Personalizar Avatar",
+    "cameraMode": "Modo de Cámara",
+    "worldMapPreview": "Vista Previa del Mapa",
+    "activeMissions": "Misiones Activas",
+    "collectedItems": "Elementos Coleccionados"
+  },
+  "camera": {
+    "firstPerson": "Primera Persona",
+    "thirdPerson": "Tercera Persona",
+    "freeExplore": "Exploración Libre",
+    "sensitivity": "Sensibilidad del Ratón",
+    "distance": "Distancia de Cámara",
+    "height": "Altura de Cámara",
+    "invertY": "Invertir Eje Y",
+    "fov": "Campo de Visión (FOV)",
+    "smoothing": "Suavizado de Cámara",
+    "hints": "Mostrar Controles"
+  },
+  "auth": {
+    "signIn": "Iniciar Sesión",
+    "signUp": "Crear Cuenta",
+    "signOut": "Cerrar Sesión",
+    "guestMode": "Modo Invitado (Progreso Local)",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "username": "Nombre Público",
+    "resetPassword": "Restablecer Contraseña",
+    "deleteAccount": "Eliminar Cuenta",
+    "verifyNotice": "La verificación por correo se activa al conectar Supabase."
+  },
+  "gamification": {
+    "level": "Nivel",
+    "xp": "XP",
+    "streak": "Racha Diaria",
+    "missions": "Misiones Completadas",
+    "achievements": "Logros",
+    "leaderboard": "Clasificación",
+    "global": "Global",
+    "weekly": "Semanal",
+    "monthly": "Mensual",
+    "discoveries": "Más Descubrimientos",
+    "claimReward": "Reclamar Recompensa"
+  },
+  "footer": {
+    "tagline": "Museo Digital y Mundo Cultural 3D de Indonesia.",
+    "languageLabel": "Idioma de Interfaz",
+    "rights": "Verificado con DAPOBUD Ministerio de Cultura RI y UNESCO."
+  }
+}

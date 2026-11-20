@@ -1,0 +1,88 @@
+{
+  "meta": { "code": "id", "name": "Bahasa Indonesia", "dir": "ltr", "verified": true },
+  "nav": {
+    "home": "Beranda",
+    "explore": "Eksplorasi",
+    "portal": "Portal Dunia",
+    "map": "Peta 38 Provinsi",
+    "learn": "Pusat Belajar",
+    "quests": "Misi & Peringkat",
+    "anatomy": "Anatomi",
+    "about": "Tentang",
+    "world": "Masuk Dunia 3D",
+    "journal": "Jurnal",
+    "auth": "Akun",
+    "skip": "Lompat ke konten utama"
+  },
+  "hero": {
+    "eyebrow": "NULAR · Explore the Living Heritage of Indonesia",
+    "title": "Jelajahi Warisan Hidup Nusantara dalam Dunia 3D.",
+    "subtitle": "Masuki dunia budaya Indonesia interaktif: berjalan di dalam rumah adat 38 provinsi, pelajari busana & pusaka tradisional terverifikasi, selesaikan misi edukatif, dan dengarkan pemandu arsitektur AI.",
+    "ctaPrimary": "Masuk Dunia 3D",
+    "ctaSecondary": "Jelajahi Budaya",
+    "ctaPortal": "Buka Portal Eksplorasi",
+    "statHouses": "Rumah Adat 3D",
+    "statProvinces": "Provinsi Tercakup",
+    "statCollections": "Koleksi Budaya Terverifikasi"
+  },
+  "sections": {
+    "featuredCollections": "Koleksi Budaya Unggulan",
+    "housePreviews": "Pratinjau 3D Rumah Adat",
+    "featuredRegions": "Zona Budaya Kepulauan",
+    "missionsPreview": "Perjalanan Warisan Nusantara",
+    "leaderboardPreview": "Papan Peringkat Penjelajah",
+    "progressionPreview": "Progres & Pencapaian Anda"
+  },
+  "portal": {
+    "title": "Portal Dunia Budaya NULAR",
+    "continue": "Lanjutkan Eksplorasi",
+    "startNew": "Mulai Eksplorasi Baru",
+    "chooseAvatar": "Pilih & Kustomisasi Avatar",
+    "cameraMode": "Mode Kamera Awal",
+    "worldMapPreview": "Pratinjau Peta 38 Provinsi",
+    "activeMissions": "Misi Aktif",
+    "collectedItems": "Koleksi Terkumpul"
+  },
+  "camera": {
+    "firstPerson": "Orang Pertama (First Person)",
+    "thirdPerson": "Orang Ketiga (Third Person)",
+    "freeExplore": "Eksplorasi Bebas (Free Orbit)",
+    "sensitivity": "Sensitivitas Mouse",
+    "distance": "Jarak Kamera",
+    "height": "Tinggi Kamera",
+    "invertY": "Balik Sumbu-Y",
+    "fov": "Sudut Pandang (FOV)",
+    "smoothing": "Kehalusan Kamera",
+    "hints": "Petunjuk Kontrol"
+  },
+  "auth": {
+    "signIn": "Masuk",
+    "signUp": "Daftar Akun",
+    "signOut": "Keluar",
+    "guestMode": "Mode Tamu (Progres Lokal)",
+    "email": "Alamat Email",
+    "password": "Kata Sandi",
+    "username": "Nama Penjelajah Publik",
+    "resetPassword": "Lupa Kata Sandi?",
+    "deleteAccount": "Hapus Akun",
+    "verifyNotice": "Email verifikasi & pemulihan akun tersedia saat backend Supabase terhubung."
+  },
+  "gamification": {
+    "level": "Level",
+    "xp": "XP",
+    "streak": "Runtunan Harian",
+    "missions": "Misi Selesai",
+    "achievements": "Pencapaian",
+    "leaderboard": "Papan Peringkat",
+    "global": "Global",
+    "weekly": "Mingguan",
+    "monthly": "Bulanan",
+    "discoveries": "Penemuan Terbanyak",
+    "claimReward": "Klaim Hadiah"
+  },
+  "footer": {
+    "tagline": "Museum Digital & Dunia Budaya 3D Indonesia — Melestarikan Arsitektur, Busana, Pusaka & Pengetahuan Nusantara.",
+    "languageLabel": "Bahasa Antarmuka",
+    "rights": "Konten budaya terverifikasi DAPOBUD Kemendikbud RI, UNESCO & dokumentasi ilmiah."
+  }
+}

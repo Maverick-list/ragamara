@@ -1,0 +1,88 @@
+{
+  "meta": { "code": "zh", "name": "中文", "dir": "ltr", "verified": true },
+  "nav": {
+    "home": "首页",
+    "explore": "文化探索",
+    "portal": "探索入口",
+    "map": "38省地图",
+    "learn": "学习中心",
+    "quests": "任务与排行",
+    "anatomy": "建筑解析",
+    "about": "关于",
+    "world": "进入3D世界",
+    "journal": "探索日志",
+    "auth": "账户",
+    "skip": "跳至主要内容"
+  },
+  "hero": {
+    "eyebrow": "NULAR · 探索印度尼西亚活态文化遗产",
+    "title": "在3D世界中探索努山塔拉活态文化。",
+    "subtitle": "步入交互式印度尼西亚文化世界：漫步38个省份的传统民居，鉴赏经过核实的传统服饰与文物，完成教育任务。",
+    "ctaPrimary": "进入3D世界",
+    "ctaSecondary": "发现文化",
+    "ctaPortal": "打开探索入口",
+    "statHouses": "3D传统民居",
+    "statProvinces": "覆盖省份",
+    "statCollections": "已核实文化条目"
+  },
+  "sections": {
+    "featuredCollections": "精选文化馆藏",
+    "housePreviews": "3D传统民居预览",
+    "featuredRegions": "群岛文化区",
+    "missionsPreview": "努山塔拉遗产之旅",
+    "leaderboardPreview": "探索者排行榜",
+    "progressionPreview": "您的进度与里程碑"
+  },
+  "portal": {
+    "title": "NULAR 世界探索入口",
+    "continue": "继续探索",
+    "startNew": "开始新探索",
+    "chooseAvatar": "选择与定制角色",
+    "cameraMode": "视角模式",
+    "worldMapPreview": "38省地图预览",
+    "activeMissions": "当前任务",
+    "collectedItems": "已收集项目"
+  },
+  "camera": {
+    "firstPerson": "第一人称视角",
+    "thirdPerson": "第三人称视角",
+    "freeExplore": "自由探索视角",
+    "sensitivity": "鼠标灵敏度",
+    "distance": "相机距离",
+    "height": "相机高度",
+    "invertY": "反转Y轴",
+    "fov": "视野范围 (FOV)",
+    "smoothing": "视角平滑度",
+    "hints": "显示操作提示"
+  },
+  "auth": {
+    "signIn": "登录",
+    "signUp": "注册账户",
+    "signOut": "退出登录",
+    "guestMode": "访客模式（本地进度）",
+    "email": "电子邮箱",
+    "password": "密码",
+    "username": "公开探索者名称",
+    "resetPassword": "重置密码",
+    "deleteAccount": "删除账户",
+    "verifyNotice": "连接 Supabase 后端后将启用邮件验证功能。"
+  },
+  "gamification": {
+    "level": "等级",
+    "xp": "经验值",
+    "streak": "每日连续学习",
+    "missions": "已完成任务",
+    "achievements": "成就",
+    "leaderboard": "排行榜",
+    "global": "全球",
+    "weekly": "每周",
+    "monthly": "每月",
+    "discoveries": "最多发现",
+    "claimReward": "领取奖励"
+  },
+  "footer": {
+    "tagline": "印度尼西亚交互式3D数字文化博物馆——保护群岛建筑、服饰与活态知识。",
+    "languageLabel": "界面语言",
+    "rights": "内容依据印尼文化部 DAPOBUD 及学术文献核实。"
+  }
+}

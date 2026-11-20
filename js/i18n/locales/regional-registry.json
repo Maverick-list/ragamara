@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "note": "Progressive registry of Indonesian regional languages. Original local architectural & cultural terms are preserved; full UI translations in regional languages are marked transparently until reviewed by native community speakers.",
+  "languages": [
+    { "code": "ace", "name": "Bahasa Aceh (Acehnese)", "province": "Aceh", "sampleTerm": "Rumoh Aceh / Seuramoe", "status": "glossary_verified_ui_planned" },
+    { "code": "btk", "name": "Bahasa Batak (Toba / Karo / Mandailing)", "province": "Sumatera Utara", "sampleTerm": "Ruma Bolon / Siwaluh Jabu / Jabu Bona", "status": "glossary_verified_ui_planned" },
+    { "code": "min", "name": "Baso Minangkabau (Minangkabau)", "province": "Sumatera Barat", "sampleTerm": "Rumah Gadang / Gonjong / Anjuang", "status": "glossary_verified_ui_planned" },
+    { "code": "sun", "name": "Basa Sunda (Sundanese)", "province": "Jawa Barat & Banten", "sampleTerm": "Julang Ngapak / Sulah Nyanda / Tepas", "status": "glossary_verified_ui_planned" },
+    { "code": "jav", "name": "Basa Jawa (Javanese)", "province": "Jawa Tengah, DI Yogyakarta, Jawa Timur", "sampleTerm": "Joglo / Pendopo / Soko Guru / Dalem Ageng", "status": "glossary_verified_ui_planned" },
+    { "code": "ban", "name": "Basa Bali (Balinese)", "province": "Bali", "sampleTerm": "Bale Daja / Bale Dangin / Natah / Tri Mandala", "status": "glossary_verified_ui_planned" },
+    { "code": "sas", "name": "Base Sasak (Sasak)", "province": "Nusa Tenggara Barat", "sampleTerm": "Bale Tani / Lumbung / Sesangkok", "status": "glossary_verified_ui_planned" },
+    { "code": "bug", "name": "Basa Ugi (Buginese)", "province": "Sulawesi Selatan", "sampleTerm": "Bola Soba / Saoraja / Rakkeang", "status": "glossary_verified_ui_planned" },
+    { "code": "mak", "name": "Basa Mangkasara (Makassarese)", "province": "Sulawesi Selatan", "sampleTerm": "Balla Lompoa / Pammakkang", "status": "glossary_verified_ui_planned" },
+    { "code": "mad", "name": "Bhâsa Madhurâ (Madurese)", "province": "Jawa Timur (Madura & Tapal Kuda)", "sampleTerm": "Tanèyan Lanjhâng / Langgar", "status": "glossary_verified_ui_planned" },
+    { "code": "bjn", "name": "Bahasa Banjar (Banjar)", "province": "Kalimantan Selatan", "sampleTerm": "Bubungan Tinggi / Palidangan / Sasirangan", "status": "glossary_verified_ui_planned" },
+    { "code": "day", "name": "Rumpun Bahasa Dayak (Ngaju / Iban / Kenyah)", "province": "Kalimantan Barat, Tengah, Timur, Utara", "sampleTerm": "Betang / Rumah Lamin / Baloy / Ruai", "status": "glossary_verified_ui_planned" },
+    { "code": "gor", "name": "Bahasa Hulontalo (Gorontalo)", "province": "Gorontalo", "sampleTerm": "Dulohupa / Bantayo Poboide", "status": "glossary_verified_ui_planned" },
+    { "code": "mnh", "name": "Rumpun Bahasa Minahasa (Tombulu / Tontemboan / Tonsea)", "province": "Sulawesi Utara", "sampleTerm": "Walewangko / Lesar", "status": "glossary_verified_ui_planned" },
+    { "code": "abs", "name": "Melayu Ambon (Ambonese Malay)", "province": "Maluku", "sampleTerm": "Baileo / Pamali", "status": "glossary_verified_ui_planned" },
+    { "code": "pap", "name": "Bahasa Daerah Papua (Dani / Sentani / Asmat / Kamoro / Moi)", "province": "Papua & Papua Pegunungan / Tengah / Selatan / Barat", "sampleTerm": "Honai / Kariwari / Jew / Karapauw / Kambik", "status": "glossary_verified_ui_planned" }
+  ]
+}

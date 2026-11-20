@@ -1,0 +1,88 @@
+{
+  "meta": { "code": "en", "name": "English", "dir": "ltr", "verified": true },
+  "nav": {
+    "home": "Home",
+    "explore": "Discover",
+    "portal": "Explore Portal",
+    "map": "38-Province Map",
+    "learn": "Learning Center",
+    "quests": "Quests & Ranks",
+    "anatomy": "Anatomy",
+    "about": "About",
+    "world": "Enter the World",
+    "journal": "Journal",
+    "auth": "Account",
+    "skip": "Skip to main content"
+  },
+  "hero": {
+    "eyebrow": "NULAR · Explore the Living Heritage of Indonesia",
+    "title": "Explore Indonesia's Living Cultural World in 3D.",
+    "subtitle": "Step inside an interactive Nusantara cultural world: walk through traditional houses across 38 provinces, inspect verified textiles and heritage artifacts, complete educational quests, and consult our AI architectural guide.",
+    "ctaPrimary": "Enter the World",
+    "ctaSecondary": "Discover Cultures",
+    "ctaPortal": "Open Explore Portal",
+    "statHouses": "3D Traditional Houses",
+    "statProvinces": "Provinces Covered",
+    "statCollections": "Verified Cultural Items"
+  },
+  "sections": {
+    "featuredCollections": "Featured Cultural Collections",
+    "housePreviews": "Interactive 3D House Previews",
+    "featuredRegions": "Archipelago Cultural Regions",
+    "missionsPreview": "The Nusantara Heritage Journey",
+    "leaderboardPreview": "Explorer Leaderboard",
+    "progressionPreview": "Your Progress & Milestones"
+  },
+  "portal": {
+    "title": "NULAR World Explore Portal",
+    "continue": "Continue Exploration",
+    "startNew": "Start New Exploration",
+    "chooseAvatar": "Choose & Customize Avatar",
+    "cameraMode": "Starting Camera Mode",
+    "worldMapPreview": "38-Province World Map Preview",
+    "activeMissions": "Active Missions",
+    "collectedItems": "Collected Cultural Items"
+  },
+  "camera": {
+    "firstPerson": "First Person",
+    "thirdPerson": "Third Person",
+    "freeExplore": "Free Explore Orbit",
+    "sensitivity": "Mouse Sensitivity",
+    "distance": "Camera Distance",
+    "height": "Camera Height",
+    "invertY": "Invert Y-Axis",
+    "fov": "Field of View (FOV)",
+    "smoothing": "Camera Smoothing",
+    "hints": "Show Control Hints"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Create Account",
+    "signOut": "Sign Out",
+    "guestMode": "Guest Exploration Mode (Local Progress)",
+    "email": "Email Address",
+    "password": "Password",
+    "username": "Public Explorer Name",
+    "resetPassword": "Reset Password",
+    "deleteAccount": "Delete Account",
+    "verifyNotice": "Email verification and cloud password reset activate automatically when Supabase backend credentials are connected."
+  },
+  "gamification": {
+    "level": "Level",
+    "xp": "XP",
+    "streak": "Daily Streak",
+    "missions": "Missions Completed",
+    "achievements": "Achievements",
+    "leaderboard": "Leaderboard",
+    "global": "Global",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "discoveries": "Most Discoveries",
+    "claimReward": "Claim Reward"
+  },
+  "footer": {
+    "tagline": "Indonesia's Interactive 3D Cultural World & Digital Museum — Preserving Archipelago Architecture, Textiles, Artifacts & Living Knowledge.",
+    "languageLabel": "Interface Language",
+    "rights": "Culturally verified against DAPOBUD Ministry of Culture RI, UNESCO & academic monographs."
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "meta": { "code": "ja", "name": "日本語", "dir": "ltr", "verified": true },
+  "nav": {
+    "home": "ホーム",
+    "explore": "文化を発見",
+    "portal": "探索ポータル",
+    "map": "38州マップ",
+    "learn": "学習センター",
+    "quests": "クエスト・順位",
+    "anatomy": "建築構造",
+    "about": "NULARについて",
+    "world": "3Dワールドへ",
+    "journal": "記録",
+    "auth": "アカウント",
+    "skip": "メインコンテンツへ移動"
+  },
+  "hero": {
+    "eyebrow": "NULAR · インドネシアの生きた文化遺産を探検",
+    "title": "ヌサンタラの生きた文化遺産を3D世界で体験。",
+    "subtitle": "38州の伝統家屋を歩き、検証済みの伝統衣装や歴史的工芸品を調べ、教育ミッションを達成しましょう。",
+    "ctaPrimary": "3Dワールドに入る",
+    "ctaSecondary": "文化を発見する",
+    "ctaPortal": "探索ポータルを開く",
+    "statHouses": "3D伝統家屋",
+    "statProvinces": "対象州",
+    "statCollections": "検証済み文化資料"
+  },
+  "sections": {
+    "featuredCollections": "注目の文化コレクション",
+    "housePreviews": "伝統家屋3Dプレビュー",
+    "featuredRegions": "群島の文化地域",
+    "missionsPreview": "ヌサンタラ遺産ジャーニー",
+    "leaderboardPreview": "探検者リーダーボード",
+    "progressionPreview": "進捗と達成状況"
+  },
+  "portal": {
+    "title": "NULAR ワールド探索ポータル",
+    "continue": "探索を続ける",
+    "startNew": "新しい探索を開始",
+    "chooseAvatar": "アバター選択・カスタマイズ",
+    "cameraMode": "カメラモード",
+    "worldMapPreview": "38州マッププレビュー",
+    "activeMissions": "進行中のミッション",
+    "collectedItems": "収集済みアイテム"
+  },
+  "camera": {
+    "firstPerson": "一人称視点",
+    "thirdPerson": "三人称視点",
+    "freeExplore": "自由探索カメラ",
+    "sensitivity": "マウス感度",
+    "distance": "カメラ距離",
+    "height": "カメラ高さ",
+    "invertY": "Y軸反転",
+    "fov": "視野角 (FOV)",
+    "smoothing": "カメラスムージング",
+    "hints": "操作ヒント表示"
+  },
+  "auth": {
+    "signIn": "ログイン",
+    "signUp": "新規登録",
+    "signOut": "ログアウト",
+    "guestMode": "ゲストモード（ローカル保存）",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "username": "公開探検者名",
+    "resetPassword": "パスワード再設定",
+    "deleteAccount": "アカウント削除",
+    "verifyNotice": "Supabase接続時にメール認証が有効になります。"
+  },
+  "gamification": {
+    "level": "レベル",
+    "xp": "XP",
+    "streak": "連続学習日数",
+    "missions": "完了ミッション",
+    "achievements": "実績",
+    "leaderboard": "リーダーボード",
+    "global": "全体",
+    "weekly": "週間",
+    "monthly": "月間",
+    "discoveries": "発見数順",
+    "claimReward": "報酬を受け取る"
+  },
+  "footer": {
+    "tagline": "インドネシアの建築・伝統衣装・文化遺産を学ぶインタラクティブ3Dミュージアム。",
+    "languageLabel": "表示言語",
+    "rights": "インドネシア文化省DAPOBUDおよび学術資料に基づき検証されています。"
+  }
+}
