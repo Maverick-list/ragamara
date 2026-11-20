@@ -40,28 +40,32 @@
             Explore the living architecture of Nusantara melalui model 3D interaktif yang dapat diputar 360°, dibedah komponennya, dan dipelajari dari sisi struktur, material lokal, adaptasi iklim, hingga makna budayanya.
           </p>
           <div class="hero-atlas__actions">
-            <a href="explore.html" class="btn-museum btn-museum--bronze">
+            <a href="world.html" class="btn-museum btn-museum--bronze">
+              <span class="material-symbols-outlined" style="font-size:19px" aria-hidden="true">explore</span>
+              <span>Masuk Dunia 3D Nusantara</span>
+            </a>
+            <a href="explore.html" class="btn-museum btn-museum--ghost-dark">
               <span class="material-symbols-outlined" style="font-size:19px" aria-hidden="true">architecture</span>
               <span>Explore the Houses</span>
             </a>
             <a href="map.html" class="btn-museum btn-museum--ghost-dark">
               <span class="material-symbols-outlined" style="font-size:19px" aria-hidden="true">public</span>
-              <span>Discover the Atlas</span>
+              <span>Atlas 38 Provinsi</span>
             </a>
           </div>
 
           <div class="hero-stats" id="hero-metrics" aria-label="Statistik Katalog Terverifikasi">
             <div>
-              <div class="hero-stat__value" data-metric="houses">14</div>
+              <div class="hero-stat__value" data-metric="houses">42</div>
               <div class="hero-stat__label">Tradisi Rumah Terdokumentasi</div>
             </div>
             <div>
-              <div class="hero-stat__value" data-metric="models">4</div>
-              <div class="hero-stat__label">Model 3D Interaktif GLB</div>
+              <div class="hero-stat__value" data-metric="models">42</div>
+              <div class="hero-stat__label">Dunia &amp; Model 3D Interaktif</div>
             </div>
             <div>
-              <div class="hero-stat__value" data-metric="islands">7</div>
-              <div class="hero-stat__label">Wilayah Kepulauan Nusantara</div>
+              <div class="hero-stat__value" data-metric="provinces">38</div>
+              <div class="hero-stat__label">Provinsi Nusantara Tercakup</div>
             </div>
           </div>
         </div>
@@ -193,10 +197,14 @@
       const metrics = getCatalogMetrics(houses, provincesData);
       document.querySelector('[data-metric="houses"]').textContent = String(metrics.totalHouses);
       document.querySelector('[data-metric="models"]').textContent = String(metrics.modelsAvailable);
-      document.querySelector('[data-metric="islands"]').textContent = String(metrics.documentedIslands);
+      const provMetricEl = document.querySelector('[data-metric="provinces"]');
+      if (provMetricEl) provMetricEl.textContent = String(metrics.documentedProvincesCount);
 
-      // 1. Setup Interactive Hero 3D Preview Switcher (4 verified GLB models)
-      const models3D = houses.filter((h) => h.modelStatus === 'available');
+      // 1. Setup Interactive Hero 3D Preview Switcher (4 curated showcase GLB models)
+      const SHOWCASE_IDS = ['rumah-gadang', 'tongkonan-toraja', 'rumah-joglo', 'honai-papua'];
+      const models3D = SHOWCASE_IDS
+        .map((id) => houses.find((h) => h.id === id && h.modelStatus === 'available'))
+        .filter(Boolean);
       const tabsContainer = document.getElementById('hero-model-tabs');
       const heroLabel = document.getElementById('hero-model-label');
       const heroCta = document.getElementById('hero-model-cta');

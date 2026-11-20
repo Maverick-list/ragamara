@@ -1,0 +1,314 @@
+{
+  "timestamp": "2026-11-20T18:07:51.182Z",
+  "assets": {
+    "houseCount": 42,
+    "validHouseGlbs": 42,
+    "houseGlbMinKB": 50.4,
+    "houseGlbMedianKB": 158.7,
+    "houseGlbMaxKB": 326.7,
+    "houseGlbTotalMB": 6.7,
+    "houseBrotliMedianKB": 7.4,
+    "houseBrotliTotalMB": 0.37,
+    "avatarCount": 6,
+    "validAvatarGlbs": 6,
+    "avatarGlbMaxKB": 92
+  },
+  "responsiveMatrix": [
+    {
+      "route": "index",
+      "width": 320,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "index",
+      "width": 390,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "index",
+      "width": 768,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "index",
+      "width": 1024,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "index",
+      "width": 1440,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "explore",
+      "width": 320,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "explore",
+      "width": 390,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "explore",
+      "width": 768,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "explore",
+      "width": 1024,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "explore",
+      "width": 1440,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "house",
+      "width": 320,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "house",
+      "width": 390,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "house",
+      "width": 768,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "house",
+      "width": 1024,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "house",
+      "width": 1440,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "map",
+      "width": 320,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "map",
+      "width": 390,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "map",
+      "width": 768,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "map",
+      "width": 1024,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "map",
+      "width": 1440,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "anatomy",
+      "width": 320,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "anatomy",
+      "width": 390,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "anatomy",
+      "width": 768,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "anatomy",
+      "width": 1024,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "anatomy",
+      "width": 1440,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "about",
+      "width": 320,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "about",
+      "width": 390,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "about",
+      "width": 768,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "about",
+      "width": 1024,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "about",
+      "width": 1440,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "profile",
+      "width": 320,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "profile",
+      "width": 390,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "profile",
+      "width": 768,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "profile",
+      "width": 1024,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "profile",
+      "width": 1440,
+      "overflow": -15,
+      "errors": 0
+    },
+    {
+      "route": "world",
+      "width": 320,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "world",
+      "width": 390,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "world",
+      "width": 768,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "world",
+      "width": 1024,
+      "overflow": 0,
+      "errors": 0
+    },
+    {
+      "route": "world",
+      "width": 1440,
+      "overflow": 0,
+      "errors": 0
+    }
+  ],
+  "performance": {
+    "homeLoadMs": 594,
+    "houseLoadMs": 359,
+    "mapLoadMs": 263,
+    "worldJogloLoadMs": 260,
+    "headlessSwiftShaderFps": 13.2,
+    "jogloDrawCalls": 136,
+    "jogloTriangles": 2800,
+    "jogloHeapMB": 27.4,
+    "transitionMaxGeometries": 182,
+    "transitionMaxDrawCalls": 167,
+    "transitionSamples": [
+      {
+        "house": "rumah-gadang",
+        "geos": 155,
+        "calls": 137,
+        "triangles": 4892
+      },
+      {
+        "house": "tongkonan-toraja",
+        "geos": 150,
+        "calls": 133,
+        "triangles": 4860
+      },
+      {
+        "house": "honai-papua",
+        "geos": 125,
+        "calls": 110,
+        "triangles": 3192
+      },
+      {
+        "house": "mbaru-niang",
+        "geos": 127,
+        "calls": 112,
+        "triangles": 2844
+      },
+      {
+        "house": "rumah-betang",
+        "geos": 182,
+        "calls": 167,
+        "triangles": 4128
+      }
+    ]
+  },
+  "e2e": {
+    "outfitCount": 6,
+    "inspected": true,
+    "guideGrounded": true,
+    "mobileControlsVisible": true,
+    "journalState": {
+      "visitedCount": 6,
+      "inspectedCount": 1,
+      "historyItems": 6
+    },
+    "worldErrors": 0
+  }
+}

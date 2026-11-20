@@ -60,12 +60,12 @@ export function initMuseumShell(activePageId) {
           <div class="header-actions">
             <a
               href="world.html"
-              class="btn-museum btn-museum--bronze btn-museum--sm"
+              class="btn-museum btn-museum--bronze btn-museum--sm header-world-btn"
               ${activePageId === 'world' ? 'aria-current="page"' : ''}
               aria-label="Masuk Dunia 3D Nusantara yang dapat dimainkan"
             >
               <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">directions_walk</span>
-              <span>Dunia 3D</span>
+              <span class="header-world-btn__label">Dunia 3D</span>
             </a>
             <a
               href="profile.html"
@@ -74,7 +74,7 @@ export function initMuseumShell(activePageId) {
               aria-label="Jurnal Eksplorasi dan Rumah Tersimpan"
             >
               <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">bookmarks</span>
-              <span>Jurnal</span>
+              <span class="journal-pill__label">Jurnal</span>
               <span class="journal-pill__count" data-saved-count>${savedCount}</span>
             </a>
             <button

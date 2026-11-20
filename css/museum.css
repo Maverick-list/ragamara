@@ -321,6 +321,39 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .brand-mark__sub {
+    display: none;
+  }
+  .header-actions {
+    gap: 6px;
+  }
+  .header-world-btn {
+    padding: 8px 10px;
+    min-height: 44px;
+  }
+  .journal-pill {
+    padding: 8px 9px;
+    min-height: 44px;
+    gap: 5px;
+  }
+  .journal-pill__label {
+    display: none;
+  }
+}
+
+@media (max-width: 375px) {
+  .header-world-btn__label {
+    display: none;
+  }
+  .header-world-btn {
+    min-width: 44px;
+    justify-content: center;
+    padding: 8px;
+  }
 }
 
 .journal-pill {
