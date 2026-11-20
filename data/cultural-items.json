@@ -1,0 +1,534 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-11-20",
+  "totalItems": 19,
+  "items": [
+    {
+      "id": "item-batik-parang-solo",
+      "slug": "batik-parang-solo",
+      "name": "Batik Parang Rusak Barong",
+      "category": "clothing",
+      "categoryLabel": "Wastra · Batik",
+      "province": "Jawa Tengah & DI Yogyakarta",
+      "regionId": "Jawa Tengah & DI Yogyakarta",
+      "culturalAssociation": "Masyarakat Jawa (Keraton Surakarta & Kasultanan Yogyakarta)",
+      "description": "Motif lereng diagonal menyerupai ombak samudra yang tak putus melambangkan keteguhan budi, kesinambungan perjuangan hidup, dan pengendalian diri.",
+      "historicalContext": "Secara tradisional termasuk motif larangan di lingkungan keraton; kini dikenakan secara hormat dalam konteks budaya dan edukasi.",
+      "culturalSignificance": "Batik (Wax-Resist Dyeing — Tulis/Cap). Motif lereng diagonal menyerupai ombak samudra yang tak putus melambangkan keteguhan budi, kesinambungan perjuangan hidup, dan pengendalian diri.",
+      "materials": [
+        "Batik (Wax-Resist Dyeing — Tulis/Cap)"
+      ],
+      "components": [
+        "Motif Utama",
+        "Teknik Pewarnaan/Tenun",
+        "Tata Busana Adat"
+      ],
+      "model3D": "assets/models/artifacts/clothing-batik-parang.glb",
+      "sources": [
+        "Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI (DAPOBUD) & UNESCO ICH (2009)",
+        "Batik Indonesia — UNESCO Representative List of the Intangible Cultural Heritage of Humanity (2009)"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "item-batik-megamendung-cirebon",
+      "slug": "batik-megamendung-cirebon",
+      "name": "Batik Megamendung",
+      "category": "clothing",
+      "categoryLabel": "Wastra · Batik",
+      "province": "Jawa Barat",
+      "regionId": "Jawa Barat",
+      "culturalAssociation": "Masyarakat Pesisir Cirebon",
+      "description": "Gradasi tujuh lapis awan biru melambangkan kesejukan batin, kesabaran pemimpin dalam mengayomi masyarakat, serta akulturasi maritim Nusantara–Tiongkok di pesisir utara Jawa.",
+      "historicalContext": "Busana harian dan resmi khas pesisir utara Jawa Barat.",
+      "culturalSignificance": "Batik Pesisir (Wax-Resist Dyeing). Gradasi tujuh lapis awan biru melambangkan kesejukan batin, kesabaran pemimpin dalam mengayomi masyarakat, serta akulturasi maritim Nusantara–Tiongkok di pesisir utara Jawa.",
+      "materials": [
+        "Batik Pesisir (Wax-Resist Dyeing)"
+      ],
+      "components": [
+        "Motif Utama",
+        "Teknik Pewarnaan/Tenun",
+        "Tata Busana Adat"
+      ],
+      "model3D": "assets/models/artifacts/clothing-batik-parang.glb",
+      "sources": [
+        "Museum Tekstil Jakarta & Arsip Keraton Kasepuhan Cirebon",
+        "Bagian dari Warisan Budaya Takbenda Batik Indonesia (UNESCO 2009)"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "item-tenun-ikat-sumba",
+      "slug": "tenun-ikat-sumba",
+      "name": "Tenun Ikat Hinggi Sumba",
+      "category": "clothing",
+      "categoryLabel": "Wastra · Non-Batik",
+      "province": "Nusa Tenggara Timur",
+      "regionId": "Nusa Tenggara Timur",
+      "culturalAssociation": "Masyarakat Adat Sumba",
+      "description": "Ditenun dengan teknik ikat benang sebelum pencelupan pewarna alam (indigo dan akar mengkudu). Motif kuda, ayam, dan udang melambangkan keberanian, kehidupan, dan siklus pembaruan.",
+      "historicalContext": "Dikenakan dalam upacara adat, penyambutan tamu kehormatan, dan busana identitas masyarakat Sumba.",
+      "culturalSignificance": "Tenun Ikat Lungsi (Warp Ikat Weaving — BUKAN Batik). Ditenun dengan teknik ikat benang sebelum pencelupan pewarna alam (indigo dan akar mengkudu). Motif kuda, ayam, dan udang melambangkan keberanian, kehidupan, dan siklus pembaruan.",
+      "materials": [
+        "Tenun Ikat Lungsi (Warp Ikat Weaving — BUKAN Batik)"
+      ],
+      "components": [
+        "Motif Utama",
+        "Teknik Pewarnaan/Tenun",
+        "Tata Busana Adat"
+      ],
+      "model3D": "assets/models/artifacts/clothing-tenun-sumba.glb",
+      "sources": [
+        "Direktorat Warisan dan Diplomasi Budaya Kemendikbudristek RI",
+        "Warisan Budaya Takbenda Nasional Indonesia (WBTbI)"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "item-songket-minangkabau",
+      "slug": "songket-minangkabau",
+      "name": "Songket Pandai Sikek",
+      "category": "clothing",
+      "categoryLabel": "Wastra · Non-Batik",
+      "province": "Sumatera Barat",
+      "regionId": "Sumatera Barat",
+      "culturalAssociation": "Suku Minangkabau",
+      "description": "Kain tenun benang pakan tambahan emas (bukan batik) dengan motif pucuk rebung dan saik galamai yang mencerminkan keselarasan adat basandi syarak serta keagungan Rumah Gadang.",
+      "historicalContext": "Busana adat resmi dan seremonial Minangkabau.",
+      "culturalSignificance": "Tenun Songket (Supplementary Weft Brocade — BUKAN Batik). Kain tenun benang pakan tambahan emas (bukan batik) dengan motif pucuk rebung dan saik galamai yang mencerminkan keselarasan adat basandi syarak serta keagungan Rumah Gadang.",
+      "materials": [
+        "Tenun Songket (Supplementary Weft Brocade — BUKAN Batik)"
+      ],
+      "components": [
+        "Motif Utama",
+        "Teknik Pewarnaan/Tenun",
+        "Tata Busana Adat"
+      ],
+      "model3D": "assets/models/artifacts/clothing-songket-minangkabau.glb",
+      "sources": [
+        "Balai Pelestarian Kebudayaan Wilayah III Sumatera Barat",
+        "Warisan Budaya Takbenda Nasional Indonesia (WBTbI)"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "item-ulos-ragidup-batak",
+      "slug": "ulos-ragidup-batak",
+      "name": "Tenun Ulos Batak",
+      "category": "clothing",
+      "categoryLabel": "Wastra · Non-Batik",
+      "province": "Sumatera Utara",
+      "regionId": "Sumatera Utara",
+      "culturalAssociation": "Suku Batak Toba",
+      "description": "Ulos berarti 'selimut penghangat' secara fisik di dataran tinggi Toba sekaligus lambang kehangatan kasih, doa, dan restu kekerabatan Dalihan Na Tolu.",
+      "historicalContext": "Dikenakan sebagai selempang (hande-hande) atau sarung adat dalam upacara kehidupan Batak.",
+      "culturalSignificance": "Tenun Tradisional (Handwoven Ceremonial Cloth — BUKAN Batik). Ulos berarti 'selimut penghangat' secara fisik di dataran tinggi Toba sekaligus lambang kehangatan kasih, doa, dan restu kekerabatan Dalihan Na Tolu.",
+      "materials": [
+        "Tenun Tradisional (Handwoven Ceremonial Cloth — BUKAN Batik)"
+      ],
+      "components": [
+        "Motif Utama",
+        "Teknik Pewarnaan/Tenun",
+        "Tata Busana Adat"
+      ],
+      "model3D": "assets/models/artifacts/clothing-batik-parang.glb",
+      "sources": [
+        "DAPOBUD Kemendikbudristek RI — Ulos Batak (WBTbI 2014)",
+        "Warisan Budaya Takbenda Nasional Indonesia (2014)"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "item-sasirangan-banjar",
+      "slug": "sasirangan-banjar",
+      "name": "Kain Sasirangan Banjar",
+      "category": "clothing",
+      "categoryLabel": "Wastra · Non-Batik",
+      "province": "Kalimantan Selatan",
+      "regionId": "Kalimantan Selatan",
+      "culturalAssociation": "Suku Banjar",
+      "description": "Berasal dari kata 'sirang' (menjelujur), dibuat dengan menjahit jelujur dan menarik benang sebelum dicelup warna. Motif gigi haruan dan ombak sinapur karang melambangkan ketajaman berpikir dan keteguhan di tepian sungai.",
+      "historicalContext": "Busana tradisi dan identitas budaya masyarakat Banjar.",
+      "culturalSignificance": "Kain Jelujur / Tie-Dye Tradisional (Stitch-Resist — BUKAN Batik). Berasal dari kata 'sirang' (menjelujur), dibuat dengan menjahit jelujur dan menarik benang sebelum dicelup warna. Motif gigi haruan dan ombak sinapur karang melambangkan ketajaman berpikir dan keteguhan di tepian sungai.",
+      "materials": [
+        "Kain Jelujur / Tie-Dye Tradisional (Stitch-Resist — BUKAN Batik)"
+      ],
+      "components": [
+        "Motif Utama",
+        "Teknik Pewarnaan/Tenun",
+        "Tata Busana Adat"
+      ],
+      "model3D": "assets/models/artifacts/clothing-batik-parang.glb",
+      "sources": [
+        "Museum Lambung Mangkurat & Kemendikbudristek RI (WBTbI 2010)",
+        "Warisan Budaya Takbenda Nasional Indonesia (2010)"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "item-rencong-aceh",
+      "slug": "rencong-aceh",
+      "name": "Rencong Aceh",
+      "category": "weapon",
+      "categoryLabel": "Senjata Sejarah (Artefak Museum)",
+      "province": "Aceh",
+      "regionId": "Sumatra",
+      "culturalAssociation": "Masyarakat Aceh",
+      "description": "Senjata tradisional Kesultanan Aceh sejak masa Sultan Ali Mughayat Syah yang kini berfungsi sebagai simbol keberanian dan kelengkapan busana adat upacara.",
+      "historicalContext": "Menurut catatan sejarah, Rencong merupakan senjata tradisional yang digunakan di Kesultanan Aceh sejak masa pemerintahan Sultan Ali Mughayat Syah yang merupakan Sultan Aceh yang pertama. Kedudukan Rencong di Kesultanan Aceh sangatlah penting, Rencong selalu diselipkan di pinggang Sultan Aceh, selain itu para Ulee Balan...",
+      "culturalSignificance": "Simbol identitas, kehormatan, dan ketangguhan masyarakat Aceh dalam upacara adat pernikahan.",
+      "materials": [
+        "Baja / Besi Tempa",
+        "Tanduk / Kayu (Gagang)",
+        "Emas (Rencong Meupucok)"
+      ],
+      "components": [
+        "Mata Bilah",
+        "Hulu / Gagang Cugek",
+        "Sarung Kayu"
+      ],
+      "model3D": "assets/models/artifacts/weapon-rencong-aceh.glb",
+      "sources": [
+        "DAPOBUD Kemendikbud RI (REK/WBTB/2013/01/00001)",
+        "Wikipedia Indonesia"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "item-keris-nusantara",
+      "slug": "keris-nusantara",
+      "name": "Keris Nusantara",
+      "category": "weapon",
+      "categoryLabel": "Senjata Sejarah (Artefak Museum)",
+      "province": "Jawa Tengah & DI Yogyakarta",
+      "regionId": "Java",
+      "culturalAssociation": "Masyarakat Jawa, Bali, & Melayu",
+      "description": "Pusaka bilah berlekuk (luk) dengan teknik tempa pamor yang diakui UNESCO sebagai Masterpiece of the Oral and Intangible Heritage of Humanity (2005).",
+      "historicalContext": "Berkembang sejak era kerajaan Hindu-Buddha hingga Kesultanan Nusantara sebagai simbol status sosial, spiritualitas, dan seni metalurgi empu.",
+      "culturalSignificance": "Diwariskan sebagai pusaka keluarga dan pelengkap busana adat resmi.",
+      "materials": [
+        "Besi",
+        "Baja",
+        "Nikel/Pamor",
+        "Kayu Kemuning / Cendana (Warangka)"
+      ],
+      "components": [
+        "Bilah & Luk",
+        "Ganja",
+        "Ukiran (Hulu)",
+        "Warangka (Sarung)"
+      ],
+      "model3D": "assets/models/artifacts/weapon-keris-nusantara.glb",
+      "sources": [
+        "UNESCO Intangible Cultural Heritage (2005)",
+        "Museum Keris Nusantara Surakarta"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "item-mandau-kalimantan",
+      "slug": "mandau-kalimantan",
+      "name": "Mandau Dayak",
+      "category": "weapon",
+      "categoryLabel": "Senjata Sejarah (Artefak Museum)",
+      "province": "Kalimantan Tengah & Kalimantan Timur",
+      "regionId": "Kalimantan",
+      "culturalAssociation": "Masyarakat Dayak",
+      "description": "Bilah tradisional masyarakat Dayak dengan ukiran tatahan kuningan/emas pada punggung bilah serta hulu tanduk berukir motif Asou.",
+      "historicalContext": "Artefak budaya dan perkakas kehormatan masyarakat Dayak yang diwariskan lintas generasi dan dikenakan dalam upacara adat Gawai.",
+      "culturalSignificance": "Melambangkan tanggung jawab pelindung komunitas, keterampilan pandai besi tradisional, dan seni ukir Dayak.",
+      "materials": [
+        "Batu Besi Mantikei",
+        "Tanduk Rusa",
+        "Rotan",
+        "Tatahan Kuningan"
+      ],
+      "components": [
+        "Bilah Tatahan",
+        "Hulu Tanduk Berukir",
+        "Kumpang (Sarung Kayu)"
+      ],
+      "model3D": "assets/models/artifacts/weapon-mandau-kalimantan.glb",
+      "sources": [
+        "Museum Balanga Palangka Raya",
+        "DAPOBUD Kemendikbud RI"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id",
+        "en"
+      ]
+    },
+    {
+      "id": "item-gordang_sambilan",
+      "slug": "gordang_sambilan",
+      "name": "Gordang Sambilan",
+      "category": "music",
+      "categoryLabel": "Alat Musik Tradisional",
+      "province": "Sumatera Utara",
+      "regionId": "Sumatera Utara",
+      "culturalAssociation": "Masyarakat Sumatera Utara",
+      "description": "Sesuai dengan namanya Gordang Sambilan terdiri dari sembilan buah gendang dengan ukuran yang relatif besar dan panjang. Adapun kesembilan gendang tersebut mempunyai ukuran yang berurutan dari yang besar ke ukuran yang paling kecil. Gordang Sambilan dikenal pad...",
+      "historicalContext": "Sesuai dengan namanya Gordang Sambilan terdiri dari sembilan buah gendang dengan ukuran yang relatif besar dan panjang. Adapun kesembilan gendang tersebut mempunyai ukuran yang berurutan dari yang besar ke ukuran yang paling kecil. Gordang Sambilan dikenal pada masa sebelum Islam yang mempunyai fungsi untuk upacara memanggil roh nenek moyang apabila diperlukan pertolongannya. Upacara tersebut dinamakan paturuan Sibaso yang berarti memanggil roh untuk merasuki/menyurupi medium Sibaso). Tujuan pemanggilan ini adalah untuk minta pertolongan roh nenek moyang untuk mengatasi kesulitan yang sedang menimpa masyarakat. Misalnya penyakit yang sedang mewabah karena adanya suatu penularan penyakit yang menyerang suatu wilayah. Di samping itu Gordang Sambilan juga digunakan untuk upacara meminta hujan (mangido udan) agar hujan turun sehingga dapat mengatasi kekeringan yang menganggu aktivitas pertanian. Juga bertujuan untuk menghentikan hujan yang telah berlangsung secara terus menerus yang sudah menimbulkan kerusakan. Sesuai dengan namanya Gordang Sambilan terdiri dari sembilan buah gendang dengan ukuran yang relatif besar dan panjang. Adapun kesembilan gendang tersebut mempunyai ukuran yang berurutan dari yang besar ke ukuran yang paling kecil. Tabung resonator Gordang Sambilan terbuat dari kayu yang dilubangi dan salah satu ujung lobangnya (bagian kepalanya) ditutup dengan membran yang terbuat dari kulit lembu yang ditegangkan dengan rotan sebagai alat pengikatnya. Sebagai alat pemukul Gordang Sambilan digunakan dari kayu yang berbentuk agak tumpul Dalam Gordang Sambilan masing-masing gendang ensambelnya mempunyai nama sendiri.Namun untuk penamaan atau istilah penyebutannya tidak sama di semua tempat di seluruh Mandailing, karena masyarakat Mandailing yang hidup dengan tradisi adat yang demokratis punya kebebasan untuk berbeda.Instrumen musik tradisional Gordang Sambilan dilengkapi dengan dua buah ogung (gong) yang besar. Nama gong yang paling besar adalah ogung boru boru (gong betina) dan yang lebih kecil dinamakan ogung jantan (gong jantan) , sedangkan satu gong yang lebih kecil dinamakan doal dan tiga gong lebih kecil lagi diberi nama salempong atau mong-mongan. Perlengkapan lain dalam Gordang Sambilan adalah alat tiup yang terbuat dari bambu yang dinamakan sarune atau saleot dan sepasang simbal kecil yang dinamakan tali sasayat. Adapun istilah yang digunakan pada masyarakat di Gunung tua  Muarasoro, pada nama gendang secara berurutan dari yang paling kecil sampai yang paling besar adalah sebagai berikut: eneng-eneng, udang-kudang, paniga dan jangat. Instrumen musik tradisional ini dilengkapi dengan dua buah ogung, satu doal, dan tiga salempong atau mongmongan.Pada permainan ensambel gordang sambilan yang memimpin adalah pasangan gordang yang paling besar adalah jangat. Untuk pemain jangat ini diberi gelar dengan panjangati yaitu pargodang (pemusik) yang mampu menguasai pola ritmik setiap instrumen dalam ansambel gordang sambilan. Panjangati yang memiliki gelar master dalam permainan gendang ini mempunyai cita rasa ritme yang sangat tinggi. Nada-nada ritme yang diolahnya dari pola ritmik instrumen yang terdapat dalam ensambel gordang sambilan. Sekalipun jenis ritme ini diambil dari udang-kudang atau patolu , namun dengan memberi aksen ditempat yang berbeda akan menimbulkan efek ketegangan  yang lain.Gordang Sambilan ini dipergunakan untuk upacara perkawinan (Orja Godang Markaroan Boru ) dan untuk upacara kematian (Orja Mambulungi). Penggunaan Gordang Sambilan untuk kedua upacara tersebut apabila untuk kepentingan pribadi harus terlebih dahulu mendapat izin dari pemimpin tradisional yaitu Namora Natoras dan dari raja sebagai kepala pemerintahan. Proses permohonan izin ini melalui suatu musyawarah adat yang disebut markobar adat yang dihadiri oleh tokoh-tokoh Namora Natoras dan Raja beserta pihak yang akan menyelenggarakan upacara tersebut.Selain harus mendapat izin dari Namora Natoras dan raja, penggunaan Gordang Sambilan dalam upacara perkawinan (Orja Godang Markaroan Boru ) dan untuk upacara kematian (Orja Mambulungi) juga harus disembelih paling sedikit satu ekor kerbau jantan dewasa yang sehat. Namun apabila persyaratan tersebut belum dapat dipenuhi maka Gordang Sambilan tidak boleh digunakan.Untuk upacara kematian (Orja Mabulungi) yang dipergunakan hanya dua buah yang terbesar dari instrumen Gordang Sambilan yang dugunakan, yaitu yang dinamakan jangat. Akan tetapi khusus untuk upacara kematian istilah itu dinakan bombat. Penggunaan Gordang Sambilan dalam upacara adat disertai dengan peragaan benda-benda kebesaran adat, seperti bendera-bendera adat yang dinamakan Tonggolm payung kebesaran yang yang dinamakan Payung Raranagan. Adapau fungsi lain dari Gordang Sambilan adalah sebagai pengiring tari yang dinamakan Sarama. Penyarama (orang yang menarikan Tari Sarama) kadang-kadang mengalami kesurupan (trance) pada waktu menari karena sudah dimasuki roh nenek moyang.Pada perkembangannya Gordang Sambilan ini masih digunakan oleh masyarakat Mandailing sebagai alat musik sakral. Meskipun demikian saat ini Gorndag sambilan juga dikenal sebagai alat musik kesenian tradisional Mandailing yang sudah mulai populer di Indonesia bahkan di dunia.",
+      "culturalSignificance": "Seni Pertunjukan",
+      "materials": [],
+      "components": [],
+      "model3D": null,
+      "sources": [
+        "DAPOBUD Kemendikbud RI (REK/WBTB/2013/01/00003)",
+        "Wikipedia Indonesia"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id"
+      ]
+    },
+    {
+      "id": "item-dambus",
+      "slug": "dambus",
+      "name": "Dambus",
+      "category": "music",
+      "categoryLabel": "Alat Musik Tradisional",
+      "province": "Kepulauan Bangka Belitung",
+      "regionId": "Kepulauan Bangka Belitung",
+      "culturalAssociation": "Masyarakat Kepulauan Bangka Belitung",
+      "description": "Kesenian Dambus  Tari Dambus; nama tari ini diambil dari nama alat musik utama pengiringnya yaitu Dambus, berupa sejenis alat petik terbuat dari kayu yang ujungnya berbentuk kepala Rusa atau Kijang. Tari dan musik ini dimasa lalu biasanya dimainkan pada saat b...",
+      "historicalContext": "Kesenian Dambus  Tari Dambus; nama tari ini diambil dari nama alat musik utama pengiringnya yaitu Dambus, berupa sejenis alat petik terbuat dari kayu yang ujungnya berbentuk kepala Rusa atau Kijang. Tari dan musik ini dimasa lalu biasanya dimainkan pada saat bulan Purnama tiba sambil melepas lelah setelah bekerja seharian di hume atau ladang.  Penari berdendang dalam bentuk pantun yang menggambarkan suka ria, kadang-kadang juga tentang kesedihan. Alat musik pengiring disamping Dambus adalah dua buah gendang, satu buah gong dan satu buah tamborin. Tari Dambus ditarikan berpasangan dengan busana teluk belanga, baju kurung panjang, kebaya panjang, kain songket dan selendang. Alat musik Dambus (ada juga yang menyebutnya Gambus); sebenarnya berasal dari daerah luar Pulau Bangka, namun demikian sudah lama dikenal serta digunakan oleh masyarakat Bangka Tengah secara turun temurun. Oleh karena itu Dambus dapat dianggap sebagai alat kesenian orang Bangka, bahkan sebagian besar merupakan buatan lokal. Dambus digunakan untuk mengiringi tarian, nyanyian dan dilantunkan sampai ke pelosok dan konon seringkali diberi mantera-mantera sebagai pemikat. Dambus untuk daerah Bangka Belitung ditambah dengan alat-alat pengiring (bunyi-bunyian) seperti; Biola, Rebana atau Tarwas, Tawak-Tawak, dan Gong, untuk menambah keharmonisan dan variasi suara yang dihasilkan.",
+      "culturalSignificance": "Seni Pertunjukan",
+      "materials": [],
+      "components": [],
+      "model3D": null,
+      "sources": [
+        "DAPOBUD Kemendikbud RI (REK/WBTB/2013/01/00017)",
+        "Wikipedia Indonesia"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id"
+      ]
+    },
+    {
+      "id": "item-tor-tor",
+      "slug": "tor-tor",
+      "name": "Tor-Tor",
+      "category": "dance",
+      "categoryLabel": "Seni Tari Tradisional",
+      "province": "Sumatera Utara",
+      "regionId": "Sumatera Utara",
+      "culturalAssociation": "Masyarakat Sumatera Utara",
+      "description": "Tari Tor tor merupakan tarian yang berasal dari Sumatera Utara. Tor-Tor pada awalnya bukanlah suatu tarian, tetapi sebagai pelengkap gondang (uning-uningan) yang berdasarkan kepada falsafah adat itu sendiri. Di dalam upacara-upacara adat di Mandailing dimana u...",
+      "historicalContext": "Tari Tor tor merupakan tarian yang berasal dari Sumatera Utara. Tor-Tor pada awalnya bukanlah suatu tarian, tetapi sebagai pelengkap gondang (uning-uningan) yang berdasarkan kepada falsafah adat itu sendiri. Di dalam upacara-upacara adat di Mandailing dimana uning-uningan dibunyikan (margondang), selalu dilengkapi dengan acara manortor. Pada awalnya manortor hanya diadakan pada acara-acara adat margondang, namun dalam perkembangan selanjutnya manortor ini juga sudah dilakukan pada acara-acara hiburan dengan cara memodifikasi tor-tor sedemikian rupa agar lebih menarik bagi penonton yang dalam perkembangannya mengarah menjadi tarian.  Tari Tor TorSejarah tari tor tor diperkirakan telah ada sejak zaman batak purba. Di masa itu, tarian ini digunakan sebagai tari persembahan bagi roh leluhur. Penggunaan properti berupa patung yang dibuat dari batu merupakan ciri khas utama dari pertunjukan tari tor tor pada masa silam. Patung batu tersebut dapat bergerak dan menari seiring bunyi tetabuhan musik setelah dimasuki oleh roh nenek moyang. 1. Tema dan Makna FilosofiUntuk saat ini, penggunaan tari tor tor sebagai sarana ritual keagamaan telah beralih fungsi. Tari tor tor saat ini lebih cenderung berfungsi sebagai sarana hiburan sekaligus media komunikasi antar sesama warga. Oleh karena fungsi tersebut, tari tor tor dibagi ke dalam 3 peruntukan, yaitu tor tor pangurason, tor tor sipitu cawan, dan tor tor tunggal panaluan.  Tor Tor Pangurason (pembersihan) adalah tari tor tor yang dilaksanakan sebelum pesta besar sebagai saran pembersihan dan permohonan agar pesta dapat berjalan tanpa aral dan rintangan. Tor Tor Sipitu Cawan (Tujuh Cawan) adalah tari tor tor yang dipentaskan dalam acara penobatan raja Batak. Jenis tari tor tor ini merupakan sendratari yang mengisahkan turunnya 7 putri kahyangan ke Gunung Pusuk Bukhit untuk mandi. Tor Tor Tunggal Panaluan adalah tari tor tor yang dipentaskan para dukun dalam upacara ritual yang digelar setelah sebuah desa terkena musibah. Jenis tor tor ini merupakan sarana permohonan petunjuk atas musibah yang telah dihadapi.      2. Gerakan Tari Tor Tor Gerakan tari tor tor sangatlah sederhana. Tak heran jika kemudian banyak orang yang pertama kali mencobanya akan langsung bisa memainkannya. Gerakan tari tor tor terbatas pada gerakan tangan yang melambai naik turun secara bersamaan dan gerak hentak kaki yang mengikuti iringan musik mangondangi. Yang perlu dicatat, dalam menari tari tor tor seorang penari tidak diperkenankan mengangkat kedua tangannya melebihi bahu. Jika hal itu dilanggar diyakini penari tersebut akan memperoleh kesialan.  ",
+      "culturalSignificance": "Seni Pertunjukan",
+      "materials": [],
+      "components": [],
+      "model3D": null,
+      "sources": [
+        "DAPOBUD Kemendikbud RI (REK/WBTB/2013/01/00002)",
+        "Wikipedia Indonesia"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id"
+      ]
+    },
+    {
+      "id": "item-ondel-ondel",
+      "slug": "ondel-ondel",
+      "name": "Ondel-ondel",
+      "category": "dance",
+      "categoryLabel": "Seni Pertunjukan Betawi",
+      "province": "DKI Jakarta",
+      "regionId": "DKI Jakarta",
+      "culturalAssociation": "Masyarakat DKI Jakarta",
+      "description": "Ondel-ondel adalah pertunjukan rakyat yang sudah berabad-abad terdapat di Jakarta dan sekitarnya, yang dewasa ini menjadi wilayah Betawi. Ondel-ondel tergolong salah satu bentuk teater tanpa tutur, karena pada mulanya dijadikan personifikasi leluhur atau nenek...",
+      "historicalContext": "Ondel-ondel adalah pertunjukan rakyat yang sudah berabad-abad terdapat di Jakarta dan sekitarnya, yang dewasa ini menjadi wilayah Betawi. Ondel-ondel tergolong salah satu bentuk teater tanpa tutur, karena pada mulanya dijadikan personifikasi leluhur atau nenek moyang, pelindung keselamatan kampung dan seisinya. Dengan demikian dapat dianggap sebagai pembawa lakon atau cerita, sebagaimana halnya dengan bekakak dalam upacara potong bekakak digunung gamping disebelah selatan kota Yogyakarta, yang diselenggarakan pada bulan sapar setiap tahun.",
+      "culturalSignificance": "Seni Pertunjukan",
+      "materials": [],
+      "components": [],
+      "model3D": null,
+      "sources": [
+        "DAPOBUD Kemendikbud RI (REK/WBTB/2013/01/00024)",
+        "Wikipedia Indonesia"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id"
+      ]
+    },
+    {
+      "id": "item-gerabah_kasongan",
+      "slug": "gerabah_kasongan",
+      "name": "Gerabah Kasongan",
+      "category": "craft",
+      "categoryLabel": "Kriya Tradisional",
+      "province": "Daerah Istimewa Yogyakarta",
+      "regionId": "Daerah Istimewa Yogyakarta",
+      "culturalAssociation": "Masyarakat Daerah Istimewa Yogyakarta",
+      "description": "Gerabah Kasongan merupakan kerajinan asli dari Yogyakarta. Hasil kerajinan gerabah Kasongan pada umumnya adalah alat-alat keperluan dapur, guci, pot /vas, patung loro blonyo, air mancur, wuwung, dan produk-produk keramik lainnya. Khusus untuk guci, dapat ditem...",
+      "historicalContext": "Gerabah Kasongan merupakan kerajinan asli dari Yogyakarta. Hasil kerajinan gerabah Kasongan pada umumnya adalah alat-alat keperluan dapur, guci, pot /vas, patung loro blonyo, air mancur, wuwung, dan produk-produk keramik lainnya. Khusus untuk guci, dapat ditemukan banyak bentuk varian guci di Kasongan. Guci merupakan salah satu jenis keramik yang kerap diburu para wisatawan. Selain karena ukurannya yang beragam, mulai dari setinggi dua jengkal tangan hingga seukuran bahu orang dewasa, guci di Kasongan juga memiliki banyak varian finishing. Dilihat dari perkembangannya, finishing guci yang banyak ditemui di Kasongan adalah finishing alami, yang hanya menggunakan cat sebagai media sentuhan akhir dari guci tersebut.",
+      "culturalSignificance": "Ketrampilan dan Kemahiran Kerajinan Tradisional",
+      "materials": [],
+      "components": [],
+      "model3D": null,
+      "sources": [
+        "DAPOBUD Kemendikbud RI (REK/WBTB/2013/01/00021)",
+        "Wikipedia Indonesia"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id"
+      ]
+    },
+    {
+      "id": "item-tapis",
+      "slug": "tapis",
+      "name": "Tapis",
+      "category": "clothing",
+      "categoryLabel": "Wastra · Kain Tapis",
+      "province": "Lampung",
+      "regionId": "Lampung",
+      "culturalAssociation": "Masyarakat Lampung",
+      "description": "Awal mula kain tapis dibuat sebagai bentuk penghormatan kepada leluhur, misalnya saja adanya motif kapal, kapal digambarkan sebagai wahana atau kendaraan roh dalam perjalanan menuju alam setelah meninggal (alam baka). Serta dikaitkan dengan bentuk pemujaan ter...",
+      "historicalContext": "Awal mula kain tapis dibuat sebagai bentuk penghormatan kepada leluhur, misalnya saja adanya motif kapal, kapal digambarkan sebagai wahana atau kendaraan roh dalam perjalanan menuju alam setelah meninggal (alam baka). Serta dikaitkan dengan bentuk pemujaan terhadap tokoh leluhur atau nenek moyang. Selanjutnya penggunaan kain tapis dalam perkembangannya dimanfaatkan pada acara-acara adat sepanjang lingkaran hidup yang terkait dengan ritual keagamaan. Ritual tersebut adalah sarana untuk menghubungkan manusia dengan alam roh. Penggunaan kain tapis sangat erat kaitannya dengan penggunaan secara praktis dan fungsi simbolis yang kemudian diberi makna ritual. Muatan simbol pada kain tapis adalah sebagai penghubung dari berbagai makna pelaksanaan upacara adat di sepanjang lingkaran hidup manusia.",
+      "culturalSignificance": "Ketrampilan dan Kemahiran Kerajinan Tradisional",
+      "materials": [],
+      "components": [],
+      "model3D": null,
+      "sources": [
+        "DAPOBUD Kemendikbud RI (REK/WBTB/2013/01/00019)",
+        "Wikipedia Indonesia"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id"
+      ]
+    },
+    {
+      "id": "item-songket_palembang",
+      "slug": "songket_palembang",
+      "name": "Songket Palembang",
+      "category": "clothing",
+      "categoryLabel": "Wastra · Songket",
+      "province": "Sumatera Selatan",
+      "regionId": "Sumatera Selatan",
+      "culturalAssociation": "Masyarakat Sumatera Selatan",
+      "description": "Songket Palembang sudah ada sejak zaman Kesultanan Palembang. Songket telah ada di Palembang sejak ratusan tahun silam dan diyakini sejak zaman Sriwijaya. Pada waktu itu kerajinan songket merupakan suatu usaha sambilan bagi penduduk asli Palembang. Songket tel...",
+      "historicalContext": "Songket Palembang sudah ada sejak zaman Kesultanan Palembang. Songket telah ada di Palembang sejak ratusan tahun silam dan diyakini sejak zaman Sriwijaya. Pada waktu itu kerajinan songket merupakan suatu usaha sambilan bagi penduduk asli Palembang. Songket telah ada bersamaan munculnya Kesultanan Palembang Darussalam (1659-1823). Berdasarkan catatan sejarah yang berhak dan pantas memakai songket pada waktu itu adalah raja atau sultan dan kerabat keraton. Songket yang dipakai oleh para sultan di Palembang merupakan pelengkap pakaian kebesaran",
+      "culturalSignificance": "Ketrampilan dan Kemahiran Kerajinan Tradisional",
+      "materials": [],
+      "components": [],
+      "model3D": null,
+      "sources": [
+        "DAPOBUD Kemendikbud RI (REK/WBTB/2013/01/00009)",
+        "Wikipedia Indonesia"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id"
+      ]
+    },
+    {
+      "id": "item-randang",
+      "slug": "randang",
+      "name": "Randang",
+      "category": "food",
+      "categoryLabel": "Kuliner Warisan",
+      "province": "Sumatera Barat",
+      "regionId": "Sumatera Barat",
+      "culturalAssociation": "Masyarakat Sumatera Barat",
+      "description": "Rendang dalam bahasa Minangkabau disebut dengan randang adalah salah satu makanan tradisional khas Minangkabau yang sangat terkenal ke seantaro penjuru nusantara. Randang tersebut memiliki beberapa warna, yakni merah kecoklatan, coklat, sampai coklat kehitaman...",
+      "historicalContext": "Rendang dalam bahasa Minangkabau disebut dengan randang adalah salah satu makanan tradisional khas Minangkabau yang sangat terkenal ke seantaro penjuru nusantara. Randang tersebut memiliki beberapa warna, yakni merah kecoklatan, coklat, sampai coklat kehitaman. Pengertian randang yang diambil dari kata marandang, yakni suatu proses pengolahan lauk berbahan dasar santan yang dimasak sampai kandungan airnya berkurang, bahkan sampai kering sehingga apabila disebut randang itu artinya olahan masakan yang kering tanpa mengandung air.",
+      "culturalSignificance": "Ketrampilan dan Kemahiran Kerajinan Tradisional",
+      "materials": [],
+      "components": [],
+      "model3D": null,
+      "sources": [
+        "DAPOBUD Kemendikbud RI (REK/WBTB/2013/01/00005)",
+        "Wikipedia Indonesia"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id"
+      ]
+    },
+    {
+      "id": "item-adrem",
+      "slug": "adrem",
+      "name": "Adrem",
+      "category": "food",
+      "categoryLabel": "Kuliner Tradisional",
+      "province": "Daerah Istimewa Yogyakarta",
+      "regionId": "Daerah Istimewa Yogyakarta",
+      "culturalAssociation": "Masyarakat Daerah Istimewa Yogyakarta",
+      "description": "Adrem atau disebut juga tolpit (lakuran dari \"kontol kejepit\") adalah salah satu makanan ringan traditional khas Bantul. Makanan ini terbuat dari bahan baku utama tepung beras dan gula jawa yang digoreng. Adrem banyak diproduksi di daerah Sanden dan dapat dite...",
+      "historicalContext": "Adrem atau disebut juga tolpit (lakuran dari \"kontol kejepit\") adalah salah satu makanan ringan traditional khas Bantul. Makanan ini terbuat dari bahan baku utama tepung beras dan gula jawa yang digoreng. Adrem banyak diproduksi di daerah Sanden dan dapat ditemukan di pasar-pasar tradisional di Bantul dan sekitarnya. Adrem terdokumentasi dalam Serat Centhini (1814-1823) yang diterbitkan pada abad ke-18M.",
+      "culturalSignificance": "Pengetahuan Tradisional",
+      "materials": [],
+      "components": [],
+      "model3D": null,
+      "sources": [
+        "DAPOBUD Kemendikbud RI (OP.5151.20240104.00002)",
+        "Wikipedia Indonesia"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id"
+      ]
+    },
+    {
+      "id": "item-tabot_atau_tabuik",
+      "slug": "tabot_atau_tabuik",
+      "name": "Tabot atau Tabuik",
+      "category": "ceremony",
+      "categoryLabel": "Upacara & Perayaan Adat",
+      "province": "Bengkulu",
+      "regionId": "Bengkulu",
+      "culturalAssociation": "Masyarakat Bengkulu",
+      "description": "Para pekerja yang merasa cocok dengan tatahidup masyarakat Bengkulu, dipimpin oleh Imam Senggolo alias Syekh Burhanuddin, memutuskan tinggal dan mendirikan pemukiman baru yang disebut Berkas, sekarang dikenal dengan nama Kelurahan Tengah Padang. Tradisi yang d...",
+      "historicalContext": "Para pekerja yang merasa cocok dengan tatahidup masyarakat Bengkulu, dipimpin oleh Imam Senggolo alias Syekh Burhanuddin, memutuskan tinggal dan mendirikan pemukiman baru yang disebut Berkas, sekarang dikenal dengan nama Kelurahan Tengah Padang. Tradisi yang dibawa dari Madras dan Bengali diwariskan kepada keturunan mereka yang telah berasimilasi dengan masyarakat Bengkulu asli dan menghasilkan keturunan yang dikenal dengan sebutan orang-orang Sipai. Tradisi berkabung yang dibawa dari negara asalnya tersebut mengalami asimilasi dan akulturasi dengan budaya setempat, dan kemudian diwariskan dan dilembagakan menjadi apa yang kemudian dikenal dengan sebutan upacara Tabot. Upacara Tabot ini semakin meluas dari Bengkulu ke Painan, Padang, Pariaman, Maninjau, Pidie, Banda Aceh, Meuleboh dan Singkil. Namun dalam perkembangannya, kegiatan Tabot menghilang di banyak tempat. Hingga pada akhirnya hanya terdapat di dua tempat, yaitu di Bengkulu dengan nama Tabot dan di Pariaman Sumbar (masuk sekitar tahun 1831) dengan sebutan Tabuik. Keduanya sama, namun cara pelaksanaannya agak berbeda. Jika pada awalnya upacara Tabot (Tabuik) digunakan oleh orang-orang Syiah untuk mengenang gugurnya Husein bin Ali bin Abi Thalib, maka sejak orang-orang Sipai lepas dari pengaruh ajaran Syiah, upacara ini dilakukan hanya sebagai kewajiban keluarga untuk yakni memenuhi wasiat leluhur mereka. Belakangan, sejak satu dekade terakhir, selain melaksanakan wasiat leluhur, upacara ini juga dimaksudkan sebagai wujud partisipasi orang-orang Sipai dalam pembinaan dan pengembangan budaya daerah Bengkulu setempat. Kondisi sosial budaya masyarakat, nampaknya, juga menjadi penyebab munculnya perberbedaan dalam tatacara pelaksanaan upacara Tabot. Di Bengkulu, misalnya, Tabotnya berjumlah 17 yang menunjukkan kepada jumlah keluarga awal yang melaksanakan Tabot, sedangakan di Pariaman hanya terdiri dari 2 macam Tabot (Tabuik) yaitu Tabuik Subarang dan Tabuik Pasa. Tempat pembuangan Tabot (Tabuik) antara Bengkulu dan Pariaman juga berbeda. Pada awalnya Tabot di Bengkulu di buang ke laut sebagaimana di Pariaman Sumatera Barat. Namun, pada perkembangannya, Tabot di Bengkulu dibuang di rawa-rawa yang berada di sekitar pemakaman umum yang dikenal dengan nama makam Karbela yang diyakini sebagai tempat dimakamnya Imam Senggolo alias Syekh Burhanuddin. Belakangan ini, banyak kritikan dari berbagai elemen masyarakat terhadap pelaksanaan upacara Tabot. Satu hal yang paling mendasar dari semua kritikan tersebut adalah berubahnya fungsi upacara Tabot dari ritual bernuansa keagamaan menjadi sekedar festival kebudayaan belaka. Ini nampaknya disebabkan oleh kenyataan bahwa yang melaksanakan upacara Tabot adalah orang-orang non-Syiah. Hilangnya nilai-nilai sakralitas upacara Tabot semakin diperparah dengan munculnya apa yang kemudian dikenal sebagai Tabot pembangunan (Tabot yang keberadaannya karena deprogram oleh pemerintah dan berjumlah banyak). Namun yang terpenting adalah empatkanlah ritual tabot untuk megenang sejarah peristiwa pepeangan cucu nabi muhammad saw hasan-Husein agar jangan terjadi perpecahan di kalangan umat islam pada masa mendatang, dan point yag paling mendasar adalah jangan mencampur-baurkan tabot dengan aspek ritual belaka. tempatkanlah tabot sebagai marwah dasarnya sebagai peristiwa mengenang pertemburan karabela sebagai moment kasadaran diri dan hikamh dibalik semua peristiwa itu demi mencapai kedamian dan persatuan umat islam di seluruh dunia.",
+      "culturalSignificance": "Adat Istiadat Masyarakat, Ritus, dan Perayaan-Perayaan",
+      "materials": [],
+      "components": [],
+      "model3D": null,
+      "sources": [
+        "DAPOBUD Kemendikbud RI (REK/WBTB/2013/01/00011)"
+      ],
+      "verificationStatus": "verified",
+      "availableLanguages": [
+        "id"
+      ]
+    }
+  ]
+}
