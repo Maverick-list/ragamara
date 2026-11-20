@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "rumah-limas",
+  "houseName": "Rumah Limas",
+  "province": "Sumatera Selatan",
+  "island": "Sumatra",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/rumah-limas.glb",
+  "fileSizeBytes": 164320,
+  "meshes": 61,
+  "triangles": 1284,
+  "colliders": 12,
+  "groups": [
+    "HOUSE_RUMAH_LIMAS_ROOT",
+    "FOUNDATION_SYSTEM",
+    "STRUCTURAL_COLUMNS",
+    "FLOOR_SYSTEM",
+    "ENTRANCE_STAIRS",
+    "WALL_SYSTEM",
+    "DOORS",
+    "ROOF_SYSTEM",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    9.057500000000001
+  ],
+  "interiorZones": [
+    {
+      "id": "beranda",
+      "name": "Serambi / Beranda Depan",
+      "bounds": {
+        "minX": -4.3,
+        "maxX": 4.3,
+        "minZ": 2.7,
+        "maxZ": 4.7
+      },
+      "floorY": 1.35
+    },
+    {
+      "id": "ruang-dalam",
+      "name": "Ruang Dalam & Bilik Keluarga",
+      "bounds": {
+        "minX": -4.1,
+        "maxX": 4.1,
+        "minZ": -4.5,
+        "maxZ": 3.4000000000000004
+      },
+      "floorY": 1.35
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_SYSTEM"
+  ],
+  "driveFolderRef": "09. Sumsel - Rumah Limas",
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}

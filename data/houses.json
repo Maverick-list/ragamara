@@ -42,10 +42,11 @@
     "model3DUrl": "assets/models/rumah-gadang.glb",
     "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
+      "interiorSupported": true,
       "explodedSupported": true,
-      "separatedComponents": 8,
-      "limitationsNote": "Model 3D ini merupakan studi arsitektur parametrik berskala museum dengan 8 kelompok komponen struktural terpisah (eksterior & rangka kolong). Tata ruang bilik interior belum dimodelkan secara terpisah; tampilan interior dinonaktifkan secara transparan."
+      "separatedComponents": 10,
+      "limitationsNote": "Model 3D ini merupakan studi arsitektur parametrik berskala museum dengan 8 kelompok komponen struktural terpisah (eksterior & rangka kolong). Tata ruang bilik interior belum dimodelkan secara terpisah; tampilan interior dinonaktifkan secara transparan.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -305,7 +306,7 @@
     "addedOrder": 1,
     "schemaVersion": "3.0.0",
     "assetProvenance": "original_digital_reconstruction",
-    "assetStatus": "RECONSTRUCTION",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "rumah-gadang",
     "driveFolderRef": "13. Sumbar - Rumah Gadang",
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -397,7 +398,9 @@
       "culturalMeaning": "Atap gonjong kerap ditafsirkan dalam tradisi lisan Tambo Minangkabau sebagai simbol tanduk kerbau dalam kisah adu kerbau (Manangkabau) serta aspirasi spiritual yang menjulang. Bentuk badan melengkung menyerupai kapal merujuk pada keterkaitan historis budaya maritim Nusantara. Menjadi lokasi utama pengangkatan penghulu (batagak gala), pernikahan adat (baralek), dan penyambutan tamu kehormatan nagari.",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "DAPOBUD — Data Pokok Kebudayaan: Rumah Gadang (REK/WBTB/2013/01/00006) (Kementerian Kebudayaan Republik Indonesia); The Living House: An Anthropology of Architecture in South-East Asia (Roxana Waterson, Oxford University Press (1990)); Katalog Referensi Arsitektur Nusantara — 13. Sumbar - Rumah Gadang (Rujukan sekunder: Indonesia Travel — Rumah Gadang; Kementerian Pariwisata — Desa Saribu Gonjong.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-gadang.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-gadang.json"
   },
   {
     "id": "tongkonan-toraja",
@@ -441,10 +444,11 @@
     "model3DUrl": "assets/models/tongkonan-toraja.glb",
     "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
+      "interiorSupported": true,
       "explodedSupported": true,
-      "separatedComponents": 7,
-      "limitationsNote": "Model 3D ini menampilkan 7 komponen struktural utama eksterior, rangka bawah sulluk banua, dan tiang tulak sombong. Ruang dalam tangdo'-sali-sumbung belum dimodelkan secara terpisah sehingga mode interior dinonaktifkan."
+      "separatedComponents": 10,
+      "limitationsNote": "Model 3D ini menampilkan 7 komponen struktural utama eksterior, rangka bawah sulluk banua, dan tiang tulak sombong. Ruang dalam tangdo'-sali-sumbung belum dimodelkan secara terpisah sehingga mode interior dinonaktifkan.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -680,7 +684,7 @@
     "addedOrder": 2,
     "schemaVersion": "3.0.0",
     "assetProvenance": "original_digital_reconstruction",
-    "assetStatus": "RECONSTRUCTION",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "tongkonan-toraja",
     "driveFolderRef": "26. Sulsel - Tongkonan Toraja",
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -788,7 +792,9 @@
       "culturalMeaning": "Orientasi utara-selatan dan tiga tingkat vertikal bangunan memetakan tatanan kosmologi Aluk Todolo: dunia bawah (sulluk banua), dunia manusia (kale banua), dan dunia atas (rattiang banua). Deretan tanduk kerbau (tanduk tedong) dan kepala kerbau kayu (kabongo') pada tiang tulak sombong merekam sejarah upacara rambu solo' yang pernah digelar keluarga besar tersebut.",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "Indonesian Houses: Tradition and Transformation in Vernacular Architecture (Reimar Schefold, Gaudenz Domenig & Peter Nas, KITLV Press (2003)); Kete' Kesu' — Tentative List UNESCO World Heritage (Tana Toraja Traditional Settlement) (UNESCO World Heritage Centre / Pemerintah Republik Indonesia); Katalog Referensi Arsitektur Nusantara — 26. Sulsel - Tongkonan Toraja (Rujukan sekunder: Weni Rahayu / Badan Bahasa — Tongkonan (2017); Museum Nasional Indonesia — Koleksi Rumah Adat Tongkonan No. 16742.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/tongkonan-toraja.glb",
+    "worldManifestUrl": "data/asset-manifests/tongkonan-toraja.json"
   },
   {
     "id": "rumah-joglo",
@@ -835,8 +841,9 @@
     "modelCapabilities": {
       "interiorSupported": true,
       "explodedSupported": true,
-      "separatedComponents": 7,
-      "limitationsNote": "Mendukung tampilan Eksterior, Interior Pendopo (memperlihatkan empat Soko Guru dan langit-langit bertingkat Tumpang Sari secara langsung), dan Exploded View 7 komponen."
+      "separatedComponents": 11,
+      "limitationsNote": "Mendukung tampilan Eksterior, Interior Pendopo (memperlihatkan empat Soko Guru dan langit-langit bertingkat Tumpang Sari secara langsung), dan Exploded View 7 komponen.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -1084,7 +1091,7 @@
     "addedOrder": 3,
     "schemaVersion": "3.0.0",
     "assetProvenance": "original_digital_reconstruction",
-    "assetStatus": "RECONSTRUCTION",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "rumah-joglo",
     "driveFolderRef": "03. Jateng - Rumah Joglo",
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -1192,7 +1199,9 @@
       "culturalMeaning": "Empat soko guru sering dimaknai sebagai simbol empat penjuru mata angin (papat kiblat) dengan pusat tumpang sari di tengah (lima pancer) yang melambangkan keselarasan kosmis manusia dan alam. Pendopo menjadi pusat penyelenggaraan upacara siklus hidup Jawa seperti pernikahan, selamatan, dan pertemuan komunitas.",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "Ideas and Forms of Javanese Architecture (Kawruh Kalang) (Josef Prijotomo, Gadjah Mada University Press (1988)); Indonesian Heritage: Architecture (Gunawan Tjahjono (Ed.), Archipelago Press / Buku Antar Bangsa (1998)); Katalog Referensi Arsitektur Nusantara — 03. Jateng - Rumah Joglo (Rujukan sekunder: BPBD Jawa Tengah (2014) — Kearifan lokal bangunan tradisional.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-joglo.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-joglo.json"
   },
   {
     "id": "honai-papua",
@@ -1239,8 +1248,9 @@
     "modelCapabilities": {
       "interiorSupported": true,
       "explodedSupported": true,
-      "separatedComponents": 6,
-      "limitationsNote": "Mendukung tampilan Eksterior, Exploded View, dan Interior Dua Tingkat (atap kubah terangkat secara terkontrol dalam mode Interior agar perapian tungku lantai dasar, tiang heke, tangga, dan loteng tidur terlihat jelas)."
+      "separatedComponents": 7,
+      "limitationsNote": "Mendukung tampilan Eksterior, Exploded View, dan Interior Dua Tingkat (atap kubah terangkat secara terkontrol dalam mode Interior agar perapian tungku lantai dasar, tiang heke, tangga, dan loteng tidur terlihat jelas).",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -1464,7 +1474,7 @@
     "addedOrder": 4,
     "schemaVersion": "3.0.0",
     "assetProvenance": "original_digital_reconstruction",
-    "assetStatus": "RECONSTRUCTION",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "honai-papua",
     "driveFolderRef": "34. Papua Pegunungan - Honai Pilamo Hubula",
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -1572,7 +1582,9 @@
       "culturalMeaning": "Bentuk bundar tanpa sudut melambangkan kesatuan, kebersamaan, dan perlindungan klan dalam satu naungan utuh. Menjadi pusat penyimpanan benda pusaka klan serta titik awal musyawarah menjelang upacara bakar batu (barapen).",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "Indonesian Heritage: Architecture — Highland Dwellings of Papua (Gunawan Tjahjono (Ed.), Archipelago Press (1998)); Arsitektur Tradisional Papua (Honai, Ebei, dan Silimo) (Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI); Katalog Referensi Arsitektur Nusantara — 34. Papua Pegunungan - Honai Pilamo Hubula (Rujukan sekunder: Hasrul & Ikaputra (2023) — Identitas Arsitektur Tradisional Papua, hlm. 221; TMII — Honai dan bangunan Papua.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/honai-papua.glb",
+    "worldManifestUrl": "data/asset-manifests/honai-papua.json"
   },
   {
     "id": "rumah-bolon-toba",
@@ -1613,13 +1625,14 @@
       "socialOrganization": "Mencerminkan tatanan kekerabatan patrilineal marga dan prinsip sosial Dalihan Na Tolu.",
       "ceremonialRelevance": "Pusat musyawarah marga dan rangkaian upacara adat kehidupan."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
+    "model3DUrl": "assets/models/houses/rumah-bolon-toba.glb",
+    "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 0,
-      "limitationsNote": "Model 3D sedang disiapkan. Saat ini ditampilkan dokumentasi fotografis terverifikasi dan kajian anatomi struktural."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model 3D sedang disiapkan. Saat ini ditampilkan dokumentasi fotografis terverifikasi dan kajian anatomi struktural.",
+      "walkableInterior": true
     },
     "cameraPresets": null,
     "hotspots": [
@@ -1856,7 +1869,7 @@
     "addedOrder": 5,
     "schemaVersion": "3.0.0",
     "assetProvenance": "archive_pending_3d",
-    "assetStatus": "PENDING",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "rumah-bolon-toba",
     "driveFolderRef": "12. Sumut - Rumah Bolon Batak Toba",
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -1948,7 +1961,9 @@
       "culturalMeaning": "Tiga tingkat bangunan merepresentasikan kosmologi Batak: Banua Toru (dunia bawah), Banua Tonga (dunia manusia), dan Banua Ginjang (dunia atas). Tiga warna Gorga (merah, putih, hitam) disebut Tiga Bolit. Pusat musyawarah marga dan rangkaian upacara adat kehidupan.",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "The Living House: An Anthropology of Architecture in South-East Asia (Roxana Waterson, Oxford University Press (1990)); Katalog Referensi Arsitektur Nusantara — 12. Sumut - Rumah Bolon Batak Toba (Rujukan sekunder: Kajian lapangan — Gorga Rumah Bolon Siallagan Samosir; Indonesia Travel — Rumah Bolon.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-bolon-toba.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-bolon-toba.json"
   },
   {
     "id": "siwaluh-jabu-karo",
@@ -1989,13 +2004,14 @@
       "socialOrganization": "Menunjukkan pola hunian komunal multikeluarga yang harmonis tanpa sekat dinding fisik.",
       "ceremonialRelevance": "Dalam penelitian lebih lanjut untuk rincian ritual pendirian lokal per desa adat (Dokan vs Lingga)."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
+    "model3DUrl": "assets/models/houses/siwaluh-jabu-karo.glb",
+    "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 0,
-      "limitationsNote": "Model 3D sedang disiapkan. Dokumentasi fotografis dari Desa Adat Dokan tersedia sebagai rujukan utama."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model 3D sedang disiapkan. Dokumentasi fotografis dari Desa Adat Dokan tersedia sebagai rujukan utama.",
+      "walkableInterior": true
     },
     "cameraPresets": null,
     "hotspots": [],
@@ -2026,7 +2042,7 @@
     "addedOrder": 6,
     "schemaVersion": "3.0.0",
     "assetProvenance": "archive_pending_3d",
-    "assetStatus": "PENDING",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "siwaluh-jabu-karo",
     "driveFolderRef": null,
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -2041,7 +2057,9 @@
       "culturalMeaning": "Motif ikatan tali ijuk pengeret-ret (menyerupai cicak berkepala dua) melambangkan kekuatan pelindung rumah dan solidaritas komunal. Dalam penelitian lebih lanjut untuk rincian ritual pendirian lokal per desa adat (Dokan vs Lingga).",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "DAPOBUD — Data Pokok Kebudayaan: Rumah Adat Karo (REK/WBTB/2013/01/00004) (Kementerian Kebudayaan Republik Indonesia)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/siwaluh-jabu-karo.glb",
+    "worldManifestUrl": "data/asset-manifests/siwaluh-jabu-karo.json"
   },
   {
     "id": "uma-mentawai",
@@ -2081,13 +2099,14 @@
       "socialOrganization": "Identitas klan sosial Mentawai identik dengan nama Uma tempat mereka berasal.",
       "ceremonialRelevance": "Pusat upacara adat punen dan ritual penyembuhan yang dipimpin oleh Sikerei."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
+    "model3DUrl": "assets/models/houses/uma-mentawai.glb",
+    "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 0,
-      "limitationsNote": "Model 3D sedang disiapkan. Saat ini disajikan dokumentasi fotografis asli Uma Mentawai dan profil struktural."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model 3D sedang disiapkan. Saat ini disajikan dokumentasi fotografis asli Uma Mentawai dan profil struktural.",
+      "walkableInterior": true
     },
     "cameraPresets": null,
     "hotspots": [],
@@ -2118,7 +2137,7 @@
     "addedOrder": 7,
     "schemaVersion": "3.0.0",
     "assetProvenance": "archive_pending_3d",
-    "assetStatus": "PENDING",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "uma-mentawai",
     "driveFolderRef": null,
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -2133,7 +2152,9 @@
       "culturalMeaning": "Mencerminkan prinsip keseimbangan hidup masyarakat Mentawai dengan hutan, sungai, dan roh leluhur (Arat Sabulungan). Pusat upacara adat punen dan ritual penyembuhan yang dipimpin oleh Sikerei.",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "Indonesian Houses Vol. 2: Survey of Vernacular Architecture in Western Indonesia (Reimar Schefold, Peter Nas, Gaudenz Domenig & Robert Wessing (Ed.), KITLV Press (2008))"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/uma-mentawai.glb",
+    "worldManifestUrl": "data/asset-manifests/uma-mentawai.json"
   },
   {
     "id": "rumah-limasan",
@@ -2174,13 +2195,14 @@
       "socialOrganization": "Mewakili arsitektur hunian warga secara luas yang mendampingi keberadaan pendopo Joglo dalam lanskap permukiman Jawa.",
       "ceremonialRelevance": "Dalam penelitian (variasi upacara pendirian molo berbeda antardaerah di Jawa Tengah dan DIY)."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
+    "model3DUrl": "assets/models/houses/rumah-limasan.glb",
+    "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 0,
-      "limitationsNote": "Model 3D sedang disiapkan. Foto referensi bangunan Limasan asli tersedia untuk studi tipologi."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 11,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto referensi bangunan Limasan asli tersedia untuk studi tipologi.",
+      "walkableInterior": true
     },
     "cameraPresets": null,
     "hotspots": [],
@@ -2211,7 +2233,7 @@
     "addedOrder": 8,
     "schemaVersion": "3.0.0",
     "assetProvenance": "archive_pending_3d",
-    "assetStatus": "PENDING",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "rumah-limasan",
     "driveFolderRef": null,
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -2226,7 +2248,9 @@
       "culturalMeaning": "Proporsi atap seimbang di keempat sisinya kerap dikaitkan dengan kesederhanaan, keteduhan, dan kebersahajaan hidup masyarakat Jawa. Dalam penelitian (variasi upacara pendirian molo berbeda antardaerah di Jawa Tengah dan DIY).",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "Indonesian Heritage: Architecture — Javanese House Typologies (Gunawan Tjahjono (Ed.), Archipelago Press (1998))"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-limasan.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-limasan.json"
   },
   {
     "id": "rumah-betang",
@@ -2267,13 +2291,14 @@
       "socialOrganization": "Puluhan keluarga hidup berdampingan dalam bilik terpisah namun berbagi ruang publik serambi secara demokratis.",
       "ceremonialRelevance": "Pusat upacara adat seperti Tiwah (Dayak Ngaju) dan musyawarah damang adat."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
+    "model3DUrl": "assets/models/houses/rumah-betang.glb",
+    "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 0,
-      "limitationsNote": "Model 3D sedang disiapkan. Foto asli Rumah Betang Sei Pasah, Kalimantan Tengah ditampilkan sebagai dokumentasi rujukan."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto asli Rumah Betang Sei Pasah, Kalimantan Tengah ditampilkan sebagai dokumentasi rujukan.",
+      "walkableInterior": true
     },
     "cameraPresets": null,
     "hotspots": [
@@ -2510,7 +2535,7 @@
     "addedOrder": 9,
     "schemaVersion": "3.0.0",
     "assetProvenance": "archive_pending_3d",
-    "assetStatus": "PENDING",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "rumah-betang",
     "driveFolderRef": "18. Kalteng - Huma Betang Tumbang Gagu",
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -2618,7 +2643,9 @@
       "culturalMeaning": "Mewujudkan falsafah 'Huma Betang' masyarakat Dayak: kesetaraan, kebersamaan, saling menghargai, dan ketaatan pada hukum adat di bawah satu atap. Pusat upacara adat seperti Tiwah (Dayak Ngaju) dan musyawarah damang adat.",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "DAPOBUD — Data Pokok Kebudayaan: Rumah Panjang Dayak (REK/WBTB/2013/01/00022) (Kementerian Kebudayaan Republik Indonesia); Katalog Referensi Arsitektur Nusantara — 18. Kalteng - Huma Betang Tumbang Gagu (Rujukan sekunder: Etha Sriputri / BPCB — Arsitektur Betang Tumbang Gagu (2016); Etha Sriputri / Indonesiana — Konstruksi Besi Si Kayu Ulin.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-betang.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-betang.json"
   },
   {
     "id": "rumah-lamin",
@@ -2658,13 +2685,14 @@
       "socialOrganization": "Mencerminkan kepemimpinan adat (Kepala Adat) yang mengayomi komunitas secara kolektif.",
       "ceremonialRelevance": "Lokasi pelaksanaan upacara panen dan pertunjukan budaya adat Dayak Kenyah."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
+    "model3DUrl": "assets/models/houses/rumah-lamin.glb",
+    "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 0,
-      "limitationsNote": "Model 3D sedang disiapkan. Foto dokumentasi asli Lamin Adat Pampang, Samarinda tersedia untuk kajian visual."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto dokumentasi asli Lamin Adat Pampang, Samarinda tersedia untuk kajian visual.",
+      "walkableInterior": true
     },
     "cameraPresets": null,
     "hotspots": [
@@ -2901,7 +2929,7 @@
     "addedOrder": 10,
     "schemaVersion": "3.0.0",
     "assetProvenance": "archive_pending_3d",
-    "assetStatus": "PENDING",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "rumah-lamin",
     "driveFolderRef": "20. Kaltim - Lamin Adat Pampang",
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -3001,7 +3029,9 @@
       "culturalMeaning": "Motif burung enggang melambangkan kemuliaan dan dunia atas, sementara warna kuning, merah, hitam, dan putih mewakili kewibawaan, keberanian, keteduhan, dan kesucian. Lokasi pelaksanaan upacara panen dan pertunjukan budaya adat Dayak Kenyah.",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "Arsitektur Tradisional Daerah Kalimantan Timur (Rumah Lamin) (Proyek Inventarisasi dan Dokumentasi Kebudayaan Daerah, Depdikbud / Kemendikbud RI); Katalog Referensi Arsitektur Nusantara — 20. Kaltim - Lamin Adat Pampang (Rujukan sekunder: Tri Agustin Kusumaningrum / Badan Bahasa — Jelajah Arsitektur Lamin Suku Dayak Kenyah (2018); ISI Yogyakarta — Kajian lapangan Lamin Adat Pemung Tawai.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-lamin.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-lamin.json"
   },
   {
     "id": "bola-soba-bugis",
@@ -3042,13 +3072,14 @@
       "socialOrganization": "Jumlah susunan atap segitiga depan (Timpa Laja — umumnya 3 hingga 5 tingkat pada Saoraja) secara tradisional menandai kedudukan bangsawan pemiliknya.",
       "ceremonialRelevance": "Tiang pusat (Posi Bola / pusar rumah) ditegakkan dengan doa keselamatan sebelum seluruh rangka rumah dirakit."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
+    "model3DUrl": "assets/models/houses/bola-soba-bugis.glb",
+    "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 0,
-      "limitationsNote": "Model 3D sedang disiapkan. Foto asli Saoraja La Tenri Bali (Sulawesi Selatan) digunakan sebagai dokumentasi rujukan terverifikasi."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto asli Saoraja La Tenri Bali (Sulawesi Selatan) digunakan sebagai dokumentasi rujukan terverifikasi.",
+      "walkableInterior": true
     },
     "cameraPresets": null,
     "hotspots": [],
@@ -3079,7 +3110,7 @@
     "addedOrder": 11,
     "schemaVersion": "3.0.0",
     "assetProvenance": "archive_pending_3d",
-    "assetStatus": "PENDING",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "bola-soba-bugis",
     "driveFolderRef": null,
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -3094,7 +3125,9 @@
       "culturalMeaning": "Tiga lapisan vertikal merepresentasikan kosmologi Bugis: Botting Langi (dunia atas / Rakkeang), Ale Kawa (dunia tengah / Ale Bola), dan Buri Liu (dunia bawah / Awa Bola). Tiang pusat (Posi Bola / pusar rumah) ditegakkan dengan doa keselamatan sebelum seluruh rangka rumah dirakit.",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "The Bugis (Architecture & Cosmology of the Bugis House) (Christian Pelras, Blackwell Publishers (1996))"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/bola-soba-bugis.glb",
+    "worldManifestUrl": "data/asset-manifests/bola-soba-bugis.json"
   },
   {
     "id": "bale-bali",
@@ -3137,13 +3170,14 @@
       "socialOrganization": "Menjaga kesinambungan komunitas banjar dan keteraturan tata desa adat.",
       "ceremonialRelevance": "Bale Dangin dan Merajan menjadi pusat pelaksanaan upacara manusa yadnya dan piodalan keluarga."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
+    "model3DUrl": "assets/models/houses/bale-bali.glb",
+    "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 0,
-      "limitationsNote": "Model 3D sedang disiapkan. Foto dokumentasi Desa Adat Penglipuran, Bali tersedia sebagai rujukan utama."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto dokumentasi Desa Adat Penglipuran, Bali tersedia sebagai rujukan utama.",
+      "walkableInterior": true
     },
     "cameraPresets": null,
     "hotspots": [],
@@ -3174,7 +3208,7 @@
     "addedOrder": 12,
     "schemaVersion": "3.0.0",
     "assetProvenance": "archive_pending_3d",
-    "assetStatus": "PENDING",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "bale-bali",
     "driveFolderRef": "Pekarangan Tradisional Bali",
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -3189,7 +3223,9 @@
       "culturalMeaning": "Setiap bangunan dan pekarangan dipandang selaras dengan anatomi tubuh manusia (Tri Angga: kepala/atap, badan/tiang-dinding, kaki/batur) serta poros suci gunung–laut. Bale Dangin dan Merajan menjadi pusat pelaksanaan upacara manusa yadnya dan piodalan keluarga.",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "Balinese Traditional Architecture (Asta Kosala Kosali & Tri Angga) (I Made Gelebet et al., Proyek Inventarisasi dan Dokumentasi Kebudayaan Daerah (1986))"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/bale-bali.glb",
+    "worldManifestUrl": "data/asset-manifests/bale-bali.json"
   },
   {
     "id": "mbaru-niang",
@@ -3230,13 +3266,14 @@
       "socialOrganization": "Mbaru Gendang (rumah utama) menjadi pusat penyimpanan gendang adat dan musyawarah kampung.",
       "ceremonialRelevance": "Pusat upacara adat tahunan Penti (syukuran panen dan penyambutan tahun baru adat Manggarai)."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
+    "model3DUrl": "assets/models/houses/mbaru-niang.glb",
+    "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 0,
-      "limitationsNote": "Model 3D sedang disiapkan. Foto dokumentasi asli Mbaru Niang Wae Rebo tersedia bersama rincian struktur lima tingkatnya."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 7,
+      "limitationsNote": "Model 3D sedang disiapkan. Foto dokumentasi asli Mbaru Niang Wae Rebo tersedia bersama rincian struktur lima tingkatnya.",
+      "walkableInterior": true
     },
     "cameraPresets": null,
     "hotspots": [
@@ -3473,7 +3510,7 @@
     "addedOrder": 13,
     "schemaVersion": "3.0.0",
     "assetProvenance": "archive_pending_3d",
-    "assetStatus": "PENDING",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "mbaru-niang",
     "driveFolderRef": "01. NTT - Mbaru Niang",
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -3621,7 +3658,9 @@
       "culturalMeaning": "Bentuk kerucut melingkar dan tata tujuh rumah yang mengelilingi compang melambangkan persatuan, perlindungan kolektif, dan penghormatan kepada tujuh arah/leluhur pendiri. Pusat upacara adat tahunan Penti (syukuran panen dan penyambutan tahun baru adat Manggarai).",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "UNESCO Asia-Pacific Heritage Awards 2012 — Award of Excellence: Mbaru Niang, Wae Rebo (UNESCO Bangkok); Katalog Referensi Arsitektur Nusantara — 01. NTT - Mbaru Niang (Rujukan sekunder: Pradipto & Tristanto (2021); Umbung dkk. / UM (2021); Dwiputri / Aksen (2023); Kementerian Pariwisata — Rumah Mbaru Niang.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/mbaru-niang.glb",
+    "worldManifestUrl": "data/asset-manifests/mbaru-niang.json"
   },
   {
     "id": "baileo-maluku",
@@ -3662,13 +3701,14 @@
       "socialOrganization": "Digunakan oleh lembaga adat Saniri Negeri bersama Raja untuk mengambil keputusan bersama bagi masyarakat.",
       "ceremonialRelevance": "Pusat upacara pelantikan Raja Negeri, upacara Panas Pela (pengukuhan persaudaraan antarnegeri), dan ritual adat di sekitar Batu Pamali."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
+    "model3DUrl": "assets/models/houses/baileo-maluku.glb",
+    "modelStatus": "available",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 0,
-      "limitationsNote": "Model 3D sedang disiapkan. Dokumentasi fotografis asli Baileo Negeri Nolloth (Maluku Tengah) ditampilkan sebagai rujukan utama."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model 3D sedang disiapkan. Dokumentasi fotografis asli Baileo Negeri Nolloth (Maluku Tengah) ditampilkan sebagai rujukan utama.",
+      "walkableInterior": true
     },
     "cameraPresets": null,
     "hotspots": [
@@ -3905,7 +3945,7 @@
     "addedOrder": 14,
     "schemaVersion": "3.0.0",
     "assetProvenance": "archive_pending_3d",
-    "assetStatus": "PENDING",
+    "assetStatus": "COMPLETE",
     "worldSceneId": "baileo-maluku",
     "driveFolderRef": "29. Maluku - Baileo Haria",
     "preservationStatus": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
@@ -3997,7 +4037,9 @@
       "culturalMeaning": "Ketiadaan dinding melambangkan keterbukaan, kejujuran dalam musyawarah, serta keyakinan bahwa roh leluhur bebas masuk melindungi masyarakat negeri. Pusat upacara pelantikan Raja Negeri, upacara Panas Pela (pengukuhan persaudaraan antarnegeri), dan ritual adat di sekitar Batu Pamali.",
       "preservationAndContemporaryRelevance": "Terdokumentasi dalam arsip nasional & katalog NULAR; membutuhkan pelestarian berkala terhadap material kayu, bambu, dan atap vegetasi tradisional.",
       "referencesSummary": "Arsitektur Tradisional Daerah Maluku (Rumah Baileo) (Departemen Pendidikan dan Kebudayaan RI / Balai Pelestarian Nilai Budaya Maluku); Katalog Referensi Arsitektur Nusantara — 29. Maluku - Baileo Haria (Rujukan sekunder: Salhuteru (2015) — Rumah Adat Baileo di Kecamatan Saparua; Data Cagar Budaya — Baileo Haria.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/baileo-maluku.glb",
+    "worldManifestUrl": "data/asset-manifests/baileo-maluku.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -4041,9 +4083,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Sasak.",
       "ceremonialRelevance": "Perbedaan ruang depan dan ruang dalam membantu mengatur hubungan tamu serta privasi penghuni."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/bale-tani-sasak.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "bale-tani-sasak",
     "driveFolderRef": "02. NTB - Bale Tani Sasak",
@@ -4139,10 +4181,11 @@
     ],
     "reconstructionNote": "Model konseptual untuk pembelajaran tipologi merujuk hunian Sasak di Sade, Lombok; tradisi Sumbawa dan Bima di NTB juga beragam.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 11,
-      "limitationsNote": "Model konseptual untuk pembelajaran tipologi merujuk hunian Sasak di Sade, Lombok; tradisi Sumbawa dan Bima di NTB juga beragam."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model konseptual untuk pembelajaran tipologi merujuk hunian Sasak di Sade, Lombok; tradisi Sumbawa dan Bima di NTB juga beragam.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -4407,7 +4450,9 @@
       "culturalMeaning": "Model konseptual untuk pembelajaran tipologi merujuk hunian Sasak di Sade, Lombok; tradisi Sumbawa dan Bima di NTB juga beragam. Perbedaan ruang depan dan ruang dalam membantu mengatur hubungan tamu serta privasi penghuni.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Nusa Tenggara Barat; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 02. NTB - Bale Tani Sasak (Saputra dkk. / Undiksha (2024); Lukita dkk. / UK Petra; Nawir dkk. / ZONASI; Kementerian Pariwisata — Desa Wisata Rembitan.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/bale-tani-sasak.glb",
+    "worldManifestUrl": "data/asset-manifests/bale-tani-sasak.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -4450,9 +4495,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Sunda.",
       "ceremonialRelevance": "Teritisan dan bahan setempat memperlihatkan cara bangunan merespons lingkungan tropis."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/julang-ngapak.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "julang-ngapak",
     "driveFolderRef": "04. Jabar - Julang Ngapak",
@@ -4532,10 +4577,11 @@
     ],
     "reconstructionNote": "Cagak gunting pada ujung bubungan mengacu pada varian Papandak. Tidak semua rumah Julang Ngapak memiliki rincian atau denah yang sama.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 9,
-      "limitationsNote": "Cagak gunting pada ujung bubungan mengacu pada varian Papandak. Tidak semua rumah Julang Ngapak memiliki rincian atau denah yang sama."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Cagak gunting pada ujung bubungan mengacu pada varian Papandak. Tidak semua rumah Julang Ngapak memiliki rincian atau denah yang sama.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -4800,7 +4846,9 @@
       "culturalMeaning": "Cagak gunting pada ujung bubungan mengacu pada varian Papandak. Tidak semua rumah Julang Ngapak memiliki rincian atau denah yang sama. Teritisan dan bahan setempat memperlihatkan cara bangunan merespons lingkungan tropis.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Jawa Barat; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 04. Jabar - Julang Ngapak (Permana (2022), UNIKOM — Julang Ngapak Cagak Gunting Papandak; Studi lapangan Rumah Adat Lengkong, UNJ.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/julang-ngapak.glb",
+    "worldManifestUrl": "data/asset-manifests/julang-ngapak.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -4844,9 +4892,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Betawi.",
       "ceremonialRelevance": "Teras menjadi ruang menerima tamu dan berinteraksi; bentuk rumah Betawi beragam."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/kebaya-betawi.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "kebaya-betawi",
     "driveFolderRef": "05. Jakarta - Kebaya Betawi",
@@ -4934,10 +4982,11 @@
     ],
     "reconstructionNote": "Geometri menunjukkan lipatan kemiringan atap dan teras; motif gigi balang disederhanakan menjadi ritme segitiga.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
+      "interiorSupported": true,
+      "explodedSupported": true,
       "separatedComponents": 10,
-      "limitationsNote": "Geometri menunjukkan lipatan kemiringan atap dan teras; motif gigi balang disederhanakan menjadi ritme segitiga."
+      "limitationsNote": "Geometri menunjukkan lipatan kemiringan atap dan teras; motif gigi balang disederhanakan menjadi ritme segitiga.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -5202,7 +5251,9 @@
       "culturalMeaning": "Geometri menunjukkan lipatan kemiringan atap dan teras; motif gigi balang disederhanakan menjadi ritme segitiga. Teras menjadi ruang menerima tamu dan berinteraksi; bentuk rumah Betawi beragam.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) DKI Jakarta; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 05. Jakarta - Kebaya Betawi (Kementerian Pariwisata — Rumah Kebaya Betawi.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/kebaya-betawi.glb",
+    "worldManifestUrl": "data/asset-manifests/kebaya-betawi.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -5246,9 +5297,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Masyarakat Adat Baduy (Kanekes).",
       "ceremonialRelevance": "Pilihan material dan cara membangun terkait lingkungan dan ketentuan adat masyarakat Baduy."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/sulah-nyanda.glb",
+    "modelStatus": "available",
+    "assetStatus": "RECONSTRUCTION",
     "assetProvenance": "illustrative_scheme",
     "worldSceneId": "sulah-nyanda",
     "driveFolderRef": "06. Banten - Sulah Nyanda",
@@ -5320,10 +5371,11 @@
     ],
     "reconstructionNote": "Tidak menggabungkan bukaan Baduy Dalam dan Baduy Luar sebagai satu kaidah. Bukaan kecil di sini bersifat ilustratif; profil atap bukan hasil survei.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 8,
-      "limitationsNote": "Tidak menggabungkan bukaan Baduy Dalam dan Baduy Luar sebagai satu kaidah. Bukaan kecil di sini bersifat ilustratif; profil atap bukan hasil survei."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Tidak menggabungkan bukaan Baduy Dalam dan Baduy Luar sebagai satu kaidah. Bukaan kecil di sini bersifat ilustratif; profil atap bukan hasil survei.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -5588,7 +5640,9 @@
       "culturalMeaning": "Tidak menggabungkan bukaan Baduy Dalam dan Baduy Luar sebagai satu kaidah. Bukaan kecil di sini bersifat ilustratif; profil atap bukan hasil survei. Pilihan material dan cara membangun terkait lingkungan dan ketentuan adat masyarakat Baduy.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Banten; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 06. Banten - Sulah Nyanda (Delyuzir (2024) — studi rumah Cibeo dan Keduketug; Kementerian Pariwisata — Sulah Nyanda.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/sulah-nyanda.glb",
+    "worldManifestUrl": "data/asset-manifests/sulah-nyanda.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -5630,9 +5684,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Masyarakat Adat Lampung Pepadun.",
       "ceremonialRelevance": "Balai merupakan ruang komunal bagi pertemuan, musyawarah, dan kegiatan adat."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/nuwo-sesat.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "nuwo-sesat",
     "driveFolderRef": "07. Lampung - Nuwo Sesat",
@@ -5704,10 +5758,11 @@
     ],
     "reconstructionNote": "Model mewakili balai komunal tanpa kamar-kamar keluarga. Bentuk, warna, dan makna ornamen berbeda menurut komunitas; ragam hias geometris model merupakan penyederhanaan.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 8,
-      "limitationsNote": "Model mewakili balai komunal tanpa kamar-kamar keluarga. Bentuk, warna, dan makna ornamen berbeda menurut komunitas; ragam hias geometris model merupakan penyederhanaan."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model mewakili balai komunal tanpa kamar-kamar keluarga. Bentuk, warna, dan makna ornamen berbeda menurut komunitas; ragam hias geometris model merupakan penyederhanaan.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -5972,7 +6027,9 @@
       "culturalMeaning": "Model mewakili balai komunal tanpa kamar-kamar keluarga. Bentuk, warna, dan makna ornamen berbeda menurut komunitas; ragam hias geometris model merupakan penyederhanaan. Balai merupakan ruang komunal bagi pertemuan, musyawarah, dan kegiatan adat.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Lampung; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 07. Lampung - Nuwo Sesat (Indonesia Travel — Nuwo Sesat; Badan Bahasa — Mengenal Rancang Bangun Rumah Adat, hlm. 15–16.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/nuwo-sesat.glb",
+    "worldManifestUrl": "data/asset-manifests/nuwo-sesat.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -6014,9 +6071,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Melayu Bangka.",
       "ceremonialRelevance": "Bagian dari tradisi hunian masyarakat Bangka; contoh rumah tua masih dijumpai di desa-desa."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/rumah-melayu-bangka.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "rumah-melayu-bangka",
     "driveFolderRef": "08. Babel - Rumah Panggung Melayu Bangka",
@@ -6096,10 +6153,11 @@
     ],
     "reconstructionNote": "Bentuk atap Bangka beragam; model varian limas bukan klaim bahwa semua rumah Bangka memakai bentuk yang sama. Rumah Rakit lebih tepat dirujuk ke tradisi sungai Palembang.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 9,
-      "limitationsNote": "Bentuk atap Bangka beragam; model varian limas bukan klaim bahwa semua rumah Bangka memakai bentuk yang sama. Rumah Rakit lebih tepat dirujuk ke tradisi sungai Palembang."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Bentuk atap Bangka beragam; model varian limas bukan klaim bahwa semua rumah Bangka memakai bentuk yang sama. Rumah Rakit lebih tepat dirujuk ke tradisi sungai Palembang.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -6364,7 +6422,9 @@
       "culturalMeaning": "Bentuk atap Bangka beragam; model varian limas bukan klaim bahwa semua rumah Bangka memakai bentuk yang sama. Rumah Rakit lebih tepat dirujuk ke tradisi sungai Palembang. Bagian dari tradisi hunian masyarakat Bangka; contoh rumah tua masih dijumpai di desa-desa.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Kepulauan Bangka Belitung; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 08. Babel - Rumah Panggung Melayu Bangka (Jadesta Kemenparekraf — Rumah Panggung Terentang III; Badan Bahasa — Mengenal Rancang Bangun Rumah Adat, hlm. 11–12.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-melayu-bangka.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-melayu-bangka.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -6406,9 +6466,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Masyarakat Palembang & Sumatera Selatan.",
       "ceremonialRelevance": "Tingkat lantai berkaitan dengan fungsi, pola interaksi, dan hierarki dalam kegiatan adat."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/rumah-limas.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "rumah-limas",
     "driveFolderRef": "09. Sumsel - Rumah Limas",
@@ -6488,10 +6548,11 @@
     ],
     "reconstructionNote": "Kekijing mengacu pada tingkatan lantai, bukan lima atap. Jumlah dan penggunaan ruang dapat berbeda menurut bangunan.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 9,
-      "limitationsNote": "Kekijing mengacu pada tingkatan lantai, bukan lima atap. Jumlah dan penggunaan ruang dapat berbeda menurut bangunan."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Kekijing mengacu pada tingkatan lantai, bukan lima atap. Jumlah dan penggunaan ruang dapat berbeda menurut bangunan.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -6756,7 +6817,9 @@
       "culturalMeaning": "Kekijing mengacu pada tingkatan lantai, bukan lima atap. Jumlah dan penggunaan ruang dapat berbeda menurut bangunan. Tingkat lantai berkaitan dengan fungsi, pola interaksi, dan hierarki dalam kegiatan adat.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Sumatera Selatan; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 09. Sumsel - Rumah Limas (Indonesia Travel — Rumah Limas Palembang; Badan Penghubung Sumsel — Anjungan Sumsel.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-limas.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-limas.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -6797,9 +6860,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Masyarakat Adat Bengkulu (Rejang, Lembak, Serawai).",
       "ceremonialRelevance": "Pembagian ruang membedakan tamu dan keluarga."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/bubungan-lima.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "bubungan-lima",
     "driveFolderRef": "10. Bengkulu - Bubungan Lima",
@@ -6879,10 +6942,11 @@
     ],
     "reconstructionNote": "Varian ini tidak mewakili seluruh tradisi Rejang. Jumlah tiang dan fungsi bangunan berbeda; tidak ada klaim tahan gempa.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 9,
-      "limitationsNote": "Varian ini tidak mewakili seluruh tradisi Rejang. Jumlah tiang dan fungsi bangunan berbeda; tidak ada klaim tahan gempa."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Varian ini tidak mewakili seluruh tradisi Rejang. Jumlah tiang dan fungsi bangunan berbeda; tidak ada klaim tahan gempa.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -7147,7 +7211,9 @@
       "culturalMeaning": "Varian ini tidak mewakili seluruh tradisi Rejang. Jumlah tiang dan fungsi bangunan berbeda; tidak ada klaim tahan gempa. Pembagian ruang membedakan tamu dan keluarga.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Bengkulu; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 10. Bengkulu - Bubungan Lima (Badan Bahasa — Mengenal Rancang Bangun Rumah Adat, hlm. 13–14; Badan Bahasa — Yuk Mengenal Rumah Adat Sumatra, hlm. 41–43.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/bubungan-lima.glb",
+    "worldManifestUrl": "data/asset-manifests/bubungan-lima.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -7191,9 +7257,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Aceh.",
       "ceremonialRelevance": "Pembagian ruang mengatur penerimaan tamu dan privasi keluarga; ukiran tumbuhan dan geometris memperlihatkan seni kriya Aceh."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/rumoh-aceh.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "rumoh-aceh",
     "driveFolderRef": "11. Aceh - Rumoh Aceh",
@@ -7273,10 +7339,11 @@
     ],
     "reconstructionNote": "Model konseptual untuk pembelajaran tipologi, bukan dokumentasi ukur satu bangunan. Tata ruang dan tinggi panggung bervariasi; model tidak mewakili Rumoh Santeut atau semua tradisi Aceh.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 9,
-      "limitationsNote": "Model konseptual untuk pembelajaran tipologi, bukan dokumentasi ukur satu bangunan. Tata ruang dan tinggi panggung bervariasi; model tidak mewakili Rumoh Santeut atau semua tradisi Aceh."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model konseptual untuk pembelajaran tipologi, bukan dokumentasi ukur satu bangunan. Tata ruang dan tinggi panggung bervariasi; model tidak mewakili Rumoh Santeut atau semua tradisi Aceh.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -7541,7 +7608,9 @@
       "culturalMeaning": "Model konseptual untuk pembelajaran tipologi, bukan dokumentasi ukur satu bangunan. Tata ruang dan tinggi panggung bervariasi; model tidak mewakili Rumoh Santeut atau semua tradisi Aceh. Pembagian ruang mengatur penerimaan tamu dan privasi keluarga; ukiran tumbuhan dan geometris memperlihatkan seni kriya Aceh.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Aceh; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 11. Aceh - Rumoh Aceh (Indonesia Travel — Rumoh Aceh; Badan Bahasa — Arsitektur Rumah Tradisional Aceh (2018).)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumoh-aceh.glb",
+    "worldManifestUrl": "data/asset-manifests/rumoh-aceh.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -7581,9 +7650,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Melayu Riau.",
       "ceremonialRelevance": "Berfungsi sebagai tempat pertemuan dan musyawarah masyarakat Melayu."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/selaso-jatuh-kembar.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "selaso-jatuh-kembar",
     "driveFolderRef": "14. Riau - Selaso Jatuh Kembar",
@@ -7655,10 +7724,11 @@
     ],
     "reconstructionNote": "Model menampilkan balai musyawarah. Bentuk replika dan fungsi setempat dapat berbeda. Ornamen model adalah penyederhanaan.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 8,
-      "limitationsNote": "Model menampilkan balai musyawarah. Bentuk replika dan fungsi setempat dapat berbeda. Ornamen model adalah penyederhanaan."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model menampilkan balai musyawarah. Bentuk replika dan fungsi setempat dapat berbeda. Ornamen model adalah penyederhanaan.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -7923,7 +7993,9 @@
       "culturalMeaning": "Model menampilkan balai musyawarah. Bentuk replika dan fungsi setempat dapat berbeda. Ornamen model adalah penyederhanaan. Berfungsi sebagai tempat pertemuan dan musyawarah masyarakat Melayu.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Riau; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 14. Riau - Selaso Jatuh Kembar (Indonesia Travel — Selaso Jatuh Kembar; Badan Bahasa — Mengenal Rancang Bangun Rumah Adat, hlm. 8.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/selaso-jatuh-kembar.glb",
+    "worldManifestUrl": "data/asset-manifests/selaso-jatuh-kembar.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -7965,9 +8037,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Melayu Kepulauan Riau.",
       "ceremonialRelevance": "Ruang menghubungkan penerimaan tamu dan kehidupan keluarga."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/belah-bubung.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "belah-bubung",
     "driveFolderRef": "15. Kepri - Belah Bubung",
@@ -8047,10 +8119,11 @@
     ],
     "reconstructionNote": "Bukan sinonim semua rumah Melayu; nama serta susunan lokal bervariasi.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 9,
-      "limitationsNote": "Bukan sinonim semua rumah Melayu; nama serta susunan lokal bervariasi."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Bukan sinonim semua rumah Melayu; nama serta susunan lokal bervariasi.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -8315,7 +8388,9 @@
       "culturalMeaning": "Bukan sinonim semua rumah Melayu; nama serta susunan lokal bervariasi. Ruang menghubungkan penerimaan tamu dan kehidupan keluarga.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Kepulauan Riau; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 15. Kepri - Belah Bubung (Badan Bahasa — Yuk Mengenal Rumah Adat Sumatra, hlm. 29–31; Badan Bahasa — Mengenal Rumah Melayu Riau.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/belah-bubung.glb",
+    "worldManifestUrl": "data/asset-manifests/belah-bubung.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -8358,9 +8433,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Batin & Melayu Jambi.",
       "ceremonialRelevance": "Ruang mendukung kegiatan keluarga dan pertemuan adat."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/kajang-leko.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "kajang-leko",
     "driveFolderRef": "16. Jambi - Kajang Leko",
@@ -8440,10 +8515,11 @@
     ],
     "reconstructionNote": "Rujukan Marga Batin; bentuk tidak mewakili semua hunian Jambi.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 9,
-      "limitationsNote": "Rujukan Marga Batin; bentuk tidak mewakili semua hunian Jambi."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Rujukan Marga Batin; bentuk tidak mewakili semua hunian Jambi.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -8708,7 +8784,9 @@
       "culturalMeaning": "Rujukan Marga Batin; bentuk tidak mewakili semua hunian Jambi. Ruang mendukung kegiatan keluarga dan pertemuan adat.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Jambi; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 16. Jambi - Kajang Leko (Badan Bahasa — Yuk Mengenal Rumah Adat Sumatra, hlm. 49–51; Badan Bahasa — Mengenal Rancang Bangun Rumah Adat, hlm. 9–10.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/kajang-leko.glb",
+    "worldManifestUrl": "data/asset-manifests/kajang-leko.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -8750,9 +8828,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Dayak Tamambaloh / Iban.",
       "ceremonialRelevance": "Kehidupan beberapa keluarga berlangsung dalam satu rumah komunal, dengan ruang pribadi dan ruang bersama."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/rumah-panjang-uluk-palin.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "rumah-panjang-uluk-palin",
     "driveFolderRef": "17. Kalbar - Rumah Panjang Uluk Palin",
@@ -8848,10 +8926,11 @@
     ],
     "reconstructionNote": "Interpretasi bentuk rumah panjang Uluk Palin berdasarkan dokumentasi; komunitas rujukan Tamambaloh. Enam bilik, pelataran, posisi tangga, dan proporsi disederhanakan.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 11,
-      "limitationsNote": "Interpretasi bentuk rumah panjang Uluk Palin berdasarkan dokumentasi; komunitas rujukan Tamambaloh. Enam bilik, pelataran, posisi tangga, dan proporsi disederhanakan."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Interpretasi bentuk rumah panjang Uluk Palin berdasarkan dokumentasi; komunitas rujukan Tamambaloh. Enam bilik, pelataran, posisi tangga, dan proporsi disederhanakan.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -9116,7 +9195,9 @@
       "culturalMeaning": "Interpretasi bentuk rumah panjang Uluk Palin berdasarkan dokumentasi; komunitas rujukan Tamambaloh. Enam bilik, pelataran, posisi tangga, dan proporsi disederhanakan. Kehidupan beberapa keluarga berlangsung dalam satu rumah komunal, dengan ruang pribadi dan ruang bersama.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Kalimantan Barat; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 17. Kalbar - Rumah Panjang Uluk Palin (BPK XII — Arsitektur Rumah Betang Uluk Palin (Ikhsan, 2009); Pemerintah Kapuas Hulu — Masyarakat Adat Tamambaloh Apalin.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-panjang-uluk-palin.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-panjang-uluk-palin.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -9158,9 +9239,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Banjar.",
       "ceremonialRelevance": "Teras dan ruang tamu beralih menuju ruang keluarga; bagian dapur di belakang memiliki lantai lebih rendah."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/rumah-bubungan-tinggi.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "rumah-bubungan-tinggi",
     "driveFolderRef": "19. Kalsel - Rumah Bubungan Tinggi",
@@ -9264,10 +9345,11 @@
     ],
     "reconstructionNote": "Mengambil ciri Bubungan Tinggi Teluk Selong, bukan semua tipe rumah Banjar. Jumlah jenjang, proporsi, bukaan, dan pagar disederhanakan.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 12,
-      "limitationsNote": "Mengambil ciri Bubungan Tinggi Teluk Selong, bukan semua tipe rumah Banjar. Jumlah jenjang, proporsi, bukaan, dan pagar disederhanakan."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Mengambil ciri Bubungan Tinggi Teluk Selong, bukan semua tipe rumah Banjar. Jumlah jenjang, proporsi, bukaan, dan pagar disederhanakan.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -9532,7 +9614,9 @@
       "culturalMeaning": "Mengambil ciri Bubungan Tinggi Teluk Selong, bukan semua tipe rumah Banjar. Jumlah jenjang, proporsi, bukaan, dan pagar disederhanakan. Teras dan ruang tamu beralih menuju ruang keluarga; bagian dapur di belakang memiliki lantai lebih rendah.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Kalimantan Selatan; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 19. Kalsel - Rumah Bubungan Tinggi (Dinas Kebudayaan dan Pariwisata Kabupaten Banjar — Bubungan Tinggi Teluk Selong; Badan Bahasa — Mengenal Rumah Tradisional di Kalimantan (2017).)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-bubungan-tinggi.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-bubungan-tinggi.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -9573,9 +9657,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Tidung.",
       "ceremonialRelevance": "Baloy berkaitan dengan kepemimpinan dan penyelesaian persoalan adat. Fokus model adalah empat fungsi ruang adat, bukan kamar-kamar keluarga."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/baloy-tidung.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "baloy-tidung",
     "driveFolderRef": "21. Kaltara - Baloy Tidung",
@@ -9671,10 +9755,11 @@
     ],
     "reconstructionNote": "Nama ruang mengikuti sumber pariwisata; atap dan palet mengikuti Badan Bahasa. Kolam serta paviliun lain dalam kompleks Baloy tidak dimasukkan.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 11,
-      "limitationsNote": "Nama ruang mengikuti sumber pariwisata; atap dan palet mengikuti Badan Bahasa. Kolam serta paviliun lain dalam kompleks Baloy tidak dimasukkan."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Nama ruang mengikuti sumber pariwisata; atap dan palet mengikuti Badan Bahasa. Kolam serta paviliun lain dalam kompleks Baloy tidak dimasukkan.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -9939,7 +10024,9 @@
       "culturalMeaning": "Nama ruang mengikuti sumber pariwisata; atap dan palet mengikuti Badan Bahasa. Kolam serta paviliun lain dalam kompleks Baloy tidak dimasukkan. Baloy berkaitan dengan kepemimpinan dan penyelesaian persoalan adat. Fokus model adalah empat fungsi ruang adat, bukan kamar-kamar keluarga.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Kalimantan Utara; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 21. Kaltara - Baloy Tidung (Mahmud Jauhari Ali / Badan Bahasa — Mengenal Rumah Tradisional di Kalimantan (2017), hlm. 45; Kementerian Pariwisata — Baloy.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/baloy-tidung.glb",
+    "worldManifestUrl": "data/asset-manifests/baloy-tidung.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -9983,9 +10070,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Minahasa.",
       "ceremonialRelevance": "Rumah menghubungkan kehidupan keluarga, penerimaan tamu, serta kegiatan bersama. Mapalus mencakup kerja sama masyarakat."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/walewangko.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "walewangko",
     "driveFolderRef": "22. Sulut - Walewangko",
@@ -10105,10 +10192,11 @@
     ],
     "reconstructionNote": "Model memilih dua tangga depan; varian satu tangga juga ada. Nama setup, leloangan, dan pores mengikuti inventaris dengan contoh Tombulu.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 14,
-      "limitationsNote": "Model memilih dua tangga depan; varian satu tangga juga ada. Nama setup, leloangan, dan pores mengikuti inventaris dengan contoh Tombulu."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model memilih dua tangga depan; varian satu tangga juga ada. Nama setup, leloangan, dan pores mengikuti inventaris dengan contoh Tombulu.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -10373,7 +10461,9 @@
       "culturalMeaning": "Model memilih dua tangga depan; varian satu tangga juga ada. Nama setup, leloangan, dan pores mengikuti inventaris dengan contoh Tombulu. Rumah menghubungkan kehidupan keluarga, penerimaan tamu, serta kegiatan bersama. Mapalus mencakup kerja sama masyarakat.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Sulawesi Utara; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 22. Sulut - Walewangko (Depdikbud / Syamsidar (ed.) — Arsitektur Tradisional Daerah Sulawesi Utara (1991); Kasdar / Badan Bahasa (2018).)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/walewangko.glb",
+    "worldManifestUrl": "data/asset-manifests/walewangko.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -10414,9 +10504,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Gorontalo.",
       "ceremonialRelevance": "Dulohupa digunakan untuk musyawarah dan kegiatan adat. Model menampilkan balai bersama, bukan susunan kamar sebuah rumah keluarga."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/dulohupa.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "dulohupa",
     "driveFolderRef": "23. Gorontalo - Dulohupa",
@@ -10528,10 +10618,11 @@
     ],
     "reconstructionNote": "Ruang lapang, anjungan, dua tangga tolitihu, dan atap dua susun menjadi fokus model. Jumlah tiang, letak tempat duduk, serta ukuran bukan hitungan simbolis atau denah asli.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 13,
-      "limitationsNote": "Ruang lapang, anjungan, dua tangga tolitihu, dan atap dua susun menjadi fokus model. Jumlah tiang, letak tempat duduk, serta ukuran bukan hitungan simbolis atau denah asli."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Ruang lapang, anjungan, dua tangga tolitihu, dan atap dua susun menjadi fokus model. Jumlah tiang, letak tempat duduk, serta ukuran bukan hitungan simbolis atau denah asli.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -10796,7 +10887,9 @@
       "culturalMeaning": "Ruang lapang, anjungan, dua tangga tolitihu, dan atap dua susun menjadi fokus model. Jumlah tiang, letak tempat duduk, serta ukuran bukan hitungan simbolis atau denah asli. Dulohupa digunakan untuk musyawarah dan kegiatan adat. Model menampilkan balai bersama, bukan susunan kamar sebuah rumah keluarga.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Gorontalo; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 23. Gorontalo - Dulohupa (Kasdar / Badan Bahasa (2018), hlm. 19–20; Badan Bahasa (2017), hlm. 42.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/dulohupa.glb",
+    "worldManifestUrl": "data/asset-manifests/dulohupa.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -10839,9 +10932,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Lore (Pekurehua, Behoa, Bada).",
       "ceremonialRelevance": "Kegiatan menerima tamu, memasak, dan beristirahat berlangsung dalam satu ruang yang tidak dibagi menjadi kamar-kamar."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/tambi-lore.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "tambi-lore",
     "driveFolderRef": "24. Sulteng - Tambi Lore",
@@ -10945,10 +11038,11 @@
     ],
     "reconstructionNote": "Rujukan masyarakat Lore tidak digeneralisasikan sebagai seluruh tradisi Sulawesi Tengah. Buho / lumbung dan bangunan lain tidak dimasukkan.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 12,
-      "limitationsNote": "Rujukan masyarakat Lore tidak digeneralisasikan sebagai seluruh tradisi Sulawesi Tengah. Buho / lumbung dan bangunan lain tidak dimasukkan."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 7,
+      "limitationsNote": "Rujukan masyarakat Lore tidak digeneralisasikan sebagai seluruh tradisi Sulawesi Tengah. Buho / lumbung dan bangunan lain tidak dimasukkan.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -11213,7 +11307,9 @@
       "culturalMeaning": "Rujukan masyarakat Lore tidak digeneralisasikan sebagai seluruh tradisi Sulawesi Tengah. Buho / lumbung dan bangunan lain tidak dimasukkan. Kegiatan menerima tamu, memasak, dan beristirahat berlangsung dalam satu ruang yang tidak dibagi menjadi kamar-kamar.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Sulawesi Tengah; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 24. Sulteng - Tambi Lore (Depdikbud — Pola Pemukiman Pedesaan Sulawesi Tengah (1980/1981), Lore Selatan, hlm. 20; TMII — Anjungan Sulawesi Tengah.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/tambi-lore.glb",
+    "worldManifestUrl": "data/asset-manifests/tambi-lore.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -11256,9 +11352,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Mandar.",
       "ceremonialRelevance": "Boyang beasa adalah salah satu varian rumah Mandar, dibedakan dari Boyang adaq yang berkaitan dengan kedudukan bangsawan."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/boyang-beasa-mandar.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "boyang-beasa-mandar",
     "driveFolderRef": "25. Sulbar - Boyang Beasa Mandar",
@@ -11362,10 +11458,11 @@
     ],
     "reconstructionNote": "Varian yang ditampilkan adalah Boyang beasa dengan satu tumbaq layar dan tangga satu lintasan. Istilah Bui’ boyang juga dijumpai sebagai Bui’ lotang.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 12,
-      "limitationsNote": "Varian yang ditampilkan adalah Boyang beasa dengan satu tumbaq layar dan tangga satu lintasan. Istilah Bui’ boyang juga dijumpai sebagai Bui’ lotang."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Varian yang ditampilkan adalah Boyang beasa dengan satu tumbaq layar dan tangga satu lintasan. Istilah Bui’ boyang juga dijumpai sebagai Bui’ lotang.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -11630,7 +11727,9 @@
       "culturalMeaning": "Varian yang ditampilkan adalah Boyang beasa dengan satu tumbaq layar dan tangga satu lintasan. Istilah Bui’ boyang juga dijumpai sebagai Bui’ lotang. Boyang beasa adalah salah satu varian rumah Mandar, dibedakan dari Boyang adaq yang berkaitan dengan kedudukan bangsawan.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Sulawesi Barat; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 25. Sulbar - Boyang Beasa Mandar (Faisal / Depbudpar — Arsitektur Mandar Sulawesi Barat (2008); Nuralam & Indrojarwo / ITS — Jurnal Sains dan Seni ITS 11(3).)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/boyang-beasa-mandar.glb",
+    "worldManifestUrl": "data/asset-manifests/boyang-beasa-mandar.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -11671,9 +11770,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Buton (Kesultanan Buton).",
       "ceremonialRelevance": "Malige adalah istana sultan dan keluarganya, bukan rumah tinggal biasa atau satu-satunya tradisi Sulawesi Tenggara."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/malige-istana-buton.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "malige-istana-buton",
     "driveFolderRef": "27. Sultra - Malige Istana Buton",
@@ -11801,10 +11900,11 @@
     ],
     "reconstructionNote": "Model berfokus pada Malige Buton dan tidak menyamakan namanya dengan Komali Tolaki. Jumlah lantai mengikuti Badan Bahasa serta BRIN.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 15,
-      "limitationsNote": "Model berfokus pada Malige Buton dan tidak menyamakan namanya dengan Komali Tolaki. Jumlah lantai mengikuti Badan Bahasa serta BRIN."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Model berfokus pada Malige Buton dan tidak menyamakan namanya dengan Komali Tolaki. Jumlah lantai mengikuti Badan Bahasa serta BRIN.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -12069,7 +12169,9 @@
       "culturalMeaning": "Model berfokus pada Malige Buton dan tidak menyamakan namanya dengan Komali Tolaki. Jumlah lantai mengikuti Badan Bahasa serta BRIN. Malige adalah istana sultan dan keluarganya, bukan rumah tinggal biasa atau satu-satunya tradisi Sulawesi Tenggara.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Sulawesi Tenggara; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 27. Sultra - Malige Istana Buton (Zakridatul Agusmaniar Rane / Badan Bahasa (2017), hlm. 7–9; Tomy Almijun Kibu / BRIN (2023); Marsah, Faisal & Roslyn (2024).)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/malige-istana-buton.glb",
+    "worldManifestUrl": "data/asset-manifests/malige-istana-buton.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -12112,9 +12214,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Sahu (Halmahera Barat).",
       "ceremonialRelevance": "Sasadu mewadahi musyawarah dan upacara masyarakat Sahu. Tata duduk dalam kajian membedakan kelompok serta peran peserta."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/sasadu-sahu.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "sasadu-sahu",
     "driveFolderRef": "28. Malut - Sasadu Sahu",
@@ -12210,10 +12312,11 @@
     ],
     "reconstructionNote": "Mengacu pada kajian Poedjowibowo, Harisun, dan Paputungan (2011). Skema tipologi, bukan dokumentasi satu desa.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 11,
-      "limitationsNote": "Mengacu pada kajian Poedjowibowo, Harisun, dan Paputungan (2011). Skema tipologi, bukan dokumentasi satu desa."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Mengacu pada kajian Poedjowibowo, Harisun, dan Paputungan (2011). Skema tipologi, bukan dokumentasi satu desa.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -12478,7 +12581,9 @@
       "culturalMeaning": "Mengacu pada kajian Poedjowibowo, Harisun, dan Paputungan (2011). Skema tipologi, bukan dokumentasi satu desa. Sasadu mewadahi musyawarah dan upacara masyarakat Sahu. Tata duduk dalam kajian membedakan kelompok serta peran peserta.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Maluku Utara; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 28. Malut - Sasadu Sahu (Poedjowibowo, Harisun & Paputungan (2011); Kementerian Pariwisata — Rumah Adat Sasadu.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/sasadu-sahu.glb",
+    "worldManifestUrl": "data/asset-manifests/sasadu-sahu.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -12521,9 +12626,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Arfak (Hattam, Meyah, Sough, Moile).",
       "ceremonialRelevance": "Nama rumah berbeda pada kelompok masyarakat Arfak. Sebutan kaki seribu menggambarkan rapatnya penyangga, bukan jumlah tepat seribu."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/mod-aki-aksa-arfak.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "mod-aki-aksa-arfak",
     "driveFolderRef": "30. Papua Barat - Mod Aki Aksa Arfak",
@@ -12627,10 +12732,11 @@
     ],
     "reconstructionNote": "Skema tipologi, bukan rumah satu keluarga. Dinding tanpa jendela dan dua pintu mengikuti rujukan; penamaan serta susunan ruang dapat berbeda setempat.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 12,
-      "limitationsNote": "Skema tipologi, bukan rumah satu keluarga. Dinding tanpa jendela dan dua pintu mengikuti rujukan; penamaan serta susunan ruang dapat berbeda setempat."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Skema tipologi, bukan rumah satu keluarga. Dinding tanpa jendela dan dua pintu mengikuti rujukan; penamaan serta susunan ruang dapat berbeda setempat.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -12895,7 +13001,9 @@
       "culturalMeaning": "Skema tipologi, bukan rumah satu keluarga. Dinding tanpa jendela dan dua pintu mengikuti rujukan; penamaan serta susunan ruang dapat berbeda setempat. Nama rumah berbeda pada kelompok masyarakat Arfak. Sebutan kaki seribu menggambarkan rapatnya penyangga, bukan jumlah tepat seribu.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Papua Barat; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 30. Papua Barat - Mod Aki Aksa Arfak (Kementerian Pariwisata — Rumah Mod Aki Aksa; BPNB Jayapura (2012) — Arsitektur Tradisional Suku Arfak di Manokwari.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/mod-aki-aksa-arfak.glb",
+    "worldManifestUrl": "data/asset-manifests/mod-aki-aksa-arfak.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -12936,9 +13044,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Moi (Malamoi).",
       "ceremonialRelevance": "Kambik merupakan tradisi pendidikan Moi yang mewariskan pengetahuan, keterampilan, dan tanggung jawab sosial."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/kambik-moi.glb",
+    "modelStatus": "available",
+    "assetStatus": "RECONSTRUCTION",
     "assetProvenance": "illustrative_scheme",
     "worldSceneId": "kambik-moi",
     "driveFolderRef": "31. Papua Barat Daya - Kambik Moi",
@@ -13026,10 +13134,11 @@
     ],
     "reconstructionNote": "Bukti fungsi pendidikan lebih kuat daripada dokumentasi bentuk bangunannya. Model ini konsep pengantar, bukan rekonstruksi Kambik atau salinan rumah belajar Siwis.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
+      "interiorSupported": true,
+      "explodedSupported": true,
       "separatedComponents": 10,
-      "limitationsNote": "Bukti fungsi pendidikan lebih kuat daripada dokumentasi bentuk bangunannya. Model ini konsep pengantar, bukan rekonstruksi Kambik atau salinan rumah belajar Siwis."
+      "limitationsNote": "Bukti fungsi pendidikan lebih kuat daripada dokumentasi bentuk bangunannya. Model ini konsep pengantar, bukan rekonstruksi Kambik atau salinan rumah belajar Siwis.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -13294,7 +13403,9 @@
       "culturalMeaning": "Bukti fungsi pendidikan lebih kuat daripada dokumentasi bentuk bangunannya. Model ini konsep pengantar, bukan rekonstruksi Kambik atau salinan rumah belajar Siwis. Kambik merupakan tradisi pendidikan Moi yang mewariskan pengetahuan, keterampilan, dan tanggung jawab sosial.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Papua Barat Daya; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 31. Papua Barat Daya - Kambik Moi (Suntoko (2012) — Pendidikan Adat Kambik, tesis UPI; Achel & Sem Vani Ulimpa (2019) — Rumah belajar adat di Siwis.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/kambik-moi.glb",
+    "worldManifestUrl": "data/asset-manifests/kambik-moi.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -13336,9 +13447,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Tobati–Enggros.",
       "ceremonialRelevance": "Kariwari berhubungan dengan pendidikan adat; contoh revitalisasi Enggros juga mewadahi kegiatan sosial budaya."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/kariwari-enggros.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "kariwari-enggros",
     "driveFolderRef": "32. Papua - Kariwari Enggros",
@@ -13434,10 +13545,11 @@
     ],
     "reconstructionNote": "Mengacu gambar revitalisasi Enggros dalam Salipu dkk. (2025): satu lantai dengan tiga susun atap, bukan tiga lantai.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 11,
-      "limitationsNote": "Mengacu gambar revitalisasi Enggros dalam Salipu dkk. (2025): satu lantai dengan tiga susun atap, bukan tiga lantai."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 7,
+      "limitationsNote": "Mengacu gambar revitalisasi Enggros dalam Salipu dkk. (2025): satu lantai dengan tiga susun atap, bukan tiga lantai.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -13702,7 +13814,9 @@
       "culturalMeaning": "Mengacu gambar revitalisasi Enggros dalam Salipu dkk. (2025): satu lantai dengan tiga susun atap, bukan tiga lantai. Kariwari berhubungan dengan pendidikan adat; contoh revitalisasi Enggros juga mewadahi kegiatan sosial budaya.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Papua; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 32. Papua - Kariwari Enggros (Salipu dkk. (2025) — Rekonstruksi Kariwari, hlm. 54–55; TMII — Anjungan Papua.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/kariwari-enggros.glb",
+    "worldManifestUrl": "data/asset-manifests/kariwari-enggros.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -13744,9 +13858,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Kamoro.",
       "ceremonialRelevance": "Karapauw Kame, juga ditulis Karapao, berkaitan dengan pendidikan pendewasaan dan tiang mitoro dalam tradisi Kamoro."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/karapauw-kame-kamoro.glb",
+    "modelStatus": "available",
+    "assetStatus": "RECONSTRUCTION",
     "assetProvenance": "illustrative_scheme",
     "worldSceneId": "karapauw-kame-kamoro",
     "driveFolderRef": "33. Papua Tengah - Karapauw Kame Kamoro",
@@ -13850,10 +13964,11 @@
     ],
     "reconstructionNote": "Mengacu kajian Maryone (2018), bukan replika bangunan Atuka. Enam pintu, dimensi, profil atap, dan zona ilustratif; penanda polos menunjukkan posisi tiang mitoro.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 12,
-      "limitationsNote": "Mengacu kajian Maryone (2018), bukan replika bangunan Atuka. Enam pintu, dimensi, profil atap, dan zona ilustratif; penanda polos menunjukkan posisi tiang mitoro."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Mengacu kajian Maryone (2018), bukan replika bangunan Atuka. Enam pintu, dimensi, profil atap, dan zona ilustratif; penanda polos menunjukkan posisi tiang mitoro.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -14118,7 +14233,9 @@
       "culturalMeaning": "Mengacu kajian Maryone (2018), bukan replika bangunan Atuka. Enam pintu, dimensi, profil atap, dan zona ilustratif; penanda polos menunjukkan posisi tiang mitoro. Karapauw Kame, juga ditulis Karapao, berkaitan dengan pendidikan pendewasaan dan tiang mitoro dalam tradisi Kamoro.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Papua Tengah; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 33. Papua Tengah - Karapauw Kame Kamoro (Maryone (2018) — Rumah Tradisional Suku Kamoro, hlm. 160–166.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/karapauw-kame-kamoro.glb",
+    "worldManifestUrl": "data/asset-manifests/karapauw-kame-kamoro.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -14161,9 +14278,9 @@
       "socialOrganization": "Terhubung erat dengan sistem sosial dan kekerabatan Suku Asmat.",
       "ceremonialRelevance": "Jew adalah pusat kegiatan sosial dan adat Asmat. Pemakaian ruang mengikuti aturan masyarakat setempat."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/jew-asmat.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "jew-asmat",
     "driveFolderRef": "35. Papua Selatan - Jew Asmat",
@@ -14259,10 +14376,11 @@
     ],
     "reconstructionNote": "Skema terinspirasi dokumentasi Atsj, bukan replika satu Jew. Lima akses dan lima perapian merupakan contoh visual, bukan jumlah baku.",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 11,
-      "limitationsNote": "Skema terinspirasi dokumentasi Atsj, bukan replika satu Jew. Lima akses dan lima perapian merupakan contoh visual, bukan jumlah baku."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 10,
+      "limitationsNote": "Skema terinspirasi dokumentasi Atsj, bukan replika satu Jew. Lima akses dan lima perapian merupakan contoh visual, bukan jumlah baku.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -14527,7 +14645,9 @@
       "culturalMeaning": "Skema terinspirasi dokumentasi Atsj, bukan replika satu Jew. Lima akses dan lima perapian merupakan contoh visual, bukan jumlah baku. Jew adalah pusat kegiatan sosial dan adat Asmat. Pemakaian ruang mengikuti aturan masyarakat setempat.",
       "preservationAndContemporaryRelevance": "Warisan arsitektur fisik (benda) Papua Selatan; pelestarian dokumentasi tipologi dan material lokal terus didorong.",
       "referencesSummary": "Katalog Deskripsi Arsitektur Nusantara — 35. Papua Selatan - Jew Asmat (Mansbawar, Yusuf & Abidin (2025) — Rumah Jew di Distrik Atsj; Kementerian Pariwisata — Rumah Adat Jew.)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/jew-asmat.glb",
+    "worldManifestUrl": "data/asset-manifests/jew-asmat.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -14569,17 +14689,18 @@
       "socialOrganization": "Menampilkan tata krama penerimaan tamu berdasarkan tingkatan ruang dari luar ke dalam.",
       "ceremonialRelevance": "Lokasi upacara siklus hidup keluarga (mitoni, pernikahan adat, kenduri)."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/rumah-ndalem.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "rumah-ndalem",
     "driveFolderRef": "Rumah ndalem",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 13,
-      "limitationsNote": "Terdokumentasi melalui 13 lembar visual referensi di folder Drive Rumah ndalem; model 3D sedang dipersiapkan."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 11,
+      "limitationsNote": "Terdokumentasi melalui 13 lembar visual referensi di folder Drive Rumah ndalem; model 3D sedang dipersiapkan.",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -14648,7 +14769,9 @@
       "culturalMeaning": "Mencerminkan keselarasan mikrokosmos manusia dengan sumbu filosofis Yogyakarta serta gradasi ruang publik ke batiniah. Lokasi upacara siklus hidup keluarga (mitoni, pernikahan adat, kenduri).",
       "preservationAndContemporaryRelevance": "Banyak bangunan Ndalem di Kotagede dan Jeron Beteng dilindungi sebagai cagar budaya DI Yogyakarta.",
       "referencesSummary": "Kawruh Kalang & Arsitektur Tradisional Yogyakarta (Josef Prijotomo / Dinas Kebudayaan DIY); Folder Referensi Rumah ndalem (13 visual) (Arsip Google Drive NUSAARCH)"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-ndalem.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-ndalem.json"
   },
   {
     "schemaVersion": "3.0.0",
@@ -14692,17 +14815,18 @@
       "socialOrganization": "Pemisahan jelas antara zona publik depan (Bale) dan zona privat keluarga (Jrumah) melalui dinding ukir Gebyok.",
       "ceremonialRelevance": "Pusat tradisi keluarga Suku Osing di Desa Kemiren."
     },
-    "model3DUrl": null,
-    "modelStatus": "in_progress",
-    "assetStatus": "PENDING",
+    "model3DUrl": "assets/models/houses/rumah-osing.glb",
+    "modelStatus": "available",
+    "assetStatus": "COMPLETE",
     "assetProvenance": "archive_pending_3d",
     "worldSceneId": "rumah-osing",
     "driveFolderRef": "/Ringkasan Sejarah & Bagian Rumah Adat Osing.docx",
     "modelCapabilities": {
-      "interiorSupported": false,
-      "explodedSupported": false,
-      "separatedComponents": 10,
-      "limitationsNote": "Sumber teks lengkap berasal dari dokumen Drive Ringkasan Sejarah & Bagian Rumah Adat Osing.docx; foto asli dari Wikimedia Commons (CC BY-SA 4.0)."
+      "interiorSupported": true,
+      "explodedSupported": true,
+      "separatedComponents": 11,
+      "limitationsNote": "Sumber teks lengkap berasal dari dokumen Drive Ringkasan Sejarah & Bagian Rumah Adat Osing.docx; foto asli dari Wikimedia Commons (CC BY-SA 4.0).",
+      "walkableInterior": true
     },
     "cameraPresets": {
       "exterior": {
@@ -14892,6 +15016,8 @@
       "culturalMeaning": "Evolusi atap Cerocogan → Baresan → Tikel Balung melambangkan kematangan siklus hidup dan kemapanan sosial-ekonomi keluarga Osing. Pusat tradisi keluarga Suku Osing di Desa Kemiren.",
       "preservationAndContemporaryRelevance": "Dilestarikan secara aktif di Desa Adat Kemiren sebagai kawasan cagar budaya Suku Osing, Banyuwangi.",
       "referencesSummary": "Ringkasan Sejarah & Bagian Rumah Adat Osing (Tikel Balung) (Dokumen Arsip Google Drive NULAR); Wikimedia Commons — File:Rumah Tradisional Osing.JPG (Bachtiar Djanan (CC BY-SA 4.0))"
-    }
+    },
+    "worldModel3DUrl": "assets/models/houses/rumah-osing.glb",
+    "worldManifestUrl": "data/asset-manifests/rumah-osing.json"
   }
 ]

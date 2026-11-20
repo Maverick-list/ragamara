@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "kariwari-enggros",
+  "houseName": "Kariwari Enggros",
+  "province": "Papua",
+  "island": "Papua",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/kariwari-enggros.glb",
+  "fileSizeBytes": 97460,
+  "meshes": 33,
+  "triangles": 592,
+  "colliders": 13,
+  "groups": [
+    "HOUSE_KARIWARI_ENGGROS_ROOT",
+    "FLOOR_SYSTEM",
+    "STRUCTURAL_COLUMNS",
+    "WALL_SYSTEM",
+    "ROOF_SYSTEM",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    7.6000000000000005
+  ],
+  "interiorZones": [
+    {
+      "id": "ruang-lingkar",
+      "name": "Balai Lingkar Utama",
+      "bounds": {
+        "minX": -4.4,
+        "maxX": 4.4,
+        "minZ": -4.4,
+        "maxZ": 4.4
+      },
+      "floorY": 0.65
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_SYSTEM"
+  ],
+  "driveFolderRef": "32. Papua - Kariwari Enggros",
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}

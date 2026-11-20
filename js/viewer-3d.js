@@ -102,7 +102,7 @@ export class NularArchitectureViewer {
     this.errorOverlay.hidden = true;
     this.errorOverlay.innerHTML = `
       <span class="eyebrow eyebrow--light">Kendala Pemuatan Model</span>
-      <p data-error-msg style="max-width:40ch;margin:12px 0 18px;font-size:0.92rem;color:var(--ink-on-dark-muted);">Gagal memuat berkas 3D GLB.</p>
+      <p data-error-msg style="max-width:40ch;margin:12px 0 18px;font-size:0.92rem;color:var(--ink-on-dark-muted);"></p>
       <button type="button" data-retry-btn class="btn-museum btn-museum--bronze btn-museum--sm">Coba Muat Ulang</button>
     `;
     this.errorOverlay.querySelector('[data-retry-btn]').addEventListener('click', () => {
@@ -354,6 +354,10 @@ export class NularArchitectureViewer {
         const hotspotByMesh = new Map((this.house.hotspots || []).map((h) => [h.meshName, h]));
 
         this.modelRoot.traverse((obj) => {
+          if (obj.name && obj.name.toUpperCase().startsWith('COLLISION')) {
+            obj.visible = false;
+            return;
+          }
           if (obj.isMesh) {
             obj.castShadow = true;
             obj.receiveShadow = true;
@@ -372,8 +376,20 @@ export class NularArchitectureViewer {
           : this.modelRoot;
 
         for (const child of rootContainer.children) {
+          if (child.name && child.name.toUpperCase().startsWith('COLLISION')) {
+            child.visible = false;
+            continue;
+          }
           const hs = hotspotByMesh.get(child.name);
-          const explodeVec = hs?.explodeOffset ? new THREE.Vector3(...hs.explodeOffset) : new THREE.Vector3(0, 0, 0);
+          let explodeVec = hs?.explodeOffset ? new THREE.Vector3(...hs.explodeOffset) : new THREE.Vector3(0, 0, 0);
+          if (explodeVec.lengthSq() === 0 && child.name) {
+            const up = child.name.toUpperCase();
+            if (up.includes('ROOF_BRUNJUNG')) explodeVec.set(0, 3.0, 0);
+            else if (up.includes('ROOF')) explodeVec.set(0, 2.2, 0);
+            else if (up.includes('TUMPANG')) explodeVec.set(0, 1.5, 0);
+            else if (up.includes('WALL') || up.includes('DOOR')) explodeVec.set(0, 0.75, 0);
+            else if (up.includes('FOUNDATION') || up.includes('UMPAK')) explodeVec.set(0, -0.5, 0);
+          }
           const meshes = [];
           child.traverse((o) => {
             if (o.isMesh) {

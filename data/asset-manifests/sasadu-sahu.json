@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "sasadu-sahu",
+  "houseName": "Sasadu Sahu",
+  "province": "Maluku Utara",
+  "island": "Maluku",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/sasadu-sahu.glb",
+  "fileSizeBytes": 146252,
+  "meshes": 55,
+  "triangles": 1168,
+  "colliders": 10,
+  "groups": [
+    "HOUSE_SASADU_SAHU_ROOT",
+    "FOUNDATION_SYSTEM",
+    "STRUCTURAL_COLUMNS",
+    "FLOOR_SYSTEM",
+    "ENTRANCE_STAIRS",
+    "WALL_SYSTEM",
+    "DOORS",
+    "ROOF_SYSTEM",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    8.057500000000001
+  ],
+  "interiorZones": [
+    {
+      "id": "beranda",
+      "name": "Balai Utama Terbuka",
+      "bounds": {
+        "minX": -4.8,
+        "maxX": 4.8,
+        "minZ": 1.7000000000000002,
+        "maxZ": 3.7
+      },
+      "floorY": 1.35
+    },
+    {
+      "id": "ruang-dalam",
+      "name": "Ruang Musyawarah Adat",
+      "bounds": {
+        "minX": -4.6,
+        "maxX": 4.6,
+        "minZ": -3.5,
+        "maxZ": 2.4000000000000004
+      },
+      "floorY": 1.35
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_SYSTEM"
+  ],
+  "driveFolderRef": "28. Malut - Sasadu Sahu",
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}

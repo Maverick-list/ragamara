@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "bale-bali",
+  "houseName": "Kompleks Hunian Bali (Bale & Angkul-Angkul)",
+  "province": "Bali",
+  "island": "Bali & Nusa Tenggara",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/bale-bali.glb",
+  "fileSizeBytes": 51604,
+  "meshes": 21,
+  "triangles": 248,
+  "colliders": 7,
+  "groups": [
+    "HOUSE_BALE_BALI_ROOT",
+    "FOUNDATION_SYSTEM",
+    "STRUCTURAL_COLUMNS",
+    "FLOOR_SYSTEM",
+    "ENTRANCE_STAIRS",
+    "WALL_SYSTEM",
+    "DOORS",
+    "ROOF_SYSTEM",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    7.1
+  ],
+  "interiorZones": [
+    {
+      "id": "beranda",
+      "name": "Balai Utama Terbuka",
+      "bounds": {
+        "minX": -4.8,
+        "maxX": 4.8,
+        "minZ": 1.7000000000000002,
+        "maxZ": 3.7
+      },
+      "floorY": 0.45
+    },
+    {
+      "id": "ruang-dalam",
+      "name": "Ruang Musyawarah Adat",
+      "bounds": {
+        "minX": -4.6,
+        "maxX": 4.6,
+        "minZ": -3.5,
+        "maxZ": 2.4000000000000004
+      },
+      "floorY": 0.45
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_SYSTEM"
+  ],
+  "driveFolderRef": "Pekarangan Tradisional Bali",
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}

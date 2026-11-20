@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "rumah-bolon-toba",
+  "houseName": "Rumah Bolon",
+  "province": "Sumatera Utara",
+  "island": "Sumatra",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/rumah-bolon-toba.glb",
+  "fileSizeBytes": 164196,
+  "meshes": 46,
+  "triangles": 2508,
+  "colliders": 15,
+  "groups": [
+    "HOUSE_RUMAH_BOLON_TOBA_ROOT",
+    "FOUNDATION_STONES",
+    "STILT_COLUMNS",
+    "FLOOR_SYSTEM",
+    "ENTRANCE_STAIRS",
+    "WALL_SYSTEM",
+    "DOORS",
+    "ROOF_SYSTEM",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    8.1
+  ],
+  "interiorZones": [
+    {
+      "id": "ruang-utama",
+      "name": "Ruang Utama Hunian Panggung",
+      "bounds": {
+        "minX": -3,
+        "maxX": 3,
+        "minZ": -3.0999999999999996,
+        "maxZ": 3.0999999999999996
+      },
+      "floorY": 1.65
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_SYSTEM"
+  ],
+  "driveFolderRef": "12. Sumut - Rumah Bolon Batak Toba",
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}

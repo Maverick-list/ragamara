@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "tambi-lore",
+  "houseName": "Tambi Lore",
+  "province": "Sulawesi Tengah",
+  "island": "Sulawesi",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/tambi-lore.glb",
+  "fileSizeBytes": 96648,
+  "meshes": 30,
+  "triangles": 668,
+  "colliders": 12,
+  "groups": [
+    "HOUSE_TAMBI_LORE_ROOT",
+    "FLOOR_SYSTEM",
+    "STRUCTURAL_COLUMNS",
+    "WALL_SYSTEM",
+    "ROOF_SYSTEM",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    6.800000000000001
+  ],
+  "interiorZones": [
+    {
+      "id": "ruang-lingkar",
+      "name": "Balai Lingkar Utama",
+      "bounds": {
+        "minX": -3.6,
+        "maxX": 3.6,
+        "minZ": -3.6,
+        "maxZ": 3.6
+      },
+      "floorY": 0.14
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_SYSTEM"
+  ],
+  "driveFolderRef": "24. Sulteng - Tambi Lore",
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}

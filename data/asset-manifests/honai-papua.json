@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "honai-papua",
+  "houseName": "Honai",
+  "province": "Papua Pegunungan",
+  "island": "Papua",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/honai-papua.glb",
+  "fileSizeBytes": 108360,
+  "meshes": 30,
+  "triangles": 1222,
+  "colliders": 12,
+  "groups": [
+    "HOUSE_HONAI_PAPUA_ROOT",
+    "FLOOR_SYSTEM",
+    "STRUCTURAL_COLUMNS",
+    "WALL_SYSTEM",
+    "ROOF_SYSTEM",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    6.800000000000001
+  ],
+  "interiorZones": [
+    {
+      "id": "ruang-lingkar",
+      "name": "Lantai Bawah Perapian & Loteng Honai",
+      "bounds": {
+        "minX": -3.6,
+        "maxX": 3.6,
+        "minZ": -3.6,
+        "maxZ": 3.6
+      },
+      "floorY": 0.14
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_SYSTEM"
+  ],
+  "driveFolderRef": "34. Papua Pegunungan - Honai Pilamo Hubula",
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}

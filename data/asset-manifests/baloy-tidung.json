@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "baloy-tidung",
+  "houseName": "Baloy Tidung",
+  "province": "Kalimantan Utara",
+  "island": "Kalimantan",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/baloy-tidung.glb",
+  "fileSizeBytes": 233460,
+  "meshes": 86,
+  "triangles": 1972,
+  "colliders": 14,
+  "groups": [
+    "HOUSE_BALOY_TIDUNG_ROOT",
+    "FOUNDATION_SYSTEM",
+    "STRUCTURAL_COLUMNS",
+    "FLOOR_SYSTEM",
+    "ENTRANCE_STAIRS",
+    "WALL_SYSTEM",
+    "DOORS",
+    "ROOF_SYSTEM",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    8.41
+  ],
+  "interiorZones": [
+    {
+      "id": "beranda",
+      "name": "Serambi / Beranda Depan",
+      "bounds": {
+        "minX": -7,
+        "maxX": 7,
+        "minZ": 1.4,
+        "maxZ": 3.4
+      },
+      "floorY": 1.8
+    },
+    {
+      "id": "ruang-dalam",
+      "name": "Ruang Dalam & Bilik Keluarga",
+      "bounds": {
+        "minX": -6.8,
+        "maxX": 6.8,
+        "minZ": -3.1999999999999997,
+        "maxZ": 2.0999999999999996
+      },
+      "floorY": 1.8
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_SYSTEM"
+  ],
+  "driveFolderRef": "21. Kaltara - Baloy Tidung",
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "mod-aki-aksa-arfak",
+  "houseName": "Mod Aki Aksa Arfak",
+  "province": "Papua Barat",
+  "island": "Papua",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/mod-aki-aksa-arfak.glb",
+  "fileSizeBytes": 334568,
+  "meshes": 124,
+  "triangles": 3068,
+  "colliders": 12,
+  "groups": [
+    "HOUSE_MOD_AKI_AKSA_ARFAK_ROOT",
+    "FOUNDATION_SYSTEM",
+    "STRUCTURAL_COLUMNS",
+    "FLOOR_SYSTEM",
+    "ENTRANCE_STAIRS",
+    "WALL_SYSTEM",
+    "DOORS",
+    "ROOF_SYSTEM",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    8.057500000000001
+  ],
+  "interiorZones": [
+    {
+      "id": "beranda",
+      "name": "Serambi / Beranda Depan",
+      "bounds": {
+        "minX": -4.3,
+        "maxX": 4.3,
+        "minZ": 1.7000000000000002,
+        "maxZ": 3.7
+      },
+      "floorY": 1.35
+    },
+    {
+      "id": "ruang-dalam",
+      "name": "Ruang Dalam & Bilik Keluarga",
+      "bounds": {
+        "minX": -4.1,
+        "maxX": 4.1,
+        "minZ": -3.5,
+        "maxZ": 2.4000000000000004
+      },
+      "floorY": 1.35
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_SYSTEM"
+  ],
+  "driveFolderRef": "30. Papua Barat - Mod Aki Aksa Arfak",
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "rumah-limasan",
+  "houseName": "Rumah Limasan",
+  "province": "Jawa Tengah",
+  "island": "Java",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/rumah-limasan.glb",
+  "fileSizeBytes": 178732,
+  "meshes": 75,
+  "triangles": 1220,
+  "colliders": 13,
+  "groups": [
+    "HOUSE_RUMAH_LIMASAN_ROOT",
+    "FLOOR_SYSTEM",
+    "UMPAK",
+    "SOKO_GURU",
+    "TUMPANG_SARI",
+    "WALL_SYSTEM",
+    "DOORS",
+    "ROOF_PENANGGAP",
+    "ROOF_BRUNJUNG",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    7.2
+  ],
+  "interiorZones": [
+    {
+      "id": "pendopo",
+      "name": "Pendopo (Zona Publik)",
+      "bounds": {
+        "minX": -4.8,
+        "maxX": 4.8,
+        "minZ": -1.1,
+        "maxZ": 5.2
+      },
+      "floorY": 0.48
+    },
+    {
+      "id": "ndalem",
+      "name": "Ndalem Ageng & Senthong (Zona Privat)",
+      "bounds": {
+        "minX": -4.6,
+        "maxX": 4.6,
+        "minZ": -4.9,
+        "maxZ": -1.2
+      },
+      "floorY": 0.48
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_BRUNJUNG",
+    "ROOF_PENANGGAP"
+  ],
+  "driveFolderRef": null,
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}

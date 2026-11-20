@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "2.0.0",
+  "houseId": "rumah-gadang",
+  "houseName": "Rumah Gadang",
+  "province": "Sumatera Barat",
+  "island": "Sumatra",
+  "provenance": "original_digital_reconstruction",
+  "assetStatus": "RECONSTRUCTION",
+  "walkableInterior": true,
+  "glbUrl": "assets/models/houses/rumah-gadang.glb",
+  "fileSizeBytes": 204824,
+  "meshes": 60,
+  "triangles": 2964,
+  "colliders": 15,
+  "groups": [
+    "HOUSE_RUMAH_GADANG_ROOT",
+    "FOUNDATION_STONES",
+    "STILT_COLUMNS",
+    "FLOOR_SYSTEM",
+    "ENTRANCE_STAIRS",
+    "WALL_SYSTEM",
+    "DOORS",
+    "ROOF_SYSTEM",
+    "INTERIOR_FURNITURE",
+    "COLLISION"
+  ],
+  "spawnPoint": [
+    0,
+    0.05,
+    8.1
+  ],
+  "interiorZones": [
+    {
+      "id": "ruang-utama",
+      "name": "Ruang Tengah & Bilik Rumah Gadang",
+      "bounds": {
+        "minX": -5.1,
+        "maxX": 5.1,
+        "minZ": -3.0999999999999996,
+        "maxZ": 3.0999999999999996
+      },
+      "floorY": 1.65
+    }
+  ],
+  "roofGroupNames": [
+    "ROOF_SYSTEM"
+  ],
+  "driveFolderRef": "13. Sumbar - Rumah Gadang",
+  "generatedAt": "2026-11-21",
+  "license": "CC BY 4.0 — NULAR Architectural Digital Reconstruction"
+}
