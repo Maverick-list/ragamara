@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "1.0.0",
+  "achievements": [
+    { "id": "first-discovery", "title": "First Discovery", "description": "Menemukan item budaya atau rumah adat pertama di NULAR.", "badgeIcon": "explore", "rule": { "type": "discoveries", "min": 1 } },
+    { "id": "first-house-explorer", "title": "First House Explorer", "description": "Masuk dan menjelajahi rumah adat 3D pertama.", "badgeIcon": "home_work", "rule": { "type": "housesVisited", "min": 1 } },
+    { "id": "architecture-observer", "title": "Architecture Observer", "description": "Menginspeksi minimal 3 komponen konstruksi arsitektur.", "badgeIcon": "architecture", "rule": { "type": "componentsInspected", "min": 3 } },
+    { "id": "island-hopper", "title": "Island Hopper", "description": "Menjelajahi warisan budaya dari minimal 3 kepulauan berbeda.", "badgeIcon": "public", "rule": { "type": "islandsVisited", "min": 3 } },
+    { "id": "clothing-collector", "title": "Traditional Clothing Collector", "description": "Mengumpulkan minimal 3 koleksi wastra Nusantara.", "badgeIcon": "checkroom", "rule": { "type": "discoveries", "min": 3 } },
+    { "id": "artifact-researcher", "title": "Artifact Researcher", "description": "Menyelesaikan kuis pengetahuan budaya Nusantara.", "badgeIcon": "history_edu", "rule": { "type": "missionsCompleted", "min": 1 } },
+    { "id": "cultural-scholar", "title": "Cultural Scholar", "description": "Mencapai Level 3 atau mengumpulkan 250 XP terverifikasi.", "badgeIcon": "school", "rule": { "type": "xp", "min": 250 } },
+    { "id": "seven-day-explorer", "title": "Seven-Day Explorer", "description": "Mempertahankan runtunan belajar harian selama 7 hari.", "badgeIcon": "local_fire_department", "rule": { "type": "streak", "min": 7 } }
+  ]
+}

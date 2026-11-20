@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "1.0.0",
+  "framingNote": "Perjalanan Warisan Nusantara ('The Nusantara Heritage Journey') adalah bingkai naratif edukatif fiktif untuk memandu eksplorasi; seluruh fakta sejarah, arsitektur, dan budaya di dalamnya bersumber dari referensi terverifikasi.",
+  "missions": [
+    {
+      "id": "story-nusantara-awakening",
+      "title": "Bab 1: Jejak Awal di Alun-Alun Nusantara",
+      "category": "story",
+      "regionId": "Nusantara",
+      "locationHouseId": "rumah-joglo",
+      "description": "Sebagai Penjelajah Warisan Nusantara, masuki Rumah Joglo di Jawa Tengah dan amati sistem konstruksi Soko Guru.",
+      "objective": { "type": "inspect_house", "targetHouseId": "rumah-joglo", "requiredCount": 1 },
+      "xpReward": 30,
+      "difficulty": "Pemula"
+    },
+    {
+      "id": "explore-sumatra-route",
+      "title": "Rute Ekspedisi Sumatra: Gadang & Bolon",
+      "category": "regional",
+      "regionId": "Sumatra",
+      "locationHouseId": "rumah-gadang",
+      "description": "Jelajahi dua tradisi besar Sumatra: Rumah Gadang (Sumatera Barat) dan Rumah Bolon (Sumatera Utara).",
+      "objective": { "type": "visit_houses", "houseIds": ["rumah-gadang", "rumah-bolon-toba"], "requiredCount": 2 },
+      "xpReward": 45,
+      "difficulty": "Menengah"
+    },
+    {
+      "id": "explore-sulawesi-toraja",
+      "title": "Menyingkap Tongkonan Sulawesi Selatan",
+      "category": "exploration",
+      "regionId": "Sulawesi",
+      "locationHouseId": "tongkonan-toraja",
+      "description": "Masuki pekarangan dan interior Tongkonan serta inspeksi atap melengkung dan struktur panggungnya.",
+      "objective": { "type": "inspect_house", "targetHouseId": "tongkonan-toraja", "requiredCount": 1 },
+      "xpReward": 30,
+      "difficulty": "Pemula"
+    },
+    {
+      "id": "explore-papua-honai",
+      "title": "Adaptasi Iklim Pegunungan: Honai Papua",
+      "category": "regional",
+      "regionId": "Papua",
+      "locationHouseId": "honai-papua",
+      "description": "Kunjungi Honai di Papua Pegunungan untuk memahami bagaimana atap kerucut jerami menjaga kehangatan di ketinggian 1.600+ mdpl.",
+      "objective": { "type": "inspect_house", "targetHouseId": "honai-papua", "requiredCount": 1 },
+      "xpReward": 30,
+      "difficulty": "Pemula"
+    },
+    {
+      "id": "collection-wastra-nusantara",
+      "title": "Kolektor Wastra: Bedakan Batik & Tenun",
+      "category": "collection",
+      "regionId": "Nusantara",
+      "locationUrl": "learn.html#clothing",
+      "description": "Kumpulkan minimal 3 entri Wastra Nusantara di Pusat Belajar dan pahami perbedaan Batik, Songket, dan Tenun Ikat.",
+      "objective": { "type": "discover_category", "category": "clothing", "requiredCount": 3 },
+      "xpReward": 40,
+      "difficulty": "Menengah"
+    },
+    {
+      "id": "learning-quiz-architecture",
+      "title": "Kuis Tektonik & Pusaka Nusantara",
+      "category": "learning",
+      "regionId": "Nusantara",
+      "description": "Jawab 3 pertanyaan terverifikasi tentang arsitektur tahan gempa, wastra, dan artefak museum Nusantara.",
+      "objective": { "type": "quiz", "quizId": "quiz-nusantara-core", "requiredScore": 3 },
+      "xpReward": 20,
+      "difficulty": "Pemula"
+    },
+    {
+      "id": "daily-architectural-detail",
+      "title": "Misi Harian: Inspeksi Detail Arsitektur",
+      "category": "daily",
+      "regionId": "Nusantara",
+      "locationHouseId": "mbaru-niang",
+      "description": "Inspeksi minimal satu komponen arsitektur di dalam Dunia 3D atau Penampil Rumah hari ini.",
+      "objective": { "type": "inspect_any_component", "requiredCount": 1 },
+      "xpReward": 20,
+      "difficulty": "Harian"
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "quiz-nusantara-core",
+      "title": "Kuis Pengetahuan Budaya Nusantara",
+      "questions": [
+        {
+          "q": "Mengapa tiang rumah adat seperti Joglo dan Rumah Gadang diletakkan di atas batu umpak / batu sandi alih-alih ditanam langsung ke tanah?",
+          "options": [
+            "Mencegah pelapukan kayu dan bekerja sebagai peredam guncangan gempa alami",
+            "Agar rumah mudah didorong berpindah kota setiap minggu",
+            "Karena kayu jati tidak bisa dipotong rata"
+          ],
+          "correctIndex": 0,
+          "source": "Ideas and Forms of Javanese Architecture; Rumah Gadang Tectonic Documentation"
+        },
+        {
+          "q": "Manakah pernyataan yang paling akurat mengenai Songket Minangkabau dan Tenun Ikat Sumba?",
+          "options": [
+            "Keduanya adalah varian Batik tulis menggunakan canting malam",
+            "Keduanya adalah kain tenun tradisional (non-batik) dengan teknik pakan tambahan atau ikat lusi",
+            "Keduanya dicetak menggunakan mesin sablon modern"
+          ],
+          "correctIndex": 1,
+          "source": "NULAR Textile Provenance Registry & DAPOBUD"
+        },
+        {
+          "q": "Apa fungsi utama Rencong dalam masyarakat Aceh masa kini menurut catatan resmi DAPOBUD?",
+          "options": [
+            "Alat bertani sehari-hari di sawah",
+            "Artefak sejarah dan simbol keberanian/kehormatan pada upacara adat seperti pernikahan",
+            "Alat musik perkusi tradisional"
+          ],
+          "correctIndex": 1,
+          "source": "DAPOBUD Kemendikbud RI — REK/WBTB/2013/01/00001"
+        }
+      ]
+    }
+  ]
+}

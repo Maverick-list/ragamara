@@ -238,6 +238,8 @@
     import { loadHouses } from './js/museum-data.js';
     import { escapeHtml } from './js/museum-shell.js';
     import { WorldManager } from './js/world/WorldManager.js';
+    import { worldAudio } from './js/world/AudioManager.js';
+    import { ProgressionEngine } from './js/gamification/ProgressionEngine.js';
 
     const loadingEl = document.getElementById('world-loading');
     const loadingTitle = document.getElementById('loading-title');
@@ -375,6 +377,13 @@
               teleportModal.hidden = false;
             } else if (item.kind === 'component') {
               const hs = item.payload;
+              worldAudio.playDiscovery();
+              ProgressionEngine.recordEvent({
+                eventKey: `inspect:${world.activeHouse?.id}:${hs.id || hs.title}`,
+                activityType: 'inspect_detail',
+                itemId: world.activeHouse?.id,
+                label: `${hs.title} (${world.activeHouse?.houseName || ''})`
+              });
               openDrawer(
                 `Anatomi Arsitektur · ${world.activeHouse?.houseName || ''}`,
                 hs.title,
