@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akun Penjelajah &amp; Pengaturan — NULAR</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet" />
+  <link rel="stylesheet" href="css/museum.css" />
+  <link rel="stylesheet" href="css/design-system.css" />
+</head>
+<body>
+  <div id="museum-header-mount"></div>
+
+  <main id="main-content" class="page-enter">
+    <section class="museum-section" style="padding-top:48px;padding-bottom:32px;">
+      <div class="museum-container">
+        <span class="eyebrow">Identitas Penjelajah &amp; Pengaturan Ekosistem</span>
+        <h1 class="display-title" style="margin-top:8px;">Akun, Keamanan &amp; Aksesibilitas</h1>
+        <p class="lead-copy" id="auth-session-banner" style="margin-top:10px;">
+          Memeriksa status sesi...
+        </p>
+      </div>
+    </section>
+
+    <section class="museum-section museum-section--sand">
+      <div class="museum-container">
+        <div class="nular-grid-3">
+          <!-- Sign In / Sign Up Card -->
+          <div class="nular-panel">
+            <span class="eyebrow" data-i18n="auth.signIn">Masuk</span>
+            <h2 class="card-title" style="margin:8px 0 12px;">Masuk / Daftar Akun Penjelajah</h2>
+            <form id="auth-form" style="display:flex;flex-direction:column;gap:10px;">
+              <div>
+                <label class="field-label" for="auth-username" data-i18n="auth.username">Nama Penjelajah Publik</label>
+                <input id="auth-username" type="text" class="museum-input" placeholder="NusantaraExplorer" />
+              </div>
+              <div>
+                <label class="field-label" for="auth-email" data-i18n="auth.email">Alamat Email</label>
+                <input id="auth-email" type="email" class="museum-input" required placeholder="penjelajah@nular.id" />
+              </div>
+              <div>
+                <label class="field-label" for="auth-password" data-i18n="auth.password">Kata Sandi (min. 8 karakter)</label>
+                <input id="auth-password" type="password" class="museum-input" required minlength="8" />
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;">
+                <button type="submit" id="btn-login" class="btn-museum btn-museum--primary btn-museum--sm" data-i18n="auth.signIn">Masuk</button>
+                <button type="button" id="btn-signup" class="btn-museum btn-museum--bronze btn-museum--sm" data-i18n="auth.signUp">Daftar Akun</button>
+                <button type="button" id="btn-reset" class="btn-museum btn-museum--secondary btn-museum--sm" data-i18n="auth.resetPassword">Lupa Kata Sandi?</button>
+              </div>
+              <div id="auth-feedback" class="mono-caption" aria-live="polite" style="margin-top:6px;"></div>
+            </form>
+            <p class="mono-caption" style="margin-top:14px;color:var(--ink-muted);" data-i18n="auth.verifyNotice">
+              Email verifikasi &amp; pemulihan akun tersedia saat backend Supabase terhubung.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border-hairline);">
+              <button type="button" id="btn-logout" class="btn-museum btn-museum--secondary btn-museum--sm" data-i18n="auth.signOut">Keluar</button>
+              <button type="button" id="btn-delete-account" class="btn-museum btn-museum--secondary btn-museum--sm" style="color:#9e2a2b;" data-i18n="auth.deleteAccount">Hapus Akun</button>
+            </div>
+          </div>
+
+          <!-- Camera & Controls Preferences -->
+          <div class="nular-panel">
+            <span class="eyebrow">Kamera &amp; Kontrol 3D</span>
+            <h2 class="card-title" style="margin:8px 0 12px;">Pengaturan Eksplorasi</h2>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:0.86rem;">
+              <label>
+                <span class="field-label">Mode Kamera</span>
+                <select id="set-camera-mode" class="museum-select">
+                  <option value="third-person">Orang Ketiga (Third Person)</option>
+                  <option value="first-person">Orang Pertama (First Person)</option>
+                  <option value="free-explore">Eksplorasi Bebas (Free Orbit)</option>
+                </select>
+              </label>
+              <label>
+                <span class="field-label">Sensitivitas Mouse (<span id="val-sens">1.0</span>)</span>
+                <input id="set-sensitivity" type="range" min="0.4" max="2.2" step="0.1" style="width:100%;" />
+              </label>
+              <label>
+                <span class="field-label">Field of View (<span id="val-fov">52</span>°)</span>
+                <input id="set-fov" type="range" min="40" max="80" step="2" style="width:100%;" />
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <input id="set-invert-y" type="checkbox" /> Balik Sumbu-Y (Invert Y-Axis)
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <input id="set-fp-body" type="checkbox" /> Tampilkan Tubuh di Mode Orang Pertama
+              </label>
+            </div>
+          </div>
+
+          <!-- Graphics, Audio & Accessibility -->
+          <div class="nular-panel">
+            <span class="eyebrow">Grafis, Audio &amp; Aksesibilitas</span>
+            <h2 class="card-title" style="margin:8px 0 12px;">Kenyamanan &amp; Performa</h2>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:0.86rem;">
+              <label>
+                <span class="field-label">Profil Kualitas 3D</span>
+                <select id="set-quality" class="museum-select">
+                  <option value="auto">Otomatis</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                  <option value="ultra">Ultra</option>
+                </select>
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <input id="set-reduced-motion" type="checkbox" /> Mode Kurangi Gerakan (Reduced Motion)
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <input id="set-ambient-audio" type="checkbox" /> Audio Ambien Nusantara
+              </label>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+                <input id="set-show-fps" type="checkbox" /> Tampilkan Penghitung FPS (Debug)
+              </label>
+              <span id="settings-saved-msg" class="mono-caption" style="color:var(--nular-emerald);" aria-live="polite"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="museum-footer-mount"></div>
+
+  <script type="module">
+    import { initMuseumShell } from './js/museum-shell.js';
+    import { AuthClient } from './js/auth-client.js';
+
+    initMuseumShell('auth');
+
+    const banner = document.getElementById('auth-session-banner');
+    const feedback = document.getElementById('auth-feedback');
+
+    async function refreshSession() {
+      const s = await AuthClient.getSession();
+      banner.textContent = s.authenticated
+        ? `Masuk sebagai ${s.user?.username || 'Penjelajah'} (Sesi Terotentikasi · Cookie HttpOnly Terlindungi).`
+        : 'Saat ini dalam Mode Tamu (Progres tersimpan lokal). Daftar atau masuk untuk menyinkronkan identitas penjelajah.';
+    }
+
+    document.getElementById('auth-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      try {
+        await AuthClient.login({
+          email: document.getElementById('auth-email').value,
+          password: document.getElementById('auth-password').value
+        });
+        feedback.textContent = 'Berhasil masuk! Sesi aktif.';
+        await refreshSession();
+      } catch (err) {
+        feedback.textContent = err.message;
+      }
+    });
+
+    document.getElementById('btn-signup').addEventListener('click', async () => {
+      try {
+        await AuthClient.signUp({
+          username: document.getElementById('auth-username').value,
+          email: document.getElementById('auth-email').value,
+          password: document.getElementById('auth-password').value
+        });
+        feedback.textContent = 'Akun dibuat & sesi aktif!';
+        await refreshSession();
+      } catch (err) {
+        feedback.textContent = err.message;
+      }
+    });
+
+    document.getElementById('btn-reset').addEventListener('click', async () => {
+      const res = await AuthClient.requestReset(document.getElementById('auth-email').value);
+      feedback.textContent = res.message || res.error || 'Permintaan dicatat.';
+    });
+
+    document.getElementById('btn-logout').addEventListener('click', async () => {
+      await AuthClient.logout();
+      feedback.textContent = 'Anda telah keluar. Mode Tamu aktif.';
+      await refreshSession();
+    });
+
+    document.getElementById('btn-delete-account').addEventListener('click', async () => {
+      await AuthClient.deleteAccount();
+      feedback.textContent = 'Akun dan sesi lokal dihapus.';
+      await refreshSession();
+    });
+
+    // Hydrate & bind settings
+    const s = AuthClient.getSettings();
+    const bindSetting = (id, prop, isCheck = false, labelId = null) => {
+      const el = document.getElementById(id);
+      if (isCheck) el.checked = Boolean(s[prop]);
+      else el.value = s[prop];
+      if (labelId) document.getElementById(labelId).textContent = String(el.value);
+      el.addEventListener('change', () => {
+        const val = isCheck ? el.checked : (el.type === 'range' ? Number(el.value) : el.value);
+        if (labelId) document.getElementById(labelId).textContent = String(val);
+        AuthClient.saveSettings({ [prop]: val });
+        document.getElementById('settings-saved-msg').textContent = 'Pengaturan tersimpan ✓';
+      });
+    };
+
+    bindSetting('set-camera-mode', 'cameraMode');
+    bindSetting('set-sensitivity', 'sensitivity', false, 'val-sens');
+    bindSetting('set-fov', 'fov', false, 'val-fov');
+    bindSetting('set-invert-y', 'invertY', true);
+    bindSetting('set-fp-body', 'showBodyFirstPerson', true);
+    bindSetting('set-quality', 'qualityProfile');
+    bindSetting('set-reduced-motion', 'reducedMotion', true);
+    bindSetting('set-ambient-audio', 'ambientEnabled', true);
+    bindSetting('set-show-fps', 'showFps', true);
+
+    refreshSession();
+  </script>
+</body>
+</html>
