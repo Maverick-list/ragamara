@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NULAR — Nusa Learn | The Living Atlas of Nusantara</title>
+  <meta name="description" content="NULAR (Nusa Learn) — Platform petualangan budaya interaktif berbasis data resmi DAPOBUD RI dan pengayaan ensiklopedis Nusantara."/>
+  <meta property="og:site_name" content="NULAR — Nusa Learn"/>
+  <meta property="og:title" content="NULAR — Nusa Learn | The Living Atlas of Nusantara"/>
+  <meta property="og:description" content="Jelajahi 7 wilayah kepulauan Nusantara, 45 entitas budaya kanonis DAPOBUD, dan 6 arena mini-game edukatif bersama Raga si Badak Jawa."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="assets/images/logo.png"/>
+  <link rel="icon" type="image/png" href="assets/images/logo.png"/>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Fraunces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Core Design System & Landing Page Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css"/>
+  <link rel="stylesheet" href="css/components.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+  <link rel="stylesheet" href="css/landing.css"/>
+
+  <!-- Tailwind CSS Engine -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary-purple": "#B65F45",
+            "deep-purple": "#8A422D",
+            "dark-plum": "#173F32",
+            "lavender": "#D4A447",
+            "warm-yellow": "#F2C45A",
+            "coral": "#E07A5F",
+            "turquoise": "#34A59F",
+            "warm-ivory": "#FAF6EF",
+            "surface-lowest": "#0D221D",
+            "surface-low": "#102B25",
+            "surface-container": "#173F32",
+            "surface-container-high": "#1F5141",
+            "#150E24": "#102B25",
+            "#1A1228": "#14352C",
+            "#211B35": "#173F32",
+            "#2D2445": "#1F5141",
+            "#0F0818": "#0B1D18",
+            "#6338D4": "#B65F45",
+            "#3F1D91": "#8A422D",
+            "#8B5CF6": "#D4A447",
+            "#CCC3DF": "#C8D8CE",
+            "#FFF8EB": "#F5EFE6"
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Fraunces', 'Georgia', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#102B25] text-[#F5EFE6] font-sans antialiased min-h-screen relative overflow-x-hidden">
+
+  <!-- ==========================================================================
+       1. PUBLIC MARKETING HEADER
+       ========================================================================== -->
+  <header class="marketing-header" id="marketing-header">
+    <div class="h-full max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3 shrink-0 text-decoration-none group">
+        <img alt="NULAR (Nusa Learn) Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105" src="assets/images/logo.png"/>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-[22px] text-[#F2C45A] tracking-tight leading-none uppercase">NULAR</span>
+          <span class="font-bold text-[10px] text-[#C8D8CE] tracking-wider uppercase mt-1">Nusa Learn • Living Atlas</span>
+        </div>
+      </a>
+
+      <!-- Desktop Marketing Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Navigasi Utama">
+        <a class="marketing-nav-link" href="#beranda">Beranda</a>
+        <a class="marketing-nav-link" href="#wilayah">Jelajahi Budaya</a>
+        <a class="marketing-nav-link" href="#cara-main">Cara Main</a>
+        <a class="marketing-nav-link" href="#maskot">Koleksi Maskot</a>
+        <a class="marketing-nav-link" href="#culturepedia">Culturepedia</a>
+        <a class="marketing-nav-link" href="app.html#profil">Profil Penjelajah</a>
+        <a class="marketing-nav-link text-[#F2C45A]" href="design-system.html">Design System</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2.5 shrink-0">
+        <button onclick="openAuthModal('login')" class="btn btn-outline text-xs sm:text-sm py-2 px-4 sm:px-5">
+          <span class="material-symbols-outlined text-[18px]">login</span>
+          <span>Masuk</span>
+        </button>
+        <a href="app.html" class="btn btn-primary text-xs sm:text-sm py-2.5 px-4 sm:px-6 shadow-[0_4px_0_#8A422D]">
+          <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+          <span class="hidden sm:inline">Mulai</span> Petualangan
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. HERO SECTION — THE LIVING ATLAS PORTAL
+       ========================================================================== -->
+  <section class="hero-section" id="beranda">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Copy & Value Proposition -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <!-- Badge Pill -->
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#173F32] border border-[#F2C45A]/40 shadow-[0_2px_0_#0B1D18]">
+            <span class="material-symbols-outlined text-[18px] text-[#F2C45A]" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+            <span class="text-xs uppercase tracking-wider font-extrabold text-[#F2C45A]">Atlas Hidup Pusaka Nusantara</span>
+            <span class="text-xs text-[#C8D8CE] hidden sm:inline">• Berbasis Data Resmi DAPOBUD RI</span>
+          </div>
+
+          <!-- Expressive Headline -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#FAF6EF] tracking-tight leading-[1.12]">
+            Masuki Dunia <span class="text-[#F2C45A]">Nusantara</span>.<br/>
+            Kuasai <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#F2C45A] via-[#E07A5F] to-[#34A59F]">Kearifan Adat</span>.<br/>
+            Jaga Warisan Leluhur.
+          </h1>
+
+          <!-- Body Copy -->
+          <p class="text-base sm:text-lg text-[#C8D8CE] leading-relaxed max-w-xl mx-auto lg:mx-0">
+            Ekosistem petualangan budaya interaktif yang menghidupkan arsip Warisan Budaya Takbenda (WBTb) dan Objek Pemajuan Kebudayaan (OPK) Indonesia. Jelajahi 7 wilayah kepulauan, mainkan 6 arena mini-game edukatif, dan bertumbuh bersama <strong>Raga si Badak Penjelajah</strong>.
+          </p>
+
+          <!-- Dual CTAs -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="app.html" class="btn btn-primary text-base py-3.5 px-8 shadow-[0_5px_0_#8A422D] w-full sm:w-auto">
+              <span class="material-symbols-outlined text-[22px]">play_circle</span>
+              Mulai Petualangan Sekarang
+            </a>
+            <a href="#wilayah" class="btn btn-surface text-base py-3.5 px-6 w-full sm:w-auto">
+              <span class="material-symbols-outlined text-[20px] text-[#F2C45A]">explore</span>
+              Jelajahi 7 Wilayah Budaya
+            </a>
+          </div>
+
+          <!-- Honest & Verified Database Proof Stats -->
+          <div class="pt-6 grid grid-cols-3 gap-4 border-t border-[#D4A447]/25 max-w-lg mx-auto lg:mx-0">
+            <div>
+              <p class="text-2xl font-extrabold text-[#F2C45A]">45</p>
+              <p class="text-xs text-[#C8D8CE]">Entitas Budaya Kanonis</p>
+            </div>
+            <div>
+              <p class="text-2xl font-extrabold text-[#34A59F]">50</p>
+              <p class="text-xs text-[#C8D8CE]">Rekaman Resmi DAPOBUD</p>
+            </div>
+            <div>
+              <p class="text-2xl font-extrabold text-[#E07A5F]">7 Wilayah</p>
+              <p class="text-xs text-[#C8D8CE]">Kepulauan &amp; 6 Mini-Game</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Dimensional Mascot & Floating Artifacts -->
+        <div class="lg:col-span-5 relative flex justify-center items-center">
+          <div class="hero-mascot-container">
+            
+            <!-- Pulsing Halo Aura -->
+            <div class="hero-aura-ring"></div>
+            
+            <!-- Main Waving Mascot Illustration -->
+            <div class="relative z-10 w-72 sm:w-84 animate-float flex justify-center" id="hero-mascot-svg">
+              <img src="assets/images/mascot_raga_transparent.png" alt="Raga Maskot Penjelajah Nusantara" class="w-full max-w-[280px] h-auto drop-shadow-[0_20px_35px_rgba(0,0,0,0.65)] object-contain transition-transform hover:scale-105 duration-300">
+            </div>
+
+            <!-- Floating Cultural Artifact 1: Rumah Gadang (Top Left) -->
+            <div class="floating-artifact -top-8 -left-6 sm:-left-12 bg-[#173F32]/95 border border-[#D4A447]/45 p-3 rounded-2xl backdrop-blur-md">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#F2C45A] text-2xl">roofing</span>
+                <div>
+                  <p class="text-[10px] text-[#C8D8CE] font-bold uppercase">Arsitektur Vernakular</p>
+                  <p class="text-xs font-extrabold text-white">Rumah Gadang Minang</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Cultural Artifact 2: Talempong Bronze (Bottom Right) -->
+            <div class="floating-artifact -bottom-4 -right-4 sm:-right-8 bg-[#173F32]/95 border border-[#34A59F]/45 p-3 rounded-2xl backdrop-blur-md" style="animation-delay: -2s;">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#34A59F] text-2xl">music_note</span>
+                <div>
+                  <p class="text-[10px] text-[#C8D8CE] font-bold uppercase">Seni Pertunjukan</p>
+                  <p class="text-xs font-extrabold text-white">Saluang &amp; Talempong</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Cultural Artifact 3: Streak Flame Badge (Top Right) -->
+            <div class="floating-artifact top-6 -right-6 bg-[#173F32]/95 border border-[#E07A5F]/45 px-3 py-1.5 rounded-full backdrop-blur-md flex items-center gap-1.5" style="animation-delay: -3.5s;">
+              <span class="material-symbols-outlined text-[#E07A5F] text-[18px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+              <span class="text-xs font-bold text-[#FAF6EF]">7 Hari Nyala!</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SCALLOPED DIVIDER -->
+  <div class="relative w-full overflow-hidden text-[#14352C] leading-none -mt-4">
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" class="w-full h-12 fill-[#14352C]">
+      <path d="M 0,48 L 0,24 Q 60,0 120,24 Q 180,48 240,24 Q 300,0 360,24 Q 420,48 480,24 Q 540,0 600,24 Q 660,48 720,24 Q 780,0 840,24 Q 900,48 960,24 Q 1020,0 1080,24 Q 1140,48 1200,24 Q 1260,0 1320,24 Q 1380,48 1440,24 L 1440,48 Z"></path>
+    </svg>
+  </div>
+
+  <!-- ==========================================================================
+       3. CULTURAL REALM ARCHIPELAGO SHOWCASE (ALL 7 INDONESIAN REALMS)
+       ========================================================================== -->
+  <section class="py-20 bg-[#14352C] relative reveal-on-scroll" id="wilayah">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#173F32] border border-[#D4A447]/35 text-xs font-extrabold text-[#F2C45A] uppercase tracking-wider mb-3">
+          <span class="material-symbols-outlined text-[16px]">public</span>
+          Peta Ekspedisi Tujuh Kepulauan
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#FAF6EF] tracking-tight">
+          Tujuh Alam Budaya Nusantara yang Hidup
+        </h2>
+        <p class="text-sm sm:text-base text-[#C8D8CE] mt-3">
+          Setiap wilayah dirancang sebagai dossier ekspedisi lengkap dengan filosofi hidup, arsitektur vernakular, busana adat, kuliner pusaka, dan tantangan interaktif.
+        </p>
+      </div>
+
+      <!-- Asymmetric Realm Grid Composition (5 Featured Cards + 2 Extended Archipelago Cards = All 7 Regions) -->
+      <div class="realm-grid">
+        
+        <!-- 1. Primary Feature: Sumatra (Ranah Minang, Aceh & Sriwijaya) -->
+        <div class="realm-card-primary group">
+          <div class="realm-backdrop-img" style="background-image: url('assets/images/rumah_gadang.png');"></div>
+          <div class="realm-overlay-content">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2.5 py-1 rounded-full bg-[#F2C45A] text-[#2F1E02] text-[11px] font-extrabold uppercase">Wilayah 1 • Bab Aktif</span>
+              <span class="text-xs text-[#C8D8CE] font-bold">5 Level RPG • 6 Arena Mini-Game</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">1. Pulau Sumatra — Swarnadwipa</h3>
+            <p class="text-xs sm:text-sm text-[#C8D8CE] mt-2 max-w-lg leading-relaxed">
+              Selami konstruksi tahan gempa Rumah Gadang Minangkabau, tenun benang emas Songket Pandai Sikek, pusaka Rencong Aceh, aksara Ka Ga Nga, dan falsafah <em>Alam Takambang Jadi Guru</em>.
+            </p>
+            <div class="mt-4 flex flex-wrap items-center gap-3">
+              <a href="app.html#belajar" class="btn btn-primary text-xs py-2 px-5">
+                Masuk ke Jalur Belajar
+              </a>
+              <a href="app.html#petualangan" class="btn btn-surface text-xs py-2 px-4">
+                Buka Peta &amp; Dossier
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Secondary: Jawa (Keraton, Candi & Wayang) -->
+        <div class="realm-card-secondary group bg-[#173F32] rounded-3xl overflow-hidden border border-[#D4A447]/30 min-h-[360px] relative">
+          <div class="realm-backdrop-img" style="background-image: url('assets/images/alam_jawa.jpg');"></div>
+          <div class="realm-overlay-content">
+            <span class="text-xs font-extrabold text-[#F2C45A] uppercase">Wilayah 2 • Tersedia</span>
+            <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1">2. Pulau Jawa — Peradaban Keraton &amp; Candi</h3>
+            <p class="text-xs text-[#C8D8CE] mt-2 leading-relaxed">
+              Filosofi sangkan paraning dumadi dalam Wayang Kulit Purwa, canting Batik Tulis Keraton, Angklung bambu Pasundan, serta harmoni Gamelan Slendro-Pelog.
+            </p>
+            <div class="mt-4">
+              <a href="app.html#petualangan" class="chip-stat" style="font-size: 11px;">Jelajahi Dossier Jawa ➔</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Tertiary 1: Bali & Nusa Tenggara -->
+        <div class="realm-card-tertiary group bg-[#173F32] rounded-3xl overflow-hidden border border-[#D4A447]/30 min-h-[300px] relative">
+          <div class="realm-backdrop-img" style="background-image: url('assets/images/alam_bali_nt.jpg');"></div>
+          <div class="realm-overlay-content">
+            <span class="text-xs font-extrabold text-[#E07A5F] uppercase">Wilayah 3 • Tersedia</span>
+            <h4 class="text-lg font-extrabold text-white mt-1">3. Bali &amp; Nusa Tenggara</h4>
+            <p class="text-[11px] text-[#C8D8CE] mt-1.5 leading-relaxed">
+              Tata air sawah Subak berlandaskan <em>Tri Hita Karana</em>, alat musik daun lontar Sasando Rote, dan Tenun Ikat Sumba Timur.
+            </p>
+          </div>
+        </div>
+
+        <!-- 4. Tertiary 2: Kalimantan -->
+        <div class="realm-card-tertiary group bg-[#173F32] rounded-3xl overflow-hidden border border-[#D4A447]/30 min-h-[300px] relative">
+          <div class="realm-backdrop-img" style="background-image: url('assets/images/alam_kalimantan.jpg');"></div>
+          <div class="realm-overlay-content">
+            <span class="text-xs font-extrabold text-[#34A59F] uppercase">Wilayah 4 • Dossier Siap</span>
+            <h4 class="text-lg font-extrabold text-white mt-1">4. Kalimantan — Rimba Borneo</h4>
+            <p class="text-[11px] text-[#C8D8CE] mt-1.5 leading-relaxed">
+              Rumah Panjang Betang komunal suku Dayak, dawai merdu Sampeq kayu ulin, serta Pasar Terapung Lok Baintan di sungai Banjar.
+            </p>
+          </div>
+        </div>
+
+        <!-- 5. Tertiary 3: Sulawesi -->
+        <div class="realm-card-tertiary group bg-[#173F32] rounded-3xl overflow-hidden border border-[#D4A447]/30 min-h-[300px] relative">
+          <div class="realm-backdrop-img" style="background-image: url('assets/images/alam_sulawesi.jpg');"></div>
+          <div class="realm-overlay-content">
+            <span class="text-xs font-extrabold text-[#F2C45A] uppercase">Wilayah 5 • Dossier Siap</span>
+            <h4 class="text-lg font-extrabold text-white mt-1">5. Sulawesi — Pelaut Pinisi &amp; Toraja</h4>
+            <p class="text-[11px] text-[#C8D8CE] mt-1.5 leading-relaxed">
+              Keahlian merakit kapal layar Pinisi Bugis-Makassar tanpa cetak biru, arsitektur Tongkonan Toraja, dan naskah I La Galigo.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Extended Row for Realms 6 (Maluku) & 7 (Papua) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div class="realm-card-tertiary group bg-[#173F32] rounded-3xl overflow-hidden border border-[#D4A447]/30 min-h-[260px] relative">
+          <div class="realm-backdrop-img" style="background-image: url('assets/images/alam_maluku.jpg');"></div>
+          <div class="realm-overlay-content">
+            <span class="text-xs font-extrabold text-[#34A59F] uppercase">Wilayah 6 • Dossier Siap</span>
+            <h4 class="text-lg font-extrabold text-white mt-1">6. Kepulauan Maluku — Jalur Rempah &amp; Pela Gandong</h4>
+            <p class="text-[11px] text-[#C8D8CE] mt-1.5 leading-relaxed">
+              Hukum konservasi ekologis <em>Sasi Laut</em>, persaudaraan lintas negeri Pela Gandong, arsitektur Baileo, dan musik kerang Tahuri.
+            </p>
+          </div>
+        </div>
+
+        <div class="realm-card-tertiary group bg-[#173F32] rounded-3xl overflow-hidden border border-[#D4A447]/30 min-h-[260px] relative">
+          <div class="realm-backdrop-img" style="background-image: url('assets/images/alam_papua.jpg');"></div>
+          <div class="realm-overlay-content">
+            <span class="text-xs font-extrabold text-[#F2C45A] uppercase">Wilayah 7 • Dossier Siap</span>
+            <h4 class="text-lg font-extrabold text-white mt-1">7. Tanah Papua — Puncak Jaya &amp; Ukiran Asmat</h4>
+            <p class="text-[11px] text-[#C8D8CE] mt-1.5 leading-relaxed">
+              Tas rajut serat kulit kayu Noken (UNESCO WBTb), rumah bundar tahan dingin Honai Lembah Baliem, patung Mbitoro Asmat, dan tradisi Bakar Batu.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. HOW TO PLAY (5-STEP VISUAL PROGRESSION JOURNEY)
+       ========================================================================== -->
+  <section class="py-20 bg-[#102B25] relative reveal-on-scroll" id="cara-main">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#173F32] border border-[#D4A447]/35 text-xs font-extrabold text-[#F2C45A] uppercase tracking-wider mb-3">
+          <span class="material-symbols-outlined text-[16px]">sports_esports</span>
+          Siklus Petualangan Budaya
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#FAF6EF] tracking-tight">
+          5 Langkah Menjadi Penjaga Pusaka Nusantara
+        </h2>
+        <p class="text-sm sm:text-base text-[#C8D8CE] mt-3">
+          Dirancang dengan alur eksplorasi berkesinambungan dari peta kepulauan, dossier adat, hingga arena tantangan interaktif.
+        </p>
+      </div>
+
+      <!-- 5-Step Timeline Grid -->
+      <div class="journey-step-container">
+        
+        <div class="journey-step-card">
+          <div class="journey-step-num">01</div>
+          <div class="w-10 h-10 rounded-full bg-[#B65F45] flex items-center justify-center text-white mb-4">
+            <span class="material-symbols-outlined text-[20px]">explore</span>
+          </div>
+          <h3 class="font-extrabold text-base text-white">Jelajahi Peta</h3>
+          <p class="text-xs text-[#C8D8CE] mt-2 leading-relaxed">
+            Pilih satu dari 7 wilayah kepulauan di Peta Interaktif Nusantara dan buka Dossier Budaya 10-bagiannya.
+          </p>
+        </div>
+
+        <div class="journey-step-card">
+          <div class="journey-step-num" style="color: var(--color-turquoise);">02</div>
+          <div class="w-10 h-10 rounded-full bg-[#34A59F] flex items-center justify-center text-[#072B29] mb-4">
+            <span class="material-symbols-outlined text-[20px]">menu_book</span>
+          </div>
+          <h3 class="font-extrabold text-base text-white">Pelajari Pusaka</h3>
+          <p class="text-xs text-[#C8D8CE] mt-2 leading-relaxed">
+            Telusuri 45 entitas budaya kanonis dan 50 rekaman resmi DAPOBUD RI beserta pengayaan Wikipedia terverifikasi.
+          </p>
+        </div>
+
+        <div class="journey-step-card">
+          <div class="journey-step-num" style="color: var(--color-coral);">03</div>
+          <div class="w-10 h-10 rounded-full bg-[#E07A5F] flex items-center justify-center text-white mb-4">
+            <span class="material-symbols-outlined text-[20px]">quiz</span>
+          </div>
+          <h3 class="font-extrabold text-base text-white">Taklukkan Arena</h3>
+          <p class="text-xs text-[#C8D8CE] mt-2 leading-relaxed">
+            Mainkan 6 mode mini-game (Kuis, Pasangan Pusaka, Konstruksi Rumah Gadang, Simulasi Laras, Dilema Adat, &amp; Ukir).
+          </p>
+        </div>
+
+        <div class="journey-step-card">
+          <div class="journey-step-num" style="color: var(--color-lavender);">04</div>
+          <div class="w-10 h-10 rounded-full bg-[#D4A447] flex items-center justify-center text-[#2F1E02] mb-4">
+            <span class="material-symbols-outlined text-[20px]">style</span>
+          </div>
+          <h3 class="font-extrabold text-base text-white">Kumpulkan Sahabat</h3>
+          <p class="text-xs text-[#C8D8CE] mt-2 leading-relaxed">
+            Buka kunci maskot satwa endemik Nusantara (Raga, Cendro, Bekti, Jalak, Komo, Maleo) dan lencana kehormatan.
+          </p>
+        </div>
+
+        <div class="journey-step-card">
+          <div class="journey-step-num" style="color: #F2C45A;">05</div>
+          <div class="w-10 h-10 rounded-full bg-[#F2C45A] flex items-center justify-center text-[#2F1E02] mb-4">
+            <span class="material-symbols-outlined text-[20px]">military_tech</span>
+          </div>
+          <h3 class="font-extrabold text-base text-white">Raih Gelar Adat</h3>
+          <p class="text-xs text-[#C8D8CE] mt-2 leading-relaxed">
+            Selesaikan Misi Harian, tingkatkan XP profilmu secara persisten, dan kenakan bingkai kehormatan daerah.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. MASCOT WARDROBE & CHARACTER SHOWCASE
+       ========================================================================== -->
+  <section class="py-20 bg-[#14352C] relative reveal-on-scroll" id="maskot">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+        
+        <!-- Left: Mascot Personality Info -->
+        <div class="space-y-5 max-w-lg text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#173F32] border border-[#D4A447]/35 text-xs font-extrabold text-[#F2C45A] uppercase tracking-wider">
+            <span class="material-symbols-outlined text-[16px]">sentiment_satisfied</span>
+            Maskot Utama &amp; Sahabat Endemik
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#FAF6EF] tracking-tight">
+            Temui Raga, si Badak Jawa Penjelajah Budaya
+          </h2>
+
+          <p class="text-sm text-[#C8D8CE] leading-relaxed">
+            Terinspirasi dari Badak Jawa (<em>Rhinoceros sondaicus</em>) dari Taman Nasional Ujung Kulon yang tangguh, santun, dan haus ilmu. Raga memandumu memahami filosofi adat di setiap langkah pembelajaran dan bereaksi langsung terhadap keberhasilanmu di arena!
+          </p>
+
+          <!-- Interactive Outfit Switcher -->
+          <div class="p-4 rounded-2xl bg-[#173F32] border border-[#D4A447]/30">
+            <p class="text-xs font-bold text-[#F2C45A] uppercase mb-2">Pilih Busana Tradisi Raga:</p>
+            <div class="flex items-center justify-center lg:justify-start gap-2 flex-wrap">
+              <button onclick="switchMascotAttire(true)" class="btn btn-primary text-xs py-2 px-4">
+                👑 Deta Minangkabau (Sumbar)
+              </button>
+              <button onclick="switchMascotAttire(false)" class="btn btn-surface text-xs py-2 px-4">
+                🧣 Selempang Batik Nusantara
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-center lg:justify-start gap-6 pt-2">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#34A59F]">check_circle</span>
+              <span class="text-xs font-bold text-[#FAF6EF]">10 Ekspresi Vektor Interaktif</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#34A59F]">check_circle</span>
+              <span class="text-xs font-bold text-[#FAF6EF]">6 Maskot Satwa Endemik</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Mascot Visualizer -->
+        <div class="relative w-full max-w-md flex flex-col items-center">
+          <div class="w-80 h-96 bg-[#173F32] rounded-3xl border-2 border-[#D4A447]/40 shadow-[0_16px_40px_rgba(7,21,18,0.85)] p-6 flex flex-col items-center justify-center relative overflow-hidden">
+            
+            <div class="absolute -top-10 -right-10 w-44 h-44 bg-[#F2C45A]/20 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <div id="wardrobe-mascot-svg" class="transition-transform duration-300">
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- Emotion Switcher Pills -->
+            <div class="mt-4 flex items-center gap-1.5 bg-[#102B25] p-1.5 rounded-full border border-[#D4A447]/30">
+              <button onclick="changeWardrobeEmotion('happy')" class="px-3 py-1 rounded-full text-[11px] font-bold text-[#FAF6EF] hover:bg-[#B65F45]">Ramah</button>
+              <button onclick="changeWardrobeEmotion('excited')" class="px-3 py-1 rounded-full text-[11px] font-bold text-[#FAF6EF] hover:bg-[#B65F45]">Semangat</button>
+              <button onclick="changeWardrobeEmotion('celebrating')" class="px-3 py-1 rounded-full text-[11px] font-bold text-[#FAF6EF] hover:bg-[#B65F45]">Selebrasi</button>
+              <button onclick="changeWardrobeEmotion('thinking')" class="px-3 py-1 rounded-full text-[11px] font-bold text-[#FAF6EF] hover:bg-[#B65F45]">Merenung</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. CULTUREPEDIA SHOWCASE (VERIFIED CANONICAL DATABASE)
+       ========================================================================== -->
+  <section class="py-20 bg-[#102B25] perspective-stage relative reveal-on-scroll" id="culturepedia">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#173F32] border border-[#34A59F]/40 text-xs font-extrabold text-[#34A59F] uppercase tracking-wider mb-3">
+          <span class="material-symbols-outlined text-[16px]">menu_book</span>
+          Ensiklopedia Museum Berlapis Ganda (Skema v2.0.0)
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#FAF6EF] tracking-tight">
+          Culturepedia: 45 Entitas Kanonis &amp; 50 Rekaman DAPOBUD
+        </h2>
+        <p class="text-sm sm:text-base text-[#C8D8CE] mt-3">
+          Setiap entri memisahkan secara transparan antara <strong>Rekaman Resmi DAPOBUD Kemendikbudristek</strong> (UUID &amp; Nomor Registrasi WBTb/OPK) dan <strong>Pengayaan Ensiklopedis Wikipedia Bahasa Indonesia</strong>.
+        </p>
+      </div>
+
+      <!-- 3D Curved Arc Container -->
+      <div class="curved-arc-container">
+        
+        <div class="card-cultural curved-card curved-card-left-2 hidden md:block" style="width: 220px;">
+          <div class="card-cultural-media" style="background-image: url('assets/images/saluang_talempong.png');"></div>
+          <div style="padding: 14px;">
+            <p style="font-size: var(--type-label-sm); color: var(--color-turquoise); text-transform: uppercase;">Seni Pertunjukan</p>
+            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Saluang &amp; Talempong</h4>
+          </div>
+        </div>
+
+        <div class="card-cultural curved-card curved-card-left-1" style="width: 250px;">
+          <div class="card-cultural-media" style="background-image: url('assets/images/rumah_gadang.png');"></div>
+          <div style="padding: 14px;">
+            <p style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); text-transform: uppercase;">Arsitektur Tahan Gempa</p>
+            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Rumah Gadang Minang</h4>
+          </div>
+        </div>
+
+        <!-- Center Highlight -->
+        <div class="card-cultural curved-card curved-card-center" style="width: 290px; border-color: var(--color-warm-yellow);">
+          <div class="card-cultural-media" style="background-image: url('assets/images/batik_keraton.jpg');"></div>
+          <div style="padding: 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: var(--type-label-sm); color: var(--color-warm-yellow); font-weight: 800;">DAPOBUD TERVERIFIKASI</span>
+              <span class="chip-stat" style="padding: 2px 8px; font-size: 10px;">WBTb RI</span>
+            </div>
+            <h3 style="font-size: var(--type-headline-sm); font-weight: 800; margin-top: 4px; color: var(--text-primary);">
+              Batik &amp; Songket Nusantara
+            </h3>
+            <p style="font-size: var(--type-body-sm); color: var(--text-secondary); margin-top: 6px;">
+              Dilengkapi pelacakan nomor registrasi resmi WBTb, cakupan provinsi, dan atribusi lisensi media Wikimedia Commons.
+            </p>
+            <a href="app.html#koleksi" class="btn btn-primary w-full mt-4 py-2.5 text-xs">
+              Buka Ensiklopedia Culturepedia
+            </a>
+          </div>
+        </div>
+
+        <div class="card-cultural curved-card curved-card-right-1" style="width: 250px;">
+          <div class="card-cultural-media" style="background-image: url('assets/images/alam_jawa.jpg');"></div>
+          <div style="padding: 14px;">
+            <p style="font-size: var(--type-label-sm); color: var(--color-coral); text-transform: uppercase;">Warisan Dunia UNESCO</p>
+            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Wayang Kulit Purwa</h4>
+          </div>
+        </div>
+
+        <div class="card-cultural curved-card curved-card-right-2 hidden md:block" style="width: 220px;">
+          <div class="card-cultural-media" style="background-image: url('assets/images/alam_papua.jpg');"></div>
+          <div style="padding: 14px;">
+            <p style="font-size: var(--type-label-sm); color: var(--color-lavender); text-transform: uppercase;">Kriya Serat Kayu</p>
+            <h4 style="font-size: var(--type-body-md); font-weight: 700; margin-top: 2px;">Noken Tanah Papua</h4>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. FINAL CALL TO ACTION PORTAL
+       ========================================================================== -->
+  <section class="py-24 bg-[#14352C] relative overflow-hidden reveal-on-scroll">
+    <div class="absolute inset-0 bg-radial from-[#B65F45]/20 via-transparent to-transparent pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-4 md:px-8 text-center relative z-10">
+      
+      <div class="w-24 h-24 mx-auto mb-6 bg-[#173F32] rounded-full p-2 border-2 border-[#F2C45A] shadow-[0_8px_24px_rgba(182,95,69,0.4)] animate-float">
+        <img alt="Raga Friendly" class="w-full h-full object-contain" src="assets/images/mascot_raga_avatar.png"/>
+      </div>
+
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-[#FAF6EF] tracking-tight leading-tight">
+        Siap Berlayar Menjelajahi<br/>
+        Kekayaan Luhur Nusantara?
+      </h2>
+
+      <p class="text-base sm:text-lg text-[#C8D8CE] mt-4 max-w-xl mx-auto">
+        Mulai ekspedisi budayamu sekarang. Taklukkan 6 arena mini-game interaktif, kumpulkan pusaka resmi DAPOBUD, dan jaga warisan leluhur Indonesia!
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="app.html" class="btn btn-primary text-base py-4 px-10 shadow-[0_6px_0_#8A422D]">
+          <span class="material-symbols-outlined text-[24px]">rocket_launch</span>
+          Mulai Petualangan Sekarang — Gratis!
+        </a>
+        <a href="design-system.html" class="btn btn-outline text-base py-4 px-8">
+          <span class="material-symbols-outlined text-[20px]">palette</span>
+          Buka Design System
+        </a>
+      </div>
+
+      <p class="text-xs text-[#C8D8CE]/80 mt-6">
+        Sumber Data Terverifikasi: Data Pokok Kebudayaan (DAPOBUD) Kemendikbudristek RI &amp; Wikimedia Commons
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. PUBLIC FOOTER
+       ========================================================================== -->
+  <footer class="bg-[#0B1D18] py-12 border-t border-[#D4A447]/25">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-[#C8D8CE] text-xs">
+      
+      <div class="flex items-center gap-3">
+        <img alt="NULAR Icon" class="h-8 w-auto" src="assets/images/logo.png"/>
+        <div>
+          <span class="font-extrabold text-sm text-[#F2C45A]">NULAR (Nusa Learn)</span>
+          <p class="text-[11px] text-[#98B0A4]">The Living Atlas of Nusantara • Platform Petualangan Budaya</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-6">
+        <a href="#beranda" class="hover:text-white transition-colors">Beranda</a>
+        <a href="#wilayah" class="hover:text-white transition-colors">7 Wilayah Budaya</a>
+        <a href="#cara-main" class="hover:text-white transition-colors">Cara Main</a>
+        <a href="app.html#koleksi" class="hover:text-white transition-colors">Culturepedia</a>
+        <a href="app.html#profil" class="hover:text-white transition-colors">Profil Penjelajah</a>
+        <a href="design-system.html" class="hover:text-[#F2C45A] transition-colors">Design System</a>
+        <a href="app.html" class="hover:text-[#34A59F] transition-colors font-bold">Buka Aplikasi Game</a>
+      </div>
+
+      <p>© 2026 NULAR (Nusa Learn) — The Living Atlas of Nusantara.</p>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       9. AUTH MODAL (MASUK / DAFTAR BARU)
+       ========================================================================== -->
+  <div id="auth-modal" class="modal-backdrop">
+    <div class="modal-sheet max-w-md">
+      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-[#C8D8CE] hover:text-white">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+
+      <div class="text-center mb-6">
+        <img alt="Logo" class="h-10 mx-auto mb-2" src="assets/images/logo.png"/>
+        <h3 class="text-xl font-extrabold text-[#FAF6EF]" id="auth-title">Masuk ke NULAR (Nusa Learn)</h3>
+        <p class="text-xs text-[#C8D8CE] mt-1">Lanjutkan petualangan budayamu dan simpan progres belajarmu di perangkat ini.</p>
+      </div>
+
+      <!-- Auth Tabs -->
+      <div class="tab-pills-container w-full mb-6 justify-center">
+        <button id="tab-login" onclick="setAuthMode('login')" class="tab-pill is-active flex-1 text-center">Masuk</button>
+        <button id="tab-register" onclick="setAuthMode('register')" class="tab-pill flex-1 text-center">Daftar Baru</button>
+      </div>
+
+      <form id="auth-form" onsubmit="handleAuthSubmit(event)">
+        <div class="auth-input-group">
+          <label class="auth-label">Alamat Surel / Nama Penjelajah</label>
+          <input type="text" class="input-pill" placeholder="contoh: raga@nusantara.id" value="penjelajah@nular.id" required/>
+        </div>
+
+        <div class="auth-input-group">
+          <label class="auth-label">Kata Sandi</label>
+          <input type="password" class="input-pill" placeholder="Masukkan kata sandi..." value="••••••••" required/>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full mt-4 py-3 text-sm">
+          <span class="material-symbols-outlined text-[20px]">login</span>
+          <span id="auth-submit-text">Masuk Petualangan</span>
+        </button>
+
+        <div class="relative my-4 text-center">
+          <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-[#D4A447]/20"></div></div>
+          <span class="relative bg-[#173F32] px-3 text-[11px] text-[#C8D8CE] uppercase">Atau</span>
+        </div>
+
+        <!-- One-Click Instant Demo Login -->
+        <a href="app.html" class="btn btn-gold w-full py-3 text-xs uppercase tracking-wider">
+          <span class="material-symbols-outlined text-[18px]">play_arrow</span>
+          Masuk Langsung sebagai Penjelajah Aktif (Lv.8)
+        </a>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/mascot.js"></script>
+  <script src="js/illustrations.js"></script>
+  <script>
+    // Header Scroll Effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('marketing-header');
+      if (window.scrollY > 40) {
+        header?.classList.add('is-scrolled');
+      } else {
+        header?.classList.remove('is-scrolled');
+      }
+    });
+
+    // Render Hero Mascot (preserves high-res official transparent art, with vector SVG fallback)
+    const heroMascotContainer = document.getElementById('hero-mascot-svg');
+    if (heroMascotContainer && !heroMascotContainer.querySelector('img')) {
+      heroMascotContainer.innerHTML = RagaMascot.render('excited', { size: 280, withHeadpiece: true });
+    }
+
+    // Wardrobe Mascot State
+    let wardrobeHeadpiece = true;
+    let wardrobeEmotion = 'happy';
+
+    function updateWardrobeMascot() {
+      const container = document.getElementById('wardrobe-mascot-svg');
+      if (!container) return;
+      container.innerHTML = RagaMascot.render(wardrobeEmotion, { size: 220, withHeadpiece: wardrobeHeadpiece });
+    }
+
+    function switchMascotAttire(withHeadpiece) {
+      wardrobeHeadpiece = withHeadpiece;
+      updateWardrobeMascot();
+    }
+
+    function changeWardrobeEmotion(emotion) {
+      wardrobeEmotion = emotion;
+      updateWardrobeMascot();
+    }
+
+    updateWardrobeMascot();
+
+    // Auth Modal Handlers
+    const authModal = document.getElementById('auth-modal');
+    function openAuthModal(mode) {
+      setAuthMode(mode);
+      authModal?.classList.add('is-open');
+    }
+    function closeAuthModal() {
+      authModal?.classList.remove('is-open');
+    }
+    function setAuthMode(mode) {
+      const tabLogin = document.getElementById('tab-login');
+      const tabRegister = document.getElementById('tab-register');
+      const title = document.getElementById('auth-title');
+      const submitText = document.getElementById('auth-submit-text');
+
+      if (mode === 'login') {
+        tabLogin?.classList.add('is-active');
+        tabRegister?.classList.remove('is-active');
+        if (title) title.innerText = 'Masuk ke NULAR (Nusa Learn)';
+        if (submitText) submitText.innerText = 'Masuk Petualangan';
+      } else {
+        tabRegister?.classList.add('is-active');
+        tabLogin?.classList.remove('is-active');
+        if (title) title.innerText = 'Daftar Akun Baru';
+        if (submitText) submitText.innerText = 'Daftar & Mulai Jelajah';
+      }
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      window.location.href = 'app.html';
+    }
+  </script>
+  <script src="js/motion.js"></script>
+</body>
+</html>

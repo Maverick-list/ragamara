@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NULAR — Nusa Learn | Explore the Living Architecture of Nusantara</title>
+  <meta name="description" content="NULAR (Nusa Learn) — Museum digital arsitektur tradisional Indonesia dengan penampil 3D interaktif, anatomi bangunan, peta Nusantara, dan dokumentasi budaya terverifikasi." />
+  <meta property="og:site_name" content="NULAR — Nusa Learn" />
+  <meta property="og:title" content="NULAR — Nusa Learn | Explore the Living Architecture of Nusantara" />
+  <meta property="og:description" content="Jelajahi rumah tradisional dari seluruh Nusantara melalui model arsitektur 3D interaktif, anatomi struktur, dan arsip budaya terverifikasi." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet" />
+  <link rel="stylesheet" href="css/museum.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./js/vendor/three/build/three.module.js",
+      "three/addons/": "./js/vendor/three/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="museum-header-mount"></div>
+
+  <main id="main-content">
+    <!-- 1. HERO SECTION — THE LIVING ATLAS + INTERACTIVE 3D PREVIEW -->
+    <section class="hero-atlas" aria-label="Pengenalan Museum Arsitektur Nusantara">
+      <div class="museum-container hero-atlas__grid">
+        <div>
+          <span class="eyebrow eyebrow--light">NULAR · Museum Digital Arsitektur Nusantara</span>
+          <h1 class="hero-atlas__title">Discover the Architecture of Nusantara.</h1>
+          <p class="hero-atlas__subtitle">
+            Explore the living architecture of Nusantara melalui model 3D interaktif yang dapat diputar 360°, dibedah komponennya, dan dipelajari dari sisi struktur, material lokal, adaptasi iklim, hingga makna budayanya.
+          </p>
+          <div class="hero-atlas__actions">
+            <a href="explore.html" class="btn-museum btn-museum--bronze">
+              <span class="material-symbols-outlined" style="font-size:19px" aria-hidden="true">architecture</span>
+              <span>Explore the Houses</span>
+            </a>
+            <a href="map.html" class="btn-museum btn-museum--ghost-dark">
+              <span class="material-symbols-outlined" style="font-size:19px" aria-hidden="true">public</span>
+              <span>Discover the Atlas</span>
+            </a>
+          </div>
+
+          <div class="hero-stats" id="hero-metrics" aria-label="Statistik Katalog Terverifikasi">
+            <div>
+              <div class="hero-stat__value" data-metric="houses">14</div>
+              <div class="hero-stat__label">Tradisi Rumah Terdokumentasi</div>
+            </div>
+            <div>
+              <div class="hero-stat__value" data-metric="models">4</div>
+              <div class="hero-stat__label">Model 3D Interaktif GLB</div>
+            </div>
+            <div>
+              <div class="hero-stat__value" data-metric="islands">7</div>
+              <div class="hero-stat__label">Wilayah Kepulauan Nusantara</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Interactive 3D Architectural Preview -->
+        <div class="hero-viewer-frame" aria-label="Pratinjau 3D Interaktif Rumah Tradisional">
+          <div class="hero-viewer-badge">
+            <span class="dot-indicator dot-indicator--3d"></span>
+            <span id="hero-model-label">Pratinjau 3D Langsung · Rumah Gadang</span>
+          </div>
+
+          <div id="hero-3d-canvas" style="width:100%;height:100%;"></div>
+
+          <div class="hero-viewer-switcher">
+            <div class="hero-model-tabs" id="hero-model-tabs" role="tablist" aria-label="Pilih Model 3D Pratinjau"></div>
+            <a id="hero-model-cta" href="house.html?id=rumah-gadang" class="btn-museum btn-museum--bronze btn-museum--sm">
+              <span>Buka Penampil Penuh</span>
+              <span class="material-symbols-outlined" style="font-size:15px" aria-hidden="true">arrow_outward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. FEATURED ARCHITECTURE -->
+    <section class="museum-section" aria-labelledby="featured-heading">
+      <div class="museum-container">
+        <div class="section-header section-header--split">
+          <div>
+            <span class="eyebrow">Koleksi Pilihan Kuratorial</span>
+            <h2 id="featured-heading" class="section-title" style="margin-top:10px;">Featured Architecture</h2>
+            <p class="lead-copy" style="margin:10px 0 0;">
+              Empat tradisi bangunan ikonik dengan model 3D multi-komponen serta dokumentasi fotografis terverifikasi dari berbagai bentang ekologis Indonesia.
+            </p>
+          </div>
+          <a href="explore.html" class="btn-museum btn-museum--secondary">
+            <span>Lihat Seluruh Koleksi</span>
+            <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">east</span>
+          </a>
+        </div>
+
+        <div id="featured-houses-grid" class="houses-grid"></div>
+      </div>
+    </section>
+
+    <!-- 3. EXPLORE BY ISLAND -->
+    <section class="museum-section museum-section--sand" aria-labelledby="islands-heading">
+      <div class="museum-container">
+        <div class="section-header section-header--split">
+          <div>
+            <span class="eyebrow">Atlas Kepulauan Indonesia</span>
+            <h2 id="islands-heading" class="section-title" style="margin-top:10px;">Explore by Island</h2>
+            <p class="lead-copy" style="margin:10px 0 0;">
+              Telusuri keragaman tipologi arsitektur vernakular di tujuh wilayah kepulauan besar Nusantara beserta status penelitian dan ketersediaan model 3D.
+            </p>
+          </div>
+          <a href="map.html" class="btn-museum btn-museum--primary">
+            <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">map</span>
+            <span>Buka Peta Arsitektur Interaktif</span>
+          </a>
+        </div>
+
+        <div id="island-explorer-grid" class="island-grid"></div>
+      </div>
+    </section>
+
+    <!-- 4. ARCHITECTURAL STORIES -->
+    <section class="museum-section" aria-labelledby="stories-heading">
+      <div class="museum-container">
+        <div class="section-header section-header--split">
+          <div>
+            <span class="eyebrow">Esai & Kajian Tektonik</span>
+            <h2 id="stories-heading" class="section-title" style="margin-top:10px;">Architectural Stories</h2>
+            <p class="lead-copy" style="margin:10px 0 0;">
+              Memahami bagaimana teknik konstruksi tradisional, bentuk atap, material lokal, organisasi ruang, dan simbolisme budaya membentuk wajah arsitektur Indonesia.
+            </p>
+          </div>
+          <a href="anatomy.html" class="btn-museum btn-museum--secondary">
+            <span>Pelajari Anatomi & Perbandingan</span>
+            <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">east</span>
+          </a>
+        </div>
+
+        <div id="stories-grid" class="houses-grid houses-grid--3"></div>
+      </div>
+    </section>
+
+    <!-- 5. RECENTLY ADDED COLLECTIONS -->
+    <section class="museum-section museum-section--sand" aria-labelledby="recent-heading">
+      <div class="museum-container">
+        <div class="section-header section-header--split">
+          <div>
+            <span class="eyebrow">Pembaruan Arsip Museum</span>
+            <h2 id="recent-heading" class="section-title" style="margin-top:10px;">Recently Added Collections</h2>
+            <p class="lead-copy" style="margin:10px 0 0;">
+              Entri rumah tradisional terbaru yang telah melalui peninjauan dokumentasi fotografis dan rujukan literatur, termasuk tradisi ganda dalam provinsi yang sama.
+            </p>
+          </div>
+          <a href="explore.html" class="btn-museum btn-museum--secondary">
+            <span>Jelajahi Katalog Lengkap</span>
+          </a>
+        </div>
+
+        <div id="recent-houses-grid" class="houses-grid houses-grid--3"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="museum-footer-mount"></div>
+
+  <script type="module">
+    import { loadHouses, loadProvinces, loadStories, getCatalogMetrics } from './js/museum-data.js';
+    import { initMuseumShell, renderHouseCard, bindSaveButtons, escapeHtml } from './js/museum-shell.js';
+    import { NularArchitectureViewer } from './js/viewer-3d.js';
+
+    initMuseumShell('home');
+    bindSaveButtons(document);
+
+    let activeHeroViewer = null;
+
+    async function initHome() {
+      const [houses, provincesData, stories] = await Promise.all([
+        loadHouses(),
+        loadProvinces(),
+        loadStories()
+      ]);
+
+      // Update live metrics
+      const metrics = getCatalogMetrics(houses, provincesData);
+      document.querySelector('[data-metric="houses"]').textContent = String(metrics.totalHouses);
+      document.querySelector('[data-metric="models"]').textContent = String(metrics.modelsAvailable);
+      document.querySelector('[data-metric="islands"]').textContent = String(metrics.documentedIslands);
+
+      // 1. Setup Interactive Hero 3D Preview Switcher (4 verified GLB models)
+      const models3D = houses.filter((h) => h.modelStatus === 'available');
+      const tabsContainer = document.getElementById('hero-model-tabs');
+      const heroLabel = document.getElementById('hero-model-label');
+      const heroCta = document.getElementById('hero-model-cta');
+      const heroStage = document.getElementById('hero-3d-canvas');
+
+      function mountHeroModel(house) {
+        if (activeHeroViewer) {
+          activeHeroViewer.dispose();
+          activeHeroViewer = null;
+        }
+        heroLabel.textContent = `Pratinjau 3D Langsung · ${house.houseName} (${house.province})`;
+        heroCta.href = `house.html?id=${encodeURIComponent(house.id)}`;
+        tabsContainer.querySelectorAll('.hero-model-tab').forEach((btn) => {
+          const isCurrent = btn.getAttribute('data-model-id') === house.id;
+          btn.classList.toggle('is-active', isCurrent);
+          btn.setAttribute('aria-selected', String(isCurrent));
+        });
+        activeHeroViewer = new NularArchitectureViewer(heroStage, house, {
+          compact: true,
+          autoRotateDefault: true
+        });
+      }
+
+      tabsContainer.innerHTML = models3D.map((h, i) => `
+        <button
+          type="button"
+          role="tab"
+          aria-selected="${i === 0}"
+          class="hero-model-tab ${i === 0 ? 'is-active' : ''}"
+          data-model-id="${escapeHtml(h.id)}"
+        >${escapeHtml(h.houseName)}</button>
+      `).join('');
+
+      tabsContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-model-id]');
+        if (!btn) return;
+        const found = models3D.find((h) => h.id === btn.getAttribute('data-model-id'));
+        if (found) mountHeroModel(found);
+      });
+
+      if (models3D[0]) mountHeroModel(models3D[0]);
+
+      // 2. Featured Architecture (4 3D models + Mbaru Niang = top 4 featured cards)
+      const featured = houses.filter((h) => h.featured).slice(0, 4);
+      document.getElementById('featured-houses-grid').innerHTML = featured
+        .map((h) => renderHouseCard(h, { showCompare: true }))
+        .join('');
+
+      // 3. Explore by Island (7 regions + Atlas CTA cell to balance 4-col architectural grid)
+      const islandTiles = provincesData.islands.map((isl, idx) => {
+        const inIsland = houses.filter((h) => h.island === isl.id);
+        const count3d = inIsland.filter((h) => h.modelStatus === 'available').length;
+        return `
+          <a href="explore.html?island=${encodeURIComponent(isl.id)}" class="island-tile">
+            <div>
+              <span class="mono-caption">0${idx + 1} · ${isl.provinces.length} Provinsi</span>
+              <h3 class="island-tile__name">${escapeHtml(isl.name)}</h3>
+              <p class="island-tile__desc">${escapeHtml(isl.subtitle)}</p>
+            </div>
+            <div class="island-tile__counts">
+              <span>${inIsland.length} rumah terdokumentasi</span>
+              <span>${count3d > 0 ? `${count3d} model 3D` : 'Riset foto'} →</span>
+            </div>
+          </a>
+        `;
+      });
+
+      islandTiles.push(`
+        <a href="map.html" class="island-tile" style="background:var(--bg-forest);color:var(--ink-on-dark);">
+          <div>
+            <span class="mono-caption" style="color:var(--bronze-light);">Peta Cakupan Riset</span>
+            <h3 class="island-tile__name" style="color:#FAF7F2;">Seluruh 38 Provinsi</h3>
+            <p class="island-tile__desc" style="color:var(--ink-on-dark-muted);">
+              Lihat pemetaan transparan antara provinsi yang telah terdokumentasi, model 3D tersedia, dan wilayah yang masih dalam tahap penelitian.
+            </p>
+          </div>
+          <div class="island-tile__counts" style="color:var(--bronze-light);border-top-color:var(--border-dark);">
+            <span>${metrics.documentedProvincesCount} / ${metrics.totalProvinces} provinsi</span>
+            <span>Buka Peta →</span>
+          </div>
+        </a>
+      `);
+      document.getElementById('island-explorer-grid').innerHTML = islandTiles.join('');
+
+      // 4. Architectural Stories
+      document.getElementById('stories-grid').innerHTML = stories.map((st) => `
+        <article class="house-card">
+          <div class="house-card__media" style="aspect-ratio:16/9;">
+            <img class="house-card__img" src="${escapeHtml(st.image)}" alt="${escapeHtml(st.title)}" loading="lazy" />
+          </div>
+          <div class="house-card__body">
+            <div class="house-card__region">${escapeHtml(st.category)} · ${escapeHtml(st.readTime)}</div>
+            <h3 class="card-title" style="margin-bottom:10px;">${escapeHtml(st.title)}</h3>
+            <p class="house-card__intro">${escapeHtml(st.summary)}</p>
+            <div class="house-card__footer">
+              <a href="anatomy.html#story-${encodeURIComponent(st.id)}" class="btn-museum btn-museum--secondary btn-museum--sm">
+                <span>Baca Kajian</span>
+                <span class="material-symbols-outlined" style="font-size:15px" aria-hidden="true">east</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+      // 5. Recently Added Collections (latest 3 added entries)
+      const recent = [...houses].sort((a, b) => b.addedOrder - a.addedOrder).slice(0, 3);
+      document.getElementById('recent-houses-grid').innerHTML = recent
+        .map((h) => renderHouseCard(h))
+        .join('');
+    }
+
+    initHome().catch((err) => {
+      console.error('Home init error:', err);
+    });
+  </script>
+</body>
+</html>
