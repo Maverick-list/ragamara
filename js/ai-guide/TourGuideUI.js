@@ -68,8 +68,8 @@ export function mountTourGuide({ mountEl, world, houses }) {
 
   function speakText(text) {
     if (!speakerEnabled) return;
-    audio.stopSpeech();
-    audio.speakFallback(text, 'id');
+    audio.stopSpeaking();
+    audio.speakTextFallback(text, 'id');
   }
 
   async function askGuide(question) {
@@ -77,7 +77,7 @@ export function mountTourGuide({ mountEl, world, houses }) {
     if (!q) return;
     appendMessage('user', q);
 
-    const ctx = resolver.getContext();
+    const ctx = resolver.resolve();
     let answer = '';
 
     // 1. Attempt server-side LLM adapter (/api/guide-chat) first
@@ -95,8 +95,8 @@ export function mountTourGuide({ mountEl, world, houses }) {
 
     // 2. Honest grounded cultural retrieval fallback when external LLM is unconfigured
     if (!answer) {
-      const local = retriever.answerQuestion(q, ctx, 'id');
-      answer = local?.text || 'Informasi spesifik tersebut belum terverifikasi dalam arsip NULAR saat ini. Anda dapat menanyakan arsitektur, material, atau tata ruang rumah adat yang sedang Anda kunjungi.';
+      const local = retriever.answerLocally(q, ctx, 'id');
+      answer = (typeof local === 'string' ? local : local?.text) || 'Informasi spesifik tersebut belum terverifikasi dalam arsip NULAR saat ini. Anda dapat menanyakan arsitektur, material, atau tata ruang rumah adat yang sedang Anda kunjungi.';
     }
 
     appendMessage('guide', answer);
@@ -106,7 +106,7 @@ export function mountTourGuide({ mountEl, world, houses }) {
   function openPanel(initialPrompt = null) {
     panel.hidden = false;
     if (messages.length === 0) {
-      const ctx = resolver.getContext();
+      const ctx = resolver.resolve();
       const loc = ctx.houseName || 'Alun-Alun Nusantara';
       appendMessage('guide', `Halo! Saya siap menjawab pertanyaan tentang ${loc} dan warisan budaya Nusantara di sekitar Anda.`);
     }
@@ -119,7 +119,7 @@ export function mountTourGuide({ mountEl, world, houses }) {
 
   function closePanel() {
     panel.hidden = true;
-    audio.stopSpeech();
+    audio.stopSpeaking();
   }
 
   // Bind HUD button if present
@@ -134,7 +134,7 @@ export function mountTourGuide({ mountEl, world, houses }) {
     speakerEnabled = !speakerEnabled;
     speakerBtn.textContent = speakerEnabled ? '🔊' : '🔇';
     speakerBtn.classList.toggle('is-on', speakerEnabled);
-    if (!speakerEnabled) audio.stopSpeech();
+    if (!speakerEnabled) audio.stopSpeaking();
   });
 
   micBtn.addEventListener('click', () => {

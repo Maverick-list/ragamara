@@ -79,7 +79,12 @@ export async function runNularLoader({
 
   const allTasks = [
     ...tasks,
-    { label: 'Menyiapkan tipografi & antarmuka', run: () => document.fonts ? document.fonts.ready.catch(() => {}) : Promise.resolve() }
+    {
+      label: 'Menyiapkan tipografi & antarmuka',
+      run: () => document.fonts
+        ? Promise.race([document.fonts.ready.catch(() => {}), new Promise((r) => setTimeout(r, 700))])
+        : Promise.resolve()
+    }
   ];
 
   let completed = 0;

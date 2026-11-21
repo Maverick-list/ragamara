@@ -523,7 +523,6 @@
       const initialHouse = params.get('house') || null;
       await world.init(initialHouse);
       loadingEl.hidden = true;
-      window.__NULAR_WORLD__ = world;
 
       // Sync collection count badge
       const colCnt = document.getElementById('hud-collection-count');
@@ -570,16 +569,16 @@
       }
       setInterval(() => tutorial.checkInteractiveProgress(), 400);
 
-      // Dynamically load Phase 5 Minimal Transparent AI Tour Guide
-      import('./js/ai-guide/TourGuideUI.js')
-        .then(({ mountTourGuide }) => {
-          window.__NULAR_AI_GUIDE__ = mountTourGuide({ mountEl: document.getElementById('ai-guide-mount'), world, houses });
-        })
-        .catch(() => {
-          document.getElementById('btn-ai-guide')?.addEventListener('click', () => {
-            openDrawer('Pemandu Tur AI', 'Modul Pemandu Tur AI', '<p>Pemandu Tur AI tidak tersedia saat ini.</p>');
-          });
+      // Load Phase 5 Minimal Transparent AI Tour Guide
+      try {
+        const { mountTourGuide } = await import('./js/ai-guide/TourGuideUI.js');
+        window.__NULAR_AI_GUIDE__ = mountTourGuide({ mountEl: document.getElementById('ai-guide-mount'), world, houses });
+      } catch {
+        document.getElementById('btn-ai-guide')?.addEventListener('click', () => {
+          openDrawer('Pemandu Tur AI', 'Modul Pemandu Tur AI', '<p>Pemandu Tur AI tidak tersedia saat ini.</p>');
         });
+      }
+      window.__NULAR_WORLD__ = world;
     }
 
     // Wire UI Events
