@@ -193,13 +193,29 @@ async function run() {
     // TEST 1: Homepage Responsive Viewports & Zero Overflow
     console.log('\n--- Auditing Viewports for Zero Horizontal Overflow (Homepage) ---');
     for (const vp of VIEWPORTS) {
+      const pageUrl = `http://127.0.0.1:${PORT}/index.html`;
       await cdp.setViewport(vp.w, vp.h, vp.mobile);
-      await cdp.navigate(`http://127.0.0.1:${PORT}/index.html`);
-      // Deterministically wait for ES module museum shell (#mobile-bottom-nav) to mount
-      for (let i = 0; i < 25; i++) {
-        const mounted = await cdp.evaluate('Boolean(document.getElementById("mobile-bottom-nav"))');
-        if (mounted) break;
+      await cdp.navigate(pageUrl);
+      // Deterministically wait for required application shell (header + bottom nav DOM) on all viewports
+      const shellTimeoutMs = 8000;
+      let shellReady = false;
+      let lastShellState = null;
+      for (let i = 0; i < shellTimeoutMs / 200; i++) {
+        lastShellState = await cdp.evaluate(`(() => ({
+          readyState: document.readyState,
+          hasHeader: Boolean(document.querySelector('#museum-header-mount header.museum-header')),
+          hasBottomNav: Boolean(document.getElementById('mobile-bottom-nav'))
+        }))()`);
+        if (lastShellState?.readyState === 'complete' && lastShellState.hasHeader && lastShellState.hasBottomNav) {
+          shellReady = true;
+          break;
+        }
         await new Promise((r) => setTimeout(r, 200));
+      }
+      if (!shellReady) {
+        throw new Error(
+          `Application shell readiness timeout after ${shellTimeoutMs}ms on ${pageUrl} (${vp.name} ${vp.w}x${vp.h}) — expected readyState==="complete" && header.museum-header && #mobile-bottom-nav; observed=${JSON.stringify(lastShellState)}`
+        );
       }
       const metrics = await cdp.evaluate(`(() => {
         const docW = document.documentElement.scrollWidth;
@@ -337,11 +353,26 @@ async function run() {
     await cdp.captureScreenshot('tablet_landscape_1024_map.png');
 
     console.log('\n=== ALL UNIVERSAL CROSS-DEVICE VERIFICATIONS PASSED (100%) ===\n');
+  } catch (err) {
+    // Capture primary test failure so cleanup diagnostics never conceal it
+    var primaryTestErr = err;
+    throw err;
   } finally {
     if (cdp?.ws) cdp.ws.close();
     chromeProc.kill('SIGKILL');
     server.close();
-    try { fs.rmSync(chromeDataDir, { recursive: true, force: true }); } catch {}
+    // Allow Chrome a brief moment to release /tmp lock files before removal
+    await new Promise((r) => setTimeout(r, 150));
+    try {
+      fs.rmSync(chromeDataDir, { recursive: true, force: true });
+    } catch (cleanErr) {
+      if (cleanErr?.code === 'ENOTEMPTY' || cleanErr?.code === 'EBUSY' || cleanErr?.code === 'ENOENT') {
+        console.warn(`[CLEANUP NOTE] Known Chrome temp-dir race (${cleanErr.code}) on ${chromeDataDir}`);
+      } else {
+        console.error(`[CLEANUP ERROR] Unexpected filesystem error removing ${chromeDataDir}:`, cleanErr);
+        if (!primaryTestErr) throw cleanErr;
+      }
+    }
   }
 }
 

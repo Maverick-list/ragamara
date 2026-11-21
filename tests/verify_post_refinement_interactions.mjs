@@ -55,24 +55,35 @@ class CDPClient {
     });
   }
 
-  async navigate(url, waitMs = 800) {
-    const loadPromise = new Promise((resolve) => {
-      const onMsg = (e) => {
-        const m = JSON.parse(e.data);
-        if (m.method === 'Page.loadEventFired') {
-          this.ws.removeEventListener('message', onMsg);
-          resolve();
+  async navigate(url, waitMs = 800, timeoutMs = 10000) {
+    let loaded = false;
+    const onMsg = (e) => {
+      const m = JSON.parse(e.data);
+      if (m.method === 'Page.loadEventFired') {
+        loaded = true;
+      }
+    };
+    this.ws.addEventListener('message', onMsg);
+    try {
+      await this.send('Page.navigate', { url });
+      const start = Date.now();
+      let lastState = null;
+      while (Date.now() - start < timeoutMs) {
+        lastState = await this.evaluate('({ readyState: document.readyState, href: location.href })').catch(() => null);
+        if (loaded || (lastState?.readyState === 'complete' && lastState.href === url)) {
+          break;
         }
-      };
-      this.ws.addEventListener('message', onMsg);
-      setTimeout(() => {
-        this.ws.removeEventListener('message', onMsg);
-        resolve();
-      }, 6000);
-    });
-    await this.send('Page.navigate', { url });
-    await loadPromise;
-    await new Promise((r) => setTimeout(r, waitMs));
+        await new Promise((r) => setTimeout(r, 150));
+      }
+      if (!loaded && !(lastState?.readyState === 'complete' && lastState.href === url)) {
+        throw new Error(
+          `Navigation timeout after ${timeoutMs}ms for ${url} — expected Page.loadEventFired or readyState==="complete"; observed=${JSON.stringify(lastState)}`
+        );
+      }
+      await new Promise((r) => setTimeout(r, waitMs));
+    } finally {
+      this.ws.removeEventListener('message', onMsg);
+    }
   }
 
   async setViewport(width, height, isMobile = false) {

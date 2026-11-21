@@ -279,36 +279,76 @@ async function runAudit() {
     await send('Runtime.enable');
     await send('Performance.enable');
 
-    // 3.1 Homepage Core Web Vitals
-    await send('Page.navigate', { url: `${base}/index.html` });
-    for (let i = 0; i < 30; i++) {
-      const done = await evalJs('Boolean(performance.getEntriesByType("navigation")[0]?.domInteractive > 0)');
-      if (done) break;
+    // 3.1 Homepage Navigation Timing & Paint Metrics (distinct DOMInteractive, LoadEventEnd, FCP)
+    const homeUrl = `${base}/index.html`;
+    await send('Page.navigate', { url: homeUrl });
+    const homeTimeoutMs = 10000;
+    let homeReady = false;
+    let lastHomeState = null;
+    for (let i = 0; i < homeTimeoutMs / 200; i++) {
+      lastHomeState = await evalJs(`(() => {
+        const nav = performance.getEntriesByType('navigation')[0];
+        return {
+          readyState: document.readyState,
+          domInteractive: Math.round(nav?.domInteractive || 0),
+          loadEventEnd: Math.round(nav?.loadEventEnd || 0)
+        };
+      })()`);
+      if (lastHomeState?.readyState === 'complete' && lastHomeState.loadEventEnd > 0) {
+        homeReady = true;
+        break;
+      }
       await new Promise((r) => setTimeout(r, 200));
     }
+    if (!homeReady) {
+      throw new Error(
+        `Readiness timeout after ${homeTimeoutMs}ms on ${homeUrl} — expected document.readyState==="complete" && loadEventEnd>0; observed=${JSON.stringify(lastHomeState)}`
+      );
+    }
+
     const perfMetrics = await send('Performance.getMetrics');
     const metricMap = Object.fromEntries(perfMetrics.metrics.map((m) => [m.name, m.value]));
 
     const navTiming = await evalJs(`(() => {
       const t = performance.getEntriesByType('navigation')[0];
+      const fcpEntry = performance.getEntriesByName('first-contentful-paint')[0];
       return {
         domInteractive: Math.round(t?.domInteractive || 0),
-        loadEventEnd: Math.round(t?.loadEventEnd || 0)
+        loadEventEnd: Math.round(t?.loadEventEnd || 0),
+        fcpMs: fcpEntry ? Math.round(fcpEntry.startTime) : null
       };
     })()`);
 
-    record('performance', 'Core Web Vitals & Loading Performance (Homepage)',
-      navTiming.domInteractive < 2500 && metricMap.LayoutCount > 0,
-      `DOMInteractive=${navTiming.domInteractive}ms, LoadEventEnd=${navTiming.loadEventEnd}ms, JSHeapUsed=${Math.round((metricMap.JSHeapUsedSize || 0) / 1024 / 1024)}MB`
+    const fcpDisplay = navTiming.fcpMs !== null ? `${navTiming.fcpMs}ms` : 'unavailable';
+    record('performance', 'Navigation Timing & Paint Metrics (Homepage)',
+      navTiming.domInteractive > 0 && navTiming.domInteractive < 2500 && navTiming.loadEventEnd > 0 && metricMap.LayoutCount > 0,
+      `DOMInteractive=${navTiming.domInteractive}ms, LoadEventEnd=${navTiming.loadEventEnd}ms, FCP=${fcpDisplay}, LCP=unavailable, JSHeapUsed=${Math.round((metricMap.JSHeapUsedSize || 0) / 1024 / 1024)}MB`
     );
 
     // 3.2 Mobile 3D World Stability, WebGL Capabilities & Quality Profiles
+    const worldUrl = `${base}/world.html?notutorial=1`;
     await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
-    await send('Page.navigate', { url: `${base}/world.html?notutorial=1` });
-    for (let i = 0; i < 40; i++) {
-      const ready = await evalJs('Boolean(window.__NULAR_WORLD__?.running)');
-      if (ready) break;
+    await send('Page.navigate', { url: worldUrl });
+    const worldTimeoutMs = 10000;
+    let worldReady = false;
+    let lastWorldState = null;
+    for (let i = 0; i < worldTimeoutMs / 250; i++) {
+      lastWorldState = await evalJs(`(() => ({
+        readyState: document.readyState,
+        hasWorld: Boolean(window.__NULAR_WORLD__),
+        running: Boolean(window.__NULAR_WORLD__?.running),
+        hasCanvas: Boolean(window.__NULAR_WORLD__?.gameScene?.canvas)
+      }))()`);
+      if (lastWorldState?.running && lastWorldState?.hasCanvas) {
+        worldReady = true;
+        break;
+      }
       await new Promise((r) => setTimeout(r, 250));
+    }
+    if (!worldReady) {
+      throw new Error(
+        `Readiness timeout after ${worldTimeoutMs}ms on ${worldUrl} — expected window.__NULAR_WORLD__.running && gameScene.canvas; observed=${JSON.stringify(lastWorldState)}`
+      );
     }
 
     const worldEngineAudit = await evalJs(`(() => {

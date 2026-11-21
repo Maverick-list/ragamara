@@ -3,6 +3,7 @@
  * Manages Three.js WebGLRenderer, PBR lighting, shadows, and clean resource disposal.
  */
 import * as THREE from 'three';
+import { isSharedPbrTexture } from './PbrTextureFactory.js';
 
 export class GameScene {
   constructor(canvas) {
@@ -153,13 +154,21 @@ export class GameScene {
 
   disposeObject(obj) {
     if (!obj) return;
+    const disposedTextures = new Set();
+    const texSlots = ['map', 'bumpMap', 'normalMap', 'roughnessMap', 'metalnessMap', 'emissiveMap'];
     obj.traverse((child) => {
       if (child.geometry) child.geometry.dispose();
       if (child.material) {
         const mats = Array.isArray(child.material) ? child.material : [child.material];
         mats.forEach((m) => {
-          // Preserve shared cached textures from PbrTextureFactory across house transitions
-          if (m.map && !m.userData?.nularPbrApplied) m.map.dispose();
+          // Dispose genuinely owned non-shared textures; never dispose shared cached textures from PbrTextureFactory
+          for (const slot of texSlots) {
+            const tex = m[slot];
+            if (tex && !disposedTextures.has(tex) && !isSharedPbrTexture(tex)) {
+              tex.dispose();
+              disposedTextures.add(tex);
+            }
+          }
           m.dispose();
         });
       }

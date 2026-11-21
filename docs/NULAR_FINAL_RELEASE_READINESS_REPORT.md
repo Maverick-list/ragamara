@@ -40,9 +40,9 @@ NULAR — The Living World of Nusantara has completed its final quality polish, 
 - **Root Cause:** With single-line `white-space: nowrap` links at `1280px`, fallback font metrics before `Plus Jakarta Sans` / `Material Symbols` finished loading reached `scrollWidth = 1285px` (`+5px`).
 - **Fix Applied:** Added a compact desktop media query `@media (min-width: 1180px) and (max-width: 1360px)` in [`css/museum.css`](file:///home/firza-ilmi/.gemini/antigravity/scratch/ragamara/css/museum.css#L297-L313) tightening header/nav gaps (`12px`/`11px`), nav font size (`0.78rem`), and hiding `.brand-mark__sub` below `1360px`. Verified `scrollWidth = 1265px <= 1280px`.
 
-### 3. Shared PBR Texture Disposal Guard (`js/world/GameScene.js`)
-- **Root Cause:** `GameScene.disposeObject()` called `m.map.dispose()` on all meshes during house switching, inadvertently disposing shared module-cached `CanvasTexture` instances owned by `PbrTextureFactory.js`.
-- **Fix Applied:** Guarded texture disposal with `if (m.map && !m.userData?.nularPbrApplied) m.map.dispose();` in [`js/world/GameScene.js`](file:///home/firza-ilmi/.gemini/antigravity/scratch/ragamara/js/world/GameScene.js#L160-L164).
+### 3. Shared PBR Texture Ownership & Disposal (`js/world/PbrTextureFactory.js`, `js/world/GameScene.js`)
+- **Root Cause:** `GameScene.disposeObject()` originally disposed `m.map` across all meshes during transitions, and `applyRegionalTextileToAvatar()` did not mark shared batik textures or dispose previously cloned avatar materials on repeated outfit swaps.
+- **Fix Applied:** Marked all cached procedural textures with `tex.userData.nularSharedPbrTexture = true` via `finalizeTexture()` and exported `isSharedPbrTexture(tex)` in [`js/world/PbrTextureFactory.js`](file:///home/firza-ilmi/.gemini/antigravity/scratch/ragamara/js/world/PbrTextureFactory.js#L20-L34); disposed prior cloned avatar materials on repeated swaps without disposing shared textures; updated [`js/world/GameScene.js`](file:///home/firza-ilmi/.gemini/antigravity/scratch/ragamara/js/world/GameScene.js#L155-L174) to dispose all genuinely owned non-shared texture slots (`map`, `bumpMap`, `normalMap`, `roughnessMap`, `metalnessMap`, `emissiveMap`) deduplicated via `Set` while never disposing shared cached PBR textures. Verified `5/5 PASSED` in [`tests/test_pbr_texture_lifecycle.mjs`](file:///home/firza-ilmi/.gemini/antigravity/scratch/ragamara/tests/test_pbr_texture_lifecycle.mjs).
 
 ---
 
@@ -66,21 +66,22 @@ Verified via [`tests/capture_final_readiness.mjs`](file:///home/firza-ilmi/.gemi
 
 ---
 
-## E. SEVEN-SUITE CLEAN SEQUENTIAL REGRESSION RESULTS
+## E. SEVEN-SUITE CLEAN SEQUENTIAL REGRESSION RESULTS (+ FOCUSED PBR SUITE)
 
-Executed sequentially from a clean starting state (`task-5587`) after all fixes:
+Executed sequentially from a clean starting state (`task-5638`) after final integrity remediation:
 
 | # | Exact Command | Exit Code | Totals / Result |
 | :-: | :--- | :-: | :---: |
-| 1 | `node tests/audit_pwa_security_performance.mjs` | **0** | **16/16 PASSED** |
-| 2 | `node tests/verify_universal_cross_device.mjs` | **0** | **100% PASSED** (9 viewports, mobile bottom sheet, D-pad, landscape, tablet atlas) |
+| 0 | `node tests/test_pbr_texture_lifecycle.mjs` | **0** | **5/5 PASSED** (shared avatar/house textures preserved; owned textures & old cloned materials disposed) |
+| 1 | `node tests/audit_pwa_security_performance.mjs` | **0** | **16/16 PASSED** (`DOMInteractive=243ms`, `LoadEventEnd=1652ms`, `FCP=520ms`, `LCP=unavailable`, `JSHeap=3MB`) |
+| 2 | `node tests/verify_universal_cross_device.mjs` | **0** | **100% PASSED** (9 viewports, explicit desktop/mobile shell readiness, safe cleanup) |
 | 3 | `node tests/verify_nular_master_transformation.mjs` | **0** | **19/19 PASSED** |
 | 4 | `node tests/verify_phase11_visual_quality.mjs` | **0** | **12/12 PASSED** |
 | 5 | `node tests/verify_phase12_immersive_e2e.mjs` | **0** | **14/14 PASSED** |
 | 6 | `node tests/test_nular_gamification.mjs` | **0** | **100% PASSED** (hermetic CDN isolation + deterministic readiness poll) |
-| 7 | `node tests/verify_post_refinement_interactions.mjs` | **0** | **11/11 PASSED** (live tutorial, joystick/D-pad, HUD, drawer layering, images, a11y, offline) |
+| 7 | `node tests/verify_post_refinement_interactions.mjs` | **0** | **11/11 PASSED** (`drawCalls=270`, `triangles=10696`, `avgFrameMsSwiftShader=94.7ms`, `heap=16.8MB`) |
 
-**Sequential Run Verdict:** **7 / 7 suites exited with code `0`** (`0` failures, `0` uncaught console exceptions, `0` failed local network assets).
+**Sequential Run Verdict:** **8 / 8 suites exited with code `0`** (`0` failures, `0` uncaught console exceptions, `0` failed local network assets).
 
 ---
 

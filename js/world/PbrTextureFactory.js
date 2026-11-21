@@ -24,8 +24,13 @@ function finalizeTexture(canvas, repeatX = 2, repeatY = 2, isColor = true) {
   tex.repeat.set(repeatX, repeatY);
   if (isColor) tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 4;
+  tex.userData = { ...(tex.userData || {}), nularSharedPbrTexture: true };
   tex.needsUpdate = true;
   return tex;
+}
+
+export function isSharedPbrTexture(tex) {
+  return Boolean(tex && tex.userData && tex.userData.nularSharedPbrTexture === true);
 }
 
 function getOrCreate(key, factory) {
@@ -373,13 +378,25 @@ export function applyRegionalTextileToAvatar(avatarRoot, outfitId = 'batik-paran
     const isGarment = /torso|body|tunic|shirt|kain|sarong|skirt|sash|selendang|sleeve|coat|vest|cloth/i.test(n)
       || (obj.position.y > 0.35 && obj.position.y < 1.38 && !/head|face|hair|eye|hand|foot|shoe/i.test(n));
     if (isGarment && obj.material.isMeshStandardMaterial) {
-      obj.material = obj.material.clone();
-      obj.material.map = tex;
-      obj.material.bumpMap = tex;
-      obj.material.bumpScale = 0.015;
-      obj.material.color.setHex(0xffffff);
-      obj.material.roughness = 0.78;
-      obj.material.needsUpdate = true;
+      const prevMat = obj.material;
+      const nextMat = prevMat.clone();
+      nextMat.map = tex;
+      nextMat.bumpMap = tex;
+      nextMat.bumpScale = 0.015;
+      nextMat.color.setHex(0xffffff);
+      nextMat.roughness = 0.78;
+      nextMat.userData = {
+        ...(nextMat.userData || {}),
+        nularPbrApplied: true,
+        nularClonedAvatarMat: true,
+        pbrOutfitId: outfitId
+      };
+      nextMat.needsUpdate = true;
+      obj.material = nextMat;
+      // Dispose previously cloned avatar material on repeated outfit switches without disposing shared cached textures
+      if (prevMat.userData?.nularClonedAvatarMat) {
+        prevMat.dispose();
+      }
     }
   });
 }
