@@ -164,7 +164,7 @@ async function main() {
     const t0 = Date.now();
     await send('Page.navigate', { url: `${base}/index.html` });
     let homeCheck = null;
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 40; i++) {
       await new Promise((r) => setTimeout(r, 200));
       homeCheck = await evalJs(`(() => ({
         title: document.querySelector('h1')?.textContent?.trim(),

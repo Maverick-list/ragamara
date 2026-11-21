@@ -1,0 +1,26 @@
+{
+  "name": "NULAR — The Living World of Nusantara",
+  "short_name": "NULAR",
+  "description": "An immersive interactive digital world for exploring Indonesia's cultural heritage and traditional architecture.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FAF7F2",
+  "theme_color": "#153027",
+  "categories": ["education", "entertainment", "cultural"],
+  "icons": [
+    {
+      "src": "assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

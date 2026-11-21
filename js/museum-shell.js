@@ -5,6 +5,7 @@
 
 import { MuseumStore } from './museum-store.js';
 import { I18nManager, SUPPORTED_LOCALES } from './i18n/I18nManager.js';
+import './pwa.js';
 
 const NAV_ITEMS = [
   { id: 'home', i18nKey: 'nav.home', label: 'Beranda', subtitle: 'The Living World', href: 'index.html' },
@@ -167,6 +168,21 @@ export function initMuseumShell(activePageId) {
                 <span class="mono-caption">Sync & Aksesibilitas</span>
               </a>
             </li>
+            <li>
+              <button
+                type="button"
+                class="mobile-drawer__link"
+                data-pwa-install-btn
+                hidden
+                style="background:none;border:none;width:100%;text-align:left;cursor:pointer;font-family:inherit;"
+              >
+                <span style="display:inline-flex;align-items:center;gap:6px;">
+                  <span class="material-symbols-outlined" style="font-size:18px;color:var(--bronze);" aria-hidden="true">install_mobile</span>
+                  <span>Pasang Aplikasi NULAR</span>
+                </span>
+                <span class="mono-caption">PWA Install</span>
+              </button>
+            </li>
           </ul>
         </nav>
       </header>
@@ -180,6 +196,33 @@ export function initMuseumShell(activePageId) {
         toggleBtn.setAttribute('aria-expanded', String(isOpen));
         toggleBtn.querySelector('.material-symbols-outlined').textContent = isOpen ? 'close' : 'menu';
       });
+    }
+
+    // Handheld / Smartphone Bottom Navigation Bar
+    const BOTTOM_NAV_ITEMS = [
+      { id: 'home', label: 'Beranda', icon: 'home', href: 'index.html' },
+      { id: 'world', label: 'Dunia 3D', icon: 'directions_walk', href: 'world.html' },
+      { id: 'explore', label: 'Koleksi', icon: 'grid_view', href: 'explore.html' },
+      { id: 'map', label: 'Atlas', icon: 'public', href: 'map.html' },
+      { id: 'profile', label: 'Jurnal', icon: 'menu_book', href: 'profile.html' }
+    ];
+
+    if (activePageId !== 'world' && !document.getElementById('mobile-bottom-nav')) {
+      const bottomNav = document.createElement('nav');
+      bottomNav.id = 'mobile-bottom-nav';
+      bottomNav.className = 'mobile-bottom-nav';
+      bottomNav.setAttribute('aria-label', 'Navigasi Cepat Mobile');
+      bottomNav.innerHTML = BOTTOM_NAV_ITEMS.map((item) => `
+        <a
+          href="${item.href}"
+          class="mobile-bottom-nav__item ${item.id === activePageId ? 'is-active' : ''}"
+          ${item.id === activePageId ? 'aria-current="page"' : ''}
+        >
+          <span class="material-symbols-outlined mobile-bottom-nav__icon" aria-hidden="true">${item.icon}</span>
+          <span class="mobile-bottom-nav__label">${escapeHtml(item.label)}</span>
+        </a>
+      `).join('');
+      document.body.appendChild(bottomNav);
     }
   }
 

@@ -137,12 +137,14 @@ textarea:focus-visible {
   width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 24px;
+  padding-left: max(clamp(14px, 3.5vw, 36px), env(safe-area-inset-left, 14px));
+  padding-right: max(clamp(14px, 3.5vw, 36px), env(safe-area-inset-right, 14px));
 }
 
 @media (min-width: 1024px) {
   .museum-container {
-    padding: 0 40px;
+    padding-left: max(40px, env(safe-area-inset-left, 40px));
+    padding-right: max(40px, env(safe-area-inset-right, 40px));
   }
 }
 
@@ -283,10 +285,10 @@ textarea:focus-visible {
 .museum-nav {
   display: none;
   align-items: center;
-  gap: 28px;
+  gap: clamp(10px, 1.4vw, 24px);
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1180px) {
   .museum-nav {
     display: flex;
   }
@@ -404,7 +406,7 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1180px) {
   .mobile-menu-btn {
     display: none;
   }
@@ -1818,6 +1820,111 @@ textarea:focus-visible {
   line-height: 1.7;
   color: var(--ink-secondary);
   margin: 0;
+}
+
+/* ============================================================================
+   MOBILE BOTTOM NAVIGATION BAR (Smartphones & Handhelds)
+   ============================================================================ */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 85;
+  background: rgba(14, 34, 27, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-dark);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.28);
+}
+
+@media (min-width: 768px) {
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body:not(.no-bottom-nav-pad) {
+    padding-bottom: calc(64px + env(safe-area-inset-bottom, 12px)) !important;
+  }
+}
+
+.mobile-bottom-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 4px 6px;
+  color: var(--ink-on-dark-muted);
+  text-decoration: none;
+  font-size: 0.68rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  transition: color 0.18s ease;
+  border-radius: var(--radius-xs);
+  touch-action: manipulation;
+}
+
+.mobile-bottom-nav__icon {
+  font-size: 21px;
+  margin-bottom: 2px;
+}
+
+.mobile-bottom-nav__item:hover,
+.mobile-bottom-nav__item.is-active,
+.mobile-bottom-nav__item[aria-current="page"] {
+  color: var(--bronze-light);
+}
+
+.mobile-bottom-nav__item.is-active .mobile-bottom-nav__icon,
+.mobile-bottom-nav__item[aria-current="page"] .mobile-bottom-nav__icon {
+  color: var(--bronze-light);
+}
+
+/* Safe viewport units and fluid layout enhancements */
+@supports (height: 100dvh) {
+  .hero-full {
+    min-height: 100dvh;
+  }
+}
+
+/* Mobile Inspector Sheet & Bottom Drawer Ergonomics */
+@media (max-width: 767px) {
+  .viewer-shell--with-inspector {
+    display: flex;
+    flex-direction: column;
+  }
+  .inspector-panel {
+    border-top: 2px solid var(--bronze);
+    border-left: none;
+    max-height: 520px;
+  }
+  .inspector-panel__head {
+    padding: 14px 16px;
+  }
+  .inspector-panel__body {
+    padding: 16px;
+  }
+}
+
+/* Ensure no text or button clipping on 320px–360px micro screens */
+@media (max-width: 360px) {
+  .brand-mark__name {
+    font-size: 1rem;
+  }
+  .header-world-btn {
+    padding: 6px 8px;
+  }
+  .player-mini-pill {
+    display: none;
+  }
 }
 
 /* ============================================================================

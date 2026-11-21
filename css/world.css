@@ -185,9 +185,9 @@ html, body {
 /* Mobile Virtual Joystick & Action Pads */
 .mobile-controls {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
+  bottom: max(16px, env(safe-area-inset-bottom, 16px));
+  left: max(16px, env(safe-area-inset-left, 16px));
+  right: max(16px, env(safe-area-inset-right, 16px));
   z-index: 22;
   display: flex;
   justify-content: space-between;
@@ -203,6 +203,19 @@ html, body {
   .hud-controls-hint { display: none; }
   .hud-btn span.btn-lbl { display: none; }
   .hud-btn { min-width: 44px; min-height: 44px; justify-content: center; padding: 8px; }
+}
+
+.control-switcher-btn {
+  background: rgba(15, 25, 20, 0.72);
+  border: 1px solid var(--hud-border);
+  color: #FAF7F2;
+  border-radius: 4px;
+  padding: 4px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  touch-action: manipulation;
 }
 
 .joystick-base {
@@ -223,6 +236,32 @@ html, body {
   background: rgba(212, 174, 122, 0.85);
   border: 2px solid #FAF7F2;
   pointer-events: none;
+}
+
+/* Accessible D-Pad Alternative */
+.dpad-cluster {
+  display: grid;
+  grid-template-columns: repeat(3, 44px);
+  grid-template-rows: repeat(3, 44px);
+  gap: 4px;
+  touch-action: none;
+}
+.dpad-btn {
+  background: rgba(15, 25, 20, 0.78);
+  border: 1.5px solid var(--hud-border);
+  color: #FAF7F2;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+}
+.dpad-btn:active, .dpad-btn.is-active {
+  background: var(--hud-bronze);
+  border-color: var(--hud-gold);
 }
 
 .mobile-action-cluster {

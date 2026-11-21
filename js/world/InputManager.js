@@ -8,18 +8,24 @@ export class InputManager {
     this.canvas = canvas;
     this.keys = new Set();
     this.joyVec = { x: 0, y: 0 };
+    this.dpadVec = { x: 0, y: 0 };
     this.sprintToggle = false;
     this.lookDelta = { x: 0, y: 0 };
     this.zoomDelta = 0;
     this.actions = { jump: false, interact: false, roofToggle: false, cameraCycle: false, menu: false };
     this.dragging = false;
     this.lastPointer = { x: 0, y: 0 };
+    this.activePointers = new Map();
+    this.lastPinchDist = null;
     this.enabled = true;
 
     this._bindKeyboard();
     this._bindPointer();
     if (options.joystickBase && options.joystickKnob) {
       this._bindJoystick(options.joystickBase, options.joystickKnob);
+    }
+    if (options.dpadContainer) {
+      this._bindDpad(options.dpadContainer);
     }
   }
 
@@ -45,18 +51,46 @@ export class InputManager {
   _bindPointer() {
     this._onPointerDown = (e) => {
       if (e.target !== this.canvas) return;
-      this.dragging = true;
-      this.lastPointer = { x: e.clientX, y: e.clientY };
+      this.activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+      if (this.activePointers.size === 1) {
+        this.dragging = true;
+        this.lastPointer = { x: e.clientX, y: e.clientY };
+      } else if (this.activePointers.size === 2) {
+        const [p1, p2] = Array.from(this.activePointers.values());
+        this.lastPinchDist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+      }
     };
+
     this._onPointerMove = (e) => {
-      if (!this.dragging) return;
-      const dx = e.clientX - this.lastPointer.x;
-      const dy = e.clientY - this.lastPointer.y;
-      this.lookDelta.x += dx;
-      this.lookDelta.y += dy;
-      this.lastPointer = { x: e.clientX, y: e.clientY };
+      if (!this.activePointers.has(e.pointerId)) return;
+      this.activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+      if (this.activePointers.size === 1 && this.dragging) {
+        const dx = e.clientX - this.lastPointer.x;
+        const dy = e.clientY - this.lastPointer.y;
+        this.lookDelta.x += dx;
+        this.lookDelta.y += dy;
+        this.lastPointer = { x: e.clientX, y: e.clientY };
+      } else if (this.activePointers.size === 2 && this.lastPinchDist !== null) {
+        const [p1, p2] = Array.from(this.activePointers.values());
+        const curDist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+        const delta = curDist - this.lastPinchDist;
+        this.zoomDelta -= delta * 0.04;
+        this.lastPinchDist = curDist;
+      }
     };
-    this._onPointerUp = () => { this.dragging = false; };
+
+    this._onPointerUp = (e) => {
+      this.activePointers.delete(e.pointerId);
+      if (this.activePointers.size < 2) {
+        this.lastPinchDist = null;
+      }
+      if (this.activePointers.size === 0) {
+        this.dragging = false;
+      }
+    };
+
     this._onWheel = (e) => {
       if (e.target !== this.canvas) return;
       this.zoomDelta += Math.sign(e.deltaY) * 0.65;
@@ -65,7 +99,35 @@ export class InputManager {
     this.canvas.addEventListener('pointerdown', this._onPointerDown);
     window.addEventListener('pointermove', this._onPointerMove);
     window.addEventListener('pointerup', this._onPointerUp);
+    window.addEventListener('pointercancel', this._onPointerUp);
     this.canvas.addEventListener('wheel', this._onWheel, { passive: true });
+  }
+
+  _bindDpad(dpadContainer) {
+    if (!dpadContainer) return;
+    this.dpadState = { up: false, down: false, left: false, right: false };
+    const updateDpad = () => {
+      let dx = 0, dz = 0;
+      if (this.dpadState.up) dz -= 1;
+      if (this.dpadState.down) dz += 1;
+      if (this.dpadState.left) dx -= 1;
+      if (this.dpadState.right) dx += 1;
+      this.dpadVec.x = dx;
+      this.dpadVec.y = dz;
+    };
+    const setupBtn = (sel, dir) => {
+      const btn = dpadContainer.querySelector(sel);
+      if (!btn) return;
+      const press = (e) => { e.preventDefault(); this.dpadState[dir] = true; updateDpad(); };
+      const release = (e) => { e.preventDefault(); this.dpadState[dir] = false; updateDpad(); };
+      btn.addEventListener('pointerdown', press);
+      btn.addEventListener('pointerup', release);
+      btn.addEventListener('pointercancel', release);
+    };
+    setupBtn('[data-dpad="up"]', 'up');
+    setupBtn('[data-dpad="down"]', 'down');
+    setupBtn('[data-dpad="left"]', 'left');
+    setupBtn('[data-dpad="right"]', 'right');
   }
 
   _bindJoystick(base, knob) {
@@ -108,8 +170,8 @@ export class InputManager {
   }
 
   getMovementInput() {
-    let x = this.joyVec.x;
-    let z = this.joyVec.y;
+    let x = this.joyVec.x + this.dpadVec.x;
+    let z = this.joyVec.y + this.dpadVec.y;
     if (this.keys.has('KeyW') || this.keys.has('ArrowUp')) z -= 1;
     if (this.keys.has('KeyS') || this.keys.has('ArrowDown')) z += 1;
     if (this.keys.has('KeyA') || this.keys.has('ArrowLeft')) x -= 1;

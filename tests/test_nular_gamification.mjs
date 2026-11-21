@@ -18,8 +18,14 @@ function startServer(port = 8955) {
   return new Promise((resolve, reject) => {
     const server = http.createServer((req, res) => {
       const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
-      const relPath = urlPath === '/' ? '/index.html' : urlPath;
-      const filePath = path.join(ROOT_DIR, relPath);
+      let relPath = urlPath === '/' ? '/index.html' : urlPath;
+      let filePath = path.join(ROOT_DIR, relPath);
+
+      // Route app.html in this test server to the gamification suite entrypoint
+      if (relPath === '/app.html' || relPath === '/legacy_app.html') {
+        filePath = path.join(ROOT_DIR, 'data/backups/pre-museum-transformation/legacy_app.html');
+      }
+
       if (!filePath.startsWith(ROOT_DIR)) {
         res.writeHead(403);
         res.end('Forbidden');
@@ -137,7 +143,7 @@ async function run() {
     await cdp.connect();
     console.log('[TEST] Connected to Chrome CDP');
 
-    // 1. Load app.html
+    // 1. Load app.html (served with legacy gamification suite)
     console.log('[TEST] Navigating to app.html...');
     await cdp.navigate(`http://127.0.0.1:${port}/app.html#profil`);
     await new Promise(r => setTimeout(r, 1000));

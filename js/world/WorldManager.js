@@ -17,13 +17,13 @@ import { CulturalPavilionManager } from './CulturalPavilionManager.js';
 import { VehicleManager } from './VehicleManager.js';
 
 export class WorldManager {
-  constructor({ canvas, joystickBase, joystickKnob, houses, textiles, callbacks = {} }) {
+  constructor({ canvas, joystickBase, joystickKnob, dpadContainer, houses, textiles, callbacks = {} }) {
     this.houses = houses;
     this.textiles = textiles;
     this.callbacks = callbacks;
 
     this.gameScene = new GameScene(canvas);
-    this.input = new InputManager(canvas, { joystickBase, joystickKnob });
+    this.input = new InputManager(canvas, { joystickBase, joystickKnob, dpadContainer });
     this.collision = new CollisionManager();
     this.character = new CharacterController(this.gameScene.scene);
     this.player = new PlayerController(this.gameScene.scene, this.collision, this.character);

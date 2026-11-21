@@ -13,6 +13,11 @@
   <meta name="twitter:title" content="NULAR — The Living World of Nusantara" />
   <meta name="twitter:description" content="An immersive interactive digital world for exploring Indonesia's cultural heritage and traditional architecture." />
   <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#153027" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="assets/images/icon-192.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -119,8 +124,22 @@
 
   <!-- Mobile Virtual Touch Controls -->
   <div class="mobile-controls" aria-label="Kontrol Sentuh Mobile">
-    <div id="mobile-joystick-base" class="joystick-base">
-      <div id="mobile-joystick-knob" class="joystick-knob"></div>
+    <div id="mobile-control-left" style="display:flex;flex-direction:column;align-items:flex-start;gap:6px;">
+      <button type="button" id="toggle-control-mode-btn" class="control-switcher-btn" aria-label="Ganti mode navigasi analog atau tombol arah" title="Beralih antara Virtual Joystick dan D-Pad">
+        <span class="material-symbols-outlined" style="font-size:15px;" aria-hidden="true">gamepad</span>
+        <span id="control-mode-label" style="font-size:0.64rem;font-family:'IBM Plex Mono',monospace;">DPAD</span>
+      </button>
+      <div id="mobile-joystick-base" class="joystick-base">
+        <div id="mobile-joystick-knob" class="joystick-knob"></div>
+      </div>
+      <div id="mobile-dpad-container" class="dpad-cluster" hidden>
+        <div></div>
+        <button type="button" class="dpad-btn" data-dpad="up" aria-label="Maju">▲</button>
+        <div></div>
+        <button type="button" class="dpad-btn" data-dpad="left" aria-label="Kiri">◀</button>
+        <button type="button" class="dpad-btn" data-dpad="down" aria-label="Mundur">▼</button>
+        <button type="button" class="dpad-btn" data-dpad="right" aria-label="Kanan">▶</button>
+      </div>
     </div>
     <div class="mobile-action-cluster">
       <button type="button" id="mobile-btn-sprint" class="mobile-pad-btn" aria-label="Lari">LARI</button>
@@ -195,13 +214,13 @@
           </select>
         </label>
         <label>
-          <strong style="display:block;margin-bottom:4px;">Profil Kualitas Grafis</strong>
+          <strong style="display:block;margin-bottom:4px;">Profil Kualitas Grafis (Adaptif)</strong>
           <select id="wset-quality" style="width:100%;padding:8px;border:1px solid #C8BEB0;">
-            <option value="auto">Otomatis</option>
-            <option value="low">Low (Mobile / Ringan)</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-            <option value="ultra">Ultra</option>
+            <option value="auto">Auto (Deteksi Kemampuan Perangkat)</option>
+            <option value="performance">Performance (Ponsel Ringan / Hemat Baterai)</option>
+            <option value="balanced">Balanced (Tablet & Laptop Standar)</option>
+            <option value="high">High (Desktop GPU / Ponsel Flagship)</option>
+            <option value="ultra">Ultra (Kualitas Maksimal & Bayangan Halus)</option>
           </select>
         </label>
         <label>
@@ -293,6 +312,7 @@
     import { CollectionBook } from './js/gamification/CollectionBook.js';
     import { worldAudio } from './js/world/AudioManager.js';
     import { ProgressionEngine } from './js/gamification/ProgressionEngine.js';
+    import './js/pwa.js';
 
     const loadingEl = document.getElementById('world-loading');
     const loadingTitle = document.getElementById('loading-title');
@@ -382,6 +402,7 @@
         canvas: document.getElementById('world-canvas'),
         joystickBase: document.getElementById('mobile-joystick-base'),
         joystickKnob: document.getElementById('mobile-joystick-knob'),
+        dpadContainer: document.getElementById('mobile-dpad-container'),
         houses,
         textiles,
         callbacks: {
@@ -643,6 +664,19 @@
       world.input.sprintToggle = !world.input.sprintToggle;
       e.currentTarget.classList.toggle('is-active', world.input.sprintToggle);
     });
+
+    const toggleModeBtn = document.getElementById('toggle-control-mode-btn');
+    const joystickBase = document.getElementById('mobile-joystick-base');
+    const dpadCluster = document.getElementById('mobile-dpad-container');
+    const modeLabel = document.getElementById('control-mode-label');
+    if (toggleModeBtn && joystickBase && dpadCluster) {
+      toggleModeBtn.addEventListener('click', () => {
+        const isDpad = !dpadCluster.hidden;
+        dpadCluster.hidden = isDpad;
+        joystickBase.hidden = !isDpad;
+        modeLabel.textContent = isDpad ? 'DPAD' : 'STICK';
+      });
+    }
 
     document.querySelectorAll('[data-close-modal]').forEach((btn) => {
       btn.addEventListener('click', () => {

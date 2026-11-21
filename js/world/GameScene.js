@@ -52,8 +52,51 @@ export class GameScene {
     this.fillLight.position.set(-14, 12, -16);
     this.scene.add(this.fillLight);
 
+    // Adaptive state flags
+    this.contextLost = false;
+    this.isPaused = document.hidden || false;
+
     this._onResize = () => this.resize();
     window.addEventListener('resize', this._onResize);
+
+    this._onVisibilityChange = () => {
+      this.isPaused = document.hidden;
+    };
+    document.addEventListener('visibilitychange', this._onVisibilityChange);
+
+    this._onContextLost = (e) => {
+      e.preventDefault();
+      this.contextLost = true;
+      console.warn('[GameScene] WebGL context lost. Rendering paused.');
+    };
+    this._onContextRestored = () => {
+      this.contextLost = false;
+      this.resize();
+      console.info('[GameScene] WebGL context restored.');
+    };
+    this.canvas.addEventListener('webglcontextlost', this._onContextLost);
+    this.canvas.addEventListener('webglcontextrestored', this._onContextRestored);
+  }
+
+  static detectDeviceCapability() {
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return 'performance';
+
+      const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+      const renderer = debugInfo ? gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) : '';
+      const isWeakGpu = /Mali-400|PowerVR|Intel HD 3000|Intel HD 2000|Adreno 3|Adreno 2/i.test(renderer);
+      const isAppleOrDiscrete = /Apple M|NVIDIA|GeForce|Radeon|RTX|GTX/i.test(renderer);
+      const memory = navigator.deviceMemory || 4;
+      const cores = navigator.hardwareConcurrency || 4;
+
+      if (isWeakGpu || memory < 3 || cores <= 2) return 'performance';
+      if (isAppleOrDiscrete && memory >= 6 && cores >= 6) return 'high';
+      return 'balanced';
+    } catch {
+      return 'balanced';
+    }
   }
 
   resize() {
@@ -72,12 +115,16 @@ export class GameScene {
   }
 
   setQualityProfile(profile = 'auto') {
-    let resolved = profile;
-    if (profile === 'auto') {
-      const cores = navigator.hardwareConcurrency || 4;
-      const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent || '');
-      resolved = isMobile || cores <= 2 ? 'low' : (cores >= 8 ? 'high' : 'medium');
+    let resolved = profile.toLowerCase();
+    if (resolved === 'auto') {
+      resolved = GameScene.detectDeviceCapability();
     }
+    // Canonical mapping for standard profiles
+    if (resolved === 'low' || resolved === 'performance') resolved = 'low';
+    else if (resolved === 'medium' || resolved === 'balanced') resolved = 'medium';
+    else if (resolved === 'ultra') resolved = 'ultra';
+    else resolved = 'high';
+
     const cfg = {
       low: { dpr: 1, shadows: false, shadowSize: 512, exposure: 1.05 },
       medium: { dpr: Math.min(window.devicePixelRatio || 1, 1.5), shadows: true, shadowSize: 1024, exposure: 1.08 },
@@ -100,6 +147,7 @@ export class GameScene {
   }
 
   render() {
+    if (this.contextLost || this.isPaused) return;
     this.renderer.render(this.scene, this.camera);
   }
 
@@ -119,6 +167,9 @@ export class GameScene {
 
   dispose() {
     window.removeEventListener('resize', this._onResize);
+    document.removeEventListener('visibilitychange', this._onVisibilityChange);
+    this.canvas.removeEventListener('webglcontextlost', this._onContextLost);
+    this.canvas.removeEventListener('webglcontextrestored', this._onContextRestored);
     this.disposeObject(this.scene);
     this.renderer.dispose();
   }

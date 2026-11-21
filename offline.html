@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mode Offline — NULAR</title>
+  <meta name="theme-color" content="#153027" />
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <link rel="stylesheet" href="css/museum.css" />
+  <style>
+    .offline-card {
+      max-width: 540px;
+      margin: 80px auto;
+      padding: 40px 32px;
+      background: var(--bg-paper);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      box-shadow: var(--shadow-panel);
+    }
+    .offline-icon {
+      font-size: 56px;
+      color: var(--bronze);
+      margin-bottom: 16px;
+    }
+    .offline-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    @media (min-width: 480px) {
+      .offline-links {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body style="min-height: 100vh; display: grid; place-items: center; padding: 24px; background: var(--bg-sandstone);">
+  <main class="offline-card" role="main">
+    <div class="brand-mark" style="justify-content: center; margin-bottom: 20px;">
+      <span class="brand-mark__emblem" aria-hidden="true">N</span>
+      <span class="brand-mark__text">
+        <span class="brand-mark__name">NULAR</span>
+        <span class="brand-mark__sub">Living Heritage World</span>
+      </span>
+    </div>
+    <span class="material-symbols-outlined offline-icon" aria-hidden="true">wifi_off</span>
+    <h1 style="font-family: var(--font-serif); font-size: 1.6rem; margin: 0 0 10px;">Anda Sedang Offline</h1>
+    <p style="font-size: 0.92rem; color: var(--ink-secondary); line-height: 1.65; margin: 0 0 20px;">
+      Koneksi jaringan terputus. Sebagian besar arsip data tekstual dan halaman yang telah dikunjungi sebelumnya tetap dapat diakses dari cache perangkat Anda.
+    </p>
+    <button type="button" onclick="window.location.reload()" class="btn-museum btn-museum--bronze" style="margin-bottom: 16px; width: 100%;">
+      <span class="material-symbols-outlined" style="font-size: 18px" aria-hidden="true">refresh</span>
+      <span>Muat Ulang Halaman</span>
+    </button>
+    <div class="offline-links">
+      <a href="index.html" class="btn-museum btn-museum--secondary btn-museum--sm">Ke Beranda</a>
+      <a href="map.html" class="btn-museum btn-museum--secondary btn-museum--sm">Peta Provinsi</a>
+      <a href="profile.html" class="btn-museum btn-museum--secondary btn-museum--sm">Jurnal Tersimpan</a>
+    </div>
+  </main>
+</body>
+</html>
