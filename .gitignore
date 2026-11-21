@@ -6,3 +6,4 @@ ragamara-data-engine/data/cache/
 *.log
 
 .vercel
+.nular-local-data/

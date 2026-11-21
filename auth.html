@@ -28,6 +28,9 @@
         <p class="lead-copy" id="auth-session-banner" style="margin-top:10px;">
           Memeriksa status sesi...
         </p>
+        <div id="auth-diagnostics-strip" class="auth-diagnostics-strip" aria-live="polite" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+          <span class="mono-caption" style="color:var(--ink-muted);">Memeriksa konfigurasi penyimpanan &amp; penyedia otentikasi…</span>
+        </div>
       </div>
     </section>
 
@@ -49,7 +52,13 @@
               </div>
               <div>
                 <label class="field-label" for="auth-password" data-i18n="auth.password">Kata Sandi (min. 8 karakter)</label>
-                <input id="auth-password" type="password" class="museum-input" required minlength="8" />
+                <input id="auth-password" type="password" class="museum-input" required minlength="8" autocomplete="current-password" />
+                <div id="password-strength-wrap" style="margin-top:6px;display:flex;align-items:center;gap:8px;">
+                  <div style="flex:1;height:4px;background:rgba(21,48,39,0.12);border-radius:999px;overflow:hidden;">
+                    <div id="password-strength-bar" style="height:100%;width:0%;background:#b08948;transition:width 220ms ease, background 220ms ease;"></div>
+                  </div>
+                  <span id="password-strength-label" class="mono-caption" style="font-size:0.68rem;color:var(--ink-muted);min-width:52px;text-align:right;">—</span>
+                </div>
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;">
                 <button type="submit" id="btn-login" class="btn-museum btn-museum--primary btn-museum--sm" data-i18n="auth.signIn">Masuk</button>
@@ -290,9 +299,60 @@
     AuthClient.getProviders().then((p) => {
       const gEl = document.getElementById('google-provider-status');
       const phEl = document.getElementById('phone-provider-status');
+      const diagEl = document.getElementById('auth-diagnostics-strip');
       if (gEl) gEl.textContent = p.google?.configured ? 'Google OAuth siap digunakan.' : 'Google OAuth belum dikonfigurasi (lihat docs/AUTHENTICATION_SETUP.md).';
       if (phEl) phEl.textContent = p.phoneOtp?.configured ? 'Penyedia SMS OTP aktif.' : (p.phoneOtp?.devModeAllowed ? 'SMS produksi belum terhubung (mode uji lokal aktif).' : 'Penyedia SMS OTP belum dikonfigurasi.');
+      if (diagEl) {
+        const storageLabels = {
+          supabase_configured: 'Penyimpanan: Supabase Cloud',
+          local_file_backed: 'Penyimpanan: Lokal Persisten (.nular-local-data)',
+          serverless_ephemeral: 'Penyimpanan: Serverless Sementara (Set Supabase untuk produksi)'
+        };
+        const badges = [
+          { label: storageLabels[p.storageMode] || 'Penyimpanan: Lokal', ok: p.storageMode !== 'serverless_ephemeral' },
+          { label: p.security?.loginRateLimitEnabled ? 'Rate-Limit Login: Aktif' : 'Rate-Limit Login: Nonaktif', ok: Boolean(p.security?.loginRateLimitEnabled) },
+          { label: p.google?.configured ? 'Google OAuth: Aktif' : 'Google OAuth: Belum Terkonfigurasi', ok: Boolean(p.google?.configured) },
+          { label: p.phoneOtp?.configured ? 'SMS OTP: Aktif' : 'SMS OTP: Mode Uji Lokal', ok: Boolean(p.phoneOtp?.configured) },
+          { label: p.email?.smtpConfigured ? 'Email SMTP: Aktif' : 'Email SMTP: Belum Terkonfigurasi', ok: Boolean(p.email?.smtpConfigured) }
+        ];
+        diagEl.innerHTML = badges.map((b) => (
+          `<span class="mono-caption" style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:0.7rem;border:1px solid ${b.ok ? 'rgba(21,48,39,0.28)' : 'rgba(176,137,72,0.45)'};background:${b.ok ? 'rgba(237,247,241,0.9)' : 'rgba(250,245,235,0.9)'};color:${b.ok ? '#153027' : '#6b4d22'};">` +
+          `<span style="width:6px;height:6px;border-radius:50%;background:${b.ok ? '#1d6b47' : '#b08948'};"></span>${b.label}</span>`
+        )).join('');
+      }
     });
+
+    const pwdInput = document.getElementById('auth-password');
+    const pwdBar = document.getElementById('password-strength-bar');
+    const pwdLabel = document.getElementById('password-strength-label');
+    if (pwdInput && pwdBar && pwdLabel) {
+      pwdInput.addEventListener('input', () => {
+        const val = pwdInput.value || '';
+        if (!val) {
+          pwdBar.style.width = '0%';
+          pwdLabel.textContent = '—';
+          return;
+        }
+        let score = 0;
+        if (val.length >= 8) score += 1;
+        if (val.length >= 12) score += 1;
+        if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score += 1;
+        if (/\d/.test(val) && /[^A-Za-z0-9]/.test(val)) score += 1;
+        if (score <= 1) {
+          pwdBar.style.width = '33%';
+          pwdBar.style.background = '#9e2a2b';
+          pwdLabel.textContent = 'Lemah';
+        } else if (score <= 2) {
+          pwdBar.style.width = '66%';
+          pwdBar.style.background = '#b08948';
+          pwdLabel.textContent = 'Sedang';
+        } else {
+          pwdBar.style.width = '100%';
+          pwdBar.style.background = '#1d6b47';
+          pwdLabel.textContent = 'Kuat';
+        }
+      });
+    }
 
     document.getElementById('btn-reset').addEventListener('click', async () => {
       const res = await AuthClient.requestReset(document.getElementById('auth-email').value);

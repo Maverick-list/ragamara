@@ -5,6 +5,7 @@
 
 import { MuseumStore } from './museum-store.js';
 import { I18nManager, SUPPORTED_LOCALES } from './i18n/I18nManager.js';
+import { initMuseumMotion } from './museum-motion.js';
 import './pwa.js';
 
 const NAV_ITEMS = [
@@ -23,6 +24,12 @@ function ensureDesignSystemCss() {
     link.rel = 'stylesheet';
     link.href = 'css/design-system.css';
     document.head.appendChild(link);
+  }
+  if (!document.querySelector('link[href*="exhibition-motion.css"]')) {
+    const motionLink = document.createElement('link');
+    motionLink.rel = 'stylesheet';
+    motionLink.href = 'css/exhibition-motion.css';
+    document.head.appendChild(motionLink);
   }
 }
 
@@ -225,6 +232,8 @@ export function initMuseumShell(activePageId) {
       document.body.appendChild(bottomNav);
     }
   }
+
+  initMuseumMotion();
 
   if (footerMount) {
     footerMount.innerHTML = `

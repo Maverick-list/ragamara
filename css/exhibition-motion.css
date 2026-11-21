@@ -1,0 +1,331 @@
+/* ==========================================================================
+   NULAR — Exhibition Motion & Curatorial Gallery Atmosphere
+   css/exhibition-motion.css
+   Living Heritage Museum × Contemporary Nusantara Editorial
+   ========================================================================== */
+
+:root {
+  --museum-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --museum-duration-reveal: 640ms;
+  --museum-duration-hover: 280ms;
+  --museum-gold: #b08948;
+  --museum-gold-soft: rgba(176, 137, 72, 0.24);
+  --museum-emerald: #153027;
+  --museum-emerald-deep: #0f241d;
+  --museum-ivory: #faf7f2;
+}
+
+/* 1. Museum Header Scroll Reading Progress Bar (2px warm gold) */
+.museum-header {
+  position: sticky;
+  top: 0;
+}
+
+.museum-scroll-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--museum-emerald) 0%, var(--museum-gold) 65%, #d6b170 100%);
+  pointer-events: none;
+  z-index: 5;
+  transform-origin: left center;
+  will-change: width;
+}
+
+/* 2. Architectural Kawung / Tenun Subtle Gallery Atmosphere on Hero */
+.hero-atlas {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-atlas::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(ellipse 68% 58% at 78% 24%, rgba(176, 137, 72, 0.10) 0%, rgba(176, 137, 72, 0) 70%),
+    radial-gradient(circle at 18% 82%, rgba(21, 48, 39, 0.06) 0%, rgba(21, 48, 39, 0) 60%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(21, 48, 39, 0.022) 0px,
+      rgba(21, 48, 39, 0.022) 1px,
+      transparent 1px,
+      transparent 28px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(176, 137, 72, 0.024) 0px,
+      rgba(176, 137, 72, 0.024) 1px,
+      transparent 1px,
+      transparent 28px
+    );
+}
+
+/* Interactive warm gallery spotlight on the 3D Hero Frame (desktop pointer only) */
+.hero-viewer-frame {
+  position: relative;
+  transition: box-shadow var(--museum-duration-hover) var(--museum-ease), border-color var(--museum-duration-hover) var(--museum-ease);
+}
+
+.hero-viewer-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    420px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(214, 177, 112, 0.14),
+    rgba(214, 177, 112, 0) 70%
+  );
+  transition: opacity 320ms var(--museum-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-viewer-frame:hover::after {
+    opacity: 1;
+  }
+}
+
+/* 3. Purposeful Museum Reveal Choreography */
+[data-museum-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--museum-duration-reveal) var(--museum-ease) var(--reveal-delay, 0ms),
+    transform var(--museum-duration-reveal) var(--museum-ease) var(--reveal-delay, 0ms);
+}
+
+[data-museum-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 4. Curatorial Exhibition Showcase Grid (4 Plates) */
+.exhibition-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 1080px) {
+  .exhibition-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .exhibition-gallery-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.exhibition-plate {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 22px 20px 20px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffffff 0%, #faf7f2 100%);
+  border: 1px solid rgba(21, 48, 39, 0.14);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition:
+    transform var(--museum-duration-hover) var(--museum-ease),
+    border-color var(--museum-duration-hover) var(--museum-ease),
+    box-shadow var(--museum-duration-hover) var(--museum-ease);
+}
+
+.exhibition-plate::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--museum-emerald) 0%, var(--museum-gold) 100%);
+  opacity: 0.72;
+  transition: opacity var(--museum-duration-hover) var(--museum-ease);
+}
+
+.exhibition-plate:hover,
+.exhibition-plate:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--museum-gold);
+  box-shadow: 0 14px 30px rgba(21, 48, 39, 0.10);
+  outline: none;
+}
+
+.exhibition-plate:hover::before,
+.exhibition-plate:focus-visible::before {
+  opacity: 1;
+}
+
+.exhibition-plate__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.exhibition-plate__num {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--museum-gold);
+}
+
+.exhibition-plate__tag {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(21, 48, 39, 0.07);
+  color: var(--museum-emerald);
+}
+
+.exhibition-plate__title {
+  font-family: var(--font-serif, 'Fraunces', Georgia, serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--museum-emerald);
+  margin: 4px 0 6px;
+}
+
+.exhibition-plate__desc {
+  font-size: 0.87rem;
+  line-height: 1.58;
+  color: var(--ink-secondary, #47524c);
+  margin: 0;
+}
+
+.exhibition-plate__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--museum-emerald);
+  margin-top: 4px;
+}
+
+.exhibition-plate__cta .material-symbols-outlined {
+  font-size: 16px;
+  transition: transform var(--museum-duration-hover) var(--museum-ease);
+}
+
+.exhibition-plate:hover .exhibition-plate__cta .material-symbols-outlined,
+.exhibition-plate:focus-visible .exhibition-plate__cta .material-symbols-outlined {
+  transform: translateX(4px);
+}
+
+/* 5. Curatorial Philosophy Pull-Quote Band */
+.curatorial-quote-band {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--museum-emerald-deep) 0%, var(--museum-emerald) 60%, #1c3f33 100%);
+  color: var(--museum-ivory);
+  padding: clamp(44px, 6vw, 72px) 0;
+  border-top: 1px solid rgba(176, 137, 72, 0.28);
+  border-bottom: 1px solid rgba(176, 137, 72, 0.28);
+}
+
+.curatorial-quote-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 60% 80% at 85% 50%, rgba(176, 137, 72, 0.14), transparent 72%);
+}
+
+.curatorial-quote-inner {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 16px;
+}
+
+.curatorial-quote-rule {
+  width: 56px;
+  height: 2px;
+  background: var(--museum-gold);
+  margin: 0 auto 18px;
+}
+
+.curatorial-quote-text {
+  font-family: var(--font-serif, 'Fraunces', Georgia, serif);
+  font-size: clamp(1.28rem, 2.5vw, 1.85rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: #faf7f2;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+
+.curatorial-quote-attr {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #d6b170;
+}
+
+/* 6. Refined Hover Elevation for Existing Museum Cards */
+.house-card,
+.island-card,
+.nular-panel {
+  transition:
+    transform var(--museum-duration-hover) var(--museum-ease),
+    box-shadow var(--museum-duration-hover) var(--museum-ease),
+    border-color var(--museum-duration-hover) var(--museum-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .house-card:hover,
+  .island-card:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* 7. Strict Reduced-Motion Compliance (WCAG 2.2 AA) */
+@media (prefers-reduced-motion: reduce) {
+  [data-museum-reveal],
+  [data-museum-reveal].is-revealed {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .exhibition-plate,
+  .house-card,
+  .island-card,
+  .nular-panel,
+  .exhibition-plate__cta .material-symbols-outlined,
+  .hero-viewer-frame::after {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+body.reduced-motion [data-museum-reveal],
+body.reduced-motion [data-museum-reveal].is-revealed {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}

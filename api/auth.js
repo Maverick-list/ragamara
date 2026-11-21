@@ -8,23 +8,73 @@
  * Never exposes secrets, password hashes, private emails, or phone numbers in public endpoints.
  */
 import crypto from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const SESSION_COOKIE = 'nular_session';
-const SECRET = process.env.NULAR_SESSION_SECRET || process.env.RAGAMARA_SESSION_SECRET || process.env.SESSION_SECRET || 'nular-dev-ephemeral-signing-key-2026';
+const EXPLICIT_SECRET = process.env.NULAR_SESSION_SECRET || process.env.RAGAMARA_SESSION_SECRET || process.env.SESSION_SECRET || '';
+const SECRET = EXPLICIT_SECRET || 'nular-dev-ephemeral-signing-key-2026';
 const IS_PROD = process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production';
 
-// Ephemeral in-memory stores for local/serverless testing (cloud persistence via Supabase when configured)
+// Stores: backed by local .nular-local-data/auth-store.json in writable dev environments,
+// falling back gracefully to ephemeral in-memory Maps on read-only serverless runtimes.
 const usersByEmail = new Map();
 const usersByPhone = new Map();
 const usersById = new Map();
 const otpStore = new Map(); // phone -> { code, expiresAt, lastSentAt, attempts, windowStart, sendCount }
+const loginFailures = new Map(); // email -> { count, windowStart, lockedUntil }
+
+const LOCAL_STORE_DIR = path.join(process.cwd(), '.nular-local-data');
+const LOCAL_STORE_FILE = path.join(LOCAL_STORE_DIR, 'auth-store.json');
+let localFileWritable = false;
+
+function hydrateLocalAuthStore() {
+  if (IS_PROD || process.env.SUPABASE_URL) return;
+  try {
+    fs.mkdirSync(LOCAL_STORE_DIR, { recursive: true, mode: 0o700 });
+    localFileWritable = true;
+    if (fs.existsSync(LOCAL_STORE_FILE)) {
+      const parsed = JSON.parse(fs.readFileSync(LOCAL_STORE_FILE, 'utf8'));
+      for (const rec of parsed.users || []) {
+        if (!rec?.uid) continue;
+        usersById.set(rec.uid, rec);
+        if (rec.email) usersByEmail.set(rec.email, rec);
+        if (rec.phone) usersByPhone.set(rec.phone, rec);
+      }
+    }
+  } catch {
+    localFileWritable = false;
+  }
+}
+
+function persistLocalAuthStore() {
+  if (!localFileWritable || IS_PROD || process.env.SUPABASE_URL) return;
+  try {
+    const tmp = `${LOCAL_STORE_FILE}.tmp`;
+    const payload = JSON.stringify({ updatedAt: new Date().toISOString(), users: Array.from(usersById.values()) }, null, 2);
+    fs.writeFileSync(tmp, payload, { mode: 0o600 });
+    fs.renameSync(tmp, LOCAL_STORE_FILE);
+  } catch {
+    localFileWritable = false;
+  }
+}
+
+hydrateLocalAuthStore();
 
 export function getProviderConfigStatus() {
+  const storageMode = process.env.SUPABASE_URL
+    ? 'supabase_configured'
+    : (localFileWritable ? 'local_file_backed' : 'serverless_ephemeral');
   return {
+    storageMode,
     email: {
       enabled: true,
       smtpConfigured: Boolean(process.env.SMTP_HOST || process.env.RESEND_API_KEY || process.env.SUPABASE_URL),
-      storageMode: process.env.SUPABASE_URL ? 'supabase' : 'local_ephemeral'
+      storageMode
+    },
+    security: {
+      sessionSecretConfigured: Boolean(EXPLICIT_SECRET),
+      loginRateLimitEnabled: true
     },
     google: {
       configured: Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
@@ -242,6 +292,7 @@ export async function POST(request) {
       };
       usersByPhone.set(phone, user);
       usersById.set(uid, user);
+      persistLocalAuthStore();
     }
     const token = signSession({ uid: user.uid, username: user.username, exp: Date.now() + 7 * 86400000 });
     return Response.json({ authenticated: true, user: toSafeUser(user) }, {
@@ -267,9 +318,20 @@ export async function POST(request) {
     const token = parseCookie(request, SESSION_COOKIE);
     const session = verifySessionToken(token);
     if (!session) return Response.json({ error: 'Sesi tidak aktif.' }, { status: 401 });
+    if (!providers.email.smtpConfigured) {
+      return Response.json({
+        ok: false,
+        configured: false,
+        emailVerified: false,
+        error: 'Verifikasi email nyata memerlukan konfigurasi SMTP atau Supabase Auth (lihat docs/AUTHENTICATION_SETUP.md).'
+      }, { status: 503 });
+    }
     const rec = usersById.get(session.uid);
-    if (rec) rec.emailVerified = true;
-    return Response.json({ ok: true, emailVerified: true });
+    if (rec) {
+      rec.emailVerified = true;
+      persistLocalAuthStore();
+    }
+    return Response.json({ ok: true, configured: true, emailVerified: true });
   }
 
   if (action === 'profile-update') {
@@ -283,6 +345,7 @@ export async function POST(request) {
       if (typeof body.avatarId === 'string') rec.avatarId = body.avatarId.slice(0, 48);
       if (typeof body.tutorialCompleted === 'boolean') rec.tutorialCompleted = body.tutorialCompleted;
       if (typeof body.privacyPublicLeaderboard === 'boolean') rec.privacyPublicLeaderboard = body.privacyPublicLeaderboard;
+      persistLocalAuthStore();
     }
     return Response.json({ ok: true, user: rec ? toSafeUser(rec) : { id: session.uid, username: session.username } });
   }
@@ -315,6 +378,7 @@ export async function POST(request) {
     };
     usersByEmail.set(email, rec);
     usersById.set(uid, rec);
+    persistLocalAuthStore();
     const token = signSession({ uid, username: rec.username, exp: Date.now() + 7 * 86400000 });
     return Response.json({
       authenticated: true,
@@ -323,11 +387,28 @@ export async function POST(request) {
     }, { status: 201, headers: { 'Set-Cookie': cookieHeader(token) } });
   }
 
-  // login
+  // login with per-email brute-force rate limit (5 failed attempts per 15 min)
+  const now = Date.now();
+  const WINDOW_MS = 15 * 60 * 1000;
+  const MAX_FAILURES = 5;
+  const failRec = loginFailures.get(email);
+  if (failRec && now - failRec.windowStart < WINDOW_MS && failRec.count >= MAX_FAILURES) {
+    const retryAfterSeconds = Math.max(1, Math.ceil((failRec.windowStart + WINDOW_MS - now) / 1000));
+    return Response.json({
+      error: `Terlalu banyak percobaan masuk gagal. Coba lagi dalam ${retryAfterSeconds} detik.`,
+      retryAfterSeconds
+    }, { status: 429, headers: { 'Retry-After': String(retryAfterSeconds) } });
+  }
+
   const rec = usersByEmail.get(email);
   if (!rec || !verifyPassword(password, rec.passwordHash)) {
+    const nextFail = (!failRec || now - failRec.windowStart >= WINDOW_MS)
+      ? { count: 1, windowStart: now }
+      : { count: failRec.count + 1, windowStart: failRec.windowStart };
+    loginFailures.set(email, nextFail);
     return Response.json({ error: 'Email atau kata sandi tidak cocok.' }, { status: 401 });
   }
+  loginFailures.delete(email);
   const token = signSession({ uid: rec.uid, username: rec.username, exp: Date.now() + 7 * 86400000 });
   return Response.json({
     authenticated: true,
@@ -343,6 +424,7 @@ export async function DELETE(request) {
     if (rec?.email) usersByEmail.delete(rec.email);
     if (rec?.phone) usersByPhone.delete(rec.phone);
     usersById.delete(session.uid);
+    persistLocalAuthStore();
   }
   return Response.json({ ok: true, deleted: true }, {
     headers: { 'Set-Cookie': cookieHeader('', 0) }
