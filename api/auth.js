@@ -10,7 +10,7 @@
 import crypto from 'node:crypto';
 
 const SESSION_COOKIE = 'nular_session';
-const SECRET = process.env.NULAR_SESSION_SECRET || process.env.SESSION_SECRET || 'nular-dev-ephemeral-signing-key-2026';
+const SECRET = process.env.NULAR_SESSION_SECRET || process.env.RAGAMARA_SESSION_SECRET || process.env.SESSION_SECRET || 'nular-dev-ephemeral-signing-key-2026';
 const IS_PROD = process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production';
 
 // Ephemeral in-memory stores for local/serverless testing (cloud persistence via Supabase when configured)

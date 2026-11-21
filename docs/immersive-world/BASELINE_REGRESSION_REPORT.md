@@ -1,6 +1,8 @@
 # NULAR — Baseline Regression & Honai GLB Investigation Report
 **Phase 0 Deliverable — Pre-Transformation Verification**
 
+> **Historical Archive Notice:** References in this document to the legacy brand identifier "Ragamara" reflect the codebase and deployment state at the time of authoring. The official product identity is now **NULAR — The Living World of Nusantara**.
+
 - **Date:** November 21, 2026
 - **Branch:** `feat/nular-immersive-world` (Branched from verified Production/RC commit `1a110b0`)
 - **Production URL Investigated:** `https://nularin.vercel.app` (Deployment `dpl_6GyfCtkjjFFJCenvEGur6orUqX42`)

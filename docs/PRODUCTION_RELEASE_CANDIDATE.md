@@ -1,4 +1,8 @@
-# NULAR (Nusa Learn) — Production Release Candidate (RC-1) Dossier
+# NULAR — Production Release Candidate (RC-1) Dossier
+
+> [!NOTE] Historical Archive Notice
+> **Ragamara** was the legacy project codename during initial exploratory phases. The official, permanent brand identity of this platform is **NULAR — The Living World of Nusantara**. This document is retained for historical traceability and architectural audit purposes.
+
 **Interactive 3D Nusantara Architecture Museum**
 
 - **Release Candidate Version:** `v2.0.0-rc.1`

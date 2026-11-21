@@ -1,4 +1,8 @@
-# NULAR (Nusa Learn) — Final Pre-Production Audit Report
+# NULAR — Final Pre-Production Audit Report
+
+> [!NOTE] Historical Archive Notice
+> **Ragamara** was the legacy project codename during initial exploratory phases. The official, permanent brand identity of this platform is **NULAR — The Living World of Nusantara**. This document is retained for historical traceability and architectural audit purposes.
+
 **Interactive 3D Nusantara Architecture Museum**
 
 - **Target Branch:** `feat/ragamara-final-experience`

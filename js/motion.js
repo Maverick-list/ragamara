@@ -1,5 +1,5 @@
 /**
- * RAGAMARA MOTION & INTERACTION ENGINE (Phase 06)
+ * NULAR MOTION & INTERACTION ENGINE
  * Handles:
  * 1. Scroll-reveal triggers via IntersectionObserver
  * 2. View transition animations
@@ -9,7 +9,7 @@
  * 6. Reduced-motion auto-adaptation
  */
 
-window.RagamaraMotion = (function() {
+window.NularMotion = (function() {
   'use strict';
 
   let observer = null;
@@ -112,9 +112,12 @@ window.RagamaraMotion = (function() {
   };
 })();
 
+// Backward compatibility alias
+window.RagamaraMotion = window.NularMotion;
+
 // Auto initialize on DOM ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => window.RagamaraMotion.init());
+  document.addEventListener('DOMContentLoaded', () => window.NularMotion.init());
 } else {
-  window.RagamaraMotion.init();
+  window.NularMotion.init();
 }

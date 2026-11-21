@@ -1,7 +1,10 @@
-# NULAR (Nusa Learn) — Technical Architecture & Product Transformation Guide
+# NULAR — Technical Architecture & Product Transformation Guide
+
+> [!NOTE] Historical Archive Notice
+> **Ragamara** was the legacy project codename during initial exploratory phases. The official, permanent brand identity of this platform is **NULAR — The Living World of Nusantara**. This document is retained for historical traceability and architectural audit purposes.
 
 ## 1. Executive Summary
-NULAR (Nusa Learn) has been transformed from a gamified cultural trivia/mini-game application into an **Interactive 3D Nusantara Architecture Museum** (*"Explore the Living Architecture of Nusantara"*).
+NULAR has been transformed into **NULAR — The Living World of Nusantara**, an immersive 3D cultural exploration world and interactive digital architecture museum.
 
 - **Branch:** `feat/ragamara-final-experience` (Production branch `main` remains strictly untouched).
 - **Stack:** Pure static multi-page ES Modules web architecture (`HTML5`, `CSS3`, `JavaScript ES2022`, vendored `Three.js v0.169.0` MIT with `GLTFLoader`, `DRACOLoader`, and `OrbitControls`), deployed cleanly via Vercel (`cleanUrls: true`).

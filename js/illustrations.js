@@ -1,10 +1,10 @@
 /**
- * RAGAMARA GRAPHIC & ILLUSTRATION PRIMITIVES
- * Consistent visual language: 2.5D dimensional, deep violet/golden lighting,
- * scalloped cloud contours (Ref B), and authentic Nusantara cultural motifs.
+ * NULAR GRAPHIC & ILLUSTRATION PRIMITIVES
+ * Consistent visual language: 2.5D dimensional, deep emerald/golden lighting,
+ * scalloped cloud contours, and authentic Nusantara cultural motifs.
  */
 
-const RagamaraGraphics = {
+const NularGraphics = {
   // Scalloped Cosmic Cloud Divider (Reference B)
   renderCloudDivider(color = '#211B35', height = 48) {
     return `
@@ -123,6 +123,14 @@ const RagamaraGraphics = {
   }
 };
 
+const RagamaraGraphics = NularGraphics;
+
+if (typeof window !== 'undefined') {
+  window.NularGraphics = NularGraphics;
+  window.RagamaraGraphics = RagamaraGraphics;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = RagamaraGraphics;
+  module.exports = NularGraphics;
+  module.exports.RagamaraGraphics = RagamaraGraphics;
 }

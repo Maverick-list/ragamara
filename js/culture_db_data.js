@@ -1,8 +1,8 @@
-// RAGAMARA Cultural Knowledge Database v2.0.0
-// Auto-generated from DAPOBUD & Wikipedia Indonesia
-window.RAGAMARA_CULTURE_DB = {
+// NULAR Cultural Knowledge Database v2.0.0
+// Official Brand Identity: NULAR (The Living World of Nusantara)
+window.NULAR_CULTURE_DB = {
   "metadata": {
-    "database_name": "RAGAMARA Cultural Knowledge Database",
+    "database_name": "NULAR Cultural Knowledge Database",
     "schema_version": "2.0.0",
     "generated_at": "2026-11-14T08:42:12.723689+00:00",
     "language": "id",
@@ -6077,3 +6077,6 @@ window.RAGAMARA_CULTURE_DB = {
     }
   ]
 };
+
+// Backward compatibility alias for legacy references
+window.RAGAMARA_CULTURE_DB = window.NULAR_CULTURE_DB;

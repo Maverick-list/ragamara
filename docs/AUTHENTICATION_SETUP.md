@@ -19,7 +19,7 @@
 
 ### A. Session Secret & Database (Supabase PostgreSQL)
 1. Generate a 64-character random hex secret: `openssl rand -hex 32`.
-2. Add `NULAR_SESSION_SECRET` to Vercel Environment Variables (Production & Preview).
+2. Add `NULAR_SESSION_SECRET` to Vercel Environment Variables (Production & Preview). *Note: `RAGAMARA_SESSION_SECRET` is automatically recognized as an alias for seamless backward compatibility with existing deployments.*
 3. Create a Supabase project, run `db/migrations/001_nular_cultural_world.sql` in the SQL Editor, and set `SUPABASE_URL`, `SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` (server-only).
 
 ### B. Google OAuth 2.0

@@ -46,7 +46,7 @@ function getActorKey(request, body = {}) {
   const token = parseCookie(request, 'nular_session');
   const session = verifySessionToken(token);
   if (session) return { key: `user:${session.uid}`, username: session.username, authenticated: true };
-  const guestId = String(body.guestId || request.headers.get('x-nular-guest') || 'guest-local').slice(0, 48);
+  const guestId = String(body.guestId || request.headers.get('x-nular-guest') || request.headers.get('x-ragamara-guest') || 'guest-local').slice(0, 48);
   return { key: `guest:${guestId}`, username: 'Tamu Nusantara', authenticated: false };
 }
 

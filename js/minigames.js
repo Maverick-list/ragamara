@@ -1,6 +1,6 @@
 /**
- * RAGAMARA MINI-GAME ENGINE (js/minigames.js)
- * Phase 3 & 4 Transformation:
+ * NULAR MINI-GAME ENGINE (js/minigames.js)
+ * Official Brand Identity: NULAR (The Living World of Nusantara)
  * - Formal State Machine: IDLE -> LOADING -> READY -> PLAYING -> FEEDBACK -> PAUSED -> COMPLETED -> ERROR
  * - Full Lifecycle & Resource Registry (Timers, Intervals, RAF, Web Audio Nodes)
  * - Preserves #gameplay-arena shell (Never overwrites #gameplay-arena.innerHTML)
@@ -1368,13 +1368,15 @@ const MiniGameEngine = {
       sess.xpEarned = mode.xpBase + accuracyBonus;
       sess.gemsEarned = mode.gemsBase;
 
-      // Persist via RagamaraEcosystem / GameState immediately so nothing is ever lost
-      if (window.RagamaraEcosystem && typeof window.RagamaraEcosystem.recordMiniGameSession === 'function') {
-        window.RagamaraEcosystem.recordMiniGameSession(sess);
+      // Persist via NularEcosystem / RagamaraEcosystem / GameState immediately so nothing is ever lost
+      const eco = window.NularEcosystem || window.RagamaraEcosystem;
+      if (eco && typeof eco.recordMiniGameSession === 'function') {
+        eco.recordMiniGameSession(sess);
       } else if (window.GameState && window.GameState.player) {
         window.GameState.player.xp = (window.GameState.player.xp || 0) + sess.xpEarned;
         window.GameState.player.gems = (window.GameState.player.gems || 0) + sess.gemsEarned;
         try {
+          localStorage.setItem('nular_player_state', JSON.stringify(window.GameState.player));
           localStorage.setItem('ragamara_player_state', JSON.stringify(window.GameState.player));
         } catch (e) {}
         if (typeof window.updateHud === 'function') window.updateHud();

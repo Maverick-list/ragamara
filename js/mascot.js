@@ -1,5 +1,5 @@
 /**
- * RAGAMARA MASCOT SYSTEM — RAGA THE RHINOCEROS (BADAK PENJELAJAH)
+ * NULAR MASCOT SYSTEM — RAGA THE RHINOCEROS (BADAK PENJELAJAH)
  * Generates vector SVG avatars for all emotional states:
  * idle/happy, greeting, excited, thinking, celebrating, encouraging,
  * learning/curious, achievement/surprised, confused, sleepy.

@@ -1,4 +1,8 @@
-# NULAR (Nusa Learn) — Final UI Polish & Asset Optimization Report
+# NULAR — Final UI Polish & Asset Optimization Report
+
+> [!NOTE] Historical Archive Notice
+> **Ragamara** was the legacy project codename during initial exploratory phases. The official, permanent brand identity of this platform is **NULAR — The Living World of Nusantara**. This document is retained for historical traceability and architectural audit purposes.
+
 **Pre-Production Refinement on Branch `feat/ragamara-final-experience`**
 
 - **Target Branch:** `feat/ragamara-final-experience`

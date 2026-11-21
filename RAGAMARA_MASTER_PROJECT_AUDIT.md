@@ -1,4 +1,8 @@
 # RAGAMARA — MASTER PROJECT AUDIT & IMPLEMENTATION VERIFICATION
+
+> [!NOTE] Historical Archive Notice
+> **Ragamara** was the legacy project codename during initial exploratory phases. The official, permanent brand identity of this platform is **NULAR — The Living World of Nusantara**. This document is retained for historical traceability and architectural audit purposes.
+
 **Document:** `RAGAMARA_MASTER_PROJECT_AUDIT.md`  
 **Date of Audit:** 14 November 2026 (Local Time)  
 **Auditor Roles:** Principal Software Architect, Lead UI/UX Auditor, Senior Data Engineer, QA Engineer & Technical Project Manager  

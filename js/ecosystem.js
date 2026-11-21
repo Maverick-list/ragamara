@@ -1,7 +1,7 @@
 /**
- * RAGAMARA ECOSYSTEM & VERSIONED PERSISTENCE ENGINE (js/ecosystem.js)
- * Phase 5 & Phase 6 Architecture:
- * - RagamaraStore: Versioned schema v2.0.0 localStorage persistence, corruption recovery, idempotent reward ledger
+ * NULAR ECOSYSTEM & VERSIONED PERSISTENCE ENGINE (js/ecosystem.js)
+ * Official Brand Identity: NULAR (The Living World of Nusantara)
+ * - NularStore: Versioned schema v2.0.0 localStorage persistence, corruption recovery, idempotent reward ledger
  * - Culturepedia: Digital Cultural Museum grounded in canonical `entities` & `records` from Schema v2.0.0
  * - RegionalDossier: 10-Part Regional Cultural Dossiers for all 7 Indonesian realms
  * - MascotCollection: Interactive Raga expression studio & 6 regional companions
@@ -15,9 +15,10 @@ window.RagamaraEcosystem = (function() {
   'use strict';
 
   // =========================================================================
-  // 0. VERSIONED STATE & PERSISTENCE MANAGER (RagamaraStore v2.0.0)
+  // 0. VERSIONED STATE & PERSISTENCE MANAGER (NularStore v2.0.0)
   // =========================================================================
-  const STORAGE_KEY_V2 = 'ragamara_state_v2';
+  const STORAGE_KEY_V2 = 'nular_state_v2';
+  const LEGACY_STORAGE_KEY_V2 = 'ragamara_state_v2';
 
   const DEFAULT_STATE_V2 = {
     schemaVersion: '2.0.0',
@@ -73,7 +74,7 @@ window.RagamaraEcosystem = (function() {
 
     init() {
       try {
-        const rawV2 = localStorage.getItem(STORAGE_KEY_V2);
+        const rawV2 = localStorage.getItem(STORAGE_KEY_V2) || localStorage.getItem(LEGACY_STORAGE_KEY_V2);
         if (rawV2) {
           const parsed = JSON.parse(rawV2);
           if (parsed && typeof parsed === 'object' && parsed.schemaVersion === '2.0.0' && parsed.player && typeof parsed.player.xp === 'number') {
@@ -83,7 +84,7 @@ window.RagamaraEcosystem = (function() {
             this.state.missionCounters = Object.assign({}, DEFAULT_STATE_V2.missionCounters, parsed.missionCounters || {});
           } else {
             // Corrupted v2 payload -> reset safely
-            console.warn('RagamaraStore: Invalid v2 payload detected, restoring safe defaults.');
+            console.warn('NularStore: Invalid v2 payload detected, restoring safe defaults.');
             this.state = JSON.parse(JSON.stringify(DEFAULT_STATE_V2));
           }
         } else {
@@ -91,7 +92,7 @@ window.RagamaraEcosystem = (function() {
           this.migrateFromLegacy();
         }
       } catch (err) {
-        console.warn('RagamaraStore: Corrupted localStorage detected, recovering gracefully.', err);
+        console.warn('NularStore: Corrupted localStorage detected, recovering gracefully.', err);
         this.state = JSON.parse(JSON.stringify(DEFAULT_STATE_V2));
       }
 
@@ -195,8 +196,12 @@ window.RagamaraEcosystem = (function() {
         // Compute dynamic level from XP (every 300 XP = 1 level)
         this.state.player.level = Math.max(8, Math.floor(this.state.player.xp / 300));
         localStorage.setItem(STORAGE_KEY_V2, JSON.stringify(this.state));
+        localStorage.setItem(LEGACY_STORAGE_KEY_V2, JSON.stringify(this.state));
+        localStorage.setItem('nular_player_state', JSON.stringify(this.state.player));
         localStorage.setItem('ragamara_player_state', JSON.stringify(this.state.player));
+        localStorage.setItem('nular_saved_culture', JSON.stringify(this.state.savedCultureIds));
         localStorage.setItem('ragamara_saved_culture', JSON.stringify(this.state.savedCultureIds));
+        localStorage.setItem('nular_claimed_missions', JSON.stringify(this.state.claimedMissionIds));
         localStorage.setItem('ragamara_claimed_missions', JSON.stringify(this.state.claimedMissionIds));
       } catch (e) {}
       this.syncLegacyGlobals();
@@ -2241,7 +2246,13 @@ window.RagamaraEcosystem = (function() {
     }
   };
 })();
+
+// Canonical NULAR export & backward-compatible alias
 window.NularEcosystem = window.RagamaraEcosystem;
-if (window.RAGAMARA_CULTURE_DB) {
+window.NularAudio = window.RagamaraAudio;
+
+if (window.NULAR_CULTURE_DB) {
+  window.RAGAMARA_CULTURE_DB = window.NULAR_CULTURE_DB;
+} else if (window.RAGAMARA_CULTURE_DB) {
   window.NULAR_CULTURE_DB = window.RAGAMARA_CULTURE_DB;
 }
