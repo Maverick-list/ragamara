@@ -1,368 +1,173 @@
 /**
- * NULAR AI House Tour Guide — TourGuideUI (js/ai-guide/TourGuideUI.js)
- * Museum-grade conversational voice & text tour guide panel integrated into world.html.
- * Supports:
- *  - Gemini 3.8 Live bidirectional audio via secure /api/guide-session ephemeral tokens
- *  - Transparent Curated Knowledge + Web Speech API fallback when GEMINI_API_KEY is absent
- *  - Indonesian (default) & English switching
- *  - Push-to-Talk, Continuous Voice mode, Live Captions, Transcript History, Stop Speaking (barge-in),
- *    Explicit Microphone Privacy Notice, and Spatial Context Grounding
+ * NULAR Living World — Minimal Transparent AI Cultural Guide Chat (js/ai-guide/TourGuideUI.js)
+ *
+ * Strict Minimalist Overlay Specification (Phase 5.4):
+ * Displays ONLY the subtle transparent conversation overlay:
+ *  - Conversation messages
+ *  - One compact input field
+ *  - Send action
+ *  - Optional microphone control
+ *  - Small speaker toggle control
+ *  - Close / minimize action
+ *
+ * Context-aware across region, province, active house, selected component, exhibit, and tutorial step.
+ * Uses backend /api/guide-chat when GEMINI_API_KEY is configured, with honest curated local fallback.
  */
 import { escapeHtml } from '../museum-shell.js';
 import { ContextResolver } from './ContextResolver.js';
 import { KnowledgeRetriever } from './KnowledgeRetriever.js';
 import { AudioPipeline } from './AudioPipeline.js';
-import { GeminiLiveClient } from './GeminiLiveClient.js';
 
 export function mountTourGuide({ mountEl, world, houses }) {
   if (!mountEl) return null;
 
   const resolver = new ContextResolver(world, houses);
   const retriever = new KnowledgeRetriever(houses);
+  const audio = new AudioPipeline();
 
-  let language = 'id';
-  let mode = 'idle'; // 'idle' | 'gemini-live' | 'curated-local'
-  let continuousMode = false;
-  let sessionActive = false;
-  let transcript = [];
+  let speakerEnabled = true;
+  let listening = false;
+  let messages = [];
 
   mountEl.innerHTML = `
-    <aside id="ai-guide-panel" class="ai-guide-panel" hidden aria-label="Pemandu Tur Arsitektur AI NULAR">
-      <div class="ai-guide-head">
-        <div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.64rem;letter-spacing:0.12em;text-transform:uppercase;color:#D4AE7A;">
-            Pemandu Tur Arsitektur AI
-          </div>
-          <div id="ai-guide-loc" style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin-top:2px;">NULAR Museum Guide</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <button type="button" id="ai-lang-toggle" class="ai-mini-btn" title="Ganti Bahasa (ID / EN)">ID</button>
-          <button type="button" id="ai-close-btn" class="ai-mini-btn" aria-label="Tutup Pemandu AI">×</button>
+    <section id="ai-guide-panel" class="ai-minimal-chat" hidden aria-label="Percakapan Pemandu Budaya AI NULAR">
+      <div class="ai-minimal-chat__top">
+        <span class="ai-minimal-chat__tag">Pemandu Budaya</span>
+        <div class="ai-minimal-chat__top-actions">
+          <button type="button" id="ai-speaker-btn" class="ai-icon-btn is-on" title="Aktifkan/Matikan Suara" aria-label="Suara Pemandu">🔊</button>
+          <button type="button" id="ai-close-btn" class="ai-icon-btn" title="Tutup / Perkecil" aria-label="Tutup Percakapan">×</button>
         </div>
       </div>
 
-      <div id="ai-mode-bar" class="ai-mode-bar">
-        <span id="ai-status-dot" class="ai-status-dot"></span>
-        <span id="ai-mode-label">Siap memulai sesi tur</span>
-        <button type="button" id="ai-end-session" class="ai-mini-btn" style="margin-left:auto;" hidden>Akhiri</button>
-      </div>
+      <div id="ai-chat-messages" class="ai-minimal-chat__messages" aria-live="polite"></div>
 
-      <div class="ai-privacy-note">
-        Privasi Mikrofon: Audio Anda diproses real-time hanya saat mikrofon aktif dan <strong>tidak direkam atau disimpan</strong>.
-      </div>
-
-      <div id="ai-live-caption" class="ai-live-caption" aria-live="polite" hidden></div>
-      <div id="ai-transcript" class="ai-transcript" role="log" aria-live="polite"></div>
-
-      <div id="ai-quick-prompts" class="ai-quick-prompts"></div>
-
-      <div class="ai-voice-bar">
-        <button type="button" id="ai-ptt-btn" class="ai-voice-btn">
-          <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">mic</span>
-          <span id="ai-ptt-label">Tekan untuk Bicara</span>
-        </button>
-        <button type="button" id="ai-cont-toggle" class="ai-mini-btn" title="Mode Suara Berkelanjutan" aria-pressed="false">Kontinu</button>
-        <button type="button" id="ai-stop-speak" class="ai-mini-btn" title="Hentikan Suara Pemandu">Henti</button>
-      </div>
-
-      <form id="ai-text-form" class="ai-text-form">
-        <input id="ai-text-input" type="text" placeholder="Tanyakan tentang struktur, ruang, atau sejarah rumah ini..." autocomplete="off" />
-        <button type="submit" class="ai-send-btn" aria-label="Kirim pertanyaan">Kirim</button>
+      <form id="ai-chat-form" class="ai-minimal-chat__bar">
+        <input id="ai-chat-input" type="text" class="ai-minimal-chat__input" placeholder="Tanya tentang bangunan atau budaya di sekitar Anda…" autocomplete="off" />
+        <button type="button" id="ai-mic-btn" class="ai-icon-btn" title="Bicara (Mikrofon)" aria-label="Kontrol Mikrofon">🎤</button>
+        <button type="submit" id="ai-send-btn" class="ai-send-btn" aria-label="Kirim">Kirim</button>
       </form>
-    </aside>
+    </section>
   `;
 
-  // Inject scoped styles cleanly once
-  if (!document.getElementById('ai-guide-styles')) {
-    const st = document.createElement('style');
-    st.id = 'ai-guide-styles';
-    st.textContent = `
-      .ai-guide-panel {
-        position: fixed; bottom: 56px; right: 16px; width: min(400px, calc(100vw - 32px));
-        max-height: min(620px, calc(100vh - 130px)); z-index: 35;
-        background: rgba(15, 25, 20, 0.95); color: #FAF7F2; border: 1px solid rgba(212,174,122,0.45);
-        border-radius: 6px; display: flex; flex-direction: column; overflow: hidden;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.55); backdrop-filter: blur(14px);
-      }
-      .ai-guide-panel[hidden] { display: none; }
-      .ai-guide-head { flex-shrink: 0; padding: 11px 14px; border-bottom: 1px solid rgba(250,247,242,0.12); display: flex; justify-content: space-between; align-items: center; }
-      .ai-mode-bar { flex-shrink: 0; padding: 6px 14px; background: rgba(250,247,242,0.05); font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: #C7D1CA; display: flex; align-items: center; gap: 8px; }
-      .ai-status-dot { width: 8px; height: 8px; border-radius: 50%; background: #8c9c92; flex-shrink: 0; }
-      .ai-status-dot.is-live { background: #6ee7a8; }
-      .ai-status-dot.is-speaking { background: #f5c77a; }
-      .ai-privacy-note { flex-shrink: 0; padding: 6px 14px; font-size: 0.69rem; color: #a7b8ad; border-bottom: 1px solid rgba(250,247,242,0.08); }
-      .ai-live-caption { flex-shrink: 0; max-height: 64px; overflow-y: auto; padding: 7px 14px; background: rgba(212,174,122,0.14); border-bottom: 1px solid rgba(212,174,122,0.28); font-size: 0.78rem; line-height: 1.4; color: #FFF8EB; }
-      .ai-transcript { flex: 1 1 auto; min-height: 90px; overflow-y: auto; padding: 10px 14px; display: flex; flex-direction: column; gap: 9px; }
-      .ai-msg { padding: 8px 11px; border-radius: 5px; font-size: 0.82rem; line-height: 1.5; max-width: 94%; }
-      .ai-msg--guide { background: rgba(250,247,242,0.09); border-left: 2px solid #D4AE7A; align-self: flex-start; }
-      .ai-msg--user { background: #9C7A4C; color: #FFFDF9; align-self: flex-end; }
-      .ai-msg__cite { margin-top: 5px; font-family: 'IBM Plex Mono', monospace; font-size: 0.64rem; color: #D4AE7A; }
-      .ai-quick-prompts { flex-shrink: 0; padding: 7px 14px; display: flex; flex-wrap: wrap; gap: 5px; border-top: 1px solid rgba(250,247,242,0.08); }
-      .ai-chip { background: rgba(250,247,242,0.08); border: 1px solid rgba(212,174,122,0.3); color: #FAF7F2; font-size: 0.7rem; padding: 4px 9px; border-radius: 999px; cursor: pointer; }
-      .ai-chip:hover { background: #9C7A4C; }
-      .ai-voice-bar { flex-shrink: 0; padding: 7px 14px; display: flex; gap: 6px; align-items: center; border-top: 1px solid rgba(250,247,242,0.1); }
-      .ai-voice-btn { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 38px; background: #9C7A4C; color: #FFFDF9; border: none; border-radius: 4px; font-size: 0.78rem; font-weight: 600; cursor: pointer; }
-      .ai-voice-btn.is-listening { background: #b83b2e; }
-      .ai-mini-btn { min-height: 32px; padding: 4px 9px; background: rgba(250,247,242,0.1); color: #FAF7F2; border: 1px solid rgba(250,247,242,0.2); border-radius: 4px; font-size: 0.72rem; cursor: pointer; }
-      .ai-mini-btn[aria-pressed="true"] { background: #D4AE7A; color: #121c17; font-weight: 700; }
-      .ai-text-form { flex-shrink: 0; display: flex; gap: 6px; padding: 7px 14px 12px; }
-      .ai-text-form input { flex: 1; min-width: 0; background: rgba(250,247,242,0.1); border: 1px solid rgba(250,247,242,0.22); color: #FAF7F2; padding: 8px 10px; border-radius: 4px; font-size: 0.82rem; font-family: inherit; }
-      .ai-send-btn { flex-shrink: 0; background: #D4AE7A; color: #121c17; border: none; padding: 8px 14px; border-radius: 4px; font-weight: 700; font-size: 0.78rem; cursor: pointer; }
-    `;
-    document.head.appendChild(st);
+  const panel = mountEl.querySelector('#ai-guide-panel');
+  const msgList = mountEl.querySelector('#ai-chat-messages');
+  const form = mountEl.querySelector('#ai-chat-form');
+  const input = mountEl.querySelector('#ai-chat-input');
+  const micBtn = mountEl.querySelector('#ai-mic-btn');
+  const speakerBtn = mountEl.querySelector('#ai-speaker-btn');
+  const closeBtn = mountEl.querySelector('#ai-close-btn');
+
+  function appendMessage(role, text) {
+    messages.push({ role, text });
+    const bubble = document.createElement('div');
+    bubble.className = `ai-msg ai-msg--${role}`;
+    bubble.innerHTML = escapeHtml(text);
+    msgList.appendChild(bubble);
+    msgList.scrollTop = msgList.scrollHeight;
   }
 
-  const panel = document.getElementById('ai-guide-panel');
-  const locEl = document.getElementById('ai-guide-loc');
-  const statusDot = document.getElementById('ai-status-dot');
-  const modeLabel = document.getElementById('ai-mode-label');
-  const endBtn = document.getElementById('ai-end-session');
-  const captionEl = document.getElementById('ai-live-caption');
-  const transcriptEl = document.getElementById('ai-transcript');
-  const quickEl = document.getElementById('ai-quick-prompts');
-  const pttBtn = document.getElementById('ai-ptt-btn');
-  const pttLabel = document.getElementById('ai-ptt-label');
-  const contToggle = document.getElementById('ai-cont-toggle');
-  const langBtn = document.getElementById('ai-lang-toggle');
-  const textInput = document.getElementById('ai-text-input');
-
-  const audio = new AudioPipeline({
-    onPcmChunk: (b64) => liveClient.sendAudioChunk(b64),
-    onSpeechEnd: () => liveClient.sendAudioStreamEnd(),
-    onSpeechRecognized: (text) => handleUserQuestion(text),
-    onActivityChange: (st) => {
-      statusDot.classList.toggle('is-speaking', st === 'speaking');
-      pttBtn.classList.toggle('is-listening', st === 'listening' || st === 'speaking');
-      pttLabel.textContent = st === 'idle'
-        ? (language === 'en' ? 'Push to Talk' : 'Tekan untuk Bicara')
-        : (language === 'en' ? 'Listening... (Tap to Stop)' : 'Mendengarkan... (Klik Henti)');
-    }
-  });
-
-  const liveClient = new GeminiLiveClient({
-    onAudioChunk: (b64) => audio.enqueuePcm24k(b64),
-    onInputTranscript: (txt) => addMessage('user', txt),
-    onOutputTranscript: (txt) => {
-      captionEl.hidden = false;
-      captionEl.textContent = txt;
-      addMessage('guide', txt, 'Gemini 3.8 Live · Grounded NULAR Context');
-    },
-    onInterrupted: () => {
-      audio.stopSpeaking();
-      captionEl.textContent = language === 'en' ? '(Interrupted — listening to you)' : '(Diinterupsi — mendengarkan Anda)';
-    },
-    onStatusChange: (s) => {
-      if (s === 'closed' || s === 'error') {
-        mode = 'curated-local';
-        updateModeBadge();
-      }
-    }
-  });
-
-  function addMessage(role, text, cite = '') {
-    transcript.push({ role, text, cite, ts: Date.now() });
-    const div = document.createElement('div');
-    div.className = `ai-msg ai-msg--${role}`;
-    div.innerHTML = `<div>${escapeHtml(text)}</div>${cite ? `<div class="ai-msg__cite">Sumber: ${escapeHtml(cite)}</div>` : ''}`;
-    transcriptEl.appendChild(div);
-    transcriptEl.scrollTop = transcriptEl.scrollHeight;
+  function speakText(text) {
+    if (!speakerEnabled) return;
+    audio.stopSpeech();
+    audio.speakFallback(text, 'id');
   }
 
-  function updateModeBadge() {
-    statusDot.classList.toggle('is-live', sessionActive);
-    endBtn.hidden = !sessionActive;
-    if (!sessionActive) {
-      modeLabel.textContent = language === 'en' ? 'Ready to start tour session' : 'Siap memulai sesi tur';
-    } else if (mode === 'gemini-live') {
-      modeLabel.textContent = 'Gemini 3.8 Live · Audio Real-Time';
-    } else {
-      modeLabel.textContent = language === 'en'
-        ? 'Curated Knowledge Mode · Web Speech Voice'
-        : 'Mode Arsip Terverifikasi · Suara Web Speech';
-    }
-  }
-
-  function refreshContextUI() {
-    const ctx = resolver.resolve();
-    locEl.textContent = `${ctx.houseName} → ${ctx.roomName}`;
-    const prompts = ctx.house
-      ? (language === 'en'
-          ? [`About ${ctx.houseName}`, 'Materials & structure', 'Interior layout', 'Cultural meaning']
-          : [`Ceritakan ${ctx.houseName}`, 'Material & struktur', 'Tata ruang interior', 'Makna budaya'])
-      : (language === 'en'
-          ? ['How do I explore?', 'Which houses have interiors?']
-          : ['Cara menjelajah?', 'Apa saja arsitektur di sini?']);
-    quickEl.innerHTML = prompts.map((p) => `<button type="button" class="ai-chip" data-q="${escapeHtml(p)}">${escapeHtml(p)}</button>`).join('');
-  }
-
-  async function ensureSession() {
-    if (sessionActive) return;
-    const ctx = resolver.resolve();
-    const sysInst = retriever.buildGroundedSystemInstruction(ctx, language);
-
-    try {
-      const res = await fetch('/api/guide-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ houseId: ctx.houseId, language, systemInstruction: sysInst })
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.mode === 'gemini-live' && data.ephemeralToken) {
-          await liveClient.connect({
-            wsEndpoint: data.wsEndpoint,
-            ephemeralToken: data.ephemeralToken,
-            model: data.model,
-            systemInstruction: sysInst
-          });
-          mode = 'gemini-live';
-          sessionActive = true;
-          updateModeBadge();
-          return;
-        }
-      }
-    } catch { /* fallback below */ }
-
-    mode = 'curated-local';
-    sessionActive = true;
-    updateModeBadge();
-  }
-
-  async function handleUserQuestion(question) {
-    const q = (question || '').trim();
+  async function askGuide(question) {
+    const q = String(question || '').trim();
     if (!q) return;
-    audio.stopSpeaking();
-    addMessage('user', q);
-    await ensureSession();
+    appendMessage('user', q);
 
-    const ctx = resolver.resolve();
-    world?.character?.playOneShot?.('Point', 1.0);
+    const ctx = resolver.getContext();
+    let answer = '';
 
-    if (mode === 'gemini-live' && liveClient.connected) {
-      liveClient.sendText(`[Lokasi: ${ctx.houseName} → ${ctx.roomName}] ${q}`);
-      return;
-    }
-
-    // Try server-side Gemini text endpoint if available; otherwise deterministic grounded local retrieval
-    const sysInst = retriever.buildGroundedSystemInstruction(ctx, language);
+    // 1. Attempt server-side LLM adapter (/api/guide-chat) first
     try {
-      const res = await fetch('/api/guide-chat', {
+      const res = await fetch('./api/guide-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: q, systemInstruction: sysInst })
+        body: JSON.stringify({ question: q, context: ctx, language: 'id' })
       });
       if (res.ok) {
         const data = await res.json();
-        if (data.answer) {
-          captionEl.hidden = false;
-          captionEl.textContent = data.answer;
-          addMessage('guide', data.answer, `Gemini Grounded · ${ctx.houseName}`);
-          audio.speakTextFallback(data.answer, language);
-          return;
-        }
+        if (data?.answer) answer = data.answer;
       }
-    } catch { /* local fallback */ }
+    } catch {}
 
-    const localAns = retriever.answerLocally(q, ctx, language);
-    captionEl.hidden = false;
-    captionEl.textContent = localAns.text;
-    addMessage('guide', localAns.text, localAns.groundedIn);
-    audio.speakTextFallback(localAns.text, language);
+    // 2. Honest grounded cultural retrieval fallback when external LLM is unconfigured
+    if (!answer) {
+      const local = retriever.answerQuestion(q, ctx, 'id');
+      answer = local?.text || 'Informasi spesifik tersebut belum terverifikasi dalam arsip NULAR saat ini. Anda dapat menanyakan arsitektur, material, atau tata ruang rumah adat yang sedang Anda kunjungi.';
+    }
+
+    appendMessage('guide', answer);
+    speakText(answer);
   }
 
-  function openGuide() {
+  function openPanel(initialPrompt = null) {
     panel.hidden = false;
-    refreshContextUI();
-    if (!transcript.length) {
-      const ctx = resolver.resolve();
-      const greet = retriever.answerLocally('', ctx, language);
-      addMessage('guide', greet.text, greet.groundedIn);
+    if (messages.length === 0) {
+      const ctx = resolver.getContext();
+      const loc = ctx.houseName || 'Alun-Alun Nusantara';
+      appendMessage('guide', `Halo! Saya siap menjawab pertanyaan tentang ${loc} dan warisan budaya Nusantara di sekitar Anda.`);
+    }
+    if (initialPrompt) {
+      askGuide(initialPrompt);
+    } else {
+      input.focus();
     }
   }
 
-  // Bind UI buttons
+  function closePanel() {
+    panel.hidden = true;
+    audio.stopSpeech();
+  }
+
+  // Bind HUD button if present
   document.getElementById('btn-ai-guide')?.addEventListener('click', () => {
-    if (panel.hidden) openGuide();
-    else panel.hidden = true;
-  });
-  document.getElementById('ai-close-btn').addEventListener('click', () => { panel.hidden = true; });
-  endBtn.addEventListener('click', () => {
-    audio.stopPcmCapture();
-    audio.stopWebSpeechRecognition();
-    audio.stopSpeaking();
-    liveClient.disconnect();
-    sessionActive = false;
-    mode = 'idle';
-    captionEl.hidden = true;
-    updateModeBadge();
+    if (panel.hidden) openPanel();
+    else closePanel();
   });
 
-  langBtn.addEventListener('click', () => {
-    language = language === 'id' ? 'en' : 'id';
-    langBtn.textContent = language.toUpperCase();
-    textInput.placeholder = language === 'en'
-      ? 'Ask about structure, interior rooms, or history...'
-      : 'Tanyakan tentang struktur, ruang, atau sejarah rumah ini...';
-    refreshContextUI();
-    updateModeBadge();
+  closeBtn.addEventListener('click', closePanel);
+
+  speakerBtn.addEventListener('click', () => {
+    speakerEnabled = !speakerEnabled;
+    speakerBtn.textContent = speakerEnabled ? '🔊' : '🔇';
+    speakerBtn.classList.toggle('is-on', speakerEnabled);
+    if (!speakerEnabled) audio.stopSpeech();
   });
 
-  contToggle.addEventListener('click', () => {
-    continuousMode = !continuousMode;
-    contToggle.setAttribute('aria-pressed', String(continuousMode));
-  });
-
-  document.getElementById('ai-stop-speak').addEventListener('click', () => {
-    audio.stopSpeaking();
-    captionEl.hidden = true;
-  });
-
-  pttBtn.addEventListener('click', async () => {
-    if (audio.listening || audio.recognition) {
-      audio.stopPcmCapture();
-      audio.stopWebSpeechRecognition();
+  micBtn.addEventListener('click', () => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) {
+      appendMessage('guide', 'Pengenalan suara mikrofon tidak didukung pada peramban ini. Silakan ketik pertanyaan Anda.');
       return;
     }
-    audio.stopSpeaking();
-    await ensureSession();
-    if (mode === 'gemini-live') {
-      try {
-        await audio.startPcmCapture();
-      } catch (err) {
-        addMessage('guide', `Akses mikrofon tidak tersedia (${err.message}). Silakan ketik pertanyaan Anda di bawah.`);
-      }
-    } else {
-      const ok = audio.startWebSpeechRecognition(language, continuousMode);
-      if (!ok) {
-        addMessage('guide', language === 'en'
-          ? 'Browser voice input is unavailable here — please type your question below.'
-          : 'Input suara browser tidak tersedia pada perangkat ini — silakan ketik pertanyaan Anda di kolom bawah.');
-      }
-    }
+    if (listening) return;
+    listening = true;
+    micBtn.classList.add('is-on');
+    const rec = new SR();
+    rec.lang = 'id-ID';
+    rec.interimResults = false;
+    rec.onresult = (ev) => {
+      const spoken = ev.results?.[0]?.[0]?.transcript || '';
+      if (spoken) askGuide(spoken);
+    };
+    rec.onerror = () => { listening = false; micBtn.classList.remove('is-on'); };
+    rec.onend = () => { listening = false; micBtn.classList.remove('is-on'); };
+    rec.start();
   });
 
-  quickEl.addEventListener('click', (e) => {
-    const chip = e.target.closest('[data-q]');
-    if (chip) handleUserQuestion(chip.getAttribute('data-q'));
-  });
-
-  document.getElementById('ai-text-form').addEventListener('submit', (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const q = textInput.value.trim();
-    if (!q) return;
-    textInput.value = '';
-    handleUserQuestion(q);
+    const val = input.value;
+    input.value = '';
+    askGuide(val);
   });
 
-  window.addEventListener('nular:world-context', () => {
-    refreshContextUI();
-  });
   window.addEventListener('nular:ask-ai-guide', (e) => {
-    openGuide();
-    if (typeof e.detail === 'string') handleUserQuestion(e.detail);
+    openPanel(e.detail);
   });
 
-  const api = { openGuide, handleUserQuestion, resolver, retriever, getTranscript: () => transcript };
-  window.__NULAR_AI_GUIDE__ = api;
-  return api;
+  return { openPanel, closePanel, askGuide };
 }

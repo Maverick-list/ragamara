@@ -11,7 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet" />
+  <link rel="stylesheet" href="css/design-system.css" />
   <link rel="stylesheet" href="css/world.css" />
+  <script src="js/mascot.js"></script>
 
   <script type="importmap">
   {
@@ -63,6 +65,18 @@
       <button type="button" id="btn-toggle-roof" class="hud-btn" title="Buka / Tutup Potongan Atap (R)">
         <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">roofing</span>
         <span class="btn-lbl">Potong Atap</span>
+      </button>
+      <button type="button" id="btn-open-vehicles" class="hud-btn" title="Pilih Kendaraan Jelajah (Motor, Mobil, Perahu, Pesawat)">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">directions_car</span>
+        <span class="btn-lbl">Kendaraan</span>
+      </button>
+      <button type="button" id="btn-open-collection" class="hud-btn" title="Buku Koleksi Budaya Digital">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">menu_book</span>
+        <span class="btn-lbl">Koleksi (<span id="hud-collection-count">0</span>)</span>
+      </button>
+      <button type="button" id="btn-replay-tutorial" class="hud-btn" title="Panduan Interaktif Raga">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">help</span>
+        <span class="btn-lbl">Tutorial</span>
       </button>
       <button type="button" id="btn-ai-guide" class="hud-btn" title="Pemandu Tur AI Berbasis Suara & Pengetahuan Budaya">
         <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">record_voice_over</span>
@@ -231,13 +245,45 @@
     </div>
   </div>
 
-  <!-- AI Tour Guide Panel Mount (Populated in Phase 5) -->
+  <!-- Vehicle Telemetry HUD -->
+  <div id="vehicle-hud-bar" class="vehicle-hud-bar nular-glass--dark" hidden aria-live="polite">
+    <span id="veh-hud-name">Kendaraan</span>
+    <span>·</span>
+    <span id="veh-hud-speed">0 km/j</span>
+    <span id="veh-hud-alt" hidden>· 0 m</span>
+    <button type="button" id="btn-dismount-vehicle" class="tut-btn tut-btn--primary" style="margin-left:6px;">Turun [E]</button>
+  </div>
+
+  <!-- Vehicle Selector Modal -->
+  <div id="vehicle-modal" class="world-modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="vehicle-title">
+    <div class="world-modal" style="max-width:520px;">
+      <div class="modal-header">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:#9C7A4C;text-transform:uppercase;letter-spacing:0.1em;">Transportasi Nusantara</div>
+          <h2 id="vehicle-title" style="font-family:'Fraunces',serif;font-size:1.45rem;margin:4px 0 0;">Pilih Kendaraan Jelajah</h2>
+        </div>
+        <button type="button" data-close-modal="vehicle-modal" style="background:none;border:1px solid #C8BEB0;width:40px;height:40px;cursor:pointer;font-size:1.2rem;" aria-label="Tutup">×</button>
+      </div>
+      <div id="vehicle-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:10px;"></div>
+      <p style="margin:12px 0 0;font-size:0.78rem;color:#5c6860;">
+        Kontrol: WASD / Joystick untuk mengemudi · Space (Pesawat Naik) · Shift (Pesawat Turun) · E untuk turun.
+      </p>
+    </div>
+  </div>
+
+  <!-- 9-Step Raga Guided Tutorial Mount -->
+  <div id="tutorial-mount"></div>
+
+  <!-- Minimal Transparent AI Tour Guide Panel Mount -->
   <div id="ai-guide-mount"></div>
 
   <script type="module">
     import { loadHouses } from './js/museum-data.js';
     import { escapeHtml } from './js/museum-shell.js';
     import { WorldManager } from './js/world/WorldManager.js';
+    import { VEHICLE_CATALOG } from './js/world/VehicleManager.js';
+    import { TutorialManager } from './js/world/TutorialManager.js';
+    import { CollectionBook } from './js/gamification/CollectionBook.js';
     import { worldAudio } from './js/world/AudioManager.js';
     import { ProgressionEngine } from './js/gamification/ProgressionEngine.js';
 
@@ -399,6 +445,36 @@
               document.getElementById('ask-guide-about-comp')?.addEventListener('click', () => {
                 window.dispatchEvent(new CustomEvent('nular:ask-ai-guide', { detail: `Jelaskan tentang ${hs.title} pada ${world.activeHouse?.houseName}.` }));
               });
+            } else if (item.kind === 'exhibit') {
+              const ex = item.payload;
+              worldAudio.playDiscovery();
+              const alreadyCollected = CollectionBook.has(ex.id);
+              const srcs = Array.isArray(ex.sources) ? ex.sources.map((s) => `<li>${escapeHtml(s)}</li>`).join('') : '';
+              openDrawer(
+                `${ex.pavilionTitle || 'Pameran Budaya'} · ${ex.province || 'Nusantara'}`,
+                ex.name,
+                `
+                  <p style="margin:0 0 10px;">${escapeHtml(ex.description)}</p>
+                  <p style="margin:0 0 10px;"><strong>Makna Budaya:</strong> ${escapeHtml(ex.culturalSignificance || '-')}</p>
+                  <p style="margin:0 0 10px;"><strong>Komunitas:</strong> ${escapeHtml(ex.culturalAssociation || '-')}</p>
+                  ${srcs ? `<div style="margin:0 0 12px;font-size:0.78rem;color:#5c6860;"><strong>Sumber &amp; Atribusi:</strong><ul style="margin:4px 0 0 16px;padding:0;">${srcs}</ul></div>` : ''}
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button type="button" id="btn-collect-exhibit" style="background:#1A3329;color:#FAF7F2;border:none;padding:9px 14px;cursor:pointer;font-weight:600;border-radius:3px;">
+                      ${alreadyCollected ? '✓ Tersimpan di Buku Koleksi' : '+ Simpan ke Buku Koleksi (+10 XP)'}
+                    </button>
+                    <button type="button" id="ask-guide-about-exhibit" style="background:#9C7A4C;color:#fff;border:none;padding:9px 14px;cursor:pointer;font-weight:600;border-radius:3px;">Tanya Pemandu AI</button>
+                  </div>
+                `
+              );
+              document.getElementById('btn-collect-exhibit')?.addEventListener('click', (ev) => {
+                const res = CollectionBook.collect(ex);
+                ev.currentTarget.textContent = '✓ Tersimpan di Buku Koleksi';
+                const cntEl = document.getElementById('hud-collection-count');
+                if (cntEl) cntEl.textContent = String(res.total ?? CollectionBook.getAll().length);
+              });
+              document.getElementById('ask-guide-about-exhibit')?.addEventListener('click', () => {
+                window.dispatchEvent(new CustomEvent('nular:ask-ai-guide', { detail: `Jelaskan makna budaya dari ${ex.name}.` }));
+              });
             } else if (item.kind === 'article') {
               const h = item.payload;
               openDrawer(
@@ -414,9 +490,29 @@
               );
             }
           },
+          onVehicleChange: (spec) => {
+            const bar = document.getElementById('vehicle-hud-bar');
+            const nameEl = document.getElementById('veh-hud-name');
+            const altEl = document.getElementById('veh-hud-alt');
+            if (!spec) {
+              bar.hidden = true;
+            } else {
+              nameEl.textContent = spec.name;
+              altEl.hidden = spec.kind !== 'air';
+              bar.hidden = false;
+            }
+          },
+          onVehicleTelemetry: ({ speedKmh, altitudeM }) => {
+            const spEl = document.getElementById('veh-hud-speed');
+            const altEl = document.getElementById('veh-hud-alt');
+            if (spEl) spEl.textContent = `${speedKmh} km/j`;
+            if (altEl && !altEl.hidden) altEl.textContent = `· ${altitudeM} m`;
+          },
           onToggleMenu: () => {
+            const vehModal = document.getElementById('vehicle-modal');
             if (!wardrobeModal.hidden) wardrobeModal.hidden = true;
             else if (!teleportModal.hidden) teleportModal.hidden = true;
+            else if (vehModal && !vehModal.hidden) vehModal.hidden = true;
             else if (!drawer.hidden) drawer.hidden = true;
             else { renderTeleportList(); teleportModal.hidden = false; }
           }
@@ -429,12 +525,59 @@
       loadingEl.hidden = true;
       window.__NULAR_WORLD__ = world;
 
-      // Dynamically load Phase 5 AI Tour Guide if present
+      // Sync collection count badge
+      const colCnt = document.getElementById('hud-collection-count');
+      if (colCnt) colCnt.textContent = String(CollectionBook.getAll().length);
+
+      // Mount Vehicle Modal cards
+      const vehGrid = document.getElementById('vehicle-grid');
+      if (vehGrid) {
+        vehGrid.innerHTML = VEHICLE_CATALOG.map((v) => `
+          <button type="button" class="teleport-item" data-board-vehicle="${v.id}" style="text-align:left;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:#9C7A4C;text-transform:uppercase;">${v.kind}</div>
+            <div style="font-weight:600;font-size:0.92rem;margin:3px 0;">${escapeHtml(v.name)}</div>
+            <div style="font-size:0.74rem;color:#5c6860;">Maks. ${Math.round(v.maxSpeed * 3.6)} km/j</div>
+          </button>
+        `).join('');
+        vehGrid.addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-board-vehicle]');
+          if (!btn || !world) return;
+          document.getElementById('vehicle-modal').hidden = true;
+          world.mountVehicle(btn.getAttribute('data-board-vehicle'));
+        });
+      }
+
+      document.getElementById('btn-open-vehicles')?.addEventListener('click', () => {
+        document.getElementById('vehicle-modal').hidden = false;
+      });
+      document.getElementById('btn-dismount-vehicle')?.addEventListener('click', () => {
+        world?.dismountVehicle();
+      });
+      document.getElementById('btn-open-collection')?.addEventListener('click', () => {
+        const items = CollectionBook.getAll();
+        const html = items.length
+          ? items.map((it) => `<div style="padding:8px 0;border-bottom:1px solid #e4ddd0;"><strong>${escapeHtml(it.name)}</strong><div style="font-size:0.75rem;color:#5c6860;">${escapeHtml(it.category)} · ${escapeHtml(it.region)}</div></div>`).join('')
+          : '<p style="color:#5c6860;">Belum ada koleksi tersimpan. Kunjungi Paviliun Budaya di sekitar alun-alun dan tekan E untuk mengumpulkan warisan Nusantara!</p>';
+        openDrawer('Buku Koleksi Digital', `Koleksi Budaya (${items.length})`, html);
+      });
+
+      // Initialize 9-Step Raga Guided Tutorial
+      const tutorial = new TutorialManager({ mountEl: document.getElementById('tutorial-mount'), world });
+      window.__NULAR_TUTORIAL__ = tutorial;
+      document.getElementById('btn-replay-tutorial')?.addEventListener('click', () => tutorial.replay());
+      if (params.get('tutorial') === '1' || (!tutorial.isCompleted() && params.get('notutorial') !== '1')) {
+        tutorial.start();
+      }
+      setInterval(() => tutorial.checkInteractiveProgress(), 400);
+
+      // Dynamically load Phase 5 Minimal Transparent AI Tour Guide
       import('./js/ai-guide/TourGuideUI.js')
-        .then(({ mountTourGuide }) => mountTourGuide({ mountEl: document.getElementById('ai-guide-mount'), world, houses }))
+        .then(({ mountTourGuide }) => {
+          window.__NULAR_AI_GUIDE__ = mountTourGuide({ mountEl: document.getElementById('ai-guide-mount'), world, houses });
+        })
         .catch(() => {
           document.getElementById('btn-ai-guide')?.addEventListener('click', () => {
-            openDrawer('Pemandu Tur AI', 'Modul Pemandu Tur AI', '<p>Modul Pemandu Tur AI sedang dimuat pada Fase 5.</p>');
+            openDrawer('Pemandu Tur AI', 'Modul Pemandu Tur AI', '<p>Pemandu Tur AI tidak tersedia saat ini.</p>');
           });
         });
     }
