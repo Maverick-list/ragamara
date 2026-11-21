@@ -108,16 +108,43 @@ Every screenshot was captured at native viewport resolution (`deviceScaleFactor:
 
 ---
 
-## 6. QUALITY CONTROL & REGRESSION TEST RESULTS
+## 6. POST-REFINEMENT REGRESSION INVESTIGATION & FINAL TEST RESULTS
 
-| Test Suite | Result | Key Metrics |
-| :--- | :---: | :--- |
-| `tests/capture_visual_refinement.mjs` | **26/26 PASSED** | 26 unique hashes, 0 duplicates, 9/9 overflow checks passed, 0 console errors |
-| `tests/audit_pwa_security_performance.mjs` | **16/16 PASSED** | PWA manifest/SW, Scrypt, HMAC, Server XP, E.164 OTP 429, WebGL recovery |
-| `tests/verify_nular_master_transformation.mjs` | **19/19 PASSED** | Home load 1,087ms, World boot 651ms, 4 vehicles, 9-step Raga tutorial |
-| `tests/verify_phase11_visual_quality.mjs` | **12/12 PASSED** | 42 valid GLBs, 5 masterpiece rebuilds, 19 cultural items |
-| `tests/verify_phase12_immersive_e2e.mjs` | **14/14 PASSED** | Camera triad, interior cutaway, 13 hotspots, Sumatra biome |
-| `tests/test_nular_gamification.mjs` | **100% PASSED** | Toko Adat economy, 7-day streak, profile edit, Web Audio |
+### 6.1 Failed Full Regression Run Investigation (`tests/test_nular_gamification.mjs`)
+- **Observed Failure (Prior Sequential Run):**
+  When running `tests/test_nular_gamification.mjs` immediately after three heavy WebGL Chromium suites, the command exited with code `1` and threw:
+  ```
+  [TEST FATAL] Error: ReferenceError: RagamaraEcosystem is not defined
+      at CDPClient.evaluate (tests/test_nular_gamification.mjs:111:13)
+      at async run (tests/test_nular_gamification.mjs:159:24)
+  ```
+- **Root Cause Diagnosis (Test Infrastructure & Timing Race Condition):**
+  Inspection of `tests/test_nular_gamification.mjs` (lines 100–102 and 148–160) revealed a fixed blind wait (`setTimeout(1500)` + `setTimeout(1000)` = 2,500 ms) after `Page.navigate('/app.html#profil')`. Because the legacy fixture `data/backups/pre-museum-transformation/legacy_app.html` includes a synchronous external CDN script (`https://cdn.tailwindcss.com/3.4.17`) before evaluating `js/ecosystem.js`, CPU/network contention during back-to-back Chromium runs caused evaluation of `js/ecosystem.js` to finish slightly after 2.5 s. Network logs confirmed `js/ecosystem.js` returned HTTP `200` with `0` console errors and `0` page exceptions — proving this was a test-harness timing race rather than an application defect.
+- **Deterministic Fix Implemented:**
+  Replaced the blind `setTimeout(1000)` in [`tests/test_nular_gamification.mjs`](file:///home/firza-ilmi/.gemini/antigravity/scratch/ragamara/tests/test_nular_gamification.mjs) with an explicit readiness poll checking `typeof RagamaraEcosystem !== 'undefined' && RagamaraEcosystem?.Store?.state?.player` (up to 15 s timeout, failing loudly if never initialized).
+
+### 6.2 Complete Clean 7-Suite Sequential Regression Run (All Exited Code 0)
+Executed sequentially from a clean starting state on commit `c4d8d66` + deterministic test harness fix:
+
+| # | Exact Command | Exit Code | Test Total / Result | Measured Highlights |
+| :-: | :--- | :-: | :---: | :--- |
+| 1 | `node tests/audit_pwa_security_performance.mjs` | **0** | **16/16 PASSED** | PWA manifest/SW `/api/` bypass, Scrypt, HMAC, Server XP, E.164 OTP 429, WebGL context recovery |
+| 2 | `node tests/verify_universal_cross_device.mjs` | **0** | **100% PASSED** | 9 viewports (`360px=360px`, `390px=390px`, `430px=430px`, `768px=768px`), mobile bottom sheet, D-pad |
+| 3 | `node tests/verify_nular_master_transformation.mjs` | **0** | **19/19 PASSED** | Home load, World boot, 4 vehicles, 9-step Raga tutorial, transparent AI chat, 0 console errors |
+| 4 | `node tests/verify_phase11_visual_quality.mjs` | **0** | **12/12 PASSED** | 42 valid GLBs on disk, 5 masterpiece rebuilds, 19 cultural items |
+| 5 | `node tests/verify_phase12_immersive_e2e.mjs` | **0** | **14/14 PASSED** | Camera triad, interior roof cutaway, 13 architectural hotspots, Sumatra biome |
+| 6 | `node tests/test_nular_gamification.mjs` | **0** | **100% PASSED** | Toko Adat economy, 7-day streak idempotency, profile edit modal, Web Audio |
+| 7 | `node tests/verify_post_refinement_interactions.mjs` | **0** | **11/11 PASSED** | Live tutorial lifecycle, mutually exclusive joystick/D-pad, HUD expansion, drawer `z=48 > 44`, eager+lazy images, keyboard a11y, reduced-motion, offline inline SVGs |
+
+### 6.3 Measured 3D Performance & Accessibility Metrics (Post-PBR Refinement)
+*All values below are directly measured in Headless Chromium (ANGLE SwiftShader software WebGL) at 1440×900 — explicitly distinguished from physical GPU benchmarks:*
+- **Draw Calls:** `269` (well within `< 400` budget)
+- **Triangles Rendered:** `10,660` (well within `< 50,000` mobile budget)
+- **GPU Buffer Geometries / Textures:** `358` geometries / `9` cached PBR textures
+- **JS Heap Memory Used:** `16.6 MB` during active 3D world session
+- **Average Frame Time (SwiftShader Software WebGL):** `103.7 ms` (~9.6 fps on CPU software rasterizer; hardware GPU frame rate requires physical device verification)
+- **Touch Target Sizes (Measured):** `mobile-btn-sprint` (`56×56px`), `mobile-btn-jump` (`56×56px`), `mobile-btn-interact` (`56×56px`), `btn-mobile-hud-more` (`44×44px`) — all meet or exceed WCAG 2.2 AA `44×44px` minimum.
+- **Network & Console Health:** `0` uncaught console exceptions; `0` failed local 4xx/5xx requests; `0` broken images across all 6 major pages (both eager and lazy-loaded verified).
 
 ---
 

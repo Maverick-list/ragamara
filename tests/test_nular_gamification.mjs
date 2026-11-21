@@ -146,7 +146,16 @@ async function run() {
     // 1. Load app.html (served with legacy gamification suite)
     console.log('[TEST] Navigating to app.html...');
     await cdp.navigate(`http://127.0.0.1:${port}/app.html#profil`);
-    await new Promise(r => setTimeout(r, 1000));
+    // Deterministically wait for blocking CDN scripts & RagamaraEcosystem initialization
+    let ecoReady = false;
+    for (let i = 0; i < 60; i++) {
+      const ready = await cdp.evaluate(`Boolean(typeof RagamaraEcosystem !== 'undefined' && RagamaraEcosystem?.Store?.state?.player)`);
+      if (ready) { ecoReady = true; break; }
+      await new Promise(r => setTimeout(r, 250));
+    }
+    if (!ecoReady) {
+      throw new Error('Timed out waiting for RagamaraEcosystem initialization on app.html');
+    }
 
     // Check page errors
     console.log('[TEST] Console errors:', cdp.consoleErrors);
