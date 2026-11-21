@@ -266,6 +266,7 @@
     import { loadHouses, loadProvinces, loadStories, getCatalogMetrics } from './js/museum-data.js';
     import { initMuseumShell, renderHouseCard, bindSaveButtons, escapeHtml } from './js/museum-shell.js';
     import { NularArchitectureViewer } from './js/viewer-3d.js';
+    import { runNularLoader } from './js/nular-loader.js';
 
     initMuseumShell('home');
     bindSaveButtons(document);
@@ -273,11 +274,14 @@
     let activeHeroViewer = null;
 
     async function initHome() {
-      const [houses, provincesData, stories] = await Promise.all([
-        loadHouses(),
-        loadProvinces(),
-        loadStories()
-      ]);
+      let houses = [], provincesData = [], stories = [];
+      await runNularLoader({
+        tasks: [
+          { label: 'Memuat katalog 42 rumah adat…', run: async () => { houses = await loadHouses(); } },
+          { label: 'Memuat peta 38 provinsi Nusantara…', run: async () => { provincesData = await loadProvinces(); } },
+          { label: 'Memuat arsip cerita & monograf…', run: async () => { stories = await loadStories(); } }
+        ]
+      });
 
       // Update live metrics
       const metrics = getCatalogMetrics(houses, provincesData);

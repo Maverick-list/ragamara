@@ -8,10 +8,10 @@ import { I18nManager, SUPPORTED_LOCALES } from './i18n/I18nManager.js';
 
 const NAV_ITEMS = [
   { id: 'home', i18nKey: 'nav.home', label: 'Beranda', subtitle: 'The Living World', href: 'index.html' },
+  { id: 'world', i18nKey: 'nav.world', label: 'Nusantara World', subtitle: '3D Open World', href: 'world.html' },
   { id: 'explore', i18nKey: 'nav.explore', label: 'Eksplorasi', subtitle: 'Cultural Discovery', href: 'explore.html' },
-  { id: 'portal', i18nKey: 'nav.portal', label: 'Portal Dunia', subtitle: 'World Entry', href: 'portal.html' },
   { id: 'map', i18nKey: 'nav.map', label: 'Peta 38 Provinsi', subtitle: 'Living Atlas', href: 'map.html' },
-  { id: 'learn', i18nKey: 'nav.learn', label: 'Pusat Belajar', subtitle: 'Collections & Lore', href: 'learn.html' },
+  { id: 'learn', i18nKey: 'nav.learn', label: 'Koleksi Budaya', subtitle: 'Collection Book', href: 'learn.html' },
   { id: 'quests', i18nKey: 'nav.quests', label: 'Misi & Peringkat', subtitle: 'Quests & Ranks', href: 'quests.html' },
   { id: 'about', i18nKey: 'nav.about', label: 'Tentang', subtitle: 'Sources & Policy', href: 'about.html' }
 ];

@@ -229,3 +229,153 @@ html[dir="rtl"] .nular-toast {
     font-size: 0.7rem;
   }
 }
+
+
+/* ============================================================================
+ * PHASE 1 — NULAR LIVING WORLD DESIGN SYSTEM & CINEMATIC LOADER
+ * ============================================================================ */
+:root {
+  --nular-bronze: #9C7A4C;
+  --nular-terracotta: #A54B34;
+  --nular-glass-light: rgba(250, 247, 242, 0.82);
+  --nular-glass-dark: rgba(15, 30, 23, 0.78);
+  --nular-glass-border: rgba(200, 157, 84, 0.28);
+}
+
+.nular-glass {
+  background: var(--nular-glass-light);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--nular-glass-border);
+}
+
+.nular-glass--dark {
+  background: var(--nular-glass-dark);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(200, 157, 84, 0.32);
+  color: var(--nular-ivory);
+}
+
+/* Purposeful Micro-Interactions */
+.btn-museum,
+.house-card,
+.exhibit-card,
+.world-cta-card {
+  transition: transform 0.24s var(--nular-ease-cinematic), box-shadow 0.24s var(--nular-ease-cinematic), border-color 0.24s ease;
+}
+
+.btn-museum:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.collect-pulse {
+  animation: nularCollectPulse 0.65s var(--nular-ease-cinematic);
+}
+
+@keyframes nularCollectPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(200, 157, 84, 0.55); }
+  50% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(200, 157, 84, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(200, 157, 84, 0); }
+}
+
+/* Cinematic Initial Loading Screen */
+.nular-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 35%, #1D3B2D 0%, #0E1C15 72%, #09120E 100%);
+  color: #FAF7F2;
+  transition: opacity 0.38s var(--nular-ease-cinematic), visibility 0.38s ease;
+}
+
+.nular-splash.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.nular-splash__backdrop {
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(200, 157, 84, 0.35) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(-45deg, rgba(200, 157, 84, 0.22) 0 1px, transparent 1px 28px);
+}
+
+.nular-splash__inner {
+  position: relative;
+  z-index: 2;
+  width: min(380px, 88vw);
+  text-align: center;
+  padding: 28px 24px;
+}
+
+.nular-splash__emblem {
+  display: inline-flex;
+  margin-bottom: 14px;
+  animation: nularEmblemFloat 2.4s ease-in-out infinite;
+}
+
+@keyframes nularEmblemFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.nular-splash__brand {
+  font-family: 'Fraunces', serif;
+  font-size: 2.1rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: #FAF7F2;
+}
+
+.nular-splash__tagline {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #D9B778;
+  margin-top: 6px;
+}
+
+.nular-splash__bar-wrap {
+  margin-top: 22px;
+  height: 3px;
+  width: 100%;
+  background: rgba(250, 247, 242, 0.16);
+  overflow: hidden;
+}
+
+.nular-splash__bar {
+  height: 100%;
+  background: linear-gradient(90deg, #9C7A4C, #E5CFA0);
+  transition: width 0.22s var(--nular-ease-cinematic);
+}
+
+.nular-splash__meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  color: rgba(250, 247, 242, 0.78);
+}
+
+.nular-splash__notice {
+  margin-top: 12px;
+  font-size: 0.74rem;
+  color: #F2C45A;
+  line-height: 1.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nular-splash__emblem,
+  .collect-pulse {
+    animation: none !important;
+  }
+}
