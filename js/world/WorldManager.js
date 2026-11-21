@@ -13,6 +13,8 @@ import { SceneStreamingManager } from './SceneStreamingManager.js';
 import { InteractionManager } from './InteractionManager.js';
 import { ExplorationState } from './ExplorationState.js';
 import { WorldNavigation } from './WorldNavigation.js';
+import { CulturalPavilionManager } from './CulturalPavilionManager.js';
+import { VehicleManager } from './VehicleManager.js';
 
 export class WorldManager {
   constructor({ canvas, joystickBase, joystickKnob, houses, textiles, callbacks = {} }) {
@@ -31,6 +33,8 @@ export class WorldManager {
     this.interaction = new InteractionManager(this.gameScene.scene);
     this.exploration = new ExplorationState();
     this.navigation = new WorldNavigation(this.gameScene, this.collision, this.interaction);
+    this.pavilions = new CulturalPavilionManager(this.gameScene, this.interaction);
+    this.vehicles = new VehicleManager(this.gameScene, this.collision, this.interaction);
 
     this.mode = 'hub'; // 'hub' | 'house'
     this.activeHouse = null;
@@ -75,6 +79,8 @@ export class WorldManager {
 
     const biome = this.environment.buildRegionEnvironment('Hub');
     this.navigation.mountHubPlaza(this.streaming.activeWorldGroup);
+    await this.pavilions.mountPavilions('hub', 'Hub');
+    this.vehicles.mountVehicles('Hub');
     this.player.setInteriorZones([]);
     this.player.setSpawn([0, 0.05, 8.2], Math.PI);
     this.cameraCtrl.resetBehind(this.player.position, this.player.yaw);
@@ -107,6 +113,8 @@ export class WorldManager {
     this.player.setSpawn(manifest.spawnPoint || [0, 0.05, 8.5], Math.PI);
     this.cameraCtrl.resetBehind(this.player.position, this.player.yaw);
     this.interaction.registerHouseInteractables(house, manifest);
+    await this.pavilions.mountPavilions('house', house.island);
+    this.vehicles.mountVehicles(house.island);
     this.exploration.recordHouseVisit(house.id);
 
     this.callbacks.onLoading?.(false, house.houseName);
@@ -158,6 +166,24 @@ export class WorldManager {
     return this.manualRoofCutaway;
   }
 
+  mountVehicle(vehicleId) {
+    const spec = this.vehicles.mount(vehicleId, this.player);
+    if (spec) {
+      this.callbacks.onVehicleChange?.(spec);
+      window.dispatchEvent(new CustomEvent('nular:vehicle-mounted', { detail: spec }));
+    }
+    return spec;
+  }
+
+  dismountVehicle() {
+    const ok = this.vehicles.dismount(this.player);
+    if (ok) {
+      this.callbacks.onVehicleChange?.(null);
+      window.dispatchEvent(new CustomEvent('nular:vehicle-mounted', { detail: null }));
+    }
+    return ok;
+  }
+
   getContextSnapshot() {
     return {
       mode: this.mode,
@@ -191,10 +217,23 @@ export class WorldManager {
       this.callbacks.onToggleMenu?.();
     }
 
-    const { currentZone } = this.player.update(dt, this.input, this.cameraCtrl.yaw);
+    let currentZone = null;
+    if (this.vehicles.activeVehicle) {
+      const vState = this.vehicles.update(dt, this.input, this.player);
+      if (vState) this.callbacks.onVehicleTelemetry?.(vState);
+      if (this.input.consumeAction('interact')) {
+        this.dismountVehicle();
+      }
+    } else {
+      const res = this.player.update(dt, this.input, this.cameraCtrl.yaw);
+      currentZone = res.currentZone;
+    }
+
     const isInside = Boolean(currentZone);
     this.cameraCtrl.update(dt, this.player.position, this.input, isInside, this.collision.walls);
     this.environment.update(dt);
+    this.pavilions.update(dt);
+    if (!this.vehicles.activeVehicle) this.vehicles.update(dt, this.input, null);
 
     // Automatically lift roof cutaway smoothly when inside interior OR manually toggled!
     this.streaming.updateRoofCutaway(dt, this.manualRoofCutaway || isInside);
@@ -221,12 +260,16 @@ export class WorldManager {
       this.callbacks.onNearestInteractable?.(nearest);
     }
 
-    if (this.input.consumeAction('interact') && nearest) {
-      this.character.playOneShot(nearest.kind === 'component' ? 'Point' : 'Interact', 1.0);
-      if (nearest.kind === 'component' && this.activeHouse) {
-        this.exploration.recordComponentInspected(this.activeHouse.id, nearest.id);
+    if (!this.vehicles.activeVehicle && this.input.consumeAction('interact') && nearest) {
+      if (nearest.kind === 'vehicle') {
+        this.mountVehicle(nearest.payload.vehicleId);
+      } else {
+        this.character.playOneShot(nearest.kind === 'component' ? 'Point' : 'Interact', 1.0);
+        if (nearest.kind === 'component' && this.activeHouse) {
+          this.exploration.recordComponentInspected(this.activeHouse.id, nearest.id);
+        }
+        this.callbacks.onInteract?.(nearest, this.activeHouse ? this.exploration.getMissionStatus(this.activeHouse.id, (this.activeHouse.hotspots || []).length) : null);
       }
-      this.callbacks.onInteract?.(nearest, this.activeHouse ? this.exploration.getMissionStatus(this.activeHouse.id, (this.activeHouse.hotspots || []).length) : null);
     }
 
     this.gameScene.render();
@@ -236,7 +279,8 @@ export class WorldManager {
     this.running = false;
     if (this.rafId) cancelAnimationFrame(this.rafId);
     this.input.dispose();
-    this.environment.dispose();
+    this.pavilions.clear();
+    this.vehicles.clear();
     this.streaming.unloadActiveScene();
     this.gameScene.dispose();
   }
