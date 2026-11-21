@@ -160,7 +160,16 @@
           if (item) {
             document.getElementById('artifact-cat-label').textContent = item.categoryLabel || item.category;
             document.getElementById('artifact-title').textContent = item.name;
-            document.getElementById('artifact-desc').textContent = item.culturalSignificance || item.description;
+            const badgeEl = document.getElementById('artifact-3d-badge');
+            if (badgeEl) {
+              badgeEl.textContent = item.isGenericSilhouette
+                ? '● SILUET MANEKIN ILUSTRATIF · Putar 360°'
+                : 'Penampil Artefak 3D · Putar 360°';
+            }
+            const noteText = item.isGenericSilhouette && item.model3DNote
+              ? `<div class="mono-caption" style="margin-top:10px;padding:8px 10px;border-radius:4px;background:rgba(214,177,112,0.15);border:1px solid rgba(214,177,112,0.35);color:var(--museum-emerald);"><strong>Catatan Kuratorial 3D:</strong> ${escapeHtml(item.model3DNote)}</div>`
+              : '';
+            document.getElementById('artifact-desc').innerHTML = `${escapeHtml(item.culturalSignificance || item.description)}${noteText}`;
             document.getElementById('artifact-meta').textContent = `${item.province} · ${item.culturalAssociation}`;
             document.getElementById('artifact-sources').textContent = `Sumber: ${(item.sources || []).join(' · ')}`;
             const mod = await import('./js/artifact-viewer.js').catch(() => null);

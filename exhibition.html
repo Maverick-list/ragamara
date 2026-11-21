@@ -256,6 +256,12 @@
             <span class="mono-caption" style="color:var(--ink-muted);">${escapeHtml(exhibit.province)}</span>
           </div>
           <h3 style="font-family:var(--font-serif);font-size:1.5rem;margin:0;color:var(--museum-emerald);">${escapeHtml(exhibit.name)}</h3>
+          ${exhibit.isGenericSilhouette ? `
+            <div class="mono-caption" style="display:flex;align-items:flex-start;gap:8px;padding:8px 12px;border-radius:6px;background:rgba(214,177,112,0.12);border:1px solid rgba(214,177,112,0.4);color:var(--museum-emerald);">
+              <span class="material-symbols-outlined" style="font-size:16px;color:var(--museum-gold);flex-shrink:0;" aria-hidden="true">info</span>
+              <span><strong>Catatan Kuratorial 3D:</strong> ${escapeHtml(exhibit.model3DNote || 'Representasi visual 3D menggunakan siluet manekin umum berbalut kain tekstil tradisional untuk menjaga kehormatan artefak asli.')}</span>
+            </div>
+          ` : ''}
           ${exhibit.subtitle ? `<div style="font-size:0.88rem;font-weight:600;color:#6b4d22;">${escapeHtml(exhibit.subtitle)}</div>` : ''}
           <p style="font-size:0.9rem;line-height:1.65;color:var(--ink-secondary);margin:0;">${escapeHtml(exhibit.description)}</p>
           ${exhibit.historicalContext ? `
@@ -337,7 +343,7 @@
       if (selectorMount) {
         selectorMount.innerHTML = ch.exhibits.map((ex, i) => `
           <button type="button" class="exhibit-thumb-btn ${i === 0 ? 'is-active' : ''}" data-exhibit-idx="${i}" aria-pressed="${i === 0 ? 'true' : 'false'}">
-            <span class="mono-caption" style="color:var(--museum-gold);font-size:0.68rem;">${ex.model3DUrl ? '● 3D TERSEDIA' : '○ ARSIP ETNOGRAFIS'}</span>
+            <span class="mono-caption" style="color:var(--museum-gold);font-size:0.68rem;">${ex.isGenericSilhouette ? '● SILUET MANEKIN ILUSTRATIF' : (ex.model3DUrl ? '● 3D TERSEDIA' : '○ ARSIP ETNOGRAFIS')}</span>
             <strong style="font-family:var(--font-serif);font-size:1rem;color:var(--museum-emerald);">${escapeHtml(ex.name)}</strong>
             <span style="font-size:0.78rem;color:var(--ink-secondary);">${escapeHtml(ex.province)}</span>
           </button>
@@ -376,8 +382,7 @@
           credentials: 'same-origin',
           body: JSON.stringify({
             activityType: 'complete_collection',
-            eventKey: `exhibition-complete:${currentExhibition.id}`,
-            guestId: localStorage.getItem('nular_guest_id') || 'guest-exhibition'
+            eventKey: `exhibition-complete:${currentExhibition.id}`
           })
         });
         const data = await res.json();

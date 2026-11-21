@@ -14,7 +14,7 @@
 
 ### A. Investigation of `run gamification test · Exited with code 1`
 - **Assertion Failure:** `ReferenceError: RagamaraEcosystem is not defined` occurred at `test_nular_gamification.mjs:154`.
-- **Root Cause Analysis:** 
+- **Root Cause Analysis:**
   During commit `ae6d032`, the NULAR platform underwent an architectural pivot from a legacy single-page gamified application into the **Interactive 3D Nusantara Architecture Museum**. As part of this transition, `app.html` was converted into a lightweight client-side redirect (`window.location.replace('profile.html')`), while the pre-museum single-page application was securely archived in `data/backups/pre-museum-transformation/legacy_app.html`.
   The older test runner `tests/test_nular_gamification.mjs` had navigated to `/app.html#profil`. Upon receiving the redirect to `profile.html`, it encountered the museum's clean data store (`js/museum-store.js`) rather than `js/ecosystem.js`.
 - **Remediation:**

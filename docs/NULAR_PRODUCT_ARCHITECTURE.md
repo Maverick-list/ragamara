@@ -1,7 +1,7 @@
 # NULAR — PRODUCT ARCHITECTURE (THE LIVING WORLD OF NUSANTARA)
-**Document Version:** 3.0.0 (Master Product Transformation — Phase 0 Audit)  
-**Repository:** `Maverick-list/ragamara`  
-**Development Branch:** `feat/nular-world-experience` (branched from verified commit `1d7321b`, which includes `ae6d032`)  
+**Document Version:** 3.0.0 (Master Product Transformation — Phase 0 Audit)
+**Repository:** `Maverick-list/ragamara`
+**Development Branch:** `feat/nular-world-experience` (branched from verified commit `1d7321b`, which includes `ae6d032`)
 **Default Language:** Indonesian (`id`), with preserved 8-language i18n switcher (`id`, `en`, `ms`, `zh`, `ja`, `ko`, `ar` RTL, `nl`)
 
 ---

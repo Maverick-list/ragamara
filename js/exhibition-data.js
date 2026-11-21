@@ -66,6 +66,8 @@ function normalizeCulturalExhibit(item) {
     imageAttribution: 'Dokumentasi Kuratorial NULAR & DAPOBUD',
     gallery: localImg ? [{ url: localImg, caption: item.name }] : [],
     model3DUrl: item.model3D || null,
+    isGenericSilhouette: Boolean(item.isGenericSilhouette),
+    model3DNote: item.model3DNote || null,
     sources: Array.isArray(item.sources) ? item.sources : [],
     verificationStatus: item.verificationStatus || 'verified',
     detailHref: `learn.html#${encodeURIComponent(item.category || 'clothing')}`

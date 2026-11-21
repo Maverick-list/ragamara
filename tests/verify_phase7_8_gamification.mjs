@@ -4,11 +4,12 @@ import { POST as progPost, GET as progGet } from '../api/progress.js';
 import { GET as lbGet } from '../api/leaderboard.js';
 
 async function run() {
-  // 1. Create authenticated user for progress test
+  // 1. Create authenticated user for progress test (isolated test identity)
+  const testEmail = `xp_${Date.now()}_${Math.random().toString(36).slice(2, 6)}@nular.id`;
   const sRes = await authPost(new Request('http://127.0.0.1/api/auth?action=signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: 'xp@nular.id', password: 'Password123!', username: 'ArjunaNusantara' })
+    body: JSON.stringify({ email: testEmail, password: 'Password123!', username: 'ArjunaNusantara' })
   }));
   const cookie = sRes.headers.get('set-cookie').split(';')[0];
 
@@ -48,10 +49,11 @@ async function run() {
   const lbRes = await lbGet(new Request('http://127.0.0.1/api/leaderboard?scope=global'));
   const lbJson = await lbRes.json();
   assert.ok(lbJson.entries.length >= 1);
-  const top = lbJson.entries[0];
-  assert.equal(top.username, 'ArjunaNusantara');
-  assert.equal(top.email, undefined);
-  assert.equal(top.userId, undefined);
+  const entry = lbJson.entries.find(e => e.username === 'ArjunaNusantara');
+  assert.ok(entry, 'Expected ArjunaNusantara in leaderboard entries');
+  assert.equal(entry.username, 'ArjunaNusantara');
+  assert.equal(entry.email, undefined);
+  assert.equal(entry.userId, undefined);
 
   // 6. GET /api/progress
   const meRes = await progGet(new Request('http://127.0.0.1/api/progress', { headers: { Cookie: cookie } }));

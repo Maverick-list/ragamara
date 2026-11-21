@@ -7,3 +7,6 @@ ragamara-data-engine/data/cache/
 
 .vercel
 .nular-local-data/
+docs/qa/evidence.zip
+reports/*-qa/
+reports/final-preview-acceptance/

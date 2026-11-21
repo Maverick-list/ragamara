@@ -148,6 +148,8 @@
         "Tata Busana Adat"
       ],
       "model3D": "assets/models/artifacts/clothing-batik-parang.glb",
+      "isGenericSilhouette": true,
+      "model3DNote": "Representasi visual 3D menggunakan siluet manekin umum berbalut kain tekstil tradisional untuk menjaga kehormatan artefak asli dan keterbatasan model 3D saat ini.",
       "sources": [
         "DAPOBUD Kemendikbudristek RI — Ulos Batak (WBTbI 2014)",
         "Warisan Budaya Takbenda Nasional Indonesia (2014)"
@@ -179,6 +181,8 @@
         "Tata Busana Adat"
       ],
       "model3D": "assets/models/artifacts/clothing-batik-parang.glb",
+      "isGenericSilhouette": true,
+      "model3DNote": "Representasi visual 3D menggunakan siluet manekin umum berbalut kain tekstil tradisional untuk menjaga kehormatan artefak asli dan keterbatasan model 3D saat ini.",
       "sources": [
         "Museum Lambung Mangkurat & Kemendikbudristek RI (WBTbI 2010)",
         "Warisan Budaya Takbenda Nasional Indonesia (2010)"

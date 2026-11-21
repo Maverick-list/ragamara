@@ -1,8 +1,8 @@
 # NULAR — Real Exhibition Product Final Report
 
-**Project:** NULAR — The Living World of Nusantara  
-**Branch:** `feat/nular-world-experience`  
-**Date:** 2026-11-21  
+**Project:** NULAR — The Living World of Nusantara
+**Branch:** `feat/nular-world-experience`
+**Date:** 2026-11-21
 
 ---
 

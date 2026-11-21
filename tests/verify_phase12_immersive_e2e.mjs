@@ -100,9 +100,9 @@ async function runAcceptanceAndE2E() {
     await send('Runtime.enable');
     await new Promise(r => setTimeout(r, 2000));
 
-    // Wait for world init
+    // Wait for world init (Environment-aware timeout: software SwiftShader rasterization in headless CI takes ~14s for PBR shader compilation)
     let worldReady = false;
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 80; i++) {
       await new Promise(r => setTimeout(r, 250));
       const ok = await send('Runtime.evaluate', {
         expression: 'Boolean(window.__NULAR_WORLD__?.running && window.__NULAR_WORLD__?.activeHouse?.id === "rumah-gadang")',

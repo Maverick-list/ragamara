@@ -1,6 +1,6 @@
 # NULAR — FEATURE INVENTORY & BASELINE RECONCILIATION
-**Audit Date:** 2026-11-21  
-**Baseline Commit:** `1d7321b` (includes `ae6d032`, Phase 0–12 history preserved)  
+**Audit Date:** 2026-11-21
+**Baseline Commit:** `1d7321b` (includes `ae6d032`, Phase 0–12 history preserved)
 **Working Branch:** `feat/nular-world-experience`
 
 ---

@@ -1,8 +1,8 @@
 # NULAR — Full-Site Visual & Responsive Audit
 
-**Project:** NULAR — The Living World of Nusantara  
-**Branch:** `feat/nular-world-experience`  
-**Date:** 2026-11-21  
+**Project:** NULAR — The Living World of Nusantara
+**Branch:** `feat/nular-world-experience`
+**Date:** 2026-11-21
 **Visual Direction:** Contemporary Indonesian Cultural Museum × Immersive Digital Heritage × Premium Editorial Experience
 
 ---

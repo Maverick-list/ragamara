@@ -1,5 +1,5 @@
 # NULAR — KNOWN LIMITATIONS & HONEST ARCHITECTURAL NOTES
-**Version:** 3.0.0 (Phase 7 Audit)  
+**Version:** 3.0.0 (Phase 7 Audit)
 **Branch:** `feat/nular-world-experience`
 
 ---

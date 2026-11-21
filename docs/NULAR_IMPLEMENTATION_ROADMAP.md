@@ -1,5 +1,5 @@
 # NULAR — MASTER TRANSFORMATION IMPLEMENTATION ROADMAP
-**Development Branch:** `feat/nular-world-experience`  
+**Development Branch:** `feat/nular-world-experience`
 **Governance:** Local development, testing, and checkpoints only. Zero pushes, merges, or deployments until explicit owner approval.
 
 ---
