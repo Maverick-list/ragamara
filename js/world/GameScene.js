@@ -158,7 +158,8 @@ export class GameScene {
       if (child.material) {
         const mats = Array.isArray(child.material) ? child.material : [child.material];
         mats.forEach((m) => {
-          if (m.map) m.map.dispose();
+          // Preserve shared cached textures from PbrTextureFactory across house transitions
+          if (m.map && !m.userData?.nularPbrApplied) m.map.dispose();
           m.dispose();
         });
       }

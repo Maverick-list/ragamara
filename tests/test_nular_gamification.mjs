@@ -39,6 +39,13 @@ function startServer(port = 8955) {
         }
         const ext = path.extname(filePath).toLowerCase();
         res.writeHead(200, { 'Content-Type': MIME_TYPES[ext] || 'application/octet-stream' });
+        if (relPath === '/app.html' || relPath === '/legacy_app.html') {
+          // Hermetic test isolation: prevent external CDN stalls from blocking js/ecosystem.js parsing
+          const html = data.toString('utf8')
+            .replace('<script src="https://cdn.tailwindcss.com"></script>', '<script>window.tailwind = {};</script>');
+          res.end(html);
+          return;
+        }
         res.end(data);
       });
     });

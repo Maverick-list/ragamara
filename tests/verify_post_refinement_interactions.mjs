@@ -55,8 +55,23 @@ class CDPClient {
     });
   }
 
-  async navigate(url, waitMs = 1300) {
+  async navigate(url, waitMs = 800) {
+    const loadPromise = new Promise((resolve) => {
+      const onMsg = (e) => {
+        const m = JSON.parse(e.data);
+        if (m.method === 'Page.loadEventFired') {
+          this.ws.removeEventListener('message', onMsg);
+          resolve();
+        }
+      };
+      this.ws.addEventListener('message', onMsg);
+      setTimeout(() => {
+        this.ws.removeEventListener('message', onMsg);
+        resolve();
+      }, 6000);
+    });
     await this.send('Page.navigate', { url });
+    await loadPromise;
     await new Promise((r) => setTimeout(r, waitMs));
   }
 

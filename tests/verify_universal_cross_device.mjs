@@ -195,6 +195,12 @@ async function run() {
     for (const vp of VIEWPORTS) {
       await cdp.setViewport(vp.w, vp.h, vp.mobile);
       await cdp.navigate(`http://127.0.0.1:${PORT}/index.html`);
+      // Deterministically wait for ES module museum shell (#mobile-bottom-nav) to mount
+      for (let i = 0; i < 25; i++) {
+        const mounted = await cdp.evaluate('Boolean(document.getElementById("mobile-bottom-nav"))');
+        if (mounted) break;
+        await new Promise((r) => setTimeout(r, 200));
+      }
       const metrics = await cdp.evaluate(`(() => {
         const docW = document.documentElement.scrollWidth;
         const winW = window.innerWidth;
@@ -335,7 +341,7 @@ async function run() {
     if (cdp?.ws) cdp.ws.close();
     chromeProc.kill('SIGKILL');
     server.close();
-    fs.rmSync(chromeDataDir, { recursive: true, force: true });
+    try { fs.rmSync(chromeDataDir, { recursive: true, force: true }); } catch {}
   }
 }
 

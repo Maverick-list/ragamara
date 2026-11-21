@@ -108,26 +108,22 @@ async function runVerification() {
     await send('Runtime.enable');
     await new Promise(r => setTimeout(r, 2000));
 
-    // Verify 3D World Canvas
-    const canvasExists = await send('Runtime.evaluate', {
-      expression: '!!document.querySelector("canvas")',
-      returnByValue: true
-    });
-    check("3D World WebGL Canvas Mount", !!canvasExists.result.value, "Canvas element rendered");
-
-    // Wait for world init loop
+    // Wait deterministically for 3D World Canvas mount & world init loop
+    let canvasFound = false;
     let worldSceneLoaded = false;
-    for (let i = 0; i < 35; i++) {
-      await new Promise(r => setTimeout(r, 200));
-      const ok = await send('Runtime.evaluate', {
-        expression: 'Boolean(window.__NULAR_WORLD__?.running && window.__NULAR_WORLD__?.activeHouse?.id === "rumah-gadang")',
+    for (let i = 0; i < 45; i++) {
+      const state = await send('Runtime.evaluate', {
+        expression: '({ hasCanvas: !!document.querySelector("canvas"), worldReady: Boolean(window.__NULAR_WORLD__?.running && window.__NULAR_WORLD__?.activeHouse?.id === "rumah-gadang") })',
         returnByValue: true
       });
-      if (ok.result?.value) {
+      if (state.result?.value?.hasCanvas) canvasFound = true;
+      if (state.result?.value?.worldReady) {
         worldSceneLoaded = true;
         break;
       }
+      await new Promise(r => setTimeout(r, 200));
     }
+    check("3D World WebGL Canvas Mount", canvasFound, "Canvas element rendered");
     check("Living Archipelago World Engine Initialized", worldSceneLoaded, "window.__NULAR_WORLD__ running with activeHouse");
 
     // Capture in-engine screenshot of the upgraded Rumah Gadang in the world

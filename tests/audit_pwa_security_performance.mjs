@@ -281,7 +281,11 @@ async function runAudit() {
 
     // 3.1 Homepage Core Web Vitals
     await send('Page.navigate', { url: `${base}/index.html` });
-    await new Promise((r) => setTimeout(r, 1500));
+    for (let i = 0; i < 30; i++) {
+      const done = await evalJs('Boolean(performance.getEntriesByType("navigation")[0]?.domInteractive > 0)');
+      if (done) break;
+      await new Promise((r) => setTimeout(r, 200));
+    }
     const perfMetrics = await send('Performance.getMetrics');
     const metricMap = Object.fromEntries(perfMetrics.metrics.map((m) => [m.name, m.value]));
 
@@ -301,7 +305,11 @@ async function runAudit() {
     // 3.2 Mobile 3D World Stability, WebGL Capabilities & Quality Profiles
     await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
     await send('Page.navigate', { url: `${base}/world.html?notutorial=1` });
-    await new Promise((r) => setTimeout(r, 2200));
+    for (let i = 0; i < 40; i++) {
+      const ready = await evalJs('Boolean(window.__NULAR_WORLD__?.running)');
+      if (ready) break;
+      await new Promise((r) => setTimeout(r, 250));
+    }
 
     const worldEngineAudit = await evalJs(`(() => {
       const w = window.__NULAR_WORLD__;

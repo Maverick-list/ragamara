@@ -150,8 +150,8 @@ Executed sequentially from a clean starting state on commit `c4d8d66` + determin
 
 ## 7. REMAINING ISSUES & HONEST DISCLOSURE
 
-1. **Ultra-Narrow 320px Micro-Viewport (`328px` vs `320px`):** On `index.html` at 320px width, a subtle 8px difference (`scrollWidth=328px`) remains inside the lower grid cards due to a `minmax(300px, 1fr)` rule + container padding. On 360px, 390px, 768px, 1024px, and 1440px, `scrollWidth === innerWidth` (exact 0px overflow).
-2. **Physical Device Touch & WebKit Testing:** All visual evidence was captured in Headless Chromium via CDP. Physical iPhone (Safari WebKit) and Android hardware testing remains pending per [`docs/qa/NULAR_REMAINING_TEST_CHECKLIST.md`](file:///home/firza-ilmi/.gemini/antigravity/scratch/ragamara/docs/qa/NULAR_REMAINING_TEST_CHECKLIST.md).
+1. **~~Ultra-Narrow 320px Micro-Viewport (`328px` vs `320px`)~~ — RESOLVED:** Identified via DOM bounding-box audit as a missing `flex-wrap: wrap` on the progress CTA button container (`index.html:252`). After adding `flex-wrap: wrap`, all 9 viewports (320px through 1920px) measure exact **0px horizontal overflow** (`320px === 320px`). Verified with fresh screenshots in [`docs/qa/final-readiness/`](file:///home/firza-ilmi/.gemini/antigravity/scratch/ragamara/docs/qa/final-readiness/).
+2. **Physical Device Touch, GPU & WebKit Testing:** All automated and visual verification was executed in Headless Chromium (ANGLE SwiftShader software WebGL). Native hardware GPU FPS, iOS Safari WebKit PWA installation, and physical touch digitizer behavior remain pending manual verification per [`docs/qa/NULAR_REMAINING_TEST_CHECKLIST.md`](file:///home/firza-ilmi/.gemini/antigravity/scratch/ragamara/docs/qa/NULAR_REMAINING_TEST_CHECKLIST.md).
 3. **External Cloud Providers:** Google OAuth, Twilio SMS OTP, and Supabase cloud sync remain honestly unconfigured in this local environment; real provider credentials must be supplied via Vercel environment variables before public beta.
 
 ---

@@ -294,6 +294,24 @@ textarea:focus-visible {
   }
 }
 
+@media (min-width: 1180px) and (max-width: 1360px) {
+  .museum-header__inner {
+    gap: 12px;
+  }
+  .museum-nav {
+    gap: 11px;
+  }
+  .museum-nav__link {
+    font-size: 0.78rem;
+  }
+  .header-actions {
+    gap: 8px;
+  }
+  .brand-mark__sub {
+    display: none;
+  }
+}
+
 .museum-nav__link {
   font-size: 0.82rem;
   font-weight: 500;
