@@ -93,6 +93,7 @@ export class TutorialManager {
     this.world = world;
     this.stepIndex = 0;
     this.active = false;
+    this.minimized = false;
     this.muted = false;
     this.paused = false;
     this.volume = 0.85;
@@ -102,6 +103,15 @@ export class TutorialManager {
     this._initialCamMode = null;
 
     this._checkTtsBackend();
+  }
+
+  setMinimized(flag) {
+    this.minimized = Boolean(flag);
+    if (this.active) this._render();
+  }
+
+  toggleMinimized() {
+    this.setMinimized(!this.minimized);
   }
 
   async _checkTtsBackend() {
@@ -126,6 +136,8 @@ export class TutorialManager {
     if (!force && this.isCompleted()) return false;
     this.stepIndex = 0;
     this.active = true;
+    // Start compact on narrow mobile viewports so the 3D world and touch controls remain unobstructed
+    this.minimized = typeof window !== 'undefined' && window.innerWidth <= 768;
     this._startPos = this.world?.player?.position?.clone() || null;
     this._initialCamMode = this.world?.cameraCtrl?.mode || 'third-person';
     this._render();
@@ -249,13 +261,40 @@ export class TutorialManager {
   _render() {
     if (!this.mountEl || !this.active) return;
     const step = TUTORIAL_STEPS[this.stepIndex];
+    const avatarSize = this.minimized ? 36 : 64;
     const ragaSvg = typeof window.RagaMascot?.render === 'function'
-      ? window.RagaMascot.render(step.expression, { size: 74, withHeadpiece: true })
-      : '<div style="width:64px;height:64px;border-radius:50%;background:#9C7A4C;display:flex;align-items:center;justify-content:center;font-weight:700;">RAGA</div>';
+      ? window.RagaMascot.render(step.expression, { size: avatarSize, withHeadpiece: true })
+      : `<div style="width:${avatarSize}px;height:${avatarSize}px;border-radius:50%;background:#9C7A4C;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.7rem;">RAGA</div>`;
 
     const voiceLabel = this.ttsBackendState === 'neural'
       ? 'Suara Neural ID'
       : 'Suara Peramban (Fallback ID)';
+
+    if (this.minimized) {
+      this.mountEl.innerHTML = `
+        <section id="nular-tutorial-card" class="tutorial-overlay tutorial-overlay--compact nular-glass--dark" role="dialog" aria-label="Tutorial Interaktif NULAR (Ringkas)">
+          <div class="tutorial-overlay__avatar">${ragaSvg}</div>
+          <div class="tutorial-compact__info">
+            <span class="tutorial-step-pill">Raga · ${step.num}/${TUTORIAL_STEPS.length}</span>
+            <strong class="tutorial-compact__title">${step.title}</strong>
+          </div>
+          <div class="tutorial-compact__actions">
+            <button type="button" id="tut-btn-expand" class="tut-btn" aria-label="Perluas panduan Raga">Buka</button>
+            <button type="button" id="tut-btn-next" class="tut-btn tut-btn--primary" aria-label="Langkah berikutnya">${this.stepIndex >= TUTORIAL_STEPS.length - 1 ? 'Selesai' : 'Lanjut →'}</button>
+            <button type="button" id="tut-btn-skip" class="tut-btn tut-btn--ghost" aria-label="Tutup tutorial" title="Lewati Tutorial">×</button>
+          </div>
+        </section>
+      `;
+
+      this.mountEl.querySelector('#tut-btn-expand')?.addEventListener('click', () => this.setMinimized(false));
+      this.mountEl.querySelector('#tut-btn-next')?.addEventListener('click', () => this.nextStep());
+      this.mountEl.querySelector('#tut-btn-skip')?.addEventListener('click', () => this.skip());
+
+      window.dispatchEvent(new CustomEvent('nular:tutorial-state', {
+        detail: { active: true, minimized: true, stepIndex: this.stepIndex, stepId: step.id, title: step.title }
+      }));
+      return;
+    }
 
     this.mountEl.innerHTML = `
       <section id="nular-tutorial-card" class="tutorial-overlay nular-glass--dark" role="dialog" aria-label="Tutorial Interaktif NULAR">
@@ -263,7 +302,10 @@ export class TutorialManager {
         <div class="tutorial-overlay__body">
           <div class="tutorial-overlay__top">
             <span class="tutorial-step-pill">Tutorial ${step.num} / ${TUTORIAL_STEPS.length} · Raga Badak Penjelajah</span>
-            <span class="tutorial-voice-tag">${voiceLabel}</span>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span class="tutorial-voice-tag">${voiceLabel}</span>
+              <button type="button" id="tut-btn-minimize" class="tut-btn tut-btn--ghost" style="padding:2px 8px;" aria-label="Kecilkan panel tutorial" title="Kecilkan">− Kecilkan</button>
+            </div>
           </div>
           <h3 class="tutorial-overlay__title">${step.title}</h3>
           <p id="tut-subtitle" class="tutorial-overlay__subtitle">${step.voiceText}</p>
@@ -287,6 +329,7 @@ export class TutorialManager {
       </section>
     `;
 
+    this.mountEl.querySelector('#tut-btn-minimize')?.addEventListener('click', () => this.setMinimized(true));
     this.mountEl.querySelector('#tut-btn-speak')?.addEventListener('click', () => this.speakCurrentStep());
     this.mountEl.querySelector('#tut-btn-pause')?.addEventListener('click', () => this.pauseOrResumeSpeech());
     this.mountEl.querySelector('#tut-btn-mute')?.addEventListener('click', () => {
@@ -303,7 +346,7 @@ export class TutorialManager {
     this.mountEl.querySelector('#tut-btn-next')?.addEventListener('click', () => this.nextStep());
 
     window.dispatchEvent(new CustomEvent('nular:tutorial-state', {
-      detail: { active: true, stepIndex: this.stepIndex, stepId: step.id, title: step.title }
+      detail: { active: true, minimized: false, stepIndex: this.stepIndex, stepId: step.id, title: step.title }
     }));
   }
 }

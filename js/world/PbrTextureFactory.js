@@ -45,20 +45,20 @@ export function getArchTextureSet(kind) {
 
     if (kind === 'wood_teak' || kind === 'wood_ironwood') {
       const dark = kind === 'wood_ironwood';
-      ctx.fillStyle = dark ? '#3a2417' : '#6d4528';
+      ctx.fillStyle = dark ? '#5c3c28' : '#8d5b36';
       ctx.fillRect(0, 0, 256, 256);
       for (let y = 0; y < 256; y += 2) {
         const wave = Math.sin(y * 0.14) * 10 + Math.cos(y * 0.05) * 6;
         ctx.fillStyle = (y % 6 === 0)
-          ? (dark ? 'rgba(20,10,5,0.45)' : 'rgba(48,26,12,0.35)')
-          : (dark ? 'rgba(92,58,36,0.18)' : 'rgba(155,105,64,0.22)');
+          ? (dark ? 'rgba(38,22,12,0.42)' : 'rgba(64,36,18,0.32)')
+          : (dark ? 'rgba(132,88,58,0.28)' : 'rgba(186,132,84,0.28)');
         ctx.fillRect(0, y, 256, 2);
         if (y % 32 === 0) {
-          ctx.fillStyle = 'rgba(18,10,6,0.42)';
+          ctx.fillStyle = 'rgba(28,16,9,0.38)';
           ctx.fillRect(0, y, 256, 1.5);
         }
         if (Math.abs(wave) > 13 && y % 12 === 0) {
-          ctx.fillStyle = dark ? 'rgba(15,8,4,0.28)' : 'rgba(85,48,22,0.22)';
+          ctx.fillStyle = dark ? 'rgba(30,16,8,0.26)' : 'rgba(98,58,28,0.22)';
           ctx.beginPath();
           ctx.ellipse(128 + wave * 3, y, 26, 4, 0, 0, Math.PI * 2);
           ctx.fill();
@@ -68,15 +68,15 @@ export function getArchTextureSet(kind) {
     }
 
     if (kind === 'bamboo_woven') {
-      ctx.fillStyle = '#a78852';
+      ctx.fillStyle = '#b99a62';
       ctx.fillRect(0, 0, 256, 256);
       const step = 32;
       for (let y = 0; y < 256; y += step) {
         for (let x = 0; x < 256; x += step) {
           const alt = ((x / step) + (y / step)) % 2 === 0;
-          ctx.fillStyle = alt ? '#be9f64' : '#8b6d3c';
+          ctx.fillStyle = alt ? '#d0b277' : '#9e7e49';
           ctx.fillRect(x + 2, y + 2, step - 4, step - 4);
-          ctx.strokeStyle = 'rgba(42,28,12,0.45)';
+          ctx.strokeStyle = 'rgba(54,36,16,0.4)';
           ctx.lineWidth = 2;
           ctx.strokeRect(x + 1, y + 1, step - 2, step - 2);
         }
@@ -86,14 +86,14 @@ export function getArchTextureSet(kind) {
 
     if (kind === 'thatch_ijuk' || kind === 'thatch_grass') {
       const isIjuk = kind === 'thatch_ijuk';
-      ctx.fillStyle = isIjuk ? '#222120' : '#8f6e3f';
+      ctx.fillStyle = isIjuk ? '#3b3733' : '#a88652';
       ctx.fillRect(0, 0, 256, 256);
       for (let i = 0; i < 650; i++) {
         const x = (i * 37) % 256;
         const y = (i * 53) % 256;
         ctx.strokeStyle = isIjuk
-          ? (i % 3 === 0 ? 'rgba(72,68,62,0.5)' : 'rgba(14,14,14,0.65)')
-          : (i % 3 === 0 ? 'rgba(196,162,102,0.55)' : 'rgba(94,68,32,0.5)');
+          ? (i % 3 === 0 ? 'rgba(110,104,96,0.55)' : 'rgba(26,24,22,0.58)')
+          : (i % 3 === 0 ? 'rgba(214,182,122,0.58)' : 'rgba(116,86,44,0.48)');
         ctx.lineWidth = 1.6;
         ctx.beginPath();
         ctx.moveTo(x, y);
@@ -345,6 +345,18 @@ export function enhanceArchitecturalMaterials(root) {
       mat.map = set.map;
       mat.bumpMap = set.map;
       mat.bumpScale = set.bumpScale;
+      // Prevent dark baseColor * dark diffuse texture double-darkening into black silhouettes.
+      // Preserve a subtle hue hint from the original GLB color while lifting luminance toward warm white.
+      if (mat.color) {
+        const liftTarget = new THREE.Color(kind === 'thatch_ijuk' ? 0xe6e0d8 : 0xfffaf2);
+        mat.color.lerp(liftTarget, 0.82);
+      }
+      if (typeof mat.roughness === 'number') {
+        mat.roughness = Math.min(0.86, Math.max(0.55, mat.roughness));
+      }
+      if (typeof mat.metalness === 'number') {
+        mat.metalness = Math.min(0.12, mat.metalness);
+      }
       mat.userData = { ...(mat.userData || {}), nularPbrApplied: true, pbrKind: kind };
       mat.needsUpdate = true;
     });

@@ -186,7 +186,17 @@
           const res = await fetch(`./api/leaderboard?scope=${encodeURIComponent(scope)}`);
           const data = await res.json();
           if (!data.entries || !data.entries.length) {
-            box.innerHTML = '<p style="margin:0;color:var(--ink-secondary);">Belum ada skor tercatat di sesi server saat ini. Selesaikan kuis atau temukan koleksi budaya untuk mencatat skor tervalidasi.</p>';
+            box.innerHTML = `
+              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;">
+                <p style="margin:0;color:var(--ink-secondary);max-width:60ch;">
+                  Belum ada skor tercatat di sesi server saat ini. Selesaikan kuis pengetahuan budaya atau temukan koleksi di Dunia 3D untuk mencatat skor tervalidasi pertama Anda.
+                </p>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <a href="#quiz-section" class="btn-museum btn-museum--bronze btn-museum--sm">Ambil Kuis (+20 XP)</a>
+                  <a href="world.html" class="btn-museum btn-museum--primary btn-museum--sm">Masuk Dunia 3D</a>
+                </div>
+              </div>
+            `;
             return;
           }
           box.innerHTML = data.entries.map((e) => `

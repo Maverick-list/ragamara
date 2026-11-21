@@ -61,50 +61,53 @@
       <div id="hud-mission-pill" class="hud-mission-pill" hidden></div>
     </div>
 
-    <nav class="hud-actions-bar" aria-label="Kontrol Dunia 3D">
-      <button type="button" id="btn-open-wardrobe" class="hud-btn" title="Pilih Karakter & Busana Wastra Nusantara">
-        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">checkroom</span>
-        <span class="btn-lbl">Karakter</span>
-      </button>
+    <nav id="hud-actions-bar" class="hud-actions-bar" aria-label="Kontrol Dunia 3D">
       <button type="button" id="btn-open-teleport" class="hud-btn" title="Peta Teleportasi 38 Provinsi">
         <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">public</span>
         <span class="btn-lbl">38 Provinsi</span>
-      </button>
-      <button type="button" id="btn-camera-mode" class="hud-btn" title="Ganti Mode Kamera (C): Orang Ketiga / Orang Pertama / Eksplorasi Bebas">
-        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">videocam</span>
-        <span class="btn-lbl" id="lbl-camera-mode">Orang Ketiga</span>
-      </button>
-      <button type="button" id="btn-toggle-roof" class="hud-btn" title="Buka / Tutup Potongan Atap (R)">
-        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">roofing</span>
-        <span class="btn-lbl">Potong Atap</span>
-      </button>
-      <button type="button" id="btn-open-vehicles" class="hud-btn" title="Pilih Kendaraan Jelajah (Motor, Mobil, Perahu, Pesawat)">
-        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">directions_car</span>
-        <span class="btn-lbl">Kendaraan</span>
-      </button>
-      <button type="button" id="btn-open-collection" class="hud-btn" title="Buku Koleksi Budaya Digital">
-        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">menu_book</span>
-        <span class="btn-lbl">Koleksi (<span id="hud-collection-count">0</span>)</span>
-      </button>
-      <button type="button" id="btn-replay-tutorial" class="hud-btn" title="Panduan Interaktif Raga">
-        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">help</span>
-        <span class="btn-lbl">Tutorial</span>
       </button>
       <button type="button" id="btn-ai-guide" class="hud-btn" title="Pemandu Tur AI Berbasis Suara & Pengetahuan Budaya">
         <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">record_voice_over</span>
         <span class="btn-lbl">Pemandu AI</span>
       </button>
-      <button type="button" id="btn-world-settings" class="hud-btn" title="Pengaturan Kamera, Grafis &amp; Kontrol (Esc)">
+      <button type="button" id="btn-replay-tutorial" class="hud-btn" title="Panduan Interaktif Raga">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">help</span>
+        <span class="btn-lbl">Tutorial</span>
+      </button>
+      <button type="button" id="btn-mobile-hud-more" class="hud-btn hud-btn--mobile-more" aria-expanded="false" aria-label="Tampilkan alat eksplorasi lainnya" title="Alat Lainnya">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">apps</span>
+      </button>
+      <button type="button" id="btn-open-wardrobe" class="hud-btn hud-btn--secondary" title="Pilih Karakter & Busana Wastra Nusantara">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">checkroom</span>
+        <span class="btn-lbl">Karakter</span>
+      </button>
+      <button type="button" id="btn-camera-mode" class="hud-btn hud-btn--secondary" title="Ganti Mode Kamera (C): Orang Ketiga / Orang Pertama / Eksplorasi Bebas">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">videocam</span>
+        <span class="btn-lbl" id="lbl-camera-mode">Orang Ketiga</span>
+      </button>
+      <button type="button" id="btn-toggle-roof" class="hud-btn hud-btn--secondary" title="Buka / Tutup Potongan Atap (R)">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">roofing</span>
+        <span class="btn-lbl">Potong Atap</span>
+      </button>
+      <button type="button" id="btn-open-vehicles" class="hud-btn hud-btn--secondary" title="Pilih Kendaraan Jelajah (Motor, Mobil, Perahu, Pesawat)">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">directions_car</span>
+        <span class="btn-lbl">Kendaraan</span>
+      </button>
+      <button type="button" id="btn-open-collection" class="hud-btn hud-btn--secondary" title="Buku Koleksi Budaya Digital">
+        <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">menu_book</span>
+        <span class="btn-lbl">Koleksi (<span id="hud-collection-count">0</span>)</span>
+      </button>
+      <button type="button" id="btn-world-settings" class="hud-btn hud-btn--secondary" title="Pengaturan Kamera, Grafis &amp; Kontrol (Esc)">
         <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">tune</span>
       </button>
-      <button type="button" id="btn-toggle-audio" class="hud-btn" title="Suara Lingkungan Nusantara">
+      <button type="button" id="btn-toggle-audio" class="hud-btn hud-btn--secondary" title="Suara Lingkungan Nusantara">
         <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">volume_off</span>
       </button>
-      <button type="button" id="btn-go-hub" class="hud-btn" title="Kembali ke Alun-Alun Utama">
+      <button type="button" id="btn-go-hub" class="hud-btn hud-btn--secondary" title="Kembali ke Alun-Alun Utama">
         <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">home</span>
         <span class="btn-lbl">Hub</span>
       </button>
-      <a href="map.html" class="hud-btn" title="Kembali ke Mode Museum Atlas">
+      <a href="map.html" class="hud-btn hud-btn--secondary" title="Kembali ke Mode Museum Atlas">
         <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">museum</span>
         <span class="btn-lbl">Museum</span>
       </a>
@@ -591,7 +594,18 @@
       // Initialize 9-Step Raga Guided Tutorial
       const tutorial = new TutorialManager({ mountEl: document.getElementById('tutorial-mount'), world });
       window.__NULAR_TUTORIAL__ = tutorial;
-      document.getElementById('btn-replay-tutorial')?.addEventListener('click', () => tutorial.replay());
+      document.getElementById('btn-replay-tutorial')?.addEventListener('click', () => {
+        tutorial.replay();
+        tutorial.setMinimized(false);
+      });
+      // Wire mobile HUD overflow toggle
+      const hudActionsBar = document.getElementById('hud-actions-bar');
+      const mobileMoreBtn = document.getElementById('btn-mobile-hud-more');
+      mobileMoreBtn?.addEventListener('click', () => {
+        const expanded = hudActionsBar.classList.toggle('is-expanded');
+        mobileMoreBtn.setAttribute('aria-expanded', String(expanded));
+        mobileMoreBtn.classList.toggle('is-active', expanded);
+      });
       if (params.get('tutorial') === '1' || (!tutorial.isCompleted() && params.get('notutorial') !== '1')) {
         tutorial.start();
       }

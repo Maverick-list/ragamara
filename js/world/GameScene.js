@@ -8,8 +8,8 @@ export class GameScene {
   constructor(canvas) {
     this.canvas = canvas;
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0xdbe7de);
-    this.scene.fog = new THREE.FogExp2(0xdbe7de, 0.0115);
+    this.scene.background = new THREE.Color(0xdfeadd);
+    this.scene.fog = new THREE.FogExp2(0xdfeadd, 0.0072);
 
     this.renderer = new THREE.WebGLRenderer({
       canvas,
@@ -19,7 +19,7 @@ export class GameScene {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.08;
+    this.renderer.toneMappingExposure = 1.18;
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -27,29 +27,29 @@ export class GameScene {
     const h = canvas.clientHeight || window.innerHeight;
     this.renderer.setSize(w, h, false);
 
-    this.camera = new THREE.PerspectiveCamera(50, w / Math.max(h, 1), 0.15, 220);
+    this.camera = new THREE.PerspectiveCamera(54, w / Math.max(h, 1), 0.15, 240);
 
-    // Warm tropical museum sunlight rig
-    this.hemiLight = new THREE.HemisphereLight(0xfff7e8, 0x3b5244, 1.15);
-    this.hemiLight.position.set(0, 35, 0);
+    // Warm tropical museum sunlight rig (front three-quarter golden key + sky/foliage bounce)
+    this.hemiLight = new THREE.HemisphereLight(0xfff9ee, 0x5c7563, 1.45);
+    this.hemiLight.position.set(0, 38, 0);
     this.scene.add(this.hemiLight);
 
-    this.sunLight = new THREE.DirectionalLight(0xfff1d6, 2.05);
-    this.sunLight.position.set(18, 28, 16);
+    this.sunLight = new THREE.DirectionalLight(0xfff3db, 2.55);
+    this.sunLight.position.set(22, 26, 22);
     this.sunLight.castShadow = true;
     this.sunLight.shadow.mapSize.set(1024, 1024);
     this.sunLight.shadow.camera.near = 2;
-    this.sunLight.shadow.camera.far = 75;
-    const d = 24;
+    this.sunLight.shadow.camera.far = 85;
+    const d = 28;
     this.sunLight.shadow.camera.left = -d;
     this.sunLight.shadow.camera.right = d;
     this.sunLight.shadow.camera.top = d;
     this.sunLight.shadow.camera.bottom = -d;
-    this.sunLight.shadow.bias = -0.0006;
+    this.sunLight.shadow.bias = -0.0005;
     this.scene.add(this.sunLight);
 
-    this.fillLight = new THREE.DirectionalLight(0xa3c4b5, 0.65);
-    this.fillLight.position.set(-14, 12, -16);
+    this.fillLight = new THREE.DirectionalLight(0xc4ded0, 0.95);
+    this.fillLight.position.set(-16, 14, -14);
     this.scene.add(this.fillLight);
 
     // Adaptive state flags

@@ -12,12 +12,12 @@ export class CameraController {
     this.camera = camera;
     this.mode = 'third-person';
     this.yaw = 0;
-    this.pitch = 0.36;
-    this.distance = 4.8;
-    this.height = 1.85;
+    this.pitch = 0.22;
+    this.distance = 7.6;
+    this.height = 2.05;
     this.sensitivity = 1.0;
     this.invertY = false;
-    this.fov = 52;
+    this.fov = 54;
     this.smoothing = 0.16;
     this.showBodyFirstPerson = false;
     this.cinematicOrbit = false;
@@ -58,9 +58,21 @@ export class CameraController {
 
   resetBehind(playerPos, playerYaw = Math.PI) {
     this.yaw = playerYaw - Math.PI;
-    this.pitch = this.mode === 'first-person' ? 0.0 : 0.34;
-    this.lookTarget.set(playerPos.x, playerPos.y + 1.45, playerPos.z);
-    this.freeTarget.set(playerPos.x, playerPos.y + 1.8, playerPos.z);
+    this.pitch = this.mode === 'first-person' ? 0.0 : 0.19;
+    this.lookTarget.set(playerPos.x, playerPos.y + 2.35, playerPos.z - 2.0);
+    this.freeTarget.set(playerPos.x, playerPos.y + 2.2, playerPos.z);
+    // Snap initial camera position immediately behind player so first frame is framed cleanly
+    if (this.mode === 'third-person') {
+      const horiz = Math.cos(this.pitch) * this.distance;
+      const offsetY = Math.sin(this.pitch) * this.distance;
+      this.currentPos.set(
+        playerPos.x + Math.sin(this.yaw) * horiz,
+        Math.max(1.2, playerPos.y + this.height + offsetY),
+        playerPos.z + Math.cos(this.yaw) * horiz
+      );
+      this.camera.position.copy(this.currentPos);
+      this.camera.lookAt(this.lookTarget);
+    }
   }
 
   _avoidWallObstruction(origin, desiredPos, wallEntries = []) {
@@ -133,7 +145,8 @@ export class CameraController {
     this.distance = Math.max(this.minDist, Math.min(this.maxDist, this.distance + look.zoom));
 
     const targetDist = isInside ? Math.min(this.distance, 4.8) : this.distance;
-    const headOrigin = new THREE.Vector3(playerPos.x, playerPos.y + Math.min(2.4, this.height * 0.8), playerPos.z);
+    const lookY = isInside ? Math.min(2.0, this.height * 0.8) : 2.65;
+    const headOrigin = new THREE.Vector3(playerPos.x, playerPos.y + lookY, playerPos.z);
     const damp = Math.min(1, dt * (1.8 / Math.max(0.05, this.smoothing)));
     this.lookTarget.lerp(headOrigin, damp);
 
@@ -141,7 +154,7 @@ export class CameraController {
     const offsetY = Math.sin(this.pitch) * targetDist;
     let desiredPos = new THREE.Vector3(
       this.lookTarget.x + Math.sin(this.yaw) * horiz,
-      Math.max(playerPos.y + 0.65, this.lookTarget.y + offsetY),
+      Math.max(playerPos.y + 0.85, (isInside ? this.lookTarget.y : playerPos.y + 1.8) + offsetY),
       this.lookTarget.z + Math.cos(this.yaw) * horiz
     );
     desiredPos = this._avoidWallObstruction(headOrigin, desiredPos, wallMeshes);

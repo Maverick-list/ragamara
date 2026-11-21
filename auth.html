@@ -172,11 +172,37 @@
     }
 
     const nextTarget = new URLSearchParams(window.location.search).get('next');
+    function setStatus(el, msg, tone = 'notice') {
+      if (!el) return;
+      el.textContent = msg;
+      el.style.padding = msg ? '8px 10px' : '0';
+      el.style.borderRadius = '4px';
+      el.style.marginTop = msg ? '8px' : '4px';
+      el.style.display = msg ? 'block' : 'none';
+      el.style.textTransform = 'none';
+      el.style.letterSpacing = '0.01em';
+      el.style.fontSize = '0.78rem';
+      el.style.lineHeight = '1.45';
+      if (tone === 'error') {
+        el.style.background = '#fdf2f2';
+        el.style.border = '1px solid #d98888';
+        el.style.color = '#8b1e20';
+      } else if (tone === 'success') {
+        el.style.background = '#edf7f1';
+        el.style.border = '1px solid #72b38c';
+        el.style.color = '#153027';
+      } else {
+        el.style.background = '#faf5eb';
+        el.style.border = '1px solid #d4b98c';
+        el.style.color = '#6b4d22';
+      }
+    }
+
     function handleAuthSuccessRedirect(msg) {
-      feedback.textContent = msg;
+      setStatus(feedback, msg, 'success');
       if (nextTarget) {
         const safe = AuthClient.getSafeNextUrl('world.html');
-        feedback.textContent = `${msg} Mengarahkan kembali ke ${safe}…`;
+        setStatus(feedback, `${msg} Mengarahkan kembali ke ${safe}…`, 'success');
         setTimeout(() => { window.location.href = safe; }, 550);
       }
     }
@@ -191,7 +217,7 @@
         await refreshSession();
         handleAuthSuccessRedirect('Berhasil masuk! Sesi aktif.');
       } catch (err) {
-        feedback.textContent = err.message;
+        setStatus(feedback, err.message, 'error');
       }
     });
 
@@ -205,7 +231,7 @@
         await refreshSession();
         handleAuthSuccessRedirect('Akun dibuat & sesi aktif!');
       } catch (err) {
-        feedback.textContent = err.message;
+        setStatus(feedback, err.message, 'error');
       }
     });
 
@@ -214,7 +240,7 @@
       try {
         await AuthClient.startGoogleAuth();
       } catch (err) {
-        statusEl.textContent = err.message;
+        setStatus(statusEl, err.message, 'notice');
       }
     });
 
@@ -224,9 +250,9 @@
       const statusEl = document.getElementById('phone-provider-status');
       try {
         const res = await AuthClient.requestPhoneOtp(document.getElementById('auth-phone').value);
-        statusEl.textContent = res.deliveryMode === 'local_dev_only'
+        setStatus(statusEl, res.deliveryMode === 'local_dev_only'
           ? `${res.notice} Kode lokal: ${res.devOtpPreview}`
-          : 'Kode OTP dikirim melalui SMS. Berlaku 5 menit.';
+          : 'Kode OTP dikirim melalui SMS. Berlaku 5 menit.', 'notice');
         let left = res.resendCooldownSeconds || 60;
         btn.disabled = true;
         clearInterval(otpCooldownTimer);
@@ -236,7 +262,7 @@
           if (left <= 0) { clearInterval(otpCooldownTimer); btn.disabled = false; }
         }, 1000);
       } catch (err) {
-        statusEl.textContent = err.message;
+        setStatus(statusEl, err.message, 'error');
       }
     });
 

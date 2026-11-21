@@ -134,7 +134,7 @@ export class NularArchitectureViewer {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.12;
+    this.renderer.toneMappingExposure = 1.24;
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -163,13 +163,13 @@ export class NularArchitectureViewer {
       this.cameraTween = null;
     });
 
-    // Gallery 3-point architectural lighting
-    const hemi = new THREE.HemisphereLight(0xfff5e4, 0x26352e, 1.15);
+    // Gallery 3-point architectural lighting (warm museum spotlighting)
+    const hemi = new THREE.HemisphereLight(0xfff9f0, 0x455a4f, 1.55);
     hemi.position.set(0, 20, 0);
     this.scene.add(hemi);
 
-    const keyLight = new THREE.DirectionalLight(0xfff1dc, 2.2);
-    keyLight.position.set(11, 16, 12);
+    const keyLight = new THREE.DirectionalLight(0xfff4e0, 2.75);
+    keyLight.position.set(11, 16, 13);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.set(1024, 1024);
     keyLight.shadow.camera.near = 2;
@@ -182,12 +182,12 @@ export class NularArchitectureViewer {
     keyLight.shadow.bias = -0.0008;
     this.scene.add(keyLight);
 
-    const rimLight = new THREE.DirectionalLight(0xa7c5b6, 0.95);
-    rimLight.position.set(-10, 8, -11);
+    const rimLight = new THREE.DirectionalLight(0xc2e2d2, 1.25);
+    rimLight.position.set(-10, 9, -11);
     this.scene.add(rimLight);
 
-    const warmFill = new THREE.PointLight(0xe5b97d, 0.65, 25);
-    warmFill.position.set(-4, 3, 6);
+    const warmFill = new THREE.PointLight(0xf3ce8e, 1.25, 30);
+    warmFill.position.set(-4, 4, 8);
     this.scene.add(warmFill);
 
     // Architectural Museum Pedestal & Subtle Scale Grid

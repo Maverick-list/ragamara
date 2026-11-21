@@ -196,6 +196,10 @@ html, body {
 }
 .mobile-controls > * { pointer-events: auto; }
 
+.hud-btn--mobile-more {
+  display: none;
+}
+
 @media (min-width: 960px) {
   .mobile-controls { display: none; }
 }
@@ -203,6 +207,42 @@ html, body {
   .hud-controls-hint { display: none; }
   .hud-btn span.btn-lbl { display: none; }
   .hud-btn { min-width: 44px; min-height: 44px; justify-content: center; padding: 8px; }
+}
+@media (max-width: 768px) {
+  .world-hud-top {
+    top: max(10px, env(safe-area-inset-top, 10px));
+    left: 10px;
+    right: 10px;
+    gap: 8px;
+    align-items: center;
+  }
+  .hud-location-card {
+    padding: 7px 10px;
+    max-width: calc(100vw - 208px);
+    flex: 1 1 auto;
+  }
+  .hud-title {
+    font-size: 0.94rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hud-sub,
+  .hud-mission-pill {
+    display: none;
+  }
+  .hud-btn--mobile-more {
+    display: inline-flex;
+  }
+  .hud-actions-bar:not(.is-expanded) .hud-btn--secondary {
+    display: none;
+  }
+  .hud-actions-bar.is-expanded {
+    background: rgba(15, 25, 20, 0.92);
+    border: 1px solid var(--hud-border);
+    padding: 6px;
+    border-radius: 6px;
+  }
 }
 
 .control-switcher-btn {
@@ -216,6 +256,11 @@ html, body {
   gap: 4px;
   cursor: pointer;
   touch-action: manipulation;
+}
+
+.joystick-base[hidden],
+.dpad-cluster[hidden] {
+  display: none !important;
 }
 
 .joystick-base {
@@ -293,7 +338,7 @@ html, body {
   right: 16px;
   bottom: 76px;
   width: min(390px, calc(100vw - 32px));
-  z-index: 30;
+  z-index: 48;
   background: #FAF7F2;
   color: #1A241F;
   border: 1px solid #C8BEB0;
@@ -652,15 +697,58 @@ html, body {
   display: none !important;
 }
 
-@media (max-width: 640px) {
+/* Compact / Collapsible Raga Tutorial Bar */
+.tutorial-overlay--compact {
+  align-items: center;
+  padding: 8px 12px;
+  gap: 10px;
+  width: min(520px, calc(100vw - 20px));
+}
+
+.tutorial-compact__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tutorial-compact__title {
+  font-family: 'Fraunces', serif;
+  font-size: 0.86rem;
+  color: #FAF7F2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tutorial-compact__actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
   .tutorial-overlay {
     flex-direction: column;
-    bottom: 120px;
+    top: max(114px, calc(env(safe-area-inset-top, 10px) + 104px));
+    bottom: auto;
     padding: 12px;
+    max-height: calc(100vh - 275px);
+    overflow-y: auto;
+  }
+  .tutorial-overlay--compact {
+    flex-direction: row;
+    top: max(114px, calc(env(safe-area-inset-top, 10px) + 104px));
+    bottom: auto;
+    padding: 7px 10px;
+    max-height: none;
+    overflow: visible;
   }
   .ai-minimal-chat {
     right: 10px;
-    bottom: 120px;
+    bottom: 148px;
     width: calc(100vw - 20px);
   }
 }

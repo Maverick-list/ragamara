@@ -110,7 +110,14 @@ export class WorldManager {
     this.manualRoofCutaway = false;
 
     this.player.setInteriorZones(manifest.interiorZones || []);
-    this.player.setSpawn(manifest.spawnPoint || [0, 0.05, 8.5], Math.PI);
+    const baseSpawn = manifest.spawnPoint || [0, 0.05, 8.5];
+    // Frame the full traditional house silhouette (including tall gonjong/tongkonan roofs) on arrival
+    const heroicSpawn = [
+      baseSpawn[0],
+      baseSpawn[1],
+      Math.max(baseSpawn[2], 11.4)
+    ];
+    this.player.setSpawn(heroicSpawn, Math.PI);
     this.cameraCtrl.resetBehind(this.player.position, this.player.yaw);
     this.interaction.registerHouseInteractables(house, manifest);
     await this.pavilions.mountPavilions('house', house.island);
