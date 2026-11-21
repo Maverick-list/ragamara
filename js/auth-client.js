@@ -104,6 +104,82 @@ export const AuthClient = {
     return res.json();
   },
 
+  async getProviders() {
+    try {
+      const res = await fetch('./api/auth?action=providers');
+      if (res.ok) return (await res.json()).providers;
+    } catch {}
+    return {
+      email: { enabled: true, smtpConfigured: false, storageMode: 'local_ephemeral' },
+      google: { configured: false },
+      phoneOtp: { configured: false, devModeAllowed: false }
+    };
+  },
+
+  async startGoogleAuth() {
+    const res = await fetch('./api/auth?action=google-start', { method: 'POST' });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Google OAuth belum terkonfigurasi.');
+    if (data.authUrl) window.location.href = data.authUrl;
+    return data;
+  },
+
+  async requestPhoneOtp(phone) {
+    const res = await fetch('./api/auth?action=phone-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Gagal meminta OTP.');
+    return data;
+  },
+
+  async verifyPhoneOtp({ phone, code, username }) {
+    const res = await fetch('./api/auth?action=phone-verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone, code, username })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Verifikasi OTP gagal.');
+    localStorage.setItem(ACCOUNT_KEY, JSON.stringify(data));
+    window.dispatchEvent(new CustomEvent('nular:auth-updated', { detail: data }));
+    return data;
+  },
+
+  async updateProfile(fields) {
+    const res = await fetch('./api/auth?action=profile-update', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(fields)
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Gagal memperbarui profil.');
+    const cur = await this.getSession();
+    const merged = { ...cur, user: { ...(cur.user || {}), ...(data.user || {}) } };
+    localStorage.setItem(ACCOUNT_KEY, JSON.stringify(merged));
+    window.dispatchEvent(new CustomEvent('nular:auth-updated', { detail: merged }));
+    return data;
+  },
+
+  getSafeNextUrl(fallback = 'world.html') {
+    const params = new URLSearchParams(window.location.search);
+    const next = params.get('next') || sessionStorage.getItem('nular_auth_next') || '';
+    sessionStorage.removeItem('nular_auth_next');
+    // Only allow safe same-origin relative paths
+    if (next && !next.startsWith('http') && !next.startsWith('//') && /^[a-zA-Z0-9_.\-/?=&%#]+$/.test(next)) {
+      return next;
+    }
+    return fallback;
+  },
+
+  buildAuthRedirectUrl(targetUrl = window.location.pathname + window.location.search) {
+    const clean = targetUrl.replace(/^\/+/, '') || 'world.html';
+    sessionStorage.setItem('nular_auth_next', clean);
+    return `auth.html?next=${encodeURIComponent(clean)}`;
+  },
+
   async deleteAccount() {
     await fetch('./api/auth', { method: 'DELETE' }).catch(() => {});
     localStorage.removeItem(ACCOUNT_KEY);

@@ -54,11 +54,35 @@
               <div id="auth-feedback" class="mono-caption" aria-live="polite" style="margin-top:6px;"></div>
             </form>
             <p class="mono-caption" style="margin-top:14px;color:var(--ink-muted);" data-i18n="auth.verifyNotice">
-              Email verifikasi &amp; pemulihan akun tersedia saat backend Supabase terhubung.
+              Email verifikasi &amp; pemulihan akun tersedia saat backend SMTP/Supabase terhubung.
             </p>
+
+            <!-- Google OAuth & Phone OTP Providers -->
+            <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border-hairline);">
+              <div class="field-label" style="margin-bottom:6px;">Google OAuth</div>
+              <button type="button" id="btn-google-auth" class="btn-museum btn-museum--secondary btn-museum--sm" style="width:100%;justify-content:center;">
+                Masuk dengan Google
+              </button>
+              <div id="google-provider-status" class="mono-caption" style="margin-top:4px;color:var(--ink-muted);">Memeriksa konfigurasi Google OAuth…</div>
+            </div>
+
+            <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border-hairline);">
+              <div class="field-label" style="margin-bottom:6px;">Nomor Telepon (OTP Internasional)</div>
+              <div style="display:flex;gap:6px;">
+                <input id="auth-phone" type="tel" class="museum-input" placeholder="+6281234567890" style="flex:1;" />
+                <button type="button" id="btn-phone-send" class="btn-museum btn-museum--secondary btn-museum--sm">Kirim OTP</button>
+              </div>
+              <div id="phone-otp-verify-row" style="display:flex;gap:6px;margin-top:6px;">
+                <input id="auth-otp-code" type="text" inputmode="numeric" maxlength="6" class="museum-input" placeholder="6 digit OTP" style="flex:1;" />
+                <button type="button" id="btn-phone-verify" class="btn-museum btn-museum--bronze btn-museum--sm">Verifikasi</button>
+              </div>
+              <div id="phone-provider-status" class="mono-caption" aria-live="polite" style="margin-top:4px;color:var(--ink-muted);">Memeriksa konfigurasi SMS OTP…</div>
+            </div>
+
             <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border-hairline);">
               <button type="button" id="btn-logout" class="btn-museum btn-museum--secondary btn-museum--sm" data-i18n="auth.signOut">Keluar</button>
               <button type="button" id="btn-delete-account" class="btn-museum btn-museum--secondary btn-museum--sm" style="color:#9e2a2b;" data-i18n="auth.deleteAccount">Hapus Akun</button>
+              <button type="button" id="btn-replay-tutorial" class="btn-museum btn-museum--secondary btn-museum--sm">Ulangi Tutorial Dunia</button>
             </div>
           </div>
 
@@ -142,6 +166,16 @@
         : 'Saat ini dalam Mode Tamu (Progres tersimpan lokal). Daftar atau masuk untuk menyinkronkan identitas penjelajah.';
     }
 
+    const nextTarget = new URLSearchParams(window.location.search).get('next');
+    function handleAuthSuccessRedirect(msg) {
+      feedback.textContent = msg;
+      if (nextTarget) {
+        const safe = AuthClient.getSafeNextUrl('world.html');
+        feedback.textContent = `${msg} Mengarahkan kembali ke ${safe}…`;
+        setTimeout(() => { window.location.href = safe; }, 550);
+      }
+    }
+
     document.getElementById('auth-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       try {
@@ -149,8 +183,8 @@
           email: document.getElementById('auth-email').value,
           password: document.getElementById('auth-password').value
         });
-        feedback.textContent = 'Berhasil masuk! Sesi aktif.';
         await refreshSession();
+        handleAuthSuccessRedirect('Berhasil masuk! Sesi aktif.');
       } catch (err) {
         feedback.textContent = err.message;
       }
@@ -163,11 +197,70 @@
           email: document.getElementById('auth-email').value,
           password: document.getElementById('auth-password').value
         });
-        feedback.textContent = 'Akun dibuat & sesi aktif!';
         await refreshSession();
+        handleAuthSuccessRedirect('Akun dibuat & sesi aktif!');
       } catch (err) {
         feedback.textContent = err.message;
       }
+    });
+
+    document.getElementById('btn-google-auth').addEventListener('click', async () => {
+      const statusEl = document.getElementById('google-provider-status');
+      try {
+        await AuthClient.startGoogleAuth();
+      } catch (err) {
+        statusEl.textContent = err.message;
+      }
+    });
+
+    let otpCooldownTimer = null;
+    document.getElementById('btn-phone-send').addEventListener('click', async () => {
+      const btn = document.getElementById('btn-phone-send');
+      const statusEl = document.getElementById('phone-provider-status');
+      try {
+        const res = await AuthClient.requestPhoneOtp(document.getElementById('auth-phone').value);
+        statusEl.textContent = res.deliveryMode === 'local_dev_only'
+          ? `${res.notice} Kode lokal: ${res.devOtpPreview}`
+          : 'Kode OTP dikirim melalui SMS. Berlaku 5 menit.';
+        let left = res.resendCooldownSeconds || 60;
+        btn.disabled = true;
+        clearInterval(otpCooldownTimer);
+        otpCooldownTimer = setInterval(() => {
+          left -= 1;
+          btn.textContent = left > 0 ? `Ulang (${left}d)` : 'Kirim OTP';
+          if (left <= 0) { clearInterval(otpCooldownTimer); btn.disabled = false; }
+        }, 1000);
+      } catch (err) {
+        statusEl.textContent = err.message;
+      }
+    });
+
+    document.getElementById('btn-phone-verify').addEventListener('click', async () => {
+      const statusEl = document.getElementById('phone-provider-status');
+      try {
+        await AuthClient.verifyPhoneOtp({
+          phone: document.getElementById('auth-phone').value,
+          code: document.getElementById('auth-otp-code').value,
+          username: document.getElementById('auth-username').value
+        });
+        statusEl.textContent = 'Nomor telepon terverifikasi! Sesi aktif.';
+        await refreshSession();
+        handleAuthSuccessRedirect('Verifikasi OTP berhasil!');
+      } catch (err) {
+        statusEl.textContent = err.message;
+      }
+    });
+
+    document.getElementById('btn-replay-tutorial').addEventListener('click', () => {
+      localStorage.removeItem('nular_tutorial_completed_v1');
+      feedback.textContent = 'Tutorial interaktif direset. Akan muncul saat Anda memasuki Nusantara World.';
+    });
+
+    AuthClient.getProviders().then((p) => {
+      const gEl = document.getElementById('google-provider-status');
+      const phEl = document.getElementById('phone-provider-status');
+      if (gEl) gEl.textContent = p.google?.configured ? 'Google OAuth siap digunakan.' : 'Google OAuth belum dikonfigurasi (lihat docs/AUTHENTICATION_SETUP.md).';
+      if (phEl) phEl.textContent = p.phoneOtp?.configured ? 'Penyedia SMS OTP aktif.' : (p.phoneOtp?.devModeAllowed ? 'SMS produksi belum terhubung (mode uji lokal aktif).' : 'Penyedia SMS OTP belum dikonfigurasi.');
     });
 
     document.getElementById('btn-reset').addEventListener('click', async () => {
