@@ -5,6 +5,7 @@
  */
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { applyRegionalTextileToAvatar } from './PbrTextureFactory.js';
 
 export class CharacterController {
   constructor(parentGroup) {
@@ -109,6 +110,7 @@ export class CharacterController {
         o.receiveShadow = true;
       }
     });
+    applyRegionalTextileToAvatar(this.currentModel, outfitId);
     this.avatarGroup.add(this.currentModel);
 
     this.mixer = new THREE.AnimationMixer(this.currentModel);

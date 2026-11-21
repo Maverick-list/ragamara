@@ -5,6 +5,7 @@
  */
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { enhanceArchitecturalMaterials } from './PbrTextureFactory.js';
 
 export class SceneStreamingManager {
   constructor(gameScene, collisionManager) {
@@ -51,6 +52,7 @@ export class SceneStreamingManager {
     const gltf = await this.loader.loadAsync(glbUrl.startsWith('./') ? glbUrl : `./${glbUrl}`);
 
     this.activeHouseRoot = gltf.scene;
+    enhanceArchitecturalMaterials(this.activeHouseRoot);
     this.activeManifest = manifest || {
       houseId: house.id,
       spawnPoint: [0, 0.05, 8.5],

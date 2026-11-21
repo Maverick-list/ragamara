@@ -13,6 +13,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { enhanceArchitecturalMaterials } from './world/PbrTextureFactory.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 export function isWebGLAvailable() {
@@ -271,6 +272,14 @@ export class NularArchitectureViewer {
       </div>
 
       <div class="viewer-mode-group" role="group" aria-label="Alat Bantu Penampil 3D">
+        <button type="button" class="viewer-btn" data-action="toggle-cutaway" aria-pressed="false" aria-label="Potong atap untuk melihat struktur dalam">
+          <span class="material-symbols-outlined" style="font-size:16px" aria-hidden="true">roofing</span>
+          <span>Potong Atap</span>
+        </button>
+        <button type="button" class="viewer-btn" data-action="toggle-isolate" aria-pressed="false" aria-label="Isolasi komponen arsitektur terpilih">
+          <span class="material-symbols-outlined" style="font-size:16px" aria-hidden="true">filter_center_focus</span>
+          <span>Isolasi</span>
+        </button>
         <button type="button" class="viewer-btn ${this.showHotspots ? 'is-active' : ''}" data-action="toggle-hotspots" aria-pressed="${this.showHotspots}" aria-label="Tampilkan atau sembunyikan pin komponen">
           <span class="material-symbols-outlined" style="font-size:16px" aria-hidden="true">pin_drop</span>
           <span>Hotspot</span>
@@ -322,6 +331,23 @@ export class NularArchitectureViewer {
         this.controls.autoRotate = this.autoRotate;
         actionBtn.classList.toggle('is-active', this.autoRotate);
         actionBtn.setAttribute('aria-pressed', String(this.autoRotate));
+      } else if (action === 'toggle-cutaway') {
+        this.roofCutaway = !this.roofCutaway;
+        actionBtn.classList.toggle('is-active', this.roofCutaway);
+        actionBtn.setAttribute('aria-pressed', String(this.roofCutaway));
+        for (const [name, entry] of this.componentGroups.entries()) {
+          if (name.toUpperCase().includes('ROOF')) {
+            entry.group.visible = !this.roofCutaway;
+          }
+        }
+      } else if (action === 'toggle-isolate') {
+        this.isolatedMode = !this.isolatedMode;
+        actionBtn.classList.toggle('is-active', this.isolatedMode);
+        actionBtn.setAttribute('aria-pressed', String(this.isolatedMode));
+        const activeName = this.selectedComponentName || [...this.componentGroups.keys()][0];
+        for (const [name, entry] of this.componentGroups.entries()) {
+          entry.group.visible = this.isolatedMode ? (name === activeName) : true;
+        }
       } else if (action === 'toggle-hotspots') {
         this.showHotspots = !this.showHotspots;
         this.hotspotLayer.style.display = this.showHotspots ? '' : 'none';
@@ -369,6 +395,8 @@ export class NularArchitectureViewer {
             }
           }
         });
+
+        enhanceArchitecturalMaterials(this.modelRoot);
 
         // Register top-level separated structural groups
         const rootContainer = this.modelRoot.children.length === 1 && this.modelRoot.children[0].children.length > 0
