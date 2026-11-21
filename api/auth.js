@@ -1,10 +1,19 @@
 /**
  * Vercel Node.js Function: POST/GET/DELETE /api/auth
  * Unified Authentication Adapter for NULAR:
+ *  - Strict Production Fail-Closed Integrity:
+ *      * Production NEVER falls back to local filesystem or ephemeral in-memory storage.
+ *      * Production requires complete Supabase configuration (SUPABASE_URL + key) AND
+ *        a mandatory >=32-char session signing secret (NULAR_SESSION_SECRET / RAGAMARA_SESSION_SECRET / SESSION_SECRET).
+ *      * Missing or incomplete production configuration fails closed with HTTP 503.
+ *  - Explicit Local Development Persistence:
+ *      * Allowed ONLY in explicitly identified local development mode (non-production, non-Vercel).
+ *      * Persists users, login rate-limit windows, and revoked session JTIs atomically to
+ *        .nular-local-data/auth-store.json (0600, .gitignore'd).
  *  - Email sign-up, login, password reset request, email verification, logout, account deletion
  *  - Google OAuth adapter (honest unconfigured state when GOOGLE_CLIENT_ID/SECRET absent)
  *  - International Phone OTP (E.164 validation, 60s resend cooldown, rate limit, 5m expiry, attempt cap)
- *  - HMAC-SHA256 signed HttpOnly session cookies + scrypt password hashing + timingSafeEqual
+ *  - HMAC-SHA256 signed HttpOnly session cookies + JTI revocation + scrypt password hashing + timingSafeEqual
  * Never exposes secrets, password hashes, private emails, or phone numbers in public endpoints.
  */
 import crypto from 'node:crypto';
@@ -12,24 +21,77 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const SESSION_COOKIE = 'nular_session';
-const EXPLICIT_SECRET = process.env.NULAR_SESSION_SECRET || process.env.RAGAMARA_SESSION_SECRET || process.env.SESSION_SECRET || '';
-const SECRET = EXPLICIT_SECRET || 'nular-dev-ephemeral-signing-key-2026';
-const IS_PROD = process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production';
+const DEV_FALLBACK_SECRET = 'nular-dev-ephemeral-signing-key-2026';
+const MIN_PROD_SECRET_LEN = 32;
 
-// Stores: backed by local .nular-local-data/auth-store.json in writable dev environments,
-// falling back gracefully to ephemeral in-memory Maps on read-only serverless runtimes.
+// In-process maps (hydrated from .nular-local-data/auth-store.json ONLY in local dev mode)
 const usersByEmail = new Map();
 const usersByPhone = new Map();
 const usersById = new Map();
 const otpStore = new Map(); // phone -> { code, expiresAt, lastSentAt, attempts, windowStart, sendCount }
-const loginFailures = new Map(); // email -> { count, windowStart, lockedUntil }
+const loginFailures = new Map(); // email -> { count, windowStart }
+const revokedSessions = new Map(); // jti -> expiresAt
 
 const LOCAL_STORE_DIR = path.join(process.cwd(), '.nular-local-data');
 const LOCAL_STORE_FILE = path.join(LOCAL_STORE_DIR, 'auth-store.json');
 let localFileWritable = false;
 
+function getRuntimeConfig() {
+  const isProd =
+    process.env.VERCEL_ENV === 'production' ||
+    process.env.NODE_ENV === 'production' ||
+    Boolean(process.env.VERCEL && process.env.VERCEL_ENV !== 'development');
+  const isTestFixture = !isProd && process.env.NULAR_AUTH_TEST_FIXTURE === '1';
+
+  const supabaseUrl = String(process.env.SUPABASE_URL || '').trim();
+  const supabaseKey = String(process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || '').trim();
+  const urlValid = /^https:\/\/[^\s/$.?#].[^\s]*$/i.test(supabaseUrl);
+  const supabaseConfigured = Boolean(urlValid && supabaseKey);
+  const supabaseIncomplete = Boolean((supabaseUrl || supabaseKey) && !supabaseConfigured);
+
+  const explicitSecret = String(
+    process.env.NULAR_SESSION_SECRET ||
+    process.env.RAGAMARA_SESSION_SECRET ||
+    process.env.SESSION_SECRET ||
+    ''
+  ).trim();
+  const sessionSecretConfigured = explicitSecret.length >= MIN_PROD_SECRET_LEN;
+
+  const allowLocalFs = !isProd && !isTestFixture && !supabaseConfigured;
+  const signingSecret = explicitSecret || (isProd ? '' : DEV_FALLBACK_SECRET);
+
+  let storageMode = 'unconfigured_fail_closed';
+  if (supabaseConfigured) {
+    storageMode = 'durable_production_supabase';
+  } else if (isTestFixture) {
+    storageMode = 'ephemeral_test_fixture';
+  } else if (allowLocalFs && localFileWritable) {
+    storageMode = 'local_dev_persistent';
+  }
+
+  return {
+    isProd,
+    isTestFixture,
+    allowLocalFs,
+    supabase: {
+      configured: supabaseConfigured,
+      incomplete: supabaseIncomplete,
+      urlConfigured: urlValid,
+      keyConfigured: Boolean(supabaseKey)
+    },
+    sessionSecretConfigured,
+    sessionSecretMandatoryMet: isProd ? sessionSecretConfigured : true,
+    signingSecret,
+    storageMode
+  };
+}
+
 function hydrateLocalAuthStore() {
-  if (IS_PROD || process.env.SUPABASE_URL) return;
+  const cfg = getRuntimeConfig();
+  if (!cfg.allowLocalFs) {
+    localFileWritable = false;
+    return;
+  }
   try {
     fs.mkdirSync(LOCAL_STORE_DIR, { recursive: true, mode: 0o700 });
     localFileWritable = true;
@@ -41,6 +103,17 @@ function hydrateLocalAuthStore() {
         if (rec.email) usersByEmail.set(rec.email, rec);
         if (rec.phone) usersByPhone.set(rec.phone, rec);
       }
+      const now = Date.now();
+      for (const [email, fail] of Object.entries(parsed.loginFailures || {})) {
+        if (fail && now - fail.windowStart < 15 * 60 * 1000) {
+          loginFailures.set(email, fail);
+        }
+      }
+      for (const [jti, exp] of Object.entries(parsed.revokedSessions || {})) {
+        if (typeof exp === 'number' && exp > now) {
+          revokedSessions.set(jti, exp);
+        }
+      }
     }
   } catch {
     localFileWritable = false;
@@ -48,10 +121,27 @@ function hydrateLocalAuthStore() {
 }
 
 function persistLocalAuthStore() {
-  if (!localFileWritable || IS_PROD || process.env.SUPABASE_URL) return;
+  const cfg = getRuntimeConfig();
+  if (!cfg.allowLocalFs || !localFileWritable) return;
   try {
+    const now = Date.now();
+    const activeFailures = {};
+    for (const [email, fail] of loginFailures.entries()) {
+      if (now - fail.windowStart < 15 * 60 * 1000) {
+        activeFailures[email] = fail;
+      }
+    }
+    const activeRevoked = {};
+    for (const [jti, exp] of revokedSessions.entries()) {
+      if (exp > now) activeRevoked[jti] = exp;
+    }
     const tmp = `${LOCAL_STORE_FILE}.tmp`;
-    const payload = JSON.stringify({ updatedAt: new Date().toISOString(), users: Array.from(usersById.values()) }, null, 2);
+    const payload = JSON.stringify({
+      updatedAt: new Date().toISOString(),
+      users: Array.from(usersById.values()),
+      loginFailures: activeFailures,
+      revokedSessions: activeRevoked
+    }, null, 2);
     fs.writeFileSync(tmp, payload, { mode: 0o600 });
     fs.renameSync(tmp, LOCAL_STORE_FILE);
   } catch {
@@ -62,28 +152,77 @@ function persistLocalAuthStore() {
 hydrateLocalAuthStore();
 
 export function getProviderConfigStatus() {
-  const storageMode = process.env.SUPABASE_URL
-    ? 'supabase_configured'
-    : (localFileWritable ? 'local_file_backed' : 'serverless_ephemeral');
+  const cfg = getRuntimeConfig();
+  const smtpConfigured = Boolean(
+    process.env.SMTP_HOST ||
+    process.env.RESEND_API_KEY ||
+    cfg.supabase.configured
+  );
+  const productionReady = cfg.isProd
+    ? (cfg.supabase.configured && cfg.sessionSecretConfigured)
+    : (cfg.storageMode === 'local_dev_persistent' || cfg.storageMode === 'durable_production_supabase' || cfg.storageMode === 'ephemeral_test_fixture');
+
   return {
-    storageMode,
+    storageMode: cfg.storageMode,
+    productionReady,
+    supabase: {
+      configured: cfg.supabase.configured,
+      incomplete: cfg.supabase.incomplete,
+      urlConfigured: cfg.supabase.urlConfigured,
+      keyConfigured: cfg.supabase.keyConfigured
+    },
     email: {
-      enabled: true,
-      smtpConfigured: Boolean(process.env.SMTP_HOST || process.env.RESEND_API_KEY || process.env.SUPABASE_URL),
-      storageMode
+      enabled: cfg.isProd ? cfg.supabase.configured : true,
+      smtpConfigured,
+      storageMode: cfg.storageMode
     },
     security: {
-      sessionSecretConfigured: Boolean(EXPLICIT_SECRET),
-      loginRateLimitEnabled: true
+      isProduction: cfg.isProd,
+      sessionSecretConfigured: cfg.sessionSecretConfigured,
+      sessionSecretMandatoryMet: cfg.sessionSecretMandatoryMet,
+      loginRateLimitEnabled: true,
+      loginRateLimitScope: cfg.supabase.configured
+        ? 'durable_backend_required'
+        : (cfg.storageMode === 'local_dev_persistent' ? 'local_file_backed' : 'unconfigured')
     },
     google: {
       configured: Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
     },
     phoneOtp: {
       configured: Boolean(process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.TWILIO_FROM_NUMBER),
-      devModeAllowed: !IS_PROD
+      devModeAllowed: !cfg.isProd
     }
   };
+}
+
+function getPersistenceGateError(cfg) {
+  if (cfg.isProd && !cfg.sessionSecretConfigured) {
+    return Response.json({
+      ok: false,
+      configured: false,
+      code: 'SESSION_SECRET_MISSING',
+      error: 'Konfigurasi NULAR_SESSION_SECRET (>= 32 karakter) wajib diisi di lingkungan produksi sebelum otentikasi dapat diaktifkan (lihat docs/AUTHENTICATION_SETUP.md).'
+    }, { status: 503 });
+  }
+  if (cfg.isProd && !cfg.supabase.configured) {
+    return Response.json({
+      ok: false,
+      configured: false,
+      code: cfg.supabase.incomplete ? 'SUPABASE_CONFIG_INCOMPLETE' : 'AUTH_STORAGE_UNAVAILABLE',
+      error: cfg.supabase.incomplete
+        ? 'Konfigurasi Supabase produksi belum lengkap (SUPABASE_URL dan SUPABASE_SERVICE_ROLE_KEY/SUPABASE_ANON_KEY wajib lengkap). Otentikasi produksi dinonaktifkan (fail-closed).'
+        : 'Penyimpanan akun produksi (Supabase) belum dikonfigurasi. Mode tamu tetap tersedia, namun pendaftaran/masuk produksi dinonaktifkan (fail-closed).'
+    }, { status: 503 });
+  }
+  if (!cfg.isProd && cfg.storageMode === 'unconfigured_fail_closed') {
+    return Response.json({
+      ok: false,
+      configured: false,
+      code: 'AUTH_STORAGE_UNAVAILABLE',
+      error: 'Penyimpanan akun lokal tidak dapat ditulis dan Supabase belum dikonfigurasi.'
+    }, { status: 503 });
+  }
+  return null;
 }
 
 function hashPassword(password, salt = crypto.randomBytes(16).toString('hex')) {
@@ -99,21 +238,32 @@ function verifyPassword(password, stored) {
 }
 
 function signSession(payload) {
-  const body = Buffer.from(JSON.stringify(payload)).toString('base64url');
-  const sig = crypto.createHmac('sha256', SECRET).update(body).digest('base64url');
+  const cfg = getRuntimeConfig();
+  if (!cfg.signingSecret) {
+    throw new Error('SESSION_SECRET_MISSING');
+  }
+  const enriched = {
+    jti: crypto.randomUUID(),
+    ...payload
+  };
+  const body = Buffer.from(JSON.stringify(enriched)).toString('base64url');
+  const sig = crypto.createHmac('sha256', cfg.signingSecret).update(body).digest('base64url');
   return `${body}.${sig}`;
 }
 
 export function verifySessionToken(token) {
+  const cfg = getRuntimeConfig();
+  if (!cfg.signingSecret) return null;
   if (!token || !token.includes('.')) return null;
   const [body, sig] = token.split('.');
-  const expected = crypto.createHmac('sha256', SECRET).update(body).digest('base64url');
+  const expected = crypto.createHmac('sha256', cfg.signingSecret).update(body).digest('base64url');
   const sigBuf = Buffer.from(sig);
   const expBuf = Buffer.from(expected);
   if (sigBuf.length !== expBuf.length || !crypto.timingSafeEqual(sigBuf, expBuf)) return null;
   try {
     const parsed = JSON.parse(Buffer.from(body, 'base64url').toString('utf8'));
     if (parsed.exp && Date.now() > parsed.exp) return null;
+    if (parsed.jti && revokedSessions.has(parsed.jti)) return null;
     return parsed;
   } catch {
     return null;
@@ -127,7 +277,8 @@ export function parseCookie(req, name) {
 }
 
 function cookieHeader(token, maxAge = 60 * 60 * 24 * 7) {
-  const secure = IS_PROD ? '; Secure' : '';
+  const cfg = getRuntimeConfig();
+  const secure = cfg.isProd ? '; Secure' : '';
   return `${SESSION_COOKIE}=${encodeURIComponent(token)}; Path=/; HttpOnly; SameSite=Lax${secure}; Max-Age=${maxAge}`;
 }
 
@@ -148,6 +299,7 @@ export async function GET(request) {
   const url = new URL(request.url);
   const action = url.searchParams.get('action');
   const providers = getProviderConfigStatus();
+  const cfg = getRuntimeConfig();
 
   if (action === 'providers') {
     return Response.json({ providers });
@@ -159,16 +311,28 @@ export async function GET(request) {
     return Response.json({
       authenticated: false,
       mode: 'guest',
-      supabaseConfigured: Boolean(process.env.SUPABASE_URL),
+      supabaseConfigured: cfg.supabase.configured,
+      productionReady: providers.productionReady,
       providers
     });
   }
   const stored = usersById.get(session.uid);
+  // If user account was deleted, reject stale session
+  if (!stored && cfg.storageMode === 'local_dev_persistent') {
+    return Response.json({
+      authenticated: false,
+      mode: 'guest',
+      supabaseConfigured: cfg.supabase.configured,
+      productionReady: providers.productionReady,
+      providers
+    }, { headers: { 'Set-Cookie': cookieHeader('', 0) } });
+  }
   return Response.json({
     authenticated: true,
     mode: 'account',
     user: stored ? toSafeUser(stored) : { id: session.uid, username: session.username, displayName: session.username },
-    supabaseConfigured: Boolean(process.env.SUPABASE_URL),
+    supabaseConfigured: cfg.supabase.configured,
+    productionReady: providers.productionReady,
     providers
   });
 }
@@ -177,15 +341,24 @@ export async function POST(request) {
   const url = new URL(request.url);
   const action = url.searchParams.get('action') || 'login';
   const body = await request.json().catch(() => ({}));
+  const cfg = getRuntimeConfig();
   const providers = getProviderConfigStatus();
 
   if (action === 'logout') {
+    const token = parseCookie(request, SESSION_COOKIE);
+    const session = verifySessionToken(token);
+    if (session?.jti) {
+      revokedSessions.set(session.jti, session.exp || (Date.now() + 7 * 86400000));
+      persistLocalAuthStore();
+    }
     return Response.json({ ok: true, authenticated: false }, {
       headers: { 'Set-Cookie': cookieHeader('', 0) }
     });
   }
 
   if (action === 'google-start') {
+    const gateErr = getPersistenceGateError(cfg);
+    if (gateErr) return gateErr;
     if (!providers.google.configured) {
       return Response.json({
         configured: false,
@@ -203,35 +376,34 @@ export async function POST(request) {
     return Response.json({ configured: true, authUrl: authUrl.toString() });
   }
 
+  // All persistence-dependent actions MUST pass the production fail-closed gate
+  const gateErr = getPersistenceGateError(cfg);
+  if (gateErr) return gateErr;
+
   if (action === 'phone-request') {
     const phone = String(body.phone || '').trim().replace(/[\s\-()]/g, '');
     if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
       return Response.json({ error: 'Format nomor telepon internasional (E.164) tidak valid. Contoh: +6281234567890' }, { status: 400 });
     }
-    if (!providers.phoneOtp.configured && IS_PROD) {
+    if (!providers.phoneOtp.configured && cfg.isProd) {
       return Response.json({
         configured: false,
-        error: 'Layanan pengiriman SMS OTP belum dikonfigurasi di lingkungan produksi. Lihat docs/AUTHENTICATION_SETUP.md.'
+        error: 'Penyedia SMS OTP belum dikonfigurasi pada lingkungan produksi (lihat docs/AUTHENTICATION_SETUP.md).'
       }, { status: 503 });
     }
 
     const now = Date.now();
     const existing = otpStore.get(phone);
-    if (existing) {
-      const elapsedSec = Math.floor((now - existing.lastSentAt) / 1000);
-      if (elapsedSec < 60) {
-        return Response.json({
-          error: `Tunggu ${60 - elapsedSec} detik sebelum mengirim ulang kode OTP.`,
-          retryAfterSeconds: 60 - elapsedSec
-        }, { status: 429 });
-      }
-      if (now - existing.windowStart < 15 * 60 * 1000 && existing.sendCount >= 5) {
-        return Response.json({ error: 'Batas permintaan OTP tercapai. Coba lagi dalam 15 menit.' }, { status: 429 });
-      }
+    if (existing && now - existing.lastSentAt < 60000) {
+      const waitSec = Math.ceil((60000 - (now - existing.lastSentAt)) / 1000);
+      return Response.json({ error: `Tunggu ${waitSec} detik sebelum mengirim ulang kode OTP.`, retryAfterSeconds: waitSec }, { status: 429 });
+    }
+    const resetWindow = !existing || (now - existing.windowStart > 3600000);
+    if (existing && !resetWindow && existing.sendCount >= 5) {
+      return Response.json({ error: 'Batas pengiriman OTP per jam tercapai. Coba lagi nanti.' }, { status: 429 });
     }
 
     const code = String(crypto.randomInt(100000, 999999));
-    const resetWindow = !existing || (now - existing.windowStart >= 15 * 60 * 1000);
     otpStore.set(phone, {
       code,
       expiresAt: now + 5 * 60 * 1000,
@@ -339,15 +511,14 @@ export async function POST(request) {
     const session = verifySessionToken(token);
     if (!session) return Response.json({ error: 'Otentikasi diperlukan.' }, { status: 401 });
     const rec = usersById.get(session.uid);
-    if (rec) {
-      if (typeof body.displayName === 'string' && body.displayName.trim()) rec.displayName = body.displayName.trim().slice(0, 40);
-      if (typeof body.preferredRegion === 'string') rec.preferredRegion = body.preferredRegion.slice(0, 40);
-      if (typeof body.avatarId === 'string') rec.avatarId = body.avatarId.slice(0, 48);
-      if (typeof body.tutorialCompleted === 'boolean') rec.tutorialCompleted = body.tutorialCompleted;
-      if (typeof body.privacyPublicLeaderboard === 'boolean') rec.privacyPublicLeaderboard = body.privacyPublicLeaderboard;
-      persistLocalAuthStore();
-    }
-    return Response.json({ ok: true, user: rec ? toSafeUser(rec) : { id: session.uid, username: session.username } });
+    if (!rec) return Response.json({ error: 'Akun tidak ditemukan.' }, { status: 404 });
+    if (typeof body.displayName === 'string' && body.displayName.trim()) rec.displayName = body.displayName.trim().slice(0, 40);
+    if (typeof body.preferredRegion === 'string') rec.preferredRegion = body.preferredRegion.slice(0, 40);
+    if (typeof body.avatarId === 'string') rec.avatarId = body.avatarId.slice(0, 48);
+    if (typeof body.tutorialCompleted === 'boolean') rec.tutorialCompleted = body.tutorialCompleted;
+    if (typeof body.privacyPublicLeaderboard === 'boolean') rec.privacyPublicLeaderboard = body.privacyPublicLeaderboard;
+    persistLocalAuthStore();
+    return Response.json({ ok: true, user: toSafeUser(rec) });
   }
 
   const email = String(body.email || '').trim().toLowerCase();
@@ -387,7 +558,7 @@ export async function POST(request) {
     }, { status: 201, headers: { 'Set-Cookie': cookieHeader(token) } });
   }
 
-  // login with per-email brute-force rate limit (5 failed attempts per 15 min)
+  // login with per-email brute-force rate limit (5 failed attempts per 15 min, persisted in local dev)
   const now = Date.now();
   const WINDOW_MS = 15 * 60 * 1000;
   const MAX_FAILURES = 5;
@@ -406,9 +577,11 @@ export async function POST(request) {
       ? { count: 1, windowStart: now }
       : { count: failRec.count + 1, windowStart: failRec.windowStart };
     loginFailures.set(email, nextFail);
+    persistLocalAuthStore();
     return Response.json({ error: 'Email atau kata sandi tidak cocok.' }, { status: 401 });
   }
   loginFailures.delete(email);
+  persistLocalAuthStore();
   const token = signSession({ uid: rec.uid, username: rec.username, exp: Date.now() + 7 * 86400000 });
   return Response.json({
     authenticated: true,
@@ -417,11 +590,21 @@ export async function POST(request) {
 }
 
 export async function DELETE(request) {
+  const cfg = getRuntimeConfig();
+  const gateErr = getPersistenceGateError(cfg);
+  if (gateErr) return gateErr;
+
   const token = parseCookie(request, SESSION_COOKIE);
   const session = verifySessionToken(token);
   if (session) {
+    if (session.jti) {
+      revokedSessions.set(session.jti, session.exp || (Date.now() + 7 * 86400000));
+    }
     const rec = usersById.get(session.uid);
-    if (rec?.email) usersByEmail.delete(rec.email);
+    if (rec?.email) {
+      usersByEmail.delete(rec.email);
+      loginFailures.delete(rec.email);
+    }
     if (rec?.phone) usersByPhone.delete(rec.phone);
     usersById.delete(session.uid);
     persistLocalAuthStore();

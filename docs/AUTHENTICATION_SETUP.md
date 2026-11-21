@@ -43,3 +43,20 @@
 - Interactive experiences (`world.html`, `quests.html`, `profile.html`) check session state via `AuthClient.getSession()`.
 - When unauthenticated, visitors are guided to `auth.html?next=<intended_route>` and automatically returned to their intended destination after signing in.
 - Public leaderboard responses (`/api/leaderboard`) expose only user-approved `displayName` / `username`, `avatar`, `xp`, `level`, and achievement badges — never email addresses, phone numbers, or private user IDs.
+
+---
+
+## Production Fail-Closed Gate & Required Owner Environment Variables
+
+Starting with the Completion Phase (`docs/NULAR_AUTHENTICATION_PRODUCTION_GATE.md`), production deployments enforce strict fail-closed integrity:
+
+| Variable | Required in Production? | Purpose |
+|---|---|---|
+| `NULAR_SESSION_SECRET` (or `RAGAMARA_SESSION_SECRET` / `SESSION_SECRET`) | **Mandatory (`>= 32` chars)** | HMAC-SHA256 signing for `HttpOnly` session cookies (`nular_session`). Missing/short secret fails closed with HTTP `503 SESSION_SECRET_MISSING`. |
+| `SUPABASE_URL` | **Mandatory (`https://...`)** | Durable cloud account persistence. Missing fails closed with HTTP `503 AUTH_STORAGE_UNAVAILABLE`. |
+| `SUPABASE_SERVICE_ROLE_KEY` (or `SUPABASE_ANON_KEY`) | **Mandatory** | Paired credential for Supabase. Incomplete pair fails closed with HTTP `503 SUPABASE_CONFIG_INCOMPLETE`. |
+| `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET` | Optional | Enables Google OAuth 2.0 (otherwise returns honest HTTP `503`). |
+| `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM_NUMBER` | Optional | Enables production SMS OTP delivery (otherwise returns honest HTTP `503` in production). |
+| `SMTP_HOST` or `RESEND_API_KEY` | Optional | Enables real verification & reset emails (otherwise `verify-email` returns honest HTTP `503`). |
+
+Local development persistence (`.nular-local-data/auth-store.json`, `0600`, `.gitignore`d) is strictly disabled in production.

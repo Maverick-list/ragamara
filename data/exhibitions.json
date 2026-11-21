@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "1.0.0",
+  "lastReviewedAt": "2026-11-21",
+  "exhibitions": [
+    {
+      "id": "arsitektur-nusantara",
+      "roomNumber": "RUANG 01",
+      "plateNumber": "PL. 01",
+      "category": "architecture",
+      "categoryLabel": "Arsitektur Vernakular",
+      "title": "Arsitektur Nusantara",
+      "subtitle": "Tektonik Tanpa Paku, Atap Tropis & Hunian Ekologis Kepulauan",
+      "curatorialIntro": "Dari rumah panggung tahan gempa di lereng Bukit Barisan hingga honai melingkar di lembah pegunungan Papua, arsitektur tradisional Indonesia lahir dari dialog panjang antara kayu, iklim tropis, kosmologi adat, dan solidaritas komunal. Pameran ini menelusuri enam karya tektonik terverifikasi lengkap dengan rekonstruksi 3D dan dokumentasi fotografis.",
+      "coverImage": "assets/photos/rumah-gadang.jpg",
+      "coverAlt": "Fasad Rumah Gadang beratap gonjong di Sumatera Barat",
+      "regions": ["Sumatra", "Sulawesi", "Java", "Papua", "Bali & Nusa Tenggara"],
+      "estimatedDurationMinutes": 12,
+      "verificationStatus": "verified",
+      "culturalContext": "Arsitektur vernakular Nusantara memanfaatkan sambungan pasak kayu (tanggam), pondasi umpak batu lepas, dan siluet atap curam untuk meredam getaran seismik sekaligus mengalirkan udara dan hujan monsun.",
+      "mediaAttribution": "Dokumentasi fotografis arsip museum & model 3D rekonstruksi NULAR (lihat data/photo-attributions.json).",
+      "sources": [
+        "Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI — Data Pokok Kebudayaan (DAPOBUD)",
+        "Josef Prijotomo, Nusantara Architecture: Ideas and Form (2006)",
+        "Reimar Schefold, Peter Nas & Gaudenz Domenig, Indonesian Houses Vol. 1 & 2 (KITLV Press)"
+      ],
+      "chapters": [
+        {
+          "id": "ch-gonjong-seismik",
+          "number": "01",
+          "title": "Siluet Atap & Kearifan Seismik",
+          "summary": "Bagaimana kelengkungan atap gonjong Minangkabau dan perahu terbalik Tongkonan Toraja menggabungkan identitas kosmologis dengan struktur lentur tahan gempa.",
+          "exhibitRefs": [
+            { "type": "house", "id": "rumah-gadang" },
+            { "type": "house", "id": "tongkonan-toraja" }
+          ]
+        },
+        {
+          "id": "ch-pendopo-soko",
+          "number": "02",
+          "title": "Hierarki Ruang & Soko Guru",
+          "summary": "Eksplorasi struktur soko guru Rumah Joglo Jawa dan rumah adat panggung Batak Toba yang mengatur transisi ruang publik hingga ruang sakral keluarga.",
+          "exhibitRefs": [
+            { "type": "house", "id": "rumah-joglo" },
+            { "type": "house", "id": "rumah-bolon-toba" }
+          ]
+        },
+        {
+          "id": "ch-ekologi-ekstrem",
+          "number": "03",
+          "title": "Adaptasi Ekologi Pegunungan & Kabut",
+          "summary": "Desain mikro-iklim Honai Papua yang menyimpan kehangatan perapian serta menara kerucut Mbaru Niang Wae Rebo yang menampung delapan keluarga.",
+          "exhibitRefs": [
+            { "type": "house", "id": "honai-papua" },
+            { "type": "house", "id": "mbaru-niang" }
+          ]
+        }
+      ],
+      "relatedExhibitionIds": ["wastra-nusantara", "pusaka-dan-kriya-nusantara"]
+    },
+    {
+      "id": "wastra-nusantara",
+      "roomNumber": "RUANG 02",
+      "plateNumber": "PL. 02",
+      "category": "textiles",
+      "categoryLabel": "Wastra & Busana Adat",
+      "title": "Wastra Nusantara",
+      "subtitle": "Batik, Songket, Ulos, Tapis & Tenun Ikat Lintas Kepulauan",
+      "curatorialIntro": "Wastra Indonesia bukan sekadar tekstil hias — setiap helai benang menyimpan peta genealogis, doa daur hidup, dan pemisahan teknik yang jelas antara rintang lilin (Batik), ikat celup (Sasirangan), tenun ikat (Sumba), hingga pakan tambahan benang emas (Songket) dan sulam (Tapis).",
+      "coverImage": "assets/images/batik_keraton.jpg",
+      "coverAlt": "Detail motif kain Batik Keraton tradisional Nusantara",
+      "regions": ["Java", "Sumatra", "Kalimantan", "Bali & Nusa Tenggara"],
+      "estimatedDurationMinutes": 10,
+      "verificationStatus": "verified",
+      "culturalContext": "Pameran ini menjaga pemisahan etnografis yang akurat antara tradisi Batik tulis/cap dan tradisi Tenun/Songket/Ulos sesuai standar kuratorial museum tekstil.",
+      "mediaAttribution": "Model 3D wastra NULAR & dokumentasi tekstil tradisional (UNESCO ICH & DAPOBUD).",
+      "sources": [
+        "UNESCO Intangible Cultural Heritage — Indonesian Batik (2009)",
+        "Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI (DAPOBUD)",
+        "Museum Tekstil Jakarta — Katalog Koleksi Wastra Nusantara"
+      ],
+      "chapters": [
+        {
+          "id": "ch-batik-pesisir-keraton",
+          "number": "01",
+          "title": "Rintang Lilin: Keraton & Pesisir",
+          "summary": "Membandingkan keteguhan diagonal Batik Parang Rusak Barong dari Surakarta-Yogyakarta dengan akulturasi awan Batik Megamendung Cirebon.",
+          "exhibitRefs": [
+            { "type": "cultural_item", "id": "item-batik-parang-solo" },
+            { "type": "cultural_item", "id": "item-batik-megamendung-cirebon" },
+            { "type": "cultural_item", "id": "item-sasirangan-banjar" }
+          ]
+        },
+        {
+          "id": "ch-tenun-songket-sumatra",
+          "number": "02",
+          "title": "Kilau Benang Emas & Kehangatan Ulos",
+          "summary": "Tradisi tenun Sumatra dari Songket Pandai Sikek Minangkabau, Songket Palembang, Tapis Lampung, hingga Ulos Ragidup Batak sebagai lambang berkat.",
+          "exhibitRefs": [
+            { "type": "cultural_item", "id": "item-songket-minangkabau" },
+            { "type": "cultural_item", "id": "item-ulos-ragidup-batak" },
+            { "type": "cultural_item", "id": "item-songket_palembang" },
+            { "type": "cultural_item", "id": "item-tapis" }
+          ]
+        },
+        {
+          "id": "ch-tenun-ikat-timur",
+          "number": "03",
+          "title": "Pewarna Alam & Ikat Kepulauan Timur",
+          "summary": "Tenun Ikat Hinggi Sumba dengan pewarna alam mengkudu dan nila yang mengisahkan kosmologi leluhur Nusa Tenggara Timur.",
+          "exhibitRefs": [
+            { "type": "cultural_item", "id": "item-tenun-ikat-sumba" }
+          ]
+        }
+      ],
+      "relatedExhibitionIds": ["arsitektur-nusantara", "bunyi-dan-gerak-nusantara"]
+    },
+    {
+      "id": "bunyi-dan-gerak-nusantara",
+      "roomNumber": "RUANG 03",
+      "plateNumber": "PL. 03",
+      "category": "performing",
+      "categoryLabel": "Musik, Tari & Upacara",
+      "title": "Bunyi dan Gerak Nusantara",
+      "subtitle": "Resonansi Ansambel Perkusi, Petik Melayu, Tari Adat & Ritus Komunal",
+      "curatorialIntro": "Sebelum kata terucap dalam pertemuan adat, bunyi gendang, petikan gambus, dan gerak tari telah menyatukan ruang komunal. Ruang kuratorial ini menghimpun ansambel musik, seni pertunjukan rakyat, dan upacara warisan yang tercatat di DAPOBUD Indonesia.",
+      "coverImage": "assets/images/saluang_talempong.png",
+      "coverAlt": "Ilustrasi ansambel musik tradisional Nusantara Saluang dan Talempong",
+      "regions": ["Sumatra", "Java"],
+      "estimatedDurationMinutes": 8,
+      "verificationStatus": "verified",
+      "culturalContext": "Seluruh entri pertunjukan dalam pameran ini menyajikan narasi sejarah, instrumen, dan konteks upacara secara jujur; model 3D khusus instrumen belum tersedia sehingga ditampilkan dalam mode arsip etnografis.",
+      "mediaAttribution": "Ilustrasi kuratorial NULAR & arsip referensi Warisan Budaya Takbenda Indonesia (DAPOBUD).",
+      "sources": [
+        "Warisan Budaya Takbenda Indonesia — Kemendikbudristek RI (DAPOBUD)",
+        "Direktorat Jenderal Kebudayaan — Ensiklopedia Seni Pertunjukan Nusantara"
+      ],
+      "chapters": [
+        {
+          "id": "ch-resonansi-bunyi",
+          "number": "01",
+          "title": "Gendang Sakral & Petik Pesisir",
+          "summary": "Sembilan gendang Gordang Sambilan Mandailing yang bergema dalam upacara adat serta petikan Dambus Kepulauan Bangka Belitung.",
+          "exhibitRefs": [
+            { "type": "cultural_item", "id": "item-gordang_sambilan" },
+            { "type": "cultural_item", "id": "item-dambus" }
+          ]
+        },
+        {
+          "id": "ch-gerak-dan-ritus",
+          "number": "02",
+          "title": "Tari Komunal & Arak-Arakan Rakyat",
+          "summary": "Gerak hormat Tari Tor-Tor Batak, sosok pelindung Ondel-ondel Betawi, dan tradisi pesisir Tabot/Tabuik Bengkulu.",
+          "exhibitRefs": [
+            { "type": "cultural_item", "id": "item-tor-tor" },
+            { "type": "cultural_item", "id": "item-ondel-ondel" },
+            { "type": "cultural_item", "id": "item-tabot_atau_tabuik" }
+          ]
+        }
+      ],
+      "relatedExhibitionIds": ["wastra-nusantara", "pusaka-dan-kriya-nusantara"]
+    },
+    {
+      "id": "pusaka-dan-kriya-nusantara",
+      "roomNumber": "RUANG 04",
+      "plateNumber": "PL. 04",
+      "category": "craft_heritage",
+      "categoryLabel": "Pusaka, Kriya & Kuliner",
+      "title": "Pusaka dan Kriya Nusantara",
+      "subtitle": "Metalurgi Pamor, Keramik Rakyat & Pengetahuan Kuliner Warisan",
+      "curatorialIntro": "Dari teknik lipat besi pamor Keris Nusantara dan bilah Mandau hingga ketekunan pengrajin Gerabah Kasongan dan proses karamelisasi lambat Randang Minangkabau, pameran ini merayakan kecerdasan material masyarakat Nusantara.",
+      "coverImage": "assets/images/alam_jawa.jpg",
+      "coverAlt": "Bentang alam budaya Jawa sebagai latar tradisi pusaka dan kriya Nusantara",
+      "regions": ["Sumatra", "Java", "Kalimantan"],
+      "estimatedDurationMinutes": 10,
+      "verificationStatus": "verified",
+      "culturalContext": "Pusaka tradisional disajikan secara edukatif sebagai artefak metalurgi, sejarah, dan simbol kehormatan budaya — berdampingan dengan kriya tanah liat dan kuliner tradisional terverifikasi.",
+      "mediaAttribution": "Model 3D artefak pusaka NULAR & arsip referensi UNESCO ICH / DAPOBUD.",
+      "sources": [
+        "UNESCO Intangible Cultural Heritage — Indonesian Kris (2005)",
+        "Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi RI (DAPOBUD)",
+        "Museum Nasional Indonesia — Katalog Etnografi & Metalurgi Nusantara"
+      ],
+      "chapters": [
+        {
+          "id": "ch-pusaka-metalurgi",
+          "number": "01",
+          "title": "Artefak Metalurgi & Simbol Kehormatan",
+          "summary": "Eksplorasi 3D Rencong Aceh, Keris Nusantara berbilah pamor, dan Mandau Dayak Kalimantan sebagai mahakarya pandai besi tradisional.",
+          "exhibitRefs": [
+            { "type": "cultural_item", "id": "item-rencong-aceh" },
+            { "type": "cultural_item", "id": "item-keris-nusantara" },
+            { "type": "cultural_item", "id": "item-mandau-kalimantan" }
+          ]
+        },
+        {
+          "id": "ch-kriya-dan-kuliner",
+          "number": "02",
+          "title": "Tanah Liat & Kuliner Warisan",
+          "summary": "Kriya Gerabah Kasongan Yogyakarta serta tradisi gastronomi Randang Sumatera Barat dan Adrem Yogyakarta.",
+          "exhibitRefs": [
+            { "type": "cultural_item", "id": "item-gerabah_kasongan" },
+            { "type": "cultural_item", "id": "item-randang" },
+            { "type": "cultural_item", "id": "item-adrem" }
+          ]
+        }
+      ],
+      "relatedExhibitionIds": ["arsitektur-nusantara", "bunyi-dan-gerak-nusantara"]
+    }
+  ]
+}

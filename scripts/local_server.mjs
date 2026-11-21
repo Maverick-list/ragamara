@@ -45,7 +45,7 @@ const server = http.createServer(async (req, res) => {
     const modPath = path.join(ROOT_DIR, 'api', `${modName}.js`);
     if (fs.existsSync(modPath)) {
       try {
-        const mod = await import(`file://${modPath}?t=${Date.now()}`);
+        const mod = await import(`file://${modPath}`);
         const chunks = [];
         for await (const c of req) chunks.push(c);
         const init = { method: req.method, headers: req.headers };

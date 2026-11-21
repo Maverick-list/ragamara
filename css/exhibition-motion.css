@@ -303,7 +303,353 @@
   }
 }
 
-/* 7. Strict Reduced-Motion Compliance (WCAG 2.2 AA) */
+/* 7. Exhibition Hall (exhibitions.html) & Detail Journey (exhibition.html) */
+.exhibition-hall-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(135deg, var(--museum-emerald-deep) 0%, var(--museum-emerald) 55%, #1d4235 100%);
+  color: var(--museum-ivory);
+  padding: clamp(52px, 7vw, 88px) 0 clamp(44px, 6vw, 72px);
+  border-bottom: 1px solid rgba(176, 137, 72, 0.3);
+}
+
+.exhibition-hall-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    radial-gradient(ellipse 65% 70% at 85% 25%, rgba(176, 137, 72, 0.18), transparent 72%),
+    repeating-linear-gradient(45deg, rgba(250, 247, 242, 0.03) 0px, rgba(250, 247, 242, 0.03) 1px, transparent 1px, transparent 30px);
+}
+
+.exhibition-hall-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(250, 247, 242, 0.16);
+}
+
+.exhibition-hall-metric__val {
+  font-family: var(--font-serif, 'Fraunces', Georgia, serif);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #e6c687;
+  line-height: 1.1;
+}
+
+.exhibition-hall-metric__lbl {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(250, 247, 242, 0.78);
+  margin-top: 4px;
+}
+
+.exhibition-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(21, 48, 39, 0.14);
+  margin-bottom: 28px;
+}
+
+.exhibition-filter-bar input[type="search"],
+.exhibition-filter-bar select {
+  min-height: 40px;
+}
+
+.exhibition-spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: stretch;
+  background: #ffffff;
+  border: 1px solid rgba(21, 48, 39, 0.14);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(21, 48, 39, 0.06);
+}
+
+@media (max-width: 900px) {
+  .exhibition-spotlight {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.exhibition-spotlight__media {
+  position: relative;
+  min-height: 290px;
+  background: var(--museum-emerald-deep);
+  overflow: hidden;
+}
+
+.exhibition-spotlight__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 600ms var(--museum-ease);
+}
+
+.exhibition-spotlight:hover .exhibition-spotlight__media img {
+  transform: scale(1.03);
+}
+
+.exhibition-spotlight__body {
+  padding: clamp(22px, 3vw, 34px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.exhibition-room-spread {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+  gap: 24px;
+  padding: clamp(20px, 3vw, 32px);
+  border-radius: 12px;
+  border: 1px solid rgba(21, 48, 39, 0.14);
+  background: #ffffff;
+  margin-bottom: 22px;
+}
+
+.exhibition-room-spread--dark {
+  background: linear-gradient(135deg, var(--museum-emerald-deep) 0%, var(--museum-emerald) 100%);
+  color: var(--museum-ivory);
+  border-color: rgba(176, 137, 72, 0.34);
+}
+
+.exhibition-room-spread--sand {
+  background: linear-gradient(180deg, #faf7f2 0%, #f3ece0 100%);
+}
+
+@media (max-width: 860px) {
+  .exhibition-room-spread {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.exhibition-room-media {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 230px;
+  background: #132a22;
+}
+
+.exhibition-room-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.exhibition-chapter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.exhibition-chapter-pill {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.72rem;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 48, 39, 0.2);
+  background: rgba(250, 247, 242, 0.85);
+  color: var(--museum-emerald);
+}
+
+.exhibition-room-spread--dark .exhibition-chapter-pill {
+  background: rgba(250, 247, 242, 0.1);
+  border-color: rgba(214, 177, 112, 0.38);
+  color: #f3e4c3;
+}
+
+/* Exhibition Detail Journey */
+.exhibition-detail-cover {
+  position: relative;
+  overflow: hidden;
+  background: var(--museum-emerald-deep);
+  color: var(--museum-ivory);
+  padding: clamp(44px, 6vw, 72px) 0;
+  border-bottom: 2px solid rgba(176, 137, 72, 0.35);
+}
+
+.exhibition-detail-cover__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+  gap: 28px;
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .exhibition-detail-cover__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.exhibition-detail-cover__img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(214, 177, 112, 0.38);
+  display: block;
+}
+
+.exhibition-chapter-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.exhibition-chapter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  min-height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(21, 48, 39, 0.18);
+  background: #ffffff;
+  color: var(--museum-emerald);
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+.exhibition-chapter-btn[aria-selected="true"],
+.exhibition-chapter-btn.is-active {
+  background: var(--museum-emerald);
+  color: var(--museum-ivory);
+  border-color: var(--museum-emerald);
+}
+
+.exhibition-chapter-btn:focus-visible {
+  outline: 2px solid var(--museum-gold);
+  outline-offset: 2px;
+}
+
+.exhibition-progress-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(21, 48, 39, 0.12);
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+
+.exhibition-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--museum-emerald) 0%, var(--museum-gold) 100%);
+  transition: width 380ms var(--museum-ease);
+}
+
+.exhibition-stage-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .exhibition-stage-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.exhibition-3d-stage {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 35%, #23473b 0%, #10241d 100%);
+  border: 1px solid rgba(176, 137, 72, 0.35);
+}
+
+.exhibition-media-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 320px;
+  padding: 28px 20px;
+  color: #efe9de;
+  gap: 10px;
+}
+
+.exhibit-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.exhibit-thumb-btn {
+  text-align: left;
+  padding: 12px 14px;
+  min-height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(21, 48, 39, 0.16);
+  background: #ffffff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.exhibit-thumb-btn.is-active,
+.exhibit-thumb-btn[aria-pressed="true"] {
+  border-color: var(--museum-gold);
+  box-shadow: 0 0 0 2px rgba(176, 137, 72, 0.25);
+  background: #faf7f2;
+}
+
+.museum-toast-feedback {
+  position: fixed;
+  right: 18px;
+  bottom: 78px;
+  z-index: 60;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--museum-emerald);
+  color: var(--museum-ivory);
+  border: 1px solid var(--museum-gold);
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.76rem;
+  box-shadow: 0 12px 26px rgba(15, 36, 29, 0.28);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.museum-toast-feedback.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 8. Strict Reduced-Motion Compliance (WCAG 2.2 AA) */
 @media (prefers-reduced-motion: reduce) {
   [data-museum-reveal],
   [data-museum-reveal].is-revealed {

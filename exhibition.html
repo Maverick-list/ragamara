@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruang Pameran Kuratorial — NULAR</title>
+  <meta name="description" content="Perjalanan kuratorial interaktif pameran budaya Nusantara di NULAR lengkap dengan narasi bab, model 3D terverifikasi, dan arsip pustaka." />
+  <link rel="icon" type="image/png" href="assets/images/logo.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#153027" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" href="assets/images/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet" />
+  <link rel="stylesheet" href="css/museum.css" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <link rel="stylesheet" href="css/exhibition-motion.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./js/vendor/three/build/three.module.js",
+      "three/addons/": "./js/vendor/three/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="museum-header-mount"></div>
+
+  <main id="main-content" class="page-enter">
+    <div id="exhibition-root">
+      <section class="museum-section" style="padding:64px 0;">
+        <div class="museum-container">
+          <div class="nular-panel" style="text-align:center;padding:36px;">Memuat ruang pameran…</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="museum-toast" class="museum-toast-feedback" role="status" aria-live="polite"></div>
+  <div id="museum-footer-mount"></div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { initMuseumShell, escapeHtml } from './js/museum-shell.js';
+    import { resolveExhibitionById } from './js/exhibition-data.js';
+    import { MuseumStore } from './js/museum-store.js';
+    import { AuthClient } from './js/auth-client.js';
+
+    initMuseumShell('exhibitions');
+
+    const root = document.getElementById('exhibition-root');
+    const toastEl = document.getElementById('museum-toast');
+    let toastTimer = null;
+    function showToast(msg) {
+      if (!toastEl) return;
+      toastEl.textContent = msg;
+      toastEl.classList.add('is-visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 2500);
+    }
+
+    // Minimal, cleanly-disposed 3D Artifact Viewer for verified GLBs
+    let activeViewerCleanup = null;
+    function disposeActiveViewer() {
+      if (typeof activeViewerCleanup === 'function') {
+        activeViewerCleanup();
+        activeViewerCleanup = null;
+      }
+    }
+
+    function hasWebGLSupport() {
+      try {
+        const c = document.createElement('canvas');
+        return Boolean(c.getContext('webgl2') || c.getContext('webgl'));
+      } catch {
+        return false;
+      }
+    }
+
+    function mountGlbStage(container, modelUrl, title) {
+      disposeActiveViewer();
+      if (!modelUrl || !hasWebGLSupport()) return false;
+
+      container.innerHTML = '';
+      const width = Math.max(280, container.clientWidth || 520);
+      const height = 360;
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x132a22);
+
+      const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 120);
+      camera.position.set(4.2, 2.8, 5.2);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(width, height);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.domElement.style.display = 'block';
+      renderer.domElement.style.width = '100%';
+      renderer.domElement.style.height = '360px';
+      renderer.domElement.style.touchAction = 'none';
+      renderer.domElement.setAttribute('aria-label', `Penampil 3D Interaktif: ${title}`);
+      container.appendChild(renderer.domElement);
+
+      const hemi = new THREE.HemisphereLight(0xfff5e4, 0x1a362c, 1.35);
+      scene.add(hemi);
+      const key = new THREE.DirectionalLight(0xfff0d4, 1.6);
+      key.position.set(6, 10, 7);
+      scene.add(key);
+      const rim = new THREE.DirectionalLight(0xd6b170, 0.7);
+      rim.position.set(-6, 4, -5);
+      scene.add(rim);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.autoRotate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      controls.autoRotateSpeed = 0.85;
+
+      const statusBadge = document.createElement('div');
+      statusBadge.className = 'mono-caption';
+      statusBadge.style.cssText = 'position:absolute;left:12px;bottom:12px;padding:5px 10px;border-radius:999px;background:rgba(15,36,29,0.86);color:#f3e4c3;border:1px solid rgba(214,177,112,0.4);font-size:0.68rem;';
+      statusBadge.textContent = 'Memuat model 3D terverifikasi…';
+      container.appendChild(statusBadge);
+
+      let cancelled = false;
+      let loadedRoot = null;
+      const loader = new GLTFLoader();
+      loader.load(
+        modelUrl,
+        (gltf) => {
+          if (cancelled) return;
+          loadedRoot = gltf.scene;
+          const box = new THREE.Box3().setFromObject(loadedRoot);
+          const size = box.getSize(new THREE.Vector3());
+          const center = box.getCenter(new THREE.Vector3());
+          const maxDim = Math.max(size.x, size.y, size.z, 0.01);
+          const scale = 3.2 / maxDim;
+          loadedRoot.scale.setScalar(scale);
+          loadedRoot.position.sub(center.multiplyScalar(scale));
+          scene.add(loadedRoot);
+          controls.target.set(0, 0, 0);
+          controls.update();
+          statusBadge.textContent = '3D Interaktif Aktif · Geser untuk memutar, cubit/gulir untuk zoom';
+        },
+        undefined,
+        () => {
+          if (cancelled) return;
+          statusBadge.textContent = 'Model 3D gagal dimuat — gunakan arsip dokumentasi di samping.';
+        }
+      );
+
+      let rafId = 0;
+      const animate = () => {
+        if (cancelled) return;
+        rafId = requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      };
+      animate();
+
+      const onResize = () => {
+        if (cancelled) return;
+        const w = Math.max(260, container.clientWidth || 520);
+        camera.aspect = w / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, height);
+      };
+      window.addEventListener('resize', onResize);
+
+      activeViewerCleanup = () => {
+        cancelled = true;
+        cancelAnimationFrame(rafId);
+        window.removeEventListener('resize', onResize);
+        controls.dispose();
+        if (loadedRoot) {
+          loadedRoot.traverse((obj) => {
+            if (obj.geometry) obj.geometry.dispose();
+            if (obj.material) {
+              const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+              mats.forEach((m) => m.dispose());
+            }
+          });
+        }
+        renderer.dispose();
+      };
+      return true;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const exhibitionId = params.get('id') || 'arsitektur-nusantara';
+
+    let currentExhibition = null;
+    let relatedExhibitions = [];
+    let activeChapterIdx = 0;
+    let activeExhibitIdx = 0;
+    let currentSession = { authenticated: false };
+
+    function renderNotFound(id) {
+      root.innerHTML = `
+        <section class="museum-section" style="padding:72px 0;">
+          <div class="museum-container" style="max-width:680px;text-align:center;">
+            <span class="eyebrow">Arsip Tidak Ditemukan</span>
+            <h1 class="display-title" style="margin-top:10px;">Pameran “${escapeHtml(id)}” Tidak Tersedia</h1>
+            <p class="lead-copy" style="margin:12px auto 22px;">ID pameran yang diminta tidak terdaftar dalam katalog kuratorial NULAR.</p>
+            <a href="exhibitions.html" class="btn-museum btn-museum--primary">Kembali ke Balai Pameran</a>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderSpotlightStage() {
+      const ch = currentExhibition.chapters[activeChapterIdx];
+      const exhibit = ch?.exhibits[activeExhibitIdx] || ch?.exhibits[0];
+      const stageContainer = document.getElementById('exhibit-visual-stage');
+      const infoMount = document.getElementById('exhibit-info-mount');
+      if (!exhibit || !stageContainer || !infoMount) return;
+
+      const isSaved = MuseumStore.isExhibitSaved(`exhibit:${exhibit.id}`);
+
+      if (exhibit.model3DUrl && hasWebGLSupport()) {
+        mountGlbStage(stageContainer, exhibit.model3DUrl, exhibit.name);
+      } else {
+        disposeActiveViewer();
+        stageContainer.innerHTML = exhibit.image
+          ? `
+            <div style="position:relative;height:360px;background:#10241d;">
+              <img src="${escapeHtml(exhibit.image)}" alt="${escapeHtml(exhibit.imageCaption || exhibit.name)}" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              <div class="mono-caption" style="position:absolute;left:12px;bottom:12px;padding:6px 10px;border-radius:8px;background:rgba(15,36,29,0.88);color:#f3e4c3;border:1px solid rgba(214,177,112,0.4);font-size:0.7rem;">
+                Arsip Fotografis Terverifikasi · Model 3D tidak tersedia untuk objek ini
+              </div>
+            </div>
+          `
+          : `
+            <div class="exhibition-media-fallback">
+              <span class="material-symbols-outlined" style="font-size:44px;color:#d6b170;" aria-hidden="true">museum</span>
+              <div style="font-family:var(--font-serif);font-size:1.25rem;color:#faf7f2;">${escapeHtml(exhibit.name)}</div>
+              <p style="font-size:0.84rem;color:rgba(250,247,242,0.8);max-width:40ch;margin:0;">
+                Model 3D dan foto arsip khusus belum tersedia untuk entri ini. Informasi etnografis terverifikasi DAPOBUD tetap disajikan lengkap di panel samping.
+              </p>
+              <span class="mono-caption" style="color:#d6b170;">Status Media: Arsip Teks &amp; Pustaka Terverifikasi</span>
+            </div>
+          `;
+      }
+
+      infoMount.innerHTML = `
+        <div class="nular-panel" style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;">
+            <span class="nular-badge">${escapeHtml(exhibit.typeLabel)}</span>
+            <span class="mono-caption" style="color:var(--ink-muted);">${escapeHtml(exhibit.province)}</span>
+          </div>
+          <h3 style="font-family:var(--font-serif);font-size:1.5rem;margin:0;color:var(--museum-emerald);">${escapeHtml(exhibit.name)}</h3>
+          ${exhibit.subtitle ? `<div style="font-size:0.88rem;font-weight:600;color:#6b4d22;">${escapeHtml(exhibit.subtitle)}</div>` : ''}
+          <p style="font-size:0.9rem;line-height:1.65;color:var(--ink-secondary);margin:0;">${escapeHtml(exhibit.description)}</p>
+          ${exhibit.historicalContext ? `
+            <div style="padding:12px 14px;border-radius:8px;background:#faf7f2;border-left:3px solid var(--museum-gold);">
+              <div class="mono-caption" style="color:#6b4d22;margin-bottom:4px;">Konteks Sejarah &amp; Interpretasi Budaya</div>
+              <p style="font-size:0.85rem;line-height:1.58;margin:0;color:var(--ink-secondary);">${escapeHtml(exhibit.historicalContext)}</p>
+            </div>
+          ` : ''}
+          ${exhibit.materials.length ? `
+            <div>
+              <div class="mono-caption" style="color:var(--ink-muted);margin-bottom:4px;">Material &amp; Teknik</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                ${exhibit.materials.slice(0, 5).map((m) => `<span class="exhibition-plate__tag">${escapeHtml(m)}</span>`).join('')}
+              </div>
+            </div>
+          ` : ''}
+          <div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:6px;border-top:1px solid rgba(21,48,39,0.1);">
+            <button type="button" id="btn-save-active-exhibit" class="btn-museum btn-museum--bronze btn-museum--sm">
+              <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">${isSaved ? 'bookmark_added' : 'bookmark_add'}</span>
+              <span>${isSaved ? 'Tersimpan di Buku Koleksi' : 'Simpan ke Buku Koleksi'}</span>
+            </button>
+            <a href="${escapeHtml(exhibit.detailHref)}" class="btn-museum btn-museum--secondary btn-museum--sm">
+              <span>Lihat Arsip Lengkap</span>
+              <span class="material-symbols-outlined" style="font-size:16px" aria-hidden="true">arrow_outward</span>
+            </a>
+          </div>
+          ${exhibit.sources.length ? `
+            <div style="font-size:0.76rem;color:var(--ink-muted);border-top:1px solid rgba(21,48,39,0.08);padding-top:8px;">
+              <strong>Sumber:</strong> ${escapeHtml(exhibit.sources.join(' · '))}
+            </div>
+          ` : ''}
+        </div>
+      `;
+
+      document.getElementById('btn-save-active-exhibit')?.addEventListener('click', () => {
+        const nowSaved = MuseumStore.toggleSavedExhibit({
+          id: `exhibit:${exhibit.id}`,
+          type: exhibit.type,
+          title: exhibit.name,
+          subtitle: `${exhibit.province} · ${currentExhibition.title}`,
+          href: `exhibition.html?id=${encodeURIComponent(currentExhibition.id)}`
+        });
+        showToast(nowSaved ? `“${exhibit.name}” disimpan ke Buku Koleksi.` : `“${exhibit.name}” dihapus dari Buku Koleksi.`);
+        renderSpotlightStage();
+      });
+    }
+
+    function updateProgressUi() {
+      const prog = MuseumStore.getExhibitionProgress(currentExhibition.id);
+      const total = currentExhibition.chapters.length;
+      const visited = prog.visitedChapters.length;
+      const pct = Math.round((visited / Math.max(1, total)) * 100);
+      const fill = document.getElementById('exhibition-progress-fill');
+      const lbl = document.getElementById('exhibition-progress-label');
+      if (fill) fill.style.width = `${pct}%`;
+      if (lbl) {
+        lbl.textContent = `Progres Bab: ${visited}/${total} (${pct}%)${prog.completed ? ' · Pameran Selesai ✓' : ''}`;
+      }
+    }
+
+    function selectChapter(idx) {
+      activeChapterIdx = Math.max(0, Math.min(idx, currentExhibition.chapters.length - 1));
+      activeExhibitIdx = 0;
+      const ch = currentExhibition.chapters[activeChapterIdx];
+      MuseumStore.recordExhibitionChapter(currentExhibition.id, ch.id);
+
+      document.querySelectorAll('[data-chapter-tab]').forEach((btn, i) => {
+        const active = i === activeChapterIdx;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-selected', String(active));
+      });
+
+      const chTitle = document.getElementById('active-chapter-title');
+      const chSummary = document.getElementById('active-chapter-summary');
+      const selectorMount = document.getElementById('exhibit-selector-mount');
+      if (chTitle) chTitle.textContent = `Bab ${ch.number} — ${ch.title}`;
+      if (chSummary) chSummary.textContent = ch.summary;
+
+      if (selectorMount) {
+        selectorMount.innerHTML = ch.exhibits.map((ex, i) => `
+          <button type="button" class="exhibit-thumb-btn ${i === 0 ? 'is-active' : ''}" data-exhibit-idx="${i}" aria-pressed="${i === 0 ? 'true' : 'false'}">
+            <span class="mono-caption" style="color:var(--museum-gold);font-size:0.68rem;">${ex.model3DUrl ? '● 3D TERSEDIA' : '○ ARSIP ETNOGRAFIS'}</span>
+            <strong style="font-family:var(--font-serif);font-size:1rem;color:var(--museum-emerald);">${escapeHtml(ex.name)}</strong>
+            <span style="font-size:0.78rem;color:var(--ink-secondary);">${escapeHtml(ex.province)}</span>
+          </button>
+        `).join('');
+
+        selectorMount.querySelectorAll('[data-exhibit-idx]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            activeExhibitIdx = Number(btn.getAttribute('data-exhibit-idx'));
+            selectorMount.querySelectorAll('[data-exhibit-idx]').forEach((b, j) => {
+              const sel = j === activeExhibitIdx;
+              b.classList.toggle('is-active', sel);
+              b.setAttribute('aria-pressed', String(sel));
+            });
+            renderSpotlightStage();
+          });
+        });
+      }
+
+      const prevBtn = document.getElementById('btn-prev-chapter');
+      const nextBtn = document.getElementById('btn-next-chapter');
+      if (prevBtn) prevBtn.disabled = activeChapterIdx === 0;
+      if (nextBtn) nextBtn.disabled = activeChapterIdx === currentExhibition.chapters.length - 1;
+
+      updateProgressUi();
+      renderSpotlightStage();
+    }
+
+    async function claimCompletionReward() {
+      const feedbackEl = document.getElementById('completion-feedback');
+      const btn = document.getElementById('btn-complete-exhibition');
+      if (btn) btn.disabled = true;
+      try {
+        const res = await fetch('/api/progress', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({
+            activityType: 'complete_collection',
+            eventKey: `exhibition-complete:${currentExhibition.id}`,
+            guestId: localStorage.getItem('nular_guest_id') || 'guest-exhibition'
+          })
+        });
+        const data = await res.json();
+        MuseumStore.markExhibitionCompleted(currentExhibition.id, true);
+        updateProgressUi();
+        if (feedbackEl) {
+          feedbackEl.textContent = data.duplicate
+            ? `Pameran selesai ✓ · Hadiah XP sudah pernah diklaim sebelumnya (idempoten, +0 XP duplikat · Total ${data.xp} XP).`
+            : `Selamat! Pameran selesai ✓ · Server memberikan +${data.xpAwarded} XP terverifikasi (Level ${data.level} · ${data.title}).`;
+        }
+        showToast(data.duplicate ? 'Pameran selesai (XP sudah diklaim sebelumnya).' : `+${data.xpAwarded} XP terverifikasi dari server!`);
+      } catch {
+        MuseumStore.markExhibitionCompleted(currentExhibition.id, false);
+        updateProgressUi();
+        if (feedbackEl) {
+          feedbackEl.textContent = 'Pameran ditandai selesai secara lokal. Sinkronisasi XP memerlukan koneksi ke server.';
+        }
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    }
+
+    function renderExhibitionPage() {
+      const exh = currentExhibition;
+      document.title = `${exh.title} — Pameran Kuratorial NULAR`;
+      const savedExh = MuseumStore.isExhibitSaved(`exhibition:${exh.id}`);
+
+      root.innerHTML = `
+        <!-- 1. OPENING COVER & CURATOR INTRODUCTION -->
+        <section class="exhibition-detail-cover" aria-labelledby="exh-title">
+          <div class="museum-container exhibition-detail-cover__grid">
+            <div>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px;">
+                <a href="exhibitions.html" class="mono-caption" style="color:#e6c687;text-decoration:none;">← Balai Pameran</a>
+                <span class="mono-caption" style="color:rgba(250,247,242,0.5);">/</span>
+                <span class="mono-caption" style="color:#e6c687;">${escapeHtml(exh.roomNumber)} · ${escapeHtml(exh.plateNumber)}</span>
+              </div>
+              <h1 id="exh-title" class="display-title" style="color:#faf7f2;margin:0 0 10px;">${escapeHtml(exh.title)}</h1>
+              <p style="font-size:1.05rem;font-weight:500;color:#e6c687;margin:0 0 14px;">${escapeHtml(exh.subtitle)}</p>
+              <p style="font-size:0.94rem;line-height:1.68;color:rgba(250,247,242,0.88);margin:0 0 18px;">${escapeHtml(exh.curatorialIntro)}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;">
+                <span class="exhibition-chapter-pill" style="background:rgba(250,247,242,0.12);color:#faf7f2;border-color:rgba(214,177,112,0.4);">${exh.exhibitCount} Objek Terverifikasi</span>
+                <span class="exhibition-chapter-pill" style="background:rgba(250,247,242,0.12);color:#faf7f2;border-color:rgba(214,177,112,0.4);">${exh.models3DCount} Model 3D</span>
+                <span class="exhibition-chapter-pill" style="background:rgba(250,247,242,0.12);color:#faf7f2;border-color:rgba(214,177,112,0.4);">Estimasi ${exh.estimatedDurationMinutes} menit</span>
+                <span class="exhibition-chapter-pill" style="background:rgba(250,247,242,0.12);color:#faf7f2;border-color:rgba(214,177,112,0.4);">Status: ${escapeHtml(exh.verificationStatus)}</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;">
+                <a href="#chapter-journey" class="btn-museum btn-museum--bronze btn-museum--sm">Mulai Tur Bab</a>
+                <button type="button" id="btn-save-this-exhibition" class="btn-museum btn-museum--ghost-dark btn-museum--sm">
+                  <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">${savedExh ? 'bookmark_added' : 'bookmark_add'}</span>
+                  <span>${savedExh ? 'Tersimpan di Koleksi' : 'Simpan Pameran'}</span>
+                </button>
+              </div>
+            </div>
+            <div>
+              <img src="${escapeHtml(exh.coverImage)}" alt="${escapeHtml(exh.coverAlt || exh.title)}" class="exhibition-detail-cover__img" />
+              <div class="mono-caption" style="color:rgba(250,247,242,0.68);margin-top:8px;">${escapeHtml(exh.mediaAttribution)}</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. INTERACTIVE CHAPTER JOURNEY & MAIN ARTIFACT SPOTLIGHT -->
+        <section id="chapter-journey" class="museum-section museum-section--sand" aria-labelledby="active-chapter-title">
+          <div class="museum-container">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;">
+              <span class="eyebrow">Navigasi Bab Pameran</span>
+              <span id="exhibition-progress-label" class="mono-caption" style="color:var(--museum-emerald);" aria-live="polite"></span>
+            </div>
+            <div class="exhibition-progress-track" aria-hidden="true">
+              <div id="exhibition-progress-fill" class="exhibition-progress-fill"></div>
+            </div>
+
+            <div class="exhibition-chapter-nav" role="tablist" aria-label="Bab Pameran">
+              ${exh.chapters.map((ch, idx) => `
+                <button type="button" role="tab" class="exhibition-chapter-btn ${idx === 0 ? 'is-active' : ''}" data-chapter-tab="${idx}" aria-selected="${idx === 0 ? 'true' : 'false'}">
+                  <span style="font-family:var(--font-mono);font-size:0.74rem;opacity:0.8;">${escapeHtml(ch.number)}</span>
+                  <span>${escapeHtml(ch.title)}</span>
+                </button>
+              `).join('')}
+            </div>
+
+            <div style="margin-bottom:20px;">
+              <h2 id="active-chapter-title" class="section-title" style="margin:0 0 6px;"></h2>
+              <p id="active-chapter-summary" class="lead-copy" style="margin:0;"></p>
+            </div>
+
+            <div class="exhibition-stage-grid">
+              <div>
+                <div id="exhibit-visual-stage" class="exhibition-3d-stage"></div>
+                <div style="margin-top:16px;">
+                  <div class="mono-caption" style="color:var(--ink-muted);">Pilih Objek dalam Bab Ini</div>
+                  <div id="exhibit-selector-mount" class="exhibit-selector-grid"></div>
+                </div>
+              </div>
+              <div id="exhibit-info-mount"></div>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:26px;padding-top:18px;border-top:1px solid rgba(21,48,39,0.14);">
+              <button type="button" id="btn-prev-chapter" class="btn-museum btn-museum--secondary btn-museum--sm">← Bab Sebelumnya</button>
+              <button type="button" id="btn-next-chapter" class="btn-museum btn-museum--primary btn-museum--sm">Bab Berikutnya →</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. CULTURAL CONTEXT, SOURCES & COMPLETION REWARD -->
+        <section class="museum-section" aria-labelledby="completion-heading">
+          <div class="museum-container">
+            <div class="nular-grid-3" style="grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));">
+              <div class="nular-panel">
+                <span class="eyebrow">Konteks Kuratorial</span>
+                <h3 class="card-title" style="margin:8px 0;">Interpretasi &amp; Wilayah</h3>
+                <p style="font-size:0.88rem;line-height:1.62;color:var(--ink-secondary);margin:0 0 10px;">${escapeHtml(exh.culturalContext)}</p>
+                <div class="mono-caption" style="color:var(--ink-muted);">Wilayah Tercakup: ${escapeHtml(exh.regions.join(', '))}</div>
+              </div>
+
+              <div class="nular-panel">
+                <span class="eyebrow">Pustaka &amp; Atribusi</span>
+                <h3 class="card-title" style="margin:8px 0;">Rujukan Terverifikasi</h3>
+                <ul style="margin:0;padding-left:18px;font-size:0.84rem;line-height:1.6;color:var(--ink-secondary);">
+                  ${exh.sources.map((s) => `<li>${escapeHtml(s)}</li>`).join('')}
+                </ul>
+              </div>
+
+              <div class="nular-panel nular-panel--dark">
+                <span class="eyebrow eyebrow--light">Penyelesaian Pameran</span>
+                <h3 id="completion-heading" style="font-family:var(--font-serif);font-size:1.35rem;margin:8px 0;color:#faf7f2;">Catat Penyelesaian &amp; XP</h3>
+                <p style="font-size:0.85rem;line-height:1.6;color:#c8d3cd;margin:0 0 12px;">
+                  ${currentSession.authenticated
+                    ? `Sesi akun aktif (${escapeHtml(currentSession.user?.username || 'Penjelajah')}). Progres & XP dihitung langsung oleh server secara idempoten.`
+                    : 'Mode Tamu aktif: progres tersimpan lokal & XP dihitung server secara idempoten. Masuk akun untuk sinkronisasi identitas.'}
+                </p>
+                <button type="button" id="btn-complete-exhibition" class="btn-museum btn-museum--bronze btn-museum--sm">Tandai Pameran Selesai (+100 XP)</button>
+                <div id="completion-feedback" class="mono-caption" aria-live="polite" style="margin-top:10px;color:#e6c687;"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. RELATED EXHIBITIONS -->
+        <section class="museum-section museum-section--sand" aria-labelledby="related-heading">
+          <div class="museum-container">
+            <span class="eyebrow">Lanjutkan Perjalanan Kuratorial</span>
+            <h2 id="related-heading" class="section-title" style="margin:8px 0 18px;">Pameran Terkait</h2>
+            <div class="exhibition-gallery-grid" style="grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));">
+              ${relatedExhibitions.map((rel) => `
+                <a href="exhibition.html?id=${encodeURIComponent(rel.id)}" class="exhibition-plate">
+                  <div>
+                    <div class="exhibition-plate__meta">
+                      <span class="exhibition-plate__num">${escapeHtml(rel.roomNumber)}</span>
+                      <span class="exhibition-plate__tag">${escapeHtml(rel.categoryLabel)}</span>
+                    </div>
+                    <h3 class="exhibition-plate__title">${escapeHtml(rel.title)}</h3>
+                    <p class="exhibition-plate__desc">${escapeHtml(rel.subtitle)}</p>
+                  </div>
+                  <span class="exhibition-plate__cta">
+                    <span>Masuki Ruang</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">east</span>
+                  </span>
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+      `;
+
+      document.querySelectorAll('[data-chapter-tab]').forEach((btn) => {
+        btn.addEventListener('click', () => selectChapter(Number(btn.getAttribute('data-chapter-tab'))));
+      });
+      document.getElementById('btn-prev-chapter')?.addEventListener('click', () => selectChapter(activeChapterIdx - 1));
+      document.getElementById('btn-next-chapter')?.addEventListener('click', () => selectChapter(activeChapterIdx + 1));
+      document.getElementById('btn-complete-exhibition')?.addEventListener('click', claimCompletionReward);
+
+      const saveExhBtn = document.getElementById('btn-save-this-exhibition');
+      saveExhBtn?.addEventListener('click', () => {
+        const nowSaved = MuseumStore.toggleSavedExhibit({
+          id: `exhibition:${exh.id}`,
+          type: 'exhibition',
+          title: exh.title,
+          subtitle: exh.subtitle,
+          href: `exhibition.html?id=${encodeURIComponent(exh.id)}`
+        });
+        saveExhBtn.innerHTML = `
+          <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">${nowSaved ? 'bookmark_added' : 'bookmark_add'}</span>
+          <span>${nowSaved ? 'Tersimpan di Koleksi' : 'Simpan Pameran'}</span>
+        `;
+        showToast(nowSaved ? `“${exh.title}” disimpan ke Buku Koleksi.` : `“${exh.title}” dihapus dari Buku Koleksi.`);
+      });
+
+      selectChapter(0);
+    }
+
+    Promise.all([
+      resolveExhibitionById(exhibitionId),
+      AuthClient.getSession().catch(() => ({ authenticated: false }))
+    ]).then(([{ exhibition, related }, session]) => {
+      currentSession = session || { authenticated: false };
+      if (!exhibition) {
+        renderNotFound(exhibitionId);
+        return;
+      }
+      currentExhibition = exhibition;
+      relatedExhibitions = related;
+      renderExhibitionPage();
+    }).catch((err) => {
+      root.innerHTML = `<section class="museum-section"><div class="museum-container"><div class="nular-panel" style="color:#8b1e20;">Gagal memuat pameran: ${escapeHtml(err.message)}</div></div></section>`;
+    });
+  </script>
+</body>
+</html>

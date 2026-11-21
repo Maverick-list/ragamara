@@ -80,6 +80,18 @@
           <a href="explore.html" class="btn-museum btn-museum--secondary btn-museum--sm">Jelajahi Koleksi Lain</a>
         </div>
         <div id="saved-houses-grid" class="houses-grid houses-grid--3"></div>
+
+        <!-- SAVED EXHIBITIONS & EXHIBITS (COLLECTION BOOK INTEGRATION) -->
+        <div id="saved-exhibits-section" style="margin-top:42px;padding-top:32px;border-top:1px solid var(--border-hairline);">
+          <div class="section-header section-header--split" style="margin-bottom:20px;">
+            <div>
+              <span class="eyebrow">Buku Koleksi Pameran</span>
+              <h2 class="section-title" style="margin-top:8px;">Pameran &amp; Artefak Tersimpan</h2>
+            </div>
+            <a href="exhibitions.html" class="btn-museum btn-museum--secondary btn-museum--sm">Buka Balai Pameran</a>
+          </div>
+          <div id="saved-exhibits-grid" class="exhibition-gallery-grid" style="grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));"></div>
+        </div>
       </div>
     </section>
 
@@ -166,6 +178,44 @@
         `;
       } else {
         savedGrid.innerHTML = savedHouses.map((h) => renderHouseCard(h, { showCompare: true })).join('');
+      }
+
+      // Saved Exhibitions & Exhibits
+      const savedExhibits = MuseumStore.getSavedExhibits();
+      const exhGrid = document.getElementById('saved-exhibits-grid');
+      if (exhGrid) {
+        if (savedExhibits.length === 0) {
+          exhGrid.innerHTML = `
+            <div style="grid-column:1 / -1;padding:32px 20px;background:var(--bg-sandstone);border:1px dashed var(--border-strong);text-align:center;">
+              <p style="margin:0 0 12px;color:var(--ink-secondary);">Belum ada pameran atau artefak kuratorial yang disimpan ke Buku Koleksi.</p>
+              <a href="exhibitions.html" class="btn-museum btn-museum--primary btn-museum--sm">Jelajahi Balai Pameran</a>
+            </div>
+          `;
+        } else {
+          exhGrid.innerHTML = savedExhibits.map((item) => `
+            <article class="exhibition-plate" style="cursor:default;">
+              <div>
+                <div class="exhibition-plate__meta">
+                  <span class="exhibition-plate__num">${item.type === 'exhibition' ? 'PAMERAN' : 'ARTEFAK'}</span>
+                  <button type="button" class="btn-museum btn-museum--secondary btn-museum--sm" data-remove-exhibit="${escapeHtml(item.id)}" style="padding:4px 10px;min-height:32px;font-size:0.72rem;">Hapus</button>
+                </div>
+                <h3 class="exhibition-plate__title">${escapeHtml(item.title)}</h3>
+                <p class="exhibition-plate__desc">${escapeHtml(item.subtitle || '')}</p>
+              </div>
+              <a href="${escapeHtml(item.href || 'exhibitions.html')}" class="exhibition-plate__cta" style="text-decoration:none;">
+                <span>Buka Pameran</span>
+                <span class="material-symbols-outlined" aria-hidden="true">east</span>
+              </a>
+            </article>
+          `).join('');
+          exhGrid.querySelectorAll('[data-remove-exhibit]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const id = btn.getAttribute('data-remove-exhibit');
+              MuseumStore.toggleSavedExhibit({ id });
+              renderAll();
+            });
+          });
+        }
       }
 
       // History

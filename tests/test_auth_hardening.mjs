@@ -26,7 +26,7 @@ async function run() {
   assert.equal(provRes.status, 200);
   const provBody = await provRes.json();
   const prov = provBody.providers;
-  assert.equal(prov.storageMode, 'local_file_backed', 'Expected local_file_backed storage in writable non-prod');
+  assert.equal(prov.storageMode, 'local_dev_persistent', 'Expected local_dev_persistent storage in writable non-prod');
   assert.equal(prov.security?.loginRateLimitEnabled, true, 'Expected loginRateLimitEnabled=true');
   assert.equal(prov.email?.smtpConfigured, false, 'Expected smtpConfigured=false in local env without SMTP');
 

@@ -33,6 +33,8 @@ function createDefaultState() {
       favoriteRegions: []
     },
     savedHouseIds: [],
+    savedExhibits: [], // [{ id, type, title, subtitle, href, savedAt }]
+    exhibitionProgress: {}, // { [exhibitionId]: { visitedChapters: [], completed: false, completedAt: null, xpClaimed: false } }
     exploredHistory: [], // [{ houseId, visitedAt, inspectedComponents: [] }]
     comparedPairsCount: 0,
     personalNotes: {}, // { [houseId]: { text, updatedAt } }
@@ -100,6 +102,92 @@ export const MuseumStore = {
 
   isHouseSaved(houseId) {
     return loadState().savedHouseIds.includes(houseId);
+  },
+
+  toggleSavedExhibit(exhibit) {
+    if (!exhibit?.id) return false;
+    const state = loadState();
+    if (!Array.isArray(state.savedExhibits)) state.savedExhibits = [];
+    const idx = state.savedExhibits.findIndex((item) => item.id === exhibit.id);
+    let saved = false;
+    if (idx === -1) {
+      state.savedExhibits.unshift({
+        id: String(exhibit.id),
+        type: String(exhibit.type || 'exhibit'),
+        title: String(exhibit.title || exhibit.id),
+        subtitle: String(exhibit.subtitle || ''),
+        href: String(exhibit.href || 'exhibitions.html'),
+        savedAt: new Date().toISOString()
+      });
+      saved = true;
+    } else {
+      state.savedExhibits.splice(idx, 1);
+      saved = false;
+    }
+    saveState(state);
+    window.dispatchEvent(new CustomEvent('nular:store-updated', { detail: state }));
+    return saved;
+  },
+
+  isExhibitSaved(id) {
+    const state = loadState();
+    return Array.isArray(state.savedExhibits) && state.savedExhibits.some((item) => item.id === id);
+  },
+
+  getSavedExhibits() {
+    const state = loadState();
+    return Array.isArray(state.savedExhibits) ? state.savedExhibits : [];
+  },
+
+  recordExhibitionChapter(exhibitionId, chapterId) {
+    if (!exhibitionId || !chapterId) return null;
+    const state = loadState();
+    if (!state.exhibitionProgress || typeof state.exhibitionProgress !== 'object') {
+      state.exhibitionProgress = {};
+    }
+    const entry = state.exhibitionProgress[exhibitionId] || {
+      visitedChapters: [],
+      completed: false,
+      completedAt: null,
+      xpClaimed: false
+    };
+    if (!entry.visitedChapters.includes(chapterId)) {
+      entry.visitedChapters.push(chapterId);
+    }
+    state.exhibitionProgress[exhibitionId] = entry;
+    saveState(state);
+    return entry;
+  },
+
+  markExhibitionCompleted(exhibitionId, xpClaimed = false) {
+    if (!exhibitionId) return null;
+    const state = loadState();
+    if (!state.exhibitionProgress || typeof state.exhibitionProgress !== 'object') {
+      state.exhibitionProgress = {};
+    }
+    const entry = state.exhibitionProgress[exhibitionId] || {
+      visitedChapters: [],
+      completed: false,
+      completedAt: null,
+      xpClaimed: false
+    };
+    entry.completed = true;
+    entry.completedAt = entry.completedAt || new Date().toISOString();
+    if (xpClaimed) entry.xpClaimed = true;
+    state.exhibitionProgress[exhibitionId] = entry;
+    saveState(state);
+    window.dispatchEvent(new CustomEvent('nular:store-updated', { detail: state }));
+    return entry;
+  },
+
+  getExhibitionProgress(exhibitionId) {
+    const state = loadState();
+    return (state.exhibitionProgress && state.exhibitionProgress[exhibitionId]) || {
+      visitedChapters: [],
+      completed: false,
+      completedAt: null,
+      xpClaimed: false
+    };
   },
 
   toggleFavoriteRegion(islandName) {

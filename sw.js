@@ -4,10 +4,12 @@
  * Adheres strictly to security rules: never caches /api/ endpoints or sensitive credentials.
  */
 
-const CACHE_VERSION = 'nular-shell-v1.1';
+const CACHE_VERSION = 'nular-shell-v1.2';
 const CORE_SHELL = [
   './',
   './index.html',
+  './exhibitions.html',
+  './exhibition.html',
   './explore.html',
   './map.html',
   './anatomy.html',
@@ -20,15 +22,20 @@ const CORE_SHELL = [
   './css/components.css',
   './css/animations.css',
   './css/design-system.css',
+  './css/exhibition-motion.css',
   './css/landing.css',
   './js/museum-data.js',
+  './js/exhibition-data.js',
+  './js/museum-motion.js',
   './js/museum-store.js',
   './js/museum-shell.js',
   './assets/images/logo.png',
   './assets/images/icon-192.png',
   './assets/images/icon-512.png',
   './data/provinces.json',
-  './data/houses.json'
+  './data/houses.json',
+  './data/exhibitions.json',
+  './data/cultural-items.json'
 ];
 
 self.addEventListener('install', (event) => {

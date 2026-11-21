@@ -6,8 +6,10 @@
 
 ## 1. External Service & Credential Limitations
 
-1. **Authentication Persistence (`api/auth.js`):**
-   - Without `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, user records are stored in an ephemeral in-memory `Map` (suitable for local development and warm serverless instances, NOT durable across cold starts). Configure Supabase PostgreSQL (`db/migrations/001_nular_cultural_world.sql`) before production public launch.
+1. **Authentication Persistence (`api/auth.js` — Updated Completion Phase):**
+   - **Production Fail-Closed Enforcement:** In production (`VERCEL_ENV=production` / `NODE_ENV=production`), `api/auth.js` **never** falls back to ephemeral in-memory or local filesystem storage. Missing or incomplete `SUPABASE_URL` + key, or a missing/short `<32`-char `NULAR_SESSION_SECRET`, causes persistence-dependent auth endpoints to fail closed with HTTP `503`.
+   - **Local Development Only:** In explicit local development, users, login rate-limit windows, and revoked session JTIs persist atomically to `.gitignore`d `.nular-local-data/auth-store.json` (`0600`).
+   - See `docs/NULAR_AUTHENTICATION_PRODUCTION_GATE.md` and `docs/AUTHENTICATION_SETUP.md` for exact owner configuration steps.
 2. **Google OAuth 2.0:**
    - Not connected until `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are added to environment variables. Currently displays an honest unconfigured notice and returns HTTP `503`.
 3. **Phone OTP SMS Delivery:**

@@ -304,12 +304,20 @@
       if (phEl) phEl.textContent = p.phoneOtp?.configured ? 'Penyedia SMS OTP aktif.' : (p.phoneOtp?.devModeAllowed ? 'SMS produksi belum terhubung (mode uji lokal aktif).' : 'Penyedia SMS OTP belum dikonfigurasi.');
       if (diagEl) {
         const storageLabels = {
-          supabase_configured: 'Penyimpanan: Supabase Cloud',
-          local_file_backed: 'Penyimpanan: Lokal Persisten (.nular-local-data)',
-          serverless_ephemeral: 'Penyimpanan: Serverless Sementara (Set Supabase untuk produksi)'
+          durable_production_supabase: 'Penyimpanan: Supabase Produksi (Tahan Lama)',
+          local_dev_persistent: 'Penyimpanan: Pengembangan Lokal Persisten (.nular-local-data)',
+          ephemeral_test_fixture: 'Penyimpanan: Fixture Pengujian Sementara',
+          unconfigured_fail_closed: 'Penyimpanan: Belum Terkonfigurasi (Produksi Fail-Closed)'
         };
         const badges = [
-          { label: storageLabels[p.storageMode] || 'Penyimpanan: Lokal', ok: p.storageMode !== 'serverless_ephemeral' },
+          {
+            label: storageLabels[p.storageMode] || 'Penyimpanan: Belum Terkonfigurasi',
+            ok: p.storageMode === 'durable_production_supabase' || p.storageMode === 'local_dev_persistent'
+          },
+          {
+            label: p.security?.sessionSecretConfigured ? 'Kunci Sesi: Terkonfigurasi' : (p.security?.isProduction ? 'Kunci Sesi: Wajib di Produksi' : 'Kunci Sesi: Dev Lokal'),
+            ok: Boolean(p.security?.sessionSecretMandatoryMet)
+          },
           { label: p.security?.loginRateLimitEnabled ? 'Rate-Limit Login: Aktif' : 'Rate-Limit Login: Nonaktif', ok: Boolean(p.security?.loginRateLimitEnabled) },
           { label: p.google?.configured ? 'Google OAuth: Aktif' : 'Google OAuth: Belum Terkonfigurasi', ok: Boolean(p.google?.configured) },
           { label: p.phoneOtp?.configured ? 'SMS OTP: Aktif' : 'SMS OTP: Mode Uji Lokal', ok: Boolean(p.phoneOtp?.configured) },

@@ -65,3 +65,12 @@ Visual evidence captured in `docs/qa/overhaul-evidence/`:
 1. **Physical-Device Verification:** Real iOS Safari / Android Chrome testing on physical hardware remains owner-controlled (automated verification used headless Chrome device emulation + SwiftShader WebGL).
 2. **External Production Credentials:** Real cloud account persistence (`SUPABASE_URL`), Google OAuth (`GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`), Twilio SMS OTP, and SMTP email delivery remain transparently reported as unconfigured until production environment variables are supplied per `docs/AUTHENTICATION_SETUP.md`.
 3. **Deployment:** No Preview or Production deployment was executed; `main` remains untouched at `1a110b0`.
+
+---
+
+## 5. Completion Phase Addendum (Real Exhibition Product, Auth Production Gate & Full-Site Visual Audit)
+
+Following commit `46e54ee`, the Completion Phase delivered:
+- **Fail-Closed Production Authentication Gate (`api/auth.js`, `auth.html`, `tests/test_auth_production_integrity.mjs`):** Mandatory `>=32`-char session secret and complete Supabase config in production (fail-closed HTTP `503`), strict rejection of filesystem fallback in production, 4 distinct diagnostic storage modes, JTI session revocation on logout/deletion, and cross-restart login rate-limit persistence in local dev. See [NULAR_AUTHENTICATION_PRODUCTION_GATE.md](NULAR_AUTHENTICATION_PRODUCTION_GATE.md).
+- **Real Exhibition Product (`data/exhibitions.json`, `js/exhibition-data.js`, `exhibitions.html`, `exhibition.html`, `js/museum-store.js`, `profile.html`):** 4 curated exhibitions referencing 25 real catalog items and 15 verified GLB models (0 fabricated IDs/GLBs), full-width editorial hall with search/category/region filters, interactive chapter journey with 3D/honest archival fallbacks, Collection Book save/remove sync, and server-authoritative idempotent XP. See [NULAR_EXHIBITION_FINAL_REPORT.md](NULAR_EXHIBITION_FINAL_REPORT.md).
+- **Full-Site Visual Verification (`docs/qa/completion-evidence/`):** 16 desktop & mobile screenshots captured and visually reviewed across the 9-viewport matrix. See [NULAR_FULL_SITE_VISUAL_AUDIT.md](NULAR_FULL_SITE_VISUAL_AUDIT.md).

@@ -62,7 +62,8 @@ export function initMuseumShell(activePageId) {
   const prog = getPlayerProgressSummary();
 
   const updateSavedBadge = () => {
-    const count = MuseumStore.getState().savedHouseIds.length;
+    const st = MuseumStore.getState();
+    const count = (st.savedHouseIds?.length || 0) + (st.savedExhibits?.length || 0);
     document.querySelectorAll('[data-saved-count]').forEach((el) => {
       el.textContent = String(count);
     });
@@ -155,6 +156,16 @@ export function initMuseumShell(activePageId) {
                 </a>
               </li>
             `).join('')}
+            <li>
+              <a
+                href="exhibitions.html"
+                class="mobile-drawer__link"
+                ${activePageId === 'exhibitions' ? 'aria-current="page"' : ''}
+              >
+                <span>Balai Pameran</span>
+                <span class="mono-caption">Curated Exhibitions</span>
+              </a>
+            </li>
             <li>
               <a
                 href="profile.html"
@@ -260,6 +271,7 @@ export function initMuseumShell(activePageId) {
             <div>
               <h3 class="footer-heading">Ekosistem NULAR</h3>
               <ul class="footer-links">
+                <li><a href="exhibitions.html">Balai Pameran Kuratorial</a></li>
                 <li><a href="portal.html">Portal Eksplorasi 3D</a></li>
                 <li><a href="explore.html">Penemuan Budaya (38 Provinsi)</a></li>
                 <li><a href="map.html">Peta Nusantara Interaktif</a></li>
